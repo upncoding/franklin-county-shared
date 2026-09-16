@@ -1,0 +1,17 @@
+[
+  {
+    "context": "desktop/base",
+    "label": "Desktop Base",
+    "violations": []
+  },
+  {
+    "context": "desktop/megamenu",
+    "label": "Mega Menu Open",
+    "violations": []
+  },
+  {
+    "context": "mobile/base",
+    "label": "Mobile Base",
+    "violations": []
+  }
+]

@@ -1,0 +1,58 @@
+{
+  "name": "@upncoding/franklin-county-shared",
+  "version": "0.1.0",
+  "description": "Shared theme, components, and layout shell for Franklin County sites",
+  "type": "module",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    },
+    "./styles": {
+      "types": "./dist/styles.d.ts",
+      "default": "./dist/styles/index.css"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "test:ada": "node scripts/test-ada.js",
+    "dev": "vite build --watch",
+    "build": "tsc -b tsconfig.build.json && vite build && cp src/styles.d.ts dist/",
+    "prepublishOnly": "npm run build"
+  },
+  "peerDependencies": {
+    "react": ">=19",
+    "react-dom": ">=19",
+    "react-router-dom": ">=7"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4.1.18",
+    "@types/node": "^26.6.0",
+    "@types/react": "^19.2.5",
+    "@types/react-dom": "^19.2.3",
+    "@vitejs/plugin-react": "^5.1.1",
+    "autoprefixer": "^10.4.23",
+    "axe-core": "^4.13.0",
+    "postcss": "^8.5.6",
+    "puppeteer": "^25.11.0",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0",
+    "react-router-dom": "^7.12.0",
+    "tailwindcss": "^4.1.18",
+    "typescript": "~5.9.3",
+    "vite": "^7.2.4"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/upncoding/franklin-county-shared.git"
+  }
+}
