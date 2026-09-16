@@ -1,8 +1,8 @@
-import { jsx as I, jsxs as i, Fragment as Z } from "react/jsx-runtime";
-import { createContext as eI, useEffect as O, useContext as nI, forwardRef as oI, useState as J, useRef as K } from "react";
+import { jsx as I, jsxs as i, Fragment as P } from "react/jsx-runtime";
+import { createContext as eI, useEffect as O, useContext as nI, forwardRef as oI, useState as Q, useRef as f } from "react";
 import { Link as tI, useLocation as q, NavLink as W } from "react-router-dom";
 import { useFloating as iI, autoUpdate as rI, offset as aI, flip as lI, shift as sI, FloatingPortal as cI } from "@floating-ui/react";
-import { AnimatePresence as D, motion as B } from "framer-motion";
+import { AnimatePresence as D, motion as Z } from "framer-motion";
 const pI = {
   name: "Vibrant Adirondack",
   colors: {
@@ -80,7 +80,7 @@ function uI({ children: o, theme: n }) {
     e.style.setProperty("--theme-bg-main", g.bg.main), e.style.setProperty("--theme-bg-main-from", g.bg.mainFrom), e.style.setProperty("--theme-bg-main-via", g.bg.mainVia), e.style.setProperty("--theme-bg-main-to", g.bg.mainTo), e.style.setProperty("--theme-bg-card", g.bg.card), e.style.setProperty("--theme-bg-card-alt", g.bg.cardAlt), e.style.setProperty("--theme-bg-sidebar", g.bg.sidebar), e.style.setProperty("--theme-bg-header", g.bg.header), e.style.setProperty("--theme-bg-footer", g.bg.footer), e.style.setProperty("--theme-text-primary", g.text.primary), e.style.setProperty("--theme-text-secondary", g.text.secondary), e.style.setProperty("--theme-text-muted", g.text.muted), e.style.setProperty("--theme-text-on-dark", g.text.onDark), e.style.setProperty("--theme-primary", g.primary.DEFAULT), e.style.setProperty("--theme-primary-light", g.primary.light), e.style.setProperty("--theme-primary-dark", g.primary.dark), e.style.setProperty("--theme-secondary", g.secondary.DEFAULT), e.style.setProperty("--theme-secondary-light", g.secondary.light), e.style.setProperty("--theme-secondary-dark", g.secondary.dark), e.style.setProperty("--theme-hover-card", g.hover.card), e.style.setProperty("--theme-hover-sidebar", g.hover.sidebar), e.style.setProperty("--theme-hover-button", g.hover.button), e.style.setProperty("--theme-hover-link", g.hover.link), e.style.setProperty("--theme-shadow", g.shadow), e.style.setProperty("--theme-shadow-dark", g.shadowDark), e.style.setProperty("--theme-glow", g.glow), e.style.setProperty("--theme-border", g.border);
   }, [A]), /* @__PURE__ */ I(H.Provider, { value: { theme: A }, children: o });
 }
-function F() {
+function J() {
   const o = nI(H);
   if (o === void 0)
     throw new Error("useTheme must be used within a ThemeProvider");
@@ -112,7 +112,7 @@ const Y = oI(
   )
 );
 Y.displayName = "NavLinkOrA";
-const b = ({
+const N = ({
   label: o,
   url: n = "#",
   items: A,
@@ -120,35 +120,35 @@ const b = ({
   textColor: g,
   variant: c = "standard"
 }) => {
-  const [a, l] = J(!1), [j, f] = J(null), p = K(null), x = K(null), R = K(null), u = K(null), E = K(null), S = K(!1), { theme: h } = F(), t = q(), d = `nav-menu-${o.replace(/\s+/g, "-").toLowerCase()}`, k = A.some((C) => t.pathname === C.url ? !0 : C.subItems ? C.subItems.some((r) => t.pathname === r.url) : !1), G = t.pathname === n || k, y = () => {
+  const [l, a] = Q(!1), [j, K] = Q(null), p = f(null), x = f(null), R = f(null), d = f(null), E = f(null), S = f(!1), { theme: h } = J(), t = q(), m = `nav-menu-${o.replace(/\s+/g, "-").toLowerCase()}`, k = A.some((C) => t.pathname === C.url ? !0 : C.subItems ? C.subItems.some((r) => t.pathname === r.url) : !1), G = t.pathname === n || k, y = () => {
     if (x.current) {
       const C = x.current.getBoundingClientRect();
-      f(C.bottom + 8);
+      K(C.bottom + 8);
     }
-    window.dispatchEvent(new CustomEvent("navdropdown:opened", { detail: { menuId: d } })), l(!0);
-  }, U = () => {
-    l(!1), S.current = !1, x.current?.focus();
+    window.dispatchEvent(new CustomEvent("navdropdown:opened", { detail: { menuId: m } })), a(!0);
+  }, F = () => {
+    a(!1), S.current = !1, x.current?.focus();
   };
   O(() => {
     const C = (r) => {
-      r.detail.menuId !== d && (l(!1), S.current = !1);
+      r.detail.menuId !== m && (a(!1), S.current = !1);
     };
     return window.addEventListener("navdropdown:opened", C), () => window.removeEventListener("navdropdown:opened", C);
-  }, [d]), O(() => {
+  }, [m]), O(() => {
     const C = (r) => {
-      p.current && !p.current.contains(r.target) && (l(!1), S.current = !1);
+      p.current && !p.current.contains(r.target) && (a(!1), S.current = !1);
     };
-    return a && document.addEventListener("mousedown", C), () => document.removeEventListener("mousedown", C);
-  }, [a]), O(() => {
-    a && S.current && R.current && R.current.querySelector("a, button")?.focus();
-  }, [a]);
-  const m = (C) => {
-    C.key === " " || C.key === "ArrowDown" ? (C.preventDefault(), S.current = !0, y()) : C.key === "Escape" && (l(!1), S.current = !1);
-  }, P = (C) => {
-    C.key === "Enter" || C.key === " " || C.key === "ArrowDown" ? (C.preventDefault(), S.current = !0, a ? l(!1) : y()) : C.key === "Escape" && (l(!1), S.current = !1);
+    return l && document.addEventListener("mousedown", C), () => document.removeEventListener("mousedown", C);
+  }, [l]), O(() => {
+    l && S.current && R.current && R.current.querySelector("a, button")?.focus();
+  }, [l]);
+  const u = (C) => {
+    C.key === " " || C.key === "ArrowDown" ? (C.preventDefault(), S.current = !0, y()) : C.key === "Escape" && (a(!1), S.current = !1);
+  }, B = (C) => {
+    C.key === "Enter" || C.key === " " || C.key === "ArrowDown" ? (C.preventDefault(), S.current = !0, l ? a(!1) : y()) : C.key === "Escape" && (a(!1), S.current = !1);
   }, T = (C) => {
     if (C.key === "Escape") {
-      C.preventDefault(), U();
+      C.preventDefault(), F();
       return;
     }
     if (C.key === "ArrowDown" || C.key === "ArrowUp") {
@@ -158,15 +158,15 @@ const b = ({
     }
     if (C.key === "Tab") {
       const r = Array.from(R.current?.querySelectorAll("a, button") ?? []), w = r[r.length - 1];
-      !C.shiftKey && document.activeElement === w && l(!1), C.shiftKey && document.activeElement === r[0] && (C.preventDefault(), U());
+      !C.shiftKey && document.activeElement === w && a(!1), C.shiftKey && document.activeElement === r[0] && (C.preventDefault(), F());
     }
-  }, v = () => {
-    u.current && (window.clearTimeout(u.current), u.current = null), !a && !E.current && (E.current = window.setTimeout(() => {
+  }, U = () => {
+    d.current && (window.clearTimeout(d.current), d.current = null), !l && !E.current && (E.current = window.setTimeout(() => {
       y(), E.current = null;
     }, 150));
-  }, N = () => {
-    E.current && (window.clearTimeout(E.current), E.current = null), u.current = window.setTimeout(() => {
-      l(!1), u.current = null;
+  }, b = () => {
+    E.current && (window.clearTimeout(E.current), E.current = null), d.current = window.setTimeout(() => {
+      a(!1), d.current = null;
     }, 300);
   }, z = () => {
     switch (e) {
@@ -179,19 +179,19 @@ const b = ({
       default:
         return "md:grid-cols-1";
     }
-  }, M = a || G ? h.colors.secondary.DEFAULT : g || "rgba(255, 255, 255, 0.9)", s = "mx-4 my-2 text-xs font-bold uppercase tracking-widest transition-colors inline-block relative z-20 bg-transparent border-0 cursor-pointer p-0";
-  return /* @__PURE__ */ i("div", { ref: p, className: "relative inline-block", onMouseLeave: N, children: [
+  }, M = l || G ? h.colors.secondary.DEFAULT : g || "rgba(255, 255, 255, 0.9)", s = "mx-4 my-2 text-xs font-bold uppercase tracking-widest transition-colors inline-block relative z-20 bg-transparent border-0 cursor-pointer p-0";
+  return /* @__PURE__ */ i("div", { ref: p, className: "relative inline-block", onMouseLeave: b, children: [
     n !== "#" ? /* @__PURE__ */ I(
       Y,
       {
         ref: x,
         item: { label: o, url: n },
-        "aria-expanded": a,
-        "aria-controls": d,
+        "aria-expanded": l,
+        "aria-controls": m,
         className: s,
         style: { color: M },
-        onMouseEnter: v,
-        onKeyDown: m,
+        onMouseEnter: U,
+        onKeyDown: u,
         children: o
       }
     ) : /* @__PURE__ */ I(
@@ -199,13 +199,13 @@ const b = ({
       {
         ref: x,
         type: "button",
-        "aria-expanded": a,
-        "aria-controls": d,
+        "aria-expanded": l,
+        "aria-controls": m,
         className: s,
         style: { color: M },
-        onMouseEnter: v,
-        onKeyDown: P,
-        onClick: () => l((C) => !C),
+        onMouseEnter: U,
+        onKeyDown: B,
+        onClick: () => a((C) => !C),
         children: o
       }
     ),
@@ -214,15 +214,15 @@ const b = ({
       /* @__PURE__ */ I(
         "div",
         {
-          id: d,
+          id: m,
           ref: R,
           "aria-label": o,
-          ...a ? {} : { inert: !0 },
-          className: `fixed left-0 w-full z-[100] transition-all duration-300 ease-out ${a ? "opacity-100 translate-y-0 visible pointer-events-auto" : "opacity-0 -translate-y-2 invisible pointer-events-none"}`,
+          ...l ? {} : { inert: !0 },
+          className: `fixed left-0 w-full z-[100] transition-all duration-300 ease-out ${l ? "opacity-100 translate-y-0 visible pointer-events-auto" : "opacity-0 -translate-y-2 invisible pointer-events-none"}`,
           style: { top: j ? `${j}px` : "var(--fc-header-height, 50px)" },
-          onMouseEnter: v,
+          onMouseEnter: U,
           onKeyDown: T,
-          children: /* @__PURE__ */ I("div", { className: "container mx-auto px-6", onMouseLeave: N, children: /* @__PURE__ */ I(
+          children: /* @__PURE__ */ I("div", { className: "container mx-auto px-6", onMouseLeave: b, children: /* @__PURE__ */ I(
             "div",
             {
               className: "rounded-b-lg shadow-2xl elevation-xl border-t overflow-hidden text-left mt-0",
@@ -232,7 +232,7 @@ const b = ({
                   Y,
                   {
                     item: C,
-                    tabIndex: a ? 0 : -1,
+                    tabIndex: l ? 0 : -1,
                     className: "block px-4 py-2 text-sm font-medium rounded transition-all duration-200 interactive-effect border border-transparent",
                     style: { color: h.colors.text.primary },
                     children: C.label
@@ -243,16 +243,16 @@ const b = ({
                   {
                     className: "flex flex-col ml-4 mt-1 border-l-2 pl-2",
                     style: { borderColor: `${h.colors.border || "#e5e7eb"}80` },
-                    children: C.subItems.map((w, Q) => /* @__PURE__ */ I(
+                    children: C.subItems.map((w, v) => /* @__PURE__ */ I(
                       Y,
                       {
                         item: w,
-                        tabIndex: a ? 0 : -1,
+                        tabIndex: l ? 0 : -1,
                         className: "block px-4 py-1.5 text-xs rounded transition-all duration-200 opacity-90 interactive-effect border border-transparent",
                         style: { color: h.colors.text.primary },
                         children: w.label
                       },
-                      Q
+                      v
                     ))
                   }
                 )
@@ -266,26 +266,26 @@ const b = ({
       /* @__PURE__ */ I(
         "div",
         {
-          id: d,
+          id: m,
           ref: R,
           "aria-label": o,
-          ...a ? {} : { inert: !0 },
-          className: `absolute left-1/2 -translate-x-1/2 top-full pt-4 z-[100] transition-all duration-300 ease-out ${a ? "opacity-100 translate-y-0 visible pointer-events-auto" : "opacity-0 -translate-y-2 invisible pointer-events-none"}`,
-          onMouseEnter: v,
+          ...l ? {} : { inert: !0 },
+          className: `absolute left-1/2 -translate-x-1/2 top-full pt-4 z-[100] transition-all duration-300 ease-out ${l ? "opacity-100 translate-y-0 visible pointer-events-auto" : "opacity-0 -translate-y-2 invisible pointer-events-none"}`,
+          onMouseEnter: U,
           onKeyDown: T,
           children: /* @__PURE__ */ i(
             "div",
             {
               className: "w-75 rounded-2xl shadow-2xl elevation-xl border overflow-hidden text-left",
               style: { backgroundColor: h.colors.bg.card, borderColor: h.colors.border },
-              onMouseLeave: N,
+              onMouseLeave: b,
               children: [
                 /* @__PURE__ */ I("div", { className: `grid ${z()} gap-2 p-4`, children: A.map((C, r) => /* @__PURE__ */ i("div", { className: "flex flex-col", children: [
                   /* @__PURE__ */ I(
                     Y,
                     {
                       item: C,
-                      tabIndex: a ? 0 : -1,
+                      tabIndex: l ? 0 : -1,
                       className: "block px-4 py-3 text-sm font-bold rounded-xl transition-all duration-200 interactive-effect border border-transparent",
                       style: { color: h.colors.text.primary },
                       children: C.label
@@ -296,16 +296,16 @@ const b = ({
                     {
                       className: "flex flex-col ml-4 mt-1 border-l-2 pl-2",
                       style: { borderColor: `${h.colors.border || "#e5e7eb"}80` },
-                      children: C.subItems.map((w, Q) => /* @__PURE__ */ I(
+                      children: C.subItems.map((w, v) => /* @__PURE__ */ I(
                         Y,
                         {
                           item: w,
-                          tabIndex: a ? 0 : -1,
+                          tabIndex: l ? 0 : -1,
                           className: "block px-4 py-2 text-xs font-medium rounded-lg transition-all duration-200 opacity-80 interactive-effect border border-transparent hover:opacity-100",
                           style: { color: h.colors.text.primary },
                           children: w.label
                         },
-                        Q
+                        v
                       ))
                     }
                   )
@@ -463,7 +463,7 @@ const b = ({
     ]
   }
 ], dI = () => {
-  const { theme: o } = F(), n = o.colors.text.onDark;
+  const { theme: o } = J(), n = o.colors.text.onDark;
   return /* @__PURE__ */ i(
     "div",
     {
@@ -474,7 +474,7 @@ const b = ({
       },
       children: [
         /* @__PURE__ */ I(
-          b,
+          N,
           {
             label: "Departments",
             url: "https://www.franklincountyny.gov/departments/index.php",
@@ -485,7 +485,7 @@ const b = ({
           }
         ),
         /* @__PURE__ */ I(
-          b,
+          N,
           {
             label: "Residents",
             url: "https://www.franklincountyny.gov/residents/index.php",
@@ -496,7 +496,7 @@ const b = ({
           }
         ),
         /* @__PURE__ */ I(
-          b,
+          N,
           {
             label: "Visitors",
             url: "https://www.franklincountyny.gov/visitors/index.php",
@@ -507,7 +507,7 @@ const b = ({
           }
         ),
         /* @__PURE__ */ I(
-          b,
+          N,
           {
             label: "Business",
             url: "https://www.franklincountyny.gov/business/index.php",
@@ -518,7 +518,7 @@ const b = ({
           }
         ),
         /* @__PURE__ */ I(
-          b,
+          N,
           {
             label: "Our Communities",
             url: "https://www.franklincountyny.gov/our_communities/index.php",
@@ -529,7 +529,7 @@ const b = ({
           }
         ),
         /* @__PURE__ */ I(
-          b,
+          N,
           {
             label: "How Do I?",
             url: "https://www.franklincountyny.gov/how_do_i/index.php",
@@ -548,7 +548,7 @@ const b = ({
   onClick: A,
   textColor: e
 }) => {
-  const { theme: g } = F();
+  const { theme: g } = J();
   return /* @__PURE__ */ I(
     W,
     {
@@ -566,11 +566,11 @@ const b = ({
   onSearch: o,
   isMobile: n = !1
 }) => {
-  const { theme: A } = F();
+  const { theme: A } = J();
   return /* @__PURE__ */ I("form", { onSubmit: (g) => {
     g.preventDefault();
-    const a = g.currentTarget.elements.namedItem("q");
-    a.value.trim() && o && (o(a.value.trim()), a.value = "");
+    const l = g.currentTarget.elements.namedItem("q");
+    l.value.trim() && o && (o(l.value.trim()), l.value = "");
   }, role: "search", "aria-label": "Site search", className: n ? "w-full" : "", children: /* @__PURE__ */ i("div", { className: "relative flex items-center", children: [
     /* @__PURE__ */ I(
       "input",
@@ -605,11 +605,11 @@ const b = ({
   showSearch: e = !1,
   onSearch: g,
   isMobileMenuOpen: c,
-  onMobileMenuToggle: a,
-  isMobileOrTablet: l,
+  onMobileMenuToggle: l,
+  isMobileOrTablet: a,
   isScrolled: j
 }) => {
-  const { theme: f } = F(), p = f.colors.text.onDark, x = l, R = n.slice(0, 8);
+  const { theme: K } = J(), p = K.colors.text.onDark, x = a, R = n.slice(0, 8);
   return process.env.NODE_ENV !== "production" && n.length > 8 && console.warn(
     "[Navbar] navItems exceeds the 8-item maximum. Only the first 8 will be rendered."
   ), /* @__PURE__ */ i("div", { className: "flex justify-between items-center", children: [
@@ -637,22 +637,22 @@ const b = ({
         "aria-label": "Main navigation",
         children: [
           R.map(
-            (u, E) => u.items && u.items.length > 0 ? /* @__PURE__ */ I(
-              b,
+            (d, E) => d.items && d.items.length > 0 ? /* @__PURE__ */ I(
+              N,
               {
-                label: u.label,
-                url: u.url,
-                items: u.items,
-                columns: u.columns,
+                label: d.label,
+                url: d.url,
+                items: d.items,
+                columns: d.columns,
                 textColor: p,
-                variant: u.variant
+                variant: d.variant
               },
               E
             ) : /* @__PURE__ */ I(
               mI,
               {
-                to: u.url || "/",
-                label: u.label,
+                to: d.url || "/",
+                label: d.label,
                 textColor: p
               },
               E
@@ -666,17 +666,17 @@ const b = ({
       "button",
       {
         type: "button",
-        className: `${l ? "block" : "xl:hidden"} p-2 cursor-pointer transition-opacity rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-county-gold`,
+        className: `${a ? "block" : "xl:hidden"} p-2 cursor-pointer transition-opacity rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-county-gold`,
         style: { color: p },
-        onClick: a,
+        onClick: l,
         "aria-label": c ? "Close navigation menu" : "Open navigation menu",
         "aria-expanded": c,
         "aria-controls": "fc-mobile-nav",
-        onMouseEnter: (u) => {
-          u.currentTarget.querySelectorAll("span").forEach((E) => E.style.backgroundColor = f.colors.secondary.DEFAULT);
+        onMouseEnter: (d) => {
+          d.currentTarget.querySelectorAll("span").forEach((E) => E.style.backgroundColor = K.colors.secondary.DEFAULT);
         },
-        onMouseLeave: (u) => {
-          u.currentTarget.querySelectorAll("span").forEach((E) => E.style.backgroundColor = p);
+        onMouseLeave: (d) => {
+          d.currentTarget.querySelectorAll("span").forEach((E) => E.style.backgroundColor = p);
         },
         children: /* @__PURE__ */ i("div", { className: "space-y-1.5", "aria-hidden": "true", children: [
           /* @__PURE__ */ I(
@@ -707,7 +707,7 @@ const b = ({
 }, RI = (o) => {
   const n = encodeURIComponent(o), A = navigator.userAgent || navigator.vendor || window.opera;
   return /iPad|iPhone|iPod/.test(A) && !window.MSStream ? `maps://maps.apple.com/?q=${n}` : /android/i.test(A) ? `geo:0,0?q=${n}` : `https://www.google.com/maps/search/?api=1&query=${n}`;
-}, V = "518-891-2280", kI = "36 Church St Saranac Lake NY 12983", xI = /* @__PURE__ */ i(Z, { children: [
+}, V = "518-891-2280", kI = "36 Church St Saranac Lake NY 12983", xI = /* @__PURE__ */ i(P, { children: [
   "36 Church St",
   /* @__PURE__ */ I("br", {}),
   "Saranac Lake, NY 12983",
@@ -717,7 +717,7 @@ const b = ({
   phone: o = V,
   address: n = xI
 }) => {
-  const { theme: A } = F(), e = o === V ? kI : void 0;
+  const { theme: A } = J(), e = o === V ? kI : void 0;
   return /* @__PURE__ */ I(
     "footer",
     {
@@ -870,16 +870,16 @@ function SI({
   showNavbar: e = !0,
   showFooter: g = !0,
   navItems: c = [],
-  showSearch: a = !1,
-  onSearch: l,
+  showSearch: l = !1,
+  onSearch: a,
   footerPhone: j,
-  footerAddress: f,
+  footerAddress: K,
   heroImage: p,
   heroVideo: x,
   heroTitle: R,
-  heroSubtitle: u
+  heroSubtitle: d
 }) {
-  const [E, S] = J(!1), [h, t] = J(!1), [d, k] = J(!1), [G, y] = J(80), U = q(), { theme: m } = F(), P = K(null), T = K(null), v = K(null), N = K(null);
+  const [E, S] = Q(!1), [h, t] = Q(!1), [m, k] = Q(!1), [G, y] = Q(80), F = q(), { theme: u } = J(), B = f(null), T = f(null), U = f(null), b = f(null);
   O(() => {
     const s = navigator.userAgent || navigator.vendor || window.opera || "", C = /android|webos|iphone|ipad|ipod|blackberry|iemobile|opera mini/i.test(s), r = /macintosh/i.test(s) && navigator.maxTouchPoints > 1;
     k(!!(C || r));
@@ -887,35 +887,35 @@ function SI({
     const s = () => S(window.scrollY > 50);
     return window.addEventListener("scroll", s), () => window.removeEventListener("scroll", s);
   }, []), O(() => {
-    if (!v.current || !N.current) return;
+    if (!U.current || !b.current) return;
     const s = () => {
-      const r = v.current.offsetHeight;
-      y(r), N.current.style.setProperty("--fc-header-height", `${r}px`);
+      const r = U.current.offsetHeight;
+      y(r), b.current.style.setProperty("--fc-header-height", `${r}px`);
     };
     s();
     const C = new ResizeObserver(s);
-    return C.observe(v.current), () => C.disconnect();
+    return C.observe(U.current), () => C.disconnect();
   }, [A, E]), O(() => {
     t(!1);
-  }, [U]), O(() => (document.body.style.overflow = h ? "hidden" : "unset", () => {
+  }, [F]), O(() => (document.body.style.overflow = h ? "hidden" : "unset", () => {
     document.body.style.overflow = "unset";
   }), [h]), O(() => {
     h && T.current ? T.current.querySelector(
       'a[href], button:not([disabled]), input, [tabindex]:not([tabindex="-1"])'
-    )?.focus() : h || P.current?.focus();
+    )?.focus() : h || B.current?.focus();
   }, [h]);
-  const z = jI(c), M = U.pathname === "/";
-  return /* @__PURE__ */ i("div", { ref: N, className: "min-h-screen flex flex-col font-sans text-county-charcoal", children: [
+  const z = jI(c), M = F.pathname === "/";
+  return /* @__PURE__ */ i("div", { ref: b, className: "min-h-screen flex flex-col font-sans text-county-charcoal", children: [
     /* @__PURE__ */ I("a", { href: "#fc-main-content", className: "skip-to-content", children: "Skip to main content" }),
     e && /* @__PURE__ */ I(
       "header",
       {
-        ref: v,
+        ref: U,
         role: "banner",
         className: `fixed top-0 left-0 w-full z-50 transition-all duration-500 ease-in-out ${E ? "py-2 shadow-2xl" : "py-4 text-shadow"}`,
         style: {
-          backgroundColor: m.colors.primary.DEFAULT,
-          background: m.colors.bg.header
+          backgroundColor: u.colors.primary.DEFAULT,
+          background: u.colors.bg.header
         },
         children: /* @__PURE__ */ i("div", { className: "container mx-auto px-6", children: [
           A && /* @__PURE__ */ I(dI, {}),
@@ -925,11 +925,11 @@ function SI({
               siteTitle: n,
               navItems: c,
               showTopbar: A,
-              showSearch: a,
-              onSearch: l,
+              showSearch: l,
+              onSearch: a,
               isMobileMenuOpen: h,
               onMobileMenuToggle: () => t((s) => !s),
-              isMobileOrTablet: d,
+              isMobileOrTablet: m,
               isScrolled: E
             }
           )
@@ -945,7 +945,7 @@ function SI({
         "aria-hidden": !h,
         ...h ? {} : { inert: !0 },
         className: `fixed inset-0 z-[45] flex flex-col transition-all duration-500 ${h ? "opacity-100 visible pointer-events-auto" : "opacity-0 invisible pointer-events-none"}`,
-        style: { backgroundColor: "#ffffff", background: m.colors.bg.sidebar },
+        style: { backgroundColor: "#ffffff", background: u.colors.bg.sidebar },
         onKeyDown: (s) => {
           if (s.key === "Escape") {
             t(!1);
@@ -953,7 +953,7 @@ function SI({
           }
         },
         children: /* @__PURE__ */ I("div", { className: "overflow-y-auto flex-1 pt-32 pb-8", tabIndex: 0, role: "region", "aria-label": "Mobile Navigation Content", children: /* @__PURE__ */ i("div", { className: "container mx-auto px-6", children: [
-          a && /* @__PURE__ */ I("div", { className: "px-6 w-full max-w-md mx-auto mb-6", children: /* @__PURE__ */ I(
+          l && /* @__PURE__ */ I("div", { className: "px-6 w-full max-w-md mx-auto mb-6", children: /* @__PURE__ */ I(
             "form",
             {
               role: "search",
@@ -961,7 +961,7 @@ function SI({
               onSubmit: (s) => {
                 s.preventDefault();
                 const C = s.currentTarget.elements.namedItem("q");
-                C.value.trim() && l && (l(C.value.trim()), C.value = "");
+                C.value.trim() && a && (a(C.value.trim()), C.value = "");
               },
               className: "w-full",
               children: /* @__PURE__ */ I(
@@ -972,7 +972,7 @@ function SI({
                   placeholder: "Search...",
                   "aria-label": "Search",
                   className: "w-full px-4 py-3 text-sm rounded-xl border focus:outline-none focus:ring-2",
-                  style: { borderColor: m.colors.border, color: m.colors.text.primary }
+                  style: { borderColor: u.colors.border, color: u.colors.text.primary }
                 }
               )
             }
@@ -985,23 +985,23 @@ function SI({
                   "span",
                   {
                     className: "text-[10px] font-black uppercase tracking-[0.2em] mb-4 block",
-                    style: { color: m.colors.secondary.dark },
+                    style: { color: u.colors.secondary.dark },
                     children: s.label
                   }
                 ),
-                /* @__PURE__ */ I("div", { className: "flex flex-col gap-1", children: r.map((w, Q) => /* @__PURE__ */ I(
+                /* @__PURE__ */ I("div", { className: "flex flex-col gap-1", children: r.map((w, v) => /* @__PURE__ */ I(
                   W,
                   {
                     to: w.url,
                     onClick: () => t(!1),
                     className: ({ isActive: L }) => `block w-full text-center text-2xl md:text-sm font-bold uppercase tracking-widest transition-all duration-200 py-4 px-6 rounded-2xl ${L ? "" : "interactive-effect"}`,
                     style: ({ isActive: L }) => ({
-                      color: L ? m.colors.secondary.DEFAULT : m.colors.text.primary,
-                      backgroundColor: L ? `${m.colors.secondary.DEFAULT}10` : "transparent"
+                      color: L ? u.colors.secondary.DEFAULT : u.colors.text.primary,
+                      backgroundColor: L ? `${u.colors.secondary.DEFAULT}10` : "transparent"
                     }),
                     children: w.label
                   },
-                  Q
+                  v
                 )) })
               ] }, C);
             }
@@ -1012,17 +1012,17 @@ function SI({
                 onClick: () => t(!1),
                 className: ({ isActive: r }) => `block w-full text-center text-2xl md:text-sm font-bold uppercase tracking-widest transition-all duration-200 py-4 px-6 rounded-2xl ${r ? "" : "interactive-effect"}`,
                 style: ({ isActive: r }) => ({
-                  color: r ? m.colors.secondary.DEFAULT : m.colors.text.primary,
-                  backgroundColor: r ? `${m.colors.secondary.DEFAULT}10` : "transparent"
+                  color: r ? u.colors.secondary.DEFAULT : u.colors.text.primary,
+                  backgroundColor: r ? `${u.colors.secondary.DEFAULT}10` : "transparent"
                 }),
                 children: s.label
               },
               C
             );
           }) }),
-          z.length > 0 && c.some((s) => s.items) && /* @__PURE__ */ I("div", { className: "border-t my-6 max-w-md mx-auto", style: { borderColor: `${m.colors.secondary.DEFAULT}4D` } }),
-          A && /* @__PURE__ */ i(Z, { children: [
-            c.length > 0 && /* @__PURE__ */ I("div", { className: "border-t my-6 max-w-md mx-auto", style: { borderColor: `${m.colors.secondary.DEFAULT}4D` } }),
+          z.length > 0 && c.some((s) => s.items) && /* @__PURE__ */ I("div", { className: "border-t my-6 max-w-md mx-auto", style: { borderColor: `${u.colors.secondary.DEFAULT}4D` } }),
+          A && /* @__PURE__ */ i(P, { children: [
+            c.length > 0 && /* @__PURE__ */ I("div", { className: "border-t my-6 max-w-md mx-auto", style: { borderColor: `${u.colors.secondary.DEFAULT}4D` } }),
             /* @__PURE__ */ I("div", { className: "max-w-md mx-auto space-y-6 pb-12", children: [
               { title: "Departments", items: X, url: "https://www.franklincountyny.gov/departments/index.php" },
               { title: "Residents", items: _, url: "https://www.franklincountyny.gov/residents/index.php" },
@@ -1031,7 +1031,7 @@ function SI({
               { title: "Our Communities", items: gI, url: "https://www.franklincountyny.gov/our_communities/index.php" },
               { title: "How Do I?", items: CI, url: "https://www.franklincountyny.gov/how_do_i/index.php" }
             ].map((s, C) => /* @__PURE__ */ i("div", { children: [
-              /* @__PURE__ */ I("a", { href: s.url, target: "_blank", rel: "noopener noreferrer", className: "block text-center mb-3", children: /* @__PURE__ */ I("h3", { className: "text-xs font-bold uppercase tracking-widest inline-block", style: { color: m.colors.secondary.dark }, children: s.title }) }),
+              /* @__PURE__ */ I("a", { href: s.url, target: "_blank", rel: "noopener noreferrer", className: "block text-center mb-3", children: /* @__PURE__ */ I("h3", { className: "text-xs font-bold uppercase tracking-widest inline-block", style: { color: u.colors.secondary.dark }, children: s.title }) }),
               /* @__PURE__ */ I("div", { className: "grid grid-cols-2 gap-2", children: s.items.map((r, w) => /* @__PURE__ */ I(
                 "a",
                 {
@@ -1039,9 +1039,9 @@ function SI({
                   target: r.url?.startsWith("http") ? "_blank" : void 0,
                   rel: r.url?.startsWith("http") ? "noopener noreferrer" : void 0,
                   className: "text-xs transition-colors text-center py-1",
-                  style: { color: m.colors.text.primary },
-                  onMouseEnter: (Q) => Q.currentTarget.style.color = m.colors.secondary.DEFAULT,
-                  onMouseLeave: (Q) => Q.currentTarget.style.color = m.colors.text.primary,
+                  style: { color: u.colors.text.primary },
+                  onMouseEnter: (v) => v.currentTarget.style.color = u.colors.secondary.DEFAULT,
+                  onMouseLeave: (v) => v.currentTarget.style.color = u.colors.text.primary,
                   children: r.label
                 },
                 w
@@ -1056,7 +1056,7 @@ function SI({
       {
         id: "fc-main-content",
         className: "grow",
-        style: { background: m.colors.bg.main, paddingTop: e ? G : 0 },
+        style: { background: u.colors.bg.main, paddingTop: e ? G : 0 },
         ...h ? { inert: !0 } : {},
         children: [
           (p || x || R) && /* @__PURE__ */ i("div", { className: `relative w-full flex items-center justify-center ${M ? "min-h-screen" : "h-[60vh]"} overflow-hidden`, children: [
@@ -1068,7 +1068,7 @@ function SI({
                 style: { backgroundImage: `url('${p}')` }
               }
             ),
-            !x && !p && /* @__PURE__ */ I("div", { className: "absolute inset-0", style: { background: m.colors.bg.main } }),
+            !x && !p && /* @__PURE__ */ I("div", { className: "absolute inset-0", style: { background: u.colors.bg.main } }),
             /* @__PURE__ */ I("div", { className: "absolute inset-0 bg-linear-to-b from-black/30 via-black/10 to-transparent" }),
             R && /* @__PURE__ */ i("div", { className: "container mx-auto px-6 relative z-10 text-center pt-48", children: [
               /* @__PURE__ */ I(
@@ -1083,7 +1083,7 @@ function SI({
                   children: R
                 }
               ),
-              u && /* @__PURE__ */ I(
+              d && /* @__PURE__ */ I(
                 "p",
                 {
                   className: "max-w-3xl mx-auto leading-relaxed font-light inline-block px-6 py-4 rounded-xl shadow-lg animate-fade-in-up delay-100",
@@ -1092,7 +1092,7 @@ function SI({
                     backgroundColor: "rgba(0, 0, 0, 0.5)",
                     fontSize: "clamp(1rem, 4vw, 1.25rem)"
                   },
-                  children: u
+                  children: d
                 }
               )
             ] })
@@ -1106,7 +1106,7 @@ function SI({
       {
         siteTitle: n,
         phone: j,
-        address: f
+        address: K
       }
     ) })
   ] });
@@ -1115,7 +1115,7 @@ function QI({ theme: o, ...n }) {
   return /* @__PURE__ */ I(uI, { theme: o, children: /* @__PURE__ */ I(SI, { ...n }) });
 }
 const JI = ({ triggerText: o, tooltipContent: n, isActive: A, onToggle: e }) => {
-  const { theme: g } = F(), [c, a] = J(!1), { refs: l, floatingStyles: j } = iI({
+  const { theme: g } = J(), [c, l] = Q(!1), { refs: a, floatingStyles: j } = iI({
     placement: "bottom",
     whileElementsMounted: rI,
     middleware: [
@@ -1128,13 +1128,13 @@ const JI = ({ triggerText: o, tooltipContent: n, isActive: A, onToggle: e }) => 
         padding: 32
       })
     ]
-  }), f = A || c;
-  return /* @__PURE__ */ i(Z, { children: [
+  }), K = A || c;
+  return /* @__PURE__ */ i(P, { children: [
     /* @__PURE__ */ I(
       "button",
       {
         type: "button",
-        ref: l.setReference,
+        ref: a.setReference,
         className: "cursor-help font-bold border-b-2 border-dotted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-1 rounded-sm transition-colors opacity-90 hover:opacity-100",
         style: {
           color: g.colors.primary.DEFAULT,
@@ -1143,15 +1143,15 @@ const JI = ({ triggerText: o, tooltipContent: n, isActive: A, onToggle: e }) => 
         onClick: (p) => {
           p.preventDefault(), p.stopPropagation(), e();
         },
-        onMouseEnter: () => a(!0),
-        onMouseLeave: () => a(!1),
+        onMouseEnter: () => l(!0),
+        onMouseLeave: () => l(!1),
         children: o
       }
     ),
-    f && /* @__PURE__ */ I(cI, { children: /* @__PURE__ */ I(
+    K && /* @__PURE__ */ I(cI, { children: /* @__PURE__ */ I(
       "div",
       {
-        ref: l.setFloating,
+        ref: a.setFloating,
         style: j,
         className: "w-80 max-w-[calc(100vw-4rem)] p-4 bg-gray-900 text-white text-sm leading-relaxed rounded-lg shadow-2xl z-50",
         children: n
@@ -1165,50 +1165,46 @@ const JI = ({ triggerText: o, tooltipContent: n, isActive: A, onToggle: e }) => 
   onNodeSelect: e,
   onSubNodeSelect: g,
   isMobileMenuOpen: c,
-  onClose: a
+  onClose: l
 }) => {
-  const { theme: l } = F(), [j, f] = J(typeof window < "u" ? window.innerWidth >= 1024 : !0), [p, x] = J(/* @__PURE__ */ new Set([n || o[0]?.id])), R = K({}), u = K(p);
+  const { theme: a } = J(), [j, K] = Q(typeof window < "u" ? window.innerWidth >= 1024 : !0), [p, x] = Q(/* @__PURE__ */ new Set([n || o[0]?.id])), R = f({}), d = f(p);
   O(() => {
-    const t = Array.from(p).find((d) => !u.current.has(d));
+    const t = Array.from(p).find((m) => !d.current.has(m));
     if (t !== void 0) {
-      const d = R.current[t];
-      d && setTimeout(() => {
-        const k = d.closest("aside");
-        k && k.scrollTo({
-          top: d.offsetTop - 24,
-          // Keep slight padding at top
-          behavior: "smooth"
-        });
+      const m = R.current[t];
+      m && setTimeout(() => {
+        const k = m.closest("aside");
+        k && k.scrollTo({ top: m.offsetTop - 24, behavior: "smooth" });
       }, 450);
     }
-    u.current = new Set(p);
+    d.current = new Set(p);
   }, [p]), O(() => {
-    const t = () => f(window.innerWidth >= 1024);
+    const t = () => K(window.innerWidth >= 1024);
     return window.addEventListener("resize", t), () => window.removeEventListener("resize", t);
   }, []);
-  const E = (t, d) => {
-    d.stopPropagation();
+  const E = (t, m) => {
+    m.stopPropagation();
     const k = new Set(p);
     k.has(t) ? k.delete(t) : k.add(t), x(k);
   }, S = (t) => {
     p.has(t) || x(new Set(p).add(t)), e(t);
-  }, h = (t, d) => {
-    g && g(t, d), j || a();
+  }, h = (t, m) => {
+    g && g(t, m), j || l();
   };
-  return /* @__PURE__ */ i(Z, { children: [
+  return /* @__PURE__ */ i(P, { children: [
     /* @__PURE__ */ I(D, { children: c && !j && /* @__PURE__ */ I(
-      B.div,
+      Z.div,
       {
         initial: { opacity: 0 },
         animate: { opacity: 1 },
         exit: { opacity: 0 },
-        onClick: a,
+        onClick: l,
         className: "fixed inset-x-0 bottom-0 bg-black/60 backdrop-blur-sm z-30",
         style: { top: "var(--fc-header-height, 80px)" }
       }
     ) }),
     /* @__PURE__ */ I(
-      B.aside,
+      Z.aside,
       {
         initial: !1,
         animate: {
@@ -1221,77 +1217,130 @@ const JI = ({ triggerText: o, tooltipContent: n, isActive: A, onToggle: e }) => 
                           top-[var(--fc-header-height,80px)]
                           h-[calc(100vh-var(--fc-header-height,80px))]`,
         style: {
-          backgroundColor: l.colors.bg.sidebar,
-          borderColor: `${l.colors.border}30`
+          backgroundColor: a.colors.bg.sidebar,
+          borderColor: `${a.colors.border}30`
         },
         children: /* @__PURE__ */ i("nav", { className: "px-4", children: [
           /* @__PURE__ */ I("h2", { className: "text-xs font-black tracking-widest text-gray-400 uppercase mb-6 px-4", children: "Contents" }),
-          /* @__PURE__ */ I("ul", { className: "space-y-3", children: o.map((t) => {
-            const d = p.has(t.id), k = n === t.id, G = t.subNodes && t.subNodes.length > 0;
+          /* @__PURE__ */ I("ul", { className: "space-y-4", children: o.map((t) => {
+            const m = p.has(t.id), k = n === t.id, G = t.subNodes && t.subNodes.length > 0;
             return /* @__PURE__ */ i("li", { ref: (y) => {
               R.current[t.id] = y;
-            }, className: "flex flex-col", children: [
-              /* @__PURE__ */ i("div", { className: "flex relative", children: [
-                /* @__PURE__ */ I(
-                  "button",
-                  {
-                    onClick: () => S(t.id),
-                    className: `group flex-1 flex items-center justify-between px-4 py-3 rounded-xl transition-all duration-300 font-bold interactive-effect ${k ? "shadow-sm ring-1 ring-inset" : "opacity-80 hover:opacity-100"}`,
-                    style: {
-                      backgroundColor: k ? l.colors.primary.DEFAULT : "transparent",
-                      color: k ? l.colors.text.onDark : l.colors.text.primary,
-                      borderColor: k ? `${l.colors.primary.DEFAULT}30` : "transparent"
-                    },
-                    children: /* @__PURE__ */ I("span", { className: "text-left line-clamp-2 pr-2 leading-snug text-[15px]", children: t.title })
-                  }
-                ),
-                G && /* @__PURE__ */ I(
-                  "button",
-                  {
-                    onClick: (y) => E(t.id, y),
-                    onKeyDown: (y) => {
-                      (y.key === "Enter" || y.key === " ") && (y.preventDefault(), E(t.id, y));
-                    },
-                    className: `absolute right-1 top-1/2 -translate-y-1/2 p-2 rounded-lg transition-transform duration-300 hover:bg-black/5 focus-visible:ring-2 focus-visible:outline-none ${d ? "rotate-90" : "rotate-0"}`,
-                    style: { color: k ? l.colors.text.onDark : l.colors.text.primary },
-                    "aria-label": d ? "Collapse section" : "Expand section",
-                    "aria-expanded": d,
-                    children: /* @__PURE__ */ I("svg", { width: "16", height: "16", viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: "2", strokeLinecap: "round", strokeLinejoin: "round", children: /* @__PURE__ */ I("path", { d: "m9 18 6-6-6-6" }) })
-                  }
-                )
-              ] }),
-              /* @__PURE__ */ I(D, { initial: !1, children: d && G && /* @__PURE__ */ i(
-                B.ul,
+            }, className: "flex flex-col relative", children: [
+              /* @__PURE__ */ I(
+                "div",
+                {
+                  className: "rounded-xl transition-all duration-300 interactive-effect",
+                  style: {
+                    borderLeft: k ? "4px solid" : "4px solid transparent",
+                    borderImage: k ? `linear-gradient(to bottom, ${a.colors.secondary.light}, ${a.colors.secondary.dark}) 1` : "none",
+                    backgroundColor: k ? "rgba(255, 255, 255, 0.9)" : "transparent",
+                    padding: "0.25rem"
+                  },
+                  children: /* @__PURE__ */ i("div", { className: "relative flex items-center justify-between p-2", children: [
+                    /* @__PURE__ */ i(
+                      "div",
+                      {
+                        className: "flex-1 text-left cursor-pointer pr-2",
+                        onClick: () => S(t.id),
+                        children: [
+                          t.badge && /* @__PURE__ */ I(
+                            "span",
+                            {
+                              className: "block text-xs font-bold uppercase tracking-wider bg-clip-text text-transparent mb-1",
+                              style: { backgroundImage: `linear-gradient(to right, ${a.colors.secondary.light}, ${a.colors.secondary.dark})` },
+                              children: t.badge
+                            }
+                          ),
+                          /* @__PURE__ */ I(
+                            "span",
+                            {
+                              className: "block font-bold text-[15px] leading-snug transition-colors duration-300",
+                              style: { color: k ? a.colors.primary.DEFAULT : a.colors.text.primary },
+                              children: t.title
+                            }
+                          ),
+                          t.subtitle && /* @__PURE__ */ I("div", { className: "text-xs text-gray-500 mt-1.5 flex items-center gap-1 font-medium", children: t.subtitle })
+                        ]
+                      }
+                    ),
+                    G && /* @__PURE__ */ I(
+                      "button",
+                      {
+                        onClick: (y) => E(t.id, y),
+                        onKeyDown: (y) => {
+                          (y.key === "Enter" || y.key === " ") && (y.preventDefault(), E(t.id, y));
+                        },
+                        className: "p-2 rounded-lg cursor-pointer border border-gray-200 hover:bg-gray-50 transition-all duration-300 hover:scale-110 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 shrink-0",
+                        style: { borderColor: `${a.colors.border}40` },
+                        "aria-label": m ? "Collapse" : "Expand",
+                        children: /* @__PURE__ */ I(
+                          "svg",
+                          {
+                            className: "w-5 h-5 transition-transform duration-300",
+                            style: {
+                              color: k ? a.colors.primary.DEFAULT : a.colors.text.secondary,
+                              transform: m ? "rotate(90deg)" : "rotate(0deg)"
+                            },
+                            fill: "none",
+                            stroke: "currentColor",
+                            viewBox: "0 0 24 24",
+                            children: /* @__PURE__ */ I("path", { strokeLinecap: "round", strokeLinejoin: "round", strokeWidth: 2.5, d: "M9 5l7 7-7 7" })
+                          }
+                        )
+                      }
+                    )
+                  ] })
+                }
+              ),
+              /* @__PURE__ */ I(D, { initial: !1, children: m && G && /* @__PURE__ */ I(
+                Z.ul,
                 {
                   initial: { height: 0, opacity: 0 },
                   animate: { height: "auto", opacity: 1 },
                   exit: { height: 0, opacity: 0 },
                   transition: { duration: 0.3, ease: "easeInOut" },
-                  className: "overflow-hidden relative mt-1 ml-4",
-                  children: [
-                    /* @__PURE__ */ I(
-                      "div",
+                  className: "overflow-hidden ml-3 mt-2 space-y-1",
+                  children: t.subNodes.map((y, F) => {
+                    const u = A === y.id;
+                    return /* @__PURE__ */ I(
+                      Z.li,
                       {
-                        className: "absolute left-[11px] top-2 bottom-2 w-[2px] rounded-full",
-                        style: { backgroundColor: `${l.colors.border}40` }
-                      }
-                    ),
-                    /* @__PURE__ */ I("div", { className: "py-2 space-y-1 pl-6 relative", children: t.subNodes.map((y) => {
-                      const U = A === y.id;
-                      return /* @__PURE__ */ I("li", { className: "relative", children: /* @__PURE__ */ I(
-                        "button",
-                        {
-                          onClick: () => h(t.id, y.id),
-                          className: `w-full text-left px-3 py-2 text-[14px] leading-tight font-medium rounded-lg transition-all duration-200 interactive-effect ${U ? "font-bold" : "opacity-70 hover:opacity-100"}`,
-                          style: {
-                            color: U ? l.colors.primary.DEFAULT : l.colors.text.primary,
-                            backgroundColor: U ? `${l.colors.primary.DEFAULT}15` : "transparent"
-                          },
-                          children: y.title
-                        }
-                      ) }, y.id);
-                    }) })
-                  ]
+                        initial: { x: -10, opacity: 0 },
+                        animate: { x: 0, opacity: 1 },
+                        transition: { delay: F * 0.03 },
+                        children: /* @__PURE__ */ i(
+                          "button",
+                          {
+                            onClick: () => h(t.id, y.id),
+                            className: "group w-full text-left px-3.5 py-2 rounded-lg text-sm cursor-pointer transition-all duration-300 flex items-start gap-2 interactive-effect bg-transparent",
+                            style: {
+                              transform: u ? "translateX(4px)" : "none"
+                            },
+                            children: [
+                              /* @__PURE__ */ I(
+                                "span",
+                                {
+                                  className: "mt-[2px] transition-colors",
+                                  style: { color: u ? a.colors.secondary.DEFAULT : `${a.colors.secondary.DEFAULT}80` },
+                                  children: "→"
+                                }
+                              ),
+                              /* @__PURE__ */ I(
+                                "span",
+                                {
+                                  className: "flex-1 leading-snug font-medium",
+                                  style: { color: u ? a.colors.primary.DEFAULT : a.colors.text.primary },
+                                  children: y.title
+                                }
+                              )
+                            ]
+                          }
+                        )
+                      },
+                      y.id
+                    );
+                  })
                 }
               ) })
             ] }, t.id);
@@ -1305,7 +1354,7 @@ export {
   pI as APP_THEME,
   wI as Footer,
   QI as Layout,
-  b as NavDropdown,
+  N as NavDropdown,
   yI as Navbar,
   FI as Sidebar,
   JI as SmartTooltip,
@@ -1318,7 +1367,7 @@ export {
   RI as getNativeMapUrl,
   CI as howDoIItems,
   _ as residentsItems,
-  F as useTheme,
+  J as useTheme,
   $ as visitorsItems
 };
 //# sourceMappingURL=index.js.map

@@ -5,6 +5,8 @@ import { useTheme } from '../theme/ThemeContext';
 export interface SidebarNode {
     id: string | number;
     title: string;
+    badge?: string;
+    subtitle?: React.ReactNode;
     subNodes?: SidebarNode[];
 }
 
@@ -34,25 +36,18 @@ export const Sidebar = ({
     const prevExpandedNodes = useRef<Set<string | number>>(expandedNodes);
 
     useEffect(() => {
-        // Detect newly expanded module
         const newlyExpanded = Array.from(expandedNodes).find(id => !prevExpandedNodes.current.has(id));
-
         if (newlyExpanded !== undefined) {
             const element = nodeRefs.current[newlyExpanded];
             if (element) {
-                // Wait for expansion animation to start so we scroll to correct height
                 setTimeout(() => {
                     const container = element.closest('aside');
                     if (container) {
-                        container.scrollTo({
-                            top: element.offsetTop - 24, // Keep slight padding at top
-                            behavior: 'smooth'
-                        });
+                        container.scrollTo({ top: element.offsetTop - 24, behavior: 'smooth' });
                     }
                 }, 450);
             }
         }
-
         prevExpandedNodes.current = new Set(expandedNodes);
     }, [expandedNodes]);
 
@@ -91,7 +86,6 @@ export const Sidebar = ({
 
     return (
         <>
-            {/* Mobile Backdrop */}
             <AnimatePresence>
                 {isMobileMenuOpen && !isDesktop && (
                     <motion.div
@@ -105,7 +99,6 @@ export const Sidebar = ({
                 )}
             </AnimatePresence>
 
-            {/* Sidebar - Premium Glassmorphism */}
             <motion.aside
                 initial={false}
                 animate={{
@@ -126,56 +119,83 @@ export const Sidebar = ({
                     <h2 className="text-xs font-black tracking-widest text-gray-400 uppercase mb-6 px-4">
                         Contents
                     </h2>
-                    <ul className="space-y-3">
+                    <ul className="space-y-4">
                         {nodes.map((node) => {
                             const isExpanded = expandedNodes.has(node.id);
                             const isActiveNode = activeNodeId === node.id;
                             const hasSubNodes = node.subNodes && node.subNodes.length > 0;
 
                             return (
-                                <li key={node.id} ref={el => { nodeRefs.current[node.id] = el; }} className="flex flex-col">
-                                    <div className="flex relative">
-                                        <button
-                                            onClick={() => handleNodeClick(node.id)}
-                                            className={`group flex-1 flex items-center justify-between px-4 py-3 rounded-xl transition-all duration-300 font-bold interactive-effect ${
-                                                isActiveNode
-                                                    ? 'shadow-sm ring-1 ring-inset'
-                                                    : 'opacity-80 hover:opacity-100'
-                                            }`}
-                                            style={{
-                                                backgroundColor: isActiveNode ? theme.colors.primary.DEFAULT : 'transparent',
-                                                color: isActiveNode ? theme.colors.text.onDark : theme.colors.text.primary,
-                                                borderColor: isActiveNode ? `${theme.colors.primary.DEFAULT}30` : 'transparent',
-                                            }}
-                                        >
-                                            <span className="text-left line-clamp-2 pr-2 leading-snug text-[15px]">
-                                                {node.title}
-                                            </span>
-                                        </button>
-                                        
-                                        {hasSubNodes && (
-                                            <button
-                                                onClick={(e) => toggleNode(node.id, e)}
-                                                onKeyDown={(e) => {
-                                                    if (e.key === 'Enter' || e.key === ' ') {
-                                                        e.preventDefault();
-                                                        toggleNode(node.id, e);
-                                                    }
-                                                }}
-                                                className={`absolute right-1 top-1/2 -translate-y-1/2 p-2 rounded-lg transition-transform duration-300 hover:bg-black/5 focus-visible:ring-2 focus-visible:outline-none ${
-                                                    isExpanded ? 'rotate-90' : 'rotate-0'
-                                                }`}
-                                                style={{ color: isActiveNode ? theme.colors.text.onDark : theme.colors.text.primary }}
-                                                aria-label={isExpanded ? "Collapse section" : "Expand section"}
-                                                aria-expanded={isExpanded}
+                                <li key={node.id} ref={el => { nodeRefs.current[node.id] = el; }} className="flex flex-col relative">
+                                    {/* Main Node Card */}
+                                    <div 
+                                        className="rounded-xl transition-all duration-300 interactive-effect"
+                                        style={{
+                                            borderLeft: isActiveNode ? '4px solid' : '4px solid transparent',
+                                            borderImage: isActiveNode ? `linear-gradient(to bottom, ${theme.colors.secondary.light}, ${theme.colors.secondary.dark}) 1` : 'none',
+                                            backgroundColor: isActiveNode ? 'rgba(255, 255, 255, 0.9)' : 'transparent',
+                                            padding: '0.25rem',
+                                        }}
+                                    >
+                                        <div className="relative flex items-center justify-between p-2">
+                                            {/* Text Content (Clickable) */}
+                                            <div 
+                                                className="flex-1 text-left cursor-pointer pr-2"
+                                                onClick={() => handleNodeClick(node.id)}
                                             >
-                                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                                                    <path d="m9 18 6-6-6-6"/>
-                                                </svg>
-                                            </button>
-                                        )}
+                                                {node.badge && (
+                                                    <span 
+                                                        className="block text-xs font-bold uppercase tracking-wider bg-clip-text text-transparent mb-1"
+                                                        style={{ backgroundImage: `linear-gradient(to right, ${theme.colors.secondary.light}, ${theme.colors.secondary.dark})` }}
+                                                    >
+                                                        {node.badge}
+                                                    </span>
+                                                )}
+                                                <span 
+                                                    className="block font-bold text-[15px] leading-snug transition-colors duration-300"
+                                                    style={{ color: isActiveNode ? theme.colors.primary.DEFAULT : theme.colors.text.primary }}
+                                                >
+                                                    {node.title}
+                                                </span>
+                                                {node.subtitle && (
+                                                    <div className="text-xs text-gray-500 mt-1.5 flex items-center gap-1 font-medium">
+                                                        {node.subtitle}
+                                                    </div>
+                                                )}
+                                            </div>
+
+                                            {/* Expand Toggle */}
+                                            {hasSubNodes && (
+                                                <button
+                                                    onClick={(e) => toggleNode(node.id, e)}
+                                                    onKeyDown={(e) => {
+                                                        if (e.key === 'Enter' || e.key === ' ') {
+                                                            e.preventDefault();
+                                                            toggleNode(node.id, e);
+                                                        }
+                                                    }}
+                                                    className="p-2 rounded-lg cursor-pointer border border-gray-200 hover:bg-gray-50 transition-all duration-300 hover:scale-110 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 shrink-0"
+                                                    style={{ borderColor: `${theme.colors.border}40` }}
+                                                    aria-label={isExpanded ? "Collapse" : "Expand"}
+                                                >
+                                                    <svg
+                                                        className="w-5 h-5 transition-transform duration-300"
+                                                        style={{ 
+                                                            color: isActiveNode ? theme.colors.primary.DEFAULT : theme.colors.text.secondary,
+                                                            transform: isExpanded ? 'rotate(90deg)' : 'rotate(0deg)'
+                                                        }}
+                                                        fill="none"
+                                                        stroke="currentColor"
+                                                        viewBox="0 0 24 24"
+                                                    >
+                                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7" />
+                                                    </svg>
+                                                </button>
+                                            )}
+                                        </div>
                                     </div>
 
+                                    {/* Subnodes List */}
                                     <AnimatePresence initial={false}>
                                         {isExpanded && hasSubNodes && (
                                             <motion.ul
@@ -183,37 +203,40 @@ export const Sidebar = ({
                                                 animate={{ height: 'auto', opacity: 1 }}
                                                 exit={{ height: 0, opacity: 0 }}
                                                 transition={{ duration: 0.3, ease: 'easeInOut' }}
-                                                className="overflow-hidden relative mt-1 ml-4"
+                                                className="overflow-hidden ml-3 mt-2 space-y-1"
                                             >
-                                                {/* Left line guide */}
-                                                <div 
-                                                    className="absolute left-[11px] top-2 bottom-2 w-[2px] rounded-full"
-                                                    style={{ backgroundColor: `${theme.colors.border}40` }}
-                                                />
-                                                
-                                                <div className="py-2 space-y-1 pl-6 relative">
-                                                    {node.subNodes!.map((subNode) => {
-                                                        const isSubActive = activeSubNodeId === subNode.id;
-                                                        return (
-                                                            <li key={subNode.id} className="relative">
-                                                                <button
-                                                                    onClick={() => handleSubNodeClick(node.id, subNode.id)}
-                                                                    className={`w-full text-left px-3 py-2 text-[14px] leading-tight font-medium rounded-lg transition-all duration-200 interactive-effect ${
-                                                                        isSubActive 
-                                                                            ? 'font-bold' 
-                                                                            : 'opacity-70 hover:opacity-100'
-                                                                    }`}
-                                                                    style={{
-                                                                        color: isSubActive ? theme.colors.primary.DEFAULT : theme.colors.text.primary,
-                                                                        backgroundColor: isSubActive ? `${theme.colors.primary.DEFAULT}15` : 'transparent',
-                                                                    }}
+                                                {node.subNodes!.map((subNode, index) => {
+                                                    const isSubActive = activeSubNodeId === subNode.id;
+                                                    return (
+                                                        <motion.li
+                                                            key={subNode.id}
+                                                            initial={{ x: -10, opacity: 0 }}
+                                                            animate={{ x: 0, opacity: 1 }}
+                                                            transition={{ delay: index * 0.03 }}
+                                                        >
+                                                            <button
+                                                                onClick={() => handleSubNodeClick(node.id, subNode.id)}
+                                                                className="group w-full text-left px-3.5 py-2 rounded-lg text-sm cursor-pointer transition-all duration-300 flex items-start gap-2 interactive-effect bg-transparent"
+                                                                style={{
+                                                                    transform: isSubActive ? 'translateX(4px)' : 'none'
+                                                                }}
+                                                            >
+                                                                <span 
+                                                                    className="mt-[2px] transition-colors"
+                                                                    style={{ color: isSubActive ? theme.colors.secondary.DEFAULT : `${theme.colors.secondary.DEFAULT}80` }}
+                                                                >
+                                                                    →
+                                                                </span>
+                                                                <span 
+                                                                    className="flex-1 leading-snug font-medium"
+                                                                    style={{ color: isSubActive ? theme.colors.primary.DEFAULT : theme.colors.text.primary }}
                                                                 >
                                                                     {subNode.title}
-                                                                </button>
-                                                            </li>
-                                                        );
-                                                    })}
-                                                </div>
+                                                                </span>
+                                                            </button>
+                                                        </motion.li>
+                                                    );
+                                                })}
                                             </motion.ul>
                                         )}
                                     </AnimatePresence>

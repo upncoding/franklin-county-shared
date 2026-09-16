@@ -1,6 +1,8 @@
 export interface SidebarNode {
     id: string | number;
     title: string;
+    badge?: string;
+    subtitle?: React.ReactNode;
     subNodes?: SidebarNode[];
 }
 export interface SidebarProps {
