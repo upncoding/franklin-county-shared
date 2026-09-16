@@ -13,5 +13,8 @@ export interface SidebarProps {
     onSubNodeSelect?: (nodeId: string | number, subNodeId: string | number) => void;
     isMobileMenuOpen: boolean;
     onClose: () => void;
+    backLinkUrl?: string;
+    backLinkText?: string;
+    title?: string;
 }
-export declare const Sidebar: ({ nodes, activeNodeId, activeSubNodeId, onNodeSelect, onSubNodeSelect, isMobileMenuOpen, onClose, }: SidebarProps) => import("react").JSX.Element;
+export declare const Sidebar: ({ nodes, activeNodeId, activeSubNodeId, onNodeSelect, onSubNodeSelect, isMobileMenuOpen, onClose, backLinkUrl, backLinkText, title, }: SidebarProps) => import("react").JSX.Element;
