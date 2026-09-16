@@ -13,3 +13,5 @@ export type { FooterProps } from './components/Footer';
 export type { NavItem } from './data/countyNavItems';
 export { departmentsItems, residentsItems, visitorsItems, businessItems, communitiesItems, howDoIItems, } from './data/countyNavItems';
 export { getNativeMapUrl } from './utils/mapUtils';
+export * from './components/SmartTooltip';
+export * from './components/Sidebar';

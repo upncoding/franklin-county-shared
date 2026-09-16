@@ -4,7 +4,7 @@
  * in both desktop and mobile states so the ADA test script can scan them.
  * It is NEVER included in the library build — only used by scripts/test-ada.js.
  */
-import React, { useState } from 'react';
+import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { MemoryRouter } from 'react-router-dom';
 import Layout from '../components/Layout';

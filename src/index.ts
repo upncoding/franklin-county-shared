@@ -30,3 +30,5 @@ export {
 
 // ─── Utils ───────────────────────────────────────────
 export { getNativeMapUrl } from './utils/mapUtils';
+export * from './components/SmartTooltip';
+export * from './components/Sidebar';
