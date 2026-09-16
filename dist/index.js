@@ -112,7 +112,7 @@ const Y = oI(
   )
 );
 Y.displayName = "NavLinkOrA";
-const N = ({
+const b = ({
   label: o,
   url: n = "#",
   items: A,
@@ -164,7 +164,7 @@ const N = ({
     d.current && (window.clearTimeout(d.current), d.current = null), !l && !E.current && (E.current = window.setTimeout(() => {
       y(), E.current = null;
     }, 150));
-  }, b = () => {
+  }, N = () => {
     E.current && (window.clearTimeout(E.current), E.current = null), d.current = window.setTimeout(() => {
       a(!1), d.current = null;
     }, 300);
@@ -180,7 +180,7 @@ const N = ({
         return "md:grid-cols-1";
     }
   }, M = l || G ? h.colors.secondary.DEFAULT : g || "rgba(255, 255, 255, 0.9)", s = "mx-4 my-2 text-xs font-bold uppercase tracking-widest transition-colors inline-block relative z-20 bg-transparent border-0 cursor-pointer p-0";
-  return /* @__PURE__ */ i("div", { ref: p, className: "relative inline-block", onMouseLeave: b, children: [
+  return /* @__PURE__ */ i("div", { ref: p, className: "relative inline-block", onMouseLeave: N, children: [
     n !== "#" ? /* @__PURE__ */ I(
       Y,
       {
@@ -222,7 +222,7 @@ const N = ({
           style: { top: j ? `${j}px` : "var(--fc-header-height, 50px)" },
           onMouseEnter: U,
           onKeyDown: T,
-          children: /* @__PURE__ */ I("div", { className: "container mx-auto px-6", onMouseLeave: b, children: /* @__PURE__ */ I(
+          children: /* @__PURE__ */ I("div", { className: "container mx-auto px-6", onMouseLeave: N, children: /* @__PURE__ */ I(
             "div",
             {
               className: "rounded-b-lg shadow-2xl elevation-xl border-t overflow-hidden text-left mt-0",
@@ -278,7 +278,7 @@ const N = ({
             {
               className: "w-75 rounded-2xl shadow-2xl elevation-xl border overflow-hidden text-left",
               style: { backgroundColor: h.colors.bg.card, borderColor: h.colors.border },
-              onMouseLeave: b,
+              onMouseLeave: N,
               children: [
                 /* @__PURE__ */ I("div", { className: `grid ${z()} gap-2 p-4`, children: A.map((C, r) => /* @__PURE__ */ i("div", { className: "flex flex-col", children: [
                   /* @__PURE__ */ I(
@@ -474,7 +474,7 @@ const N = ({
       },
       children: [
         /* @__PURE__ */ I(
-          N,
+          b,
           {
             label: "Departments",
             url: "https://www.franklincountyny.gov/departments/index.php",
@@ -485,7 +485,7 @@ const N = ({
           }
         ),
         /* @__PURE__ */ I(
-          N,
+          b,
           {
             label: "Residents",
             url: "https://www.franklincountyny.gov/residents/index.php",
@@ -496,7 +496,7 @@ const N = ({
           }
         ),
         /* @__PURE__ */ I(
-          N,
+          b,
           {
             label: "Visitors",
             url: "https://www.franklincountyny.gov/visitors/index.php",
@@ -507,7 +507,7 @@ const N = ({
           }
         ),
         /* @__PURE__ */ I(
-          N,
+          b,
           {
             label: "Business",
             url: "https://www.franklincountyny.gov/business/index.php",
@@ -518,7 +518,7 @@ const N = ({
           }
         ),
         /* @__PURE__ */ I(
-          N,
+          b,
           {
             label: "Our Communities",
             url: "https://www.franklincountyny.gov/our_communities/index.php",
@@ -529,7 +529,7 @@ const N = ({
           }
         ),
         /* @__PURE__ */ I(
-          N,
+          b,
           {
             label: "How Do I?",
             url: "https://www.franklincountyny.gov/how_do_i/index.php",
@@ -638,7 +638,7 @@ const N = ({
         children: [
           R.map(
             (d, E) => d.items && d.items.length > 0 ? /* @__PURE__ */ I(
-              N,
+              b,
               {
                 label: d.label,
                 url: d.url,
@@ -879,7 +879,7 @@ function SI({
   heroTitle: R,
   heroSubtitle: d
 }) {
-  const [E, S] = Q(!1), [h, t] = Q(!1), [m, k] = Q(!1), [G, y] = Q(80), F = q(), { theme: u } = J(), B = f(null), T = f(null), U = f(null), b = f(null);
+  const [E, S] = Q(!1), [h, t] = Q(!1), [m, k] = Q(!1), [G, y] = Q(80), F = q(), { theme: u } = J(), B = f(null), T = f(null), U = f(null), N = f(null);
   O(() => {
     const s = navigator.userAgent || navigator.vendor || window.opera || "", C = /android|webos|iphone|ipad|ipod|blackberry|iemobile|opera mini/i.test(s), r = /macintosh/i.test(s) && navigator.maxTouchPoints > 1;
     k(!!(C || r));
@@ -887,10 +887,10 @@ function SI({
     const s = () => S(window.scrollY > 50);
     return window.addEventListener("scroll", s), () => window.removeEventListener("scroll", s);
   }, []), O(() => {
-    if (!U.current || !b.current) return;
+    if (!U.current || !N.current) return;
     const s = () => {
       const r = U.current.offsetHeight;
-      y(r), b.current.style.setProperty("--fc-header-height", `${r}px`);
+      y(r), N.current.style.setProperty("--fc-header-height", `${r}px`);
     };
     s();
     const C = new ResizeObserver(s);
@@ -905,7 +905,7 @@ function SI({
     )?.focus() : h || B.current?.focus();
   }, [h]);
   const z = jI(c), M = F.pathname === "/";
-  return /* @__PURE__ */ i("div", { ref: b, className: "min-h-screen flex flex-col font-sans text-county-charcoal", children: [
+  return /* @__PURE__ */ i("div", { ref: N, className: "min-h-screen flex flex-col font-sans text-county-charcoal", children: [
     /* @__PURE__ */ I("a", { href: "#fc-main-content", className: "skip-to-content", children: "Skip to main content" }),
     e && /* @__PURE__ */ I(
       "header",
@@ -1271,8 +1271,7 @@ const JI = ({ triggerText: o, tooltipContent: n, isActive: A, onToggle: e }) => 
                         onKeyDown: (y) => {
                           (y.key === "Enter" || y.key === " ") && (y.preventDefault(), E(t.id, y));
                         },
-                        className: "p-2 rounded-lg cursor-pointer border border-gray-200 hover:bg-gray-50 transition-all duration-300 hover:scale-110 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 shrink-0",
-                        style: { borderColor: `${a.colors.border}40` },
+                        className: "p-2 rounded-lg cursor-pointer transition-all duration-300 hover:scale-125 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 shrink-0",
                         "aria-label": m ? "Collapse" : "Expand",
                         children: /* @__PURE__ */ I(
                           "svg",
@@ -1354,7 +1353,7 @@ export {
   pI as APP_THEME,
   wI as Footer,
   QI as Layout,
-  N as NavDropdown,
+  b as NavDropdown,
   yI as Navbar,
   FI as Sidebar,
   JI as SmartTooltip,

@@ -174,8 +174,7 @@ export const Sidebar = ({
                                                             toggleNode(node.id, e);
                                                         }
                                                     }}
-                                                    className="p-2 rounded-lg cursor-pointer border border-gray-200 hover:bg-gray-50 transition-all duration-300 hover:scale-110 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 shrink-0"
-                                                    style={{ borderColor: `${theme.colors.border}40` }}
+                                                    className="p-2 rounded-lg cursor-pointer transition-all duration-300 hover:scale-125 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 shrink-0"
                                                     aria-label={isExpanded ? "Collapse" : "Expand"}
                                                 >
                                                     <svg
