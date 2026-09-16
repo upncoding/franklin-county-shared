@@ -13,7 +13,7 @@ export default defineConfig({
         },
         rollupOptions: {
             // Exclude peer dependencies from the bundle
-            external: ['react', 'react-dom', 'react/jsx-runtime', 'react-router-dom'],
+            external: ['react', 'react-dom', 'react/jsx-runtime', 'react-router-dom', 'framer-motion', '@floating-ui/react'],
             output: {
                 globals: {
                     react: 'React',

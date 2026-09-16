@@ -114,7 +114,9 @@ export const Sidebar = ({
                 }}
                 transition={{ type: 'spring', damping: 30, stiffness: 300 }}
                 className="w-80 z-40 overflow-y-auto backdrop-blur-xl border-r shadow-2xl xl:shadow-none xl:sticky
-                          fixed inset-y-0 left-0 pt-6 xl:pt-12 pb-24 xl:h-[calc(100vh-var(--fc-header-height,80px))] xl:top-[var(--fc-header-height,80px)]"
+                          fixed left-0 pt-6 xl:pt-12 pb-24
+                          top-[var(--fc-header-height,80px)]
+                          h-[calc(100vh-var(--fc-header-height,80px))]"
                 style={{
                     backgroundColor: theme.colors.bg.sidebar,
                     borderColor: `${theme.colors.border}30`,
