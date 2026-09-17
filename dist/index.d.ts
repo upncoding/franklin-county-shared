@@ -28,3 +28,4 @@ export * from './components/DocumentTable';
 export * from './components/SectionHeader';
 export * from './components/ContactCard';
 export * from './components/ResourceCard';
+export { default as ScrollToTop } from './components/ScrollToTop';
