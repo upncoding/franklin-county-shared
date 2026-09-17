@@ -80,7 +80,7 @@ function dI({ children: n, theme: e }) {
     A.style.setProperty("--theme-bg-main", g.bg.main), A.style.setProperty("--theme-bg-main-from", g.bg.mainFrom), A.style.setProperty("--theme-bg-main-via", g.bg.mainVia), A.style.setProperty("--theme-bg-main-to", g.bg.mainTo), A.style.setProperty("--theme-bg-card", g.bg.card), A.style.setProperty("--theme-bg-card-alt", g.bg.cardAlt), A.style.setProperty("--theme-bg-sidebar", g.bg.sidebar), A.style.setProperty("--theme-bg-header", g.bg.header), A.style.setProperty("--theme-bg-footer", g.bg.footer), A.style.setProperty("--theme-text-primary", g.text.primary), A.style.setProperty("--theme-text-secondary", g.text.secondary), A.style.setProperty("--theme-text-muted", g.text.muted), A.style.setProperty("--theme-text-on-dark", g.text.onDark), A.style.setProperty("--theme-primary", g.primary.DEFAULT), A.style.setProperty("--theme-primary-light", g.primary.light), A.style.setProperty("--theme-primary-dark", g.primary.dark), A.style.setProperty("--theme-secondary", g.secondary.DEFAULT), A.style.setProperty("--theme-secondary-light", g.secondary.light), A.style.setProperty("--theme-secondary-dark", g.secondary.dark), A.style.setProperty("--theme-hover-card", g.hover.card), A.style.setProperty("--theme-hover-sidebar", g.hover.sidebar), A.style.setProperty("--theme-hover-button", g.hover.button), A.style.setProperty("--theme-hover-link", g.hover.link), A.style.setProperty("--theme-shadow", g.shadow), A.style.setProperty("--theme-shadow-dark", g.shadowDark), A.style.setProperty("--theme-glow", g.glow), A.style.setProperty("--theme-border", g.border);
   }, [C]), /* @__PURE__ */ I(q.Provider, { value: { theme: C }, children: n });
 }
-function U() {
+function v() {
   const n = eI(q);
   if (n === void 0)
     throw new Error("useTheme must be used within a ThemeProvider");
@@ -120,7 +120,7 @@ const z = ({
   textColor: g,
   variant: a = "standard"
 }) => {
-  const [r, h] = F(!1), [v, K] = F(null), l = O(null), f = O(null), d = O(null), s = O(null), x = O(null), j = O(!1), { theme: w } = U(), Q = V(), b = `nav-menu-${n.replace(/\s+/g, "-").toLowerCase()}`, p = C.some((o) => Q.pathname === o.url ? !0 : o.subItems ? o.subItems.some((k) => Q.pathname === k.url) : !1), i = Q.pathname === e || p, u = () => {
+  const [r, h] = F(!1), [U, K] = F(null), l = O(null), f = O(null), d = O(null), s = O(null), x = O(null), j = O(!1), { theme: w } = v(), Q = V(), b = `nav-menu-${n.replace(/\s+/g, "-").toLowerCase()}`, p = C.some((o) => Q.pathname === o.url ? !0 : o.subItems ? o.subItems.some((k) => Q.pathname === k.url) : !1), i = Q.pathname === e || p, u = () => {
     if (f.current) {
       const o = f.current.getBoundingClientRect();
       K(o.bottom + 8);
@@ -219,7 +219,7 @@ const z = ({
           "aria-label": n,
           ...r ? {} : { inert: !0 },
           className: `fixed left-0 w-full z-[100] transition-all duration-300 ease-out ${r ? "opacity-100 translate-y-0 visible pointer-events-auto" : "opacity-0 -translate-y-2 invisible pointer-events-none"}`,
-          style: { top: v ? `${v}px` : "var(--fc-header-height, 50px)" },
+          style: { top: U ? `${U}px` : "var(--fc-header-height, 50px)" },
           onMouseEnter: y,
           onKeyDown: c,
           children: /* @__PURE__ */ I("div", { className: "container mx-auto px-6", onMouseLeave: R, children: /* @__PURE__ */ I(
@@ -463,7 +463,7 @@ const z = ({
     ]
   }
 ], hI = () => {
-  const { theme: n } = U(), e = n.colors.text.onDark;
+  const { theme: n } = v(), e = n.colors.text.onDark;
   return /* @__PURE__ */ t(
     "div",
     {
@@ -548,7 +548,7 @@ const z = ({
   onClick: C,
   textColor: A
 }) => {
-  const { theme: g } = U();
+  const { theme: g } = v();
   return /* @__PURE__ */ I(
     B,
     {
@@ -566,7 +566,7 @@ const z = ({
   onSearch: n,
   isMobile: e = !1
 }) => {
-  const { theme: C } = U();
+  const { theme: C } = v();
   return /* @__PURE__ */ I("form", { onSubmit: (g) => {
     g.preventDefault();
     const r = g.currentTarget.elements.namedItem("q");
@@ -607,9 +607,9 @@ const z = ({
   isMobileMenuOpen: a,
   onMobileMenuToggle: r,
   isMobileOrTablet: h,
-  isScrolled: v
+  isScrolled: U
 }) => {
-  const { theme: K } = U(), l = K.colors.text.onDark, f = h, d = e.slice(0, 8);
+  const { theme: K } = v(), l = K.colors.text.onDark, f = h, d = e.slice(0, 8);
   return process.env.NODE_ENV !== "production" && e.length > 8 && console.warn(
     "[Navbar] navItems exceeds the 8-item maximum. Only the first 8 will be rendered."
   ), /* @__PURE__ */ t("div", { className: "flex justify-between items-center", children: [
@@ -621,7 +621,7 @@ const z = ({
           {
             src: CI,
             alt: "Franklin County Seal",
-            className: `relative transition-all duration-500 object-contain ${v || a ? "h-12 w-12" : "h-16 w-16 md:h-20 md:w-20"}`
+            className: `relative transition-all duration-500 object-contain ${U || a ? "h-12 w-12" : "h-16 w-16 md:h-20 md:w-20"}`
           }
         )
       ] }),
@@ -717,7 +717,7 @@ const z = ({
   phone: n = W,
   address: e = kI
 }) => {
-  const { theme: C } = U(), A = n === W ? RI : void 0;
+  const { theme: C } = v(), A = n === W ? RI : void 0;
   return /* @__PURE__ */ I(
     "footer",
     {
@@ -872,10 +872,10 @@ function fI({
   navItems: a = [],
   showSearch: r = !1,
   onSearch: h,
-  footerPhone: v,
+  footerPhone: U,
   footerAddress: K
 }) {
-  const [l, f] = F(!1), [d, s] = F(!1), [x, j] = F(!1), [w, Q] = F(80), b = V(), { theme: p } = U(), i = O(null), u = O(null), E = O(null), J = O(null);
+  const [l, f] = F(!1), [d, s] = F(!1), [x, j] = F(!1), [w, Q] = F(80), b = V(), { theme: p } = v(), i = O(null), u = O(null), E = O(null), J = O(null);
   S(() => {
     const c = navigator.userAgent || navigator.vendor || window.opera || "", y = /android|webos|iphone|ipad|ipod|blackberry|iemobile|opera mini/i.test(c), R = /macintosh/i.test(c) && navigator.maxTouchPoints > 1;
     j(!!(y || R));
@@ -949,7 +949,7 @@ function fI({
           }
         },
         children: /* @__PURE__ */ I("div", { className: "overflow-y-auto flex-1 pt-32 pb-8", tabIndex: 0, role: "region", "aria-label": "Mobile Navigation Content", children: /* @__PURE__ */ t("div", { className: "container mx-auto px-6", children: [
-          r && /* @__PURE__ */ I("div", { className: "px-6 w-full max-w-md mx-auto mb-6", children: /* @__PURE__ */ I(
+          r && /* @__PURE__ */ I("div", { className: "px-6 w-full max-w-md mx-auto mb-10", children: /* @__PURE__ */ I(
             "form",
             {
               role: "search",
@@ -959,16 +959,41 @@ function fI({
                 const y = c.currentTarget.elements.namedItem("q");
                 y.value.trim() && h && (h(y.value.trim()), y.value = "");
               },
-              className: "w-full",
-              children: /* @__PURE__ */ I(
-                "input",
+              className: "relative group w-full",
+              children: /* @__PURE__ */ t(
+                "div",
                 {
-                  type: "search",
-                  name: "q",
-                  placeholder: "Search...",
-                  "aria-label": "Search",
-                  className: "w-full px-4 py-3 text-sm rounded-xl border focus:outline-none focus:ring-2",
-                  style: { borderColor: p.colors.border, color: p.colors.text.primary }
+                  className: "relative flex items-center w-full rounded-2xl border-2 transition-all duration-300 overflow-hidden shadow-sm focus-within:shadow-md",
+                  style: {
+                    borderColor: `${p.colors.primary.DEFAULT}33`,
+                    backgroundColor: "rgba(255, 255, 255, 0.8)"
+                  },
+                  children: [
+                    /* @__PURE__ */ I("div", { className: "pl-4 pr-2 flex items-center pointer-events-none", children: /* @__PURE__ */ I("svg", { className: "w-5 h-5 transition-colors", style: { color: p.colors.primary.DEFAULT }, fill: "none", stroke: "currentColor", viewBox: "0 0 24 24", "aria-hidden": "true", children: /* @__PURE__ */ I("path", { strokeLinecap: "round", strokeLinejoin: "round", strokeWidth: 2, d: "M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" }) }) }),
+                    /* @__PURE__ */ I(
+                      "input",
+                      {
+                        type: "search",
+                        name: "q",
+                        placeholder: "Search...",
+                        "aria-label": "Search",
+                        className: "w-full py-3.5 pr-2 text-base bg-transparent border-none focus:outline-none focus:ring-0",
+                        style: { color: p.colors.text.primary }
+                      }
+                    ),
+                    /* @__PURE__ */ I(
+                      "button",
+                      {
+                        type: "submit",
+                        className: "mr-2 px-4 py-2 rounded-xl text-xs font-bold uppercase tracking-wider transition-colors interactive-effect shrink-0",
+                        style: {
+                          backgroundColor: p.colors.primary.DEFAULT,
+                          color: "#ffffff"
+                        },
+                        children: "Go"
+                      }
+                    )
+                  ]
                 }
               )
             }
@@ -1065,7 +1090,7 @@ function fI({
       xI,
       {
         siteTitle: e,
-        phone: v,
+        phone: U,
         address: K
       }
     ) })
@@ -1075,7 +1100,7 @@ function KI({ theme: n, ...e }) {
   return /* @__PURE__ */ I(dI, { theme: n, children: /* @__PURE__ */ I(fI, { ...e }) });
 }
 const bI = ({ triggerText: n, tooltipContent: e, isActive: C, onToggle: A }) => {
-  const { theme: g } = U(), [a, r] = F(!1), { refs: h, floatingStyles: v } = tI({
+  const { theme: g } = v(), [a, r] = F(!1), { refs: h, floatingStyles: U } = tI({
     placement: "bottom",
     whileElementsMounted: rI,
     middleware: [
@@ -1112,7 +1137,7 @@ const bI = ({ triggerText: n, tooltipContent: e, isActive: C, onToggle: A }) => 
       "div",
       {
         ref: h.setFloating,
-        style: v,
+        style: U,
         className: "w-80 max-w-[calc(100vw-4rem)] p-4 bg-gray-900 text-white text-sm leading-relaxed rounded-lg shadow-2xl z-50",
         children: e
       }
@@ -1127,10 +1152,10 @@ const bI = ({ triggerText: n, tooltipContent: e, isActive: C, onToggle: A }) => 
   isMobileMenuOpen: a,
   onClose: r,
   backLinkUrl: h,
-  backLinkText: v,
+  backLinkText: U,
   title: K
 }) => {
-  const { theme: l } = U(), [f, d] = F(typeof window < "u" ? window.innerWidth >= 1024 : !0), [s, x] = F(/* @__PURE__ */ new Set([e || n[0]?.id])), j = O({}), w = O(s);
+  const { theme: l } = v(), [f, d] = F(typeof window < "u" ? window.innerWidth >= 1024 : !0), [s, x] = F(/* @__PURE__ */ new Set([e || n[0]?.id])), j = O({}), w = O(s);
   S(() => {
     const i = Array.from(s).find((u) => !w.current.has(u));
     if (i !== void 0) {
@@ -1185,14 +1210,14 @@ const bI = ({ triggerText: n, tooltipContent: e, isActive: C, onToggle: A }) => 
         },
         children: [
           /* @__PURE__ */ t("div", { className: "flex justify-between items-center px-4 mb-6 sticky top-0 bg-white/80 backdrop-blur-md pt-4 pb-2 z-10 lg:hidden", children: [
-            h && v ? /* @__PURE__ */ t(
+            h && U ? /* @__PURE__ */ t(
               "a",
               {
                 href: h,
                 className: "flex-1 btn-interactive interactive-effect group mr-4",
                 children: [
                   /* @__PURE__ */ I("svg", { className: "w-4 h-4 transition-transform duration-300 group-hover:-translate-x-1", fill: "none", stroke: "currentColor", viewBox: "0 0 24 24", children: /* @__PURE__ */ I("path", { strokeLinecap: "round", strokeLinejoin: "round", strokeWidth: 2.5, d: "M10 19l-7-7m0 0l7-7m-7 7h18" }) }),
-                  v
+                  U
                 ]
               }
             ) : /* @__PURE__ */ I("div", {}),
@@ -1341,7 +1366,7 @@ const bI = ({ triggerText: n, tooltipContent: e, isActive: C, onToggle: A }) => 
   ] });
 };
 function FI({ title: n, subtitle: e, image: C, video: A, isHomePage: g = !1 }) {
-  const { theme: a } = U();
+  const { theme: a } = v();
   return !n && !C && !A ? null : /* @__PURE__ */ t("div", { className: `relative w-full flex items-center justify-center ${g ? "min-h-screen" : "h-[60vh]"} overflow-hidden`, children: [
     A && /* @__PURE__ */ I("video", { autoPlay: !0, loop: !0, muted: !0, playsInline: !0, className: "absolute inset-0 w-full h-full object-cover", children: /* @__PURE__ */ I("source", { src: A, type: "video/mp4" }) }),
     !A && C && /* @__PURE__ */ I(
@@ -1383,7 +1408,7 @@ function FI({ title: n, subtitle: e, image: C, video: A, isHomePage: g = !1 }) {
   ] });
 }
 function QI({ title: n, children: e, className: C = "" }) {
-  const { theme: A } = U();
+  const { theme: A } = v();
   return /* @__PURE__ */ t("div", { className: `content-card hover-lift elevation-md transition-all duration-500 ${C}`, children: [
     n && /* @__PURE__ */ I(
       "h2",
@@ -1402,7 +1427,7 @@ function JI({
   description: C = "This document is available for download.",
   url: A
 }) {
-  const { theme: g } = U(), a = A || `/docs/${e}`;
+  const { theme: g } = v(), a = A || `/docs/${e}`;
   return /* @__PURE__ */ I("div", { className: "space-y-6", children: /* @__PURE__ */ t("div", { className: "border-l-4 p-6 rounded-r shadow-sm", style: { borderLeftColor: g.colors.secondary.DEFAULT, background: g.colors.bg.card }, children: [
     /* @__PURE__ */ I("h2", { className: "text-xl font-bold mb-2", style: { color: g.colors.text.primary }, children: n }),
     /* @__PURE__ */ I("p", { className: "mb-6 text-sm italic", style: { color: g.colors.text.muted }, children: C }),
@@ -1481,7 +1506,7 @@ export {
   EI as getNativeMapUrl,
   gI as howDoIItems,
   X as residentsItems,
-  U as useTheme,
+  v as useTheme,
   _ as visitorsItems
 };
 //# sourceMappingURL=index.js.map
