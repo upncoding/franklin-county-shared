@@ -86,7 +86,7 @@ function v() {
     throw new Error("useTheme must be used within a ThemeProvider");
   return n;
 }
-const M = nI(
+const z = nI(
   ({ item: n, className: e, style: C, children: A, ...g }, a) => n.url.startsWith("http") ? /* @__PURE__ */ I(
     "a",
     {
@@ -111,8 +111,8 @@ const M = nI(
     }
   )
 );
-M.displayName = "NavLinkOrA";
-const z = ({
+z.displayName = "NavLinkOrA";
+const Y = ({
   label: n,
   url: e = "#",
   items: C,
@@ -168,7 +168,7 @@ const z = ({
     x.current && (window.clearTimeout(x.current), x.current = null), s.current = window.setTimeout(() => {
       h(!1), s.current = null;
     }, 300);
-  }, T = () => {
+  }, G = () => {
     switch (A) {
       case 2:
         return "md:grid-cols-2";
@@ -179,17 +179,17 @@ const z = ({
       default:
         return "md:grid-cols-1";
     }
-  }, G = r || i ? w.colors.secondary.DEFAULT : g || "rgba(255, 255, 255, 0.9)", Y = "mx-4 my-2 text-xs font-bold uppercase tracking-widest transition-colors inline-block relative z-20 bg-transparent border-0 cursor-pointer p-0";
+  }, M = r || i ? w.colors.secondary.DEFAULT : g || "rgba(255, 255, 255, 0.9)", T = "mx-4 my-2 text-xs font-bold uppercase tracking-widest transition-colors inline-block relative z-20 bg-transparent border-0 cursor-pointer p-0";
   return /* @__PURE__ */ t("div", { ref: l, className: "relative inline-block", onMouseLeave: R, children: [
     e !== "#" ? /* @__PURE__ */ I(
-      M,
+      z,
       {
         ref: f,
         item: { label: n, url: e },
         "aria-expanded": r,
         "aria-controls": b,
-        className: Y,
-        style: { color: G },
+        className: T,
+        style: { color: M },
         onMouseEnter: y,
         onKeyDown: J,
         children: n
@@ -201,8 +201,8 @@ const z = ({
         type: "button",
         "aria-expanded": r,
         "aria-controls": b,
-        className: Y,
-        style: { color: G },
+        className: T,
+        style: { color: M },
         onMouseEnter: y,
         onKeyDown: m,
         onClick: () => h((o) => !o),
@@ -227,9 +227,9 @@ const z = ({
             {
               className: "rounded-b-lg shadow-2xl elevation-xl border-t overflow-hidden text-left mt-0",
               style: { backgroundColor: w.colors.bg.card, borderTopColor: w.colors.border },
-              children: /* @__PURE__ */ I("div", { className: `grid ${T()} gap-4 p-8`, children: C.map((o, k) => /* @__PURE__ */ t("div", { className: "flex flex-col", children: [
+              children: /* @__PURE__ */ I("div", { className: `grid ${G()} gap-4 p-8`, children: C.map((o, k) => /* @__PURE__ */ t("div", { className: "flex flex-col", children: [
                 /* @__PURE__ */ I(
-                  M,
+                  z,
                   {
                     item: o,
                     tabIndex: r ? 0 : -1,
@@ -244,7 +244,7 @@ const z = ({
                     className: "flex flex-col ml-4 mt-1 border-l-2 pl-2",
                     style: { borderColor: `${w.colors.border || "#e5e7eb"}80` },
                     children: o.subItems.map((N, P) => /* @__PURE__ */ I(
-                      M,
+                      z,
                       {
                         item: N,
                         tabIndex: r ? 0 : -1,
@@ -280,9 +280,9 @@ const z = ({
               style: { backgroundColor: w.colors.bg.card, borderColor: w.colors.border },
               onMouseLeave: R,
               children: [
-                /* @__PURE__ */ I("div", { className: `grid ${T()} gap-2 p-4`, children: C.map((o, k) => /* @__PURE__ */ t("div", { className: "flex flex-col", children: [
+                /* @__PURE__ */ I("div", { className: `grid ${G()} gap-2 p-4`, children: C.map((o, k) => /* @__PURE__ */ t("div", { className: "flex flex-col", children: [
                   /* @__PURE__ */ I(
-                    M,
+                    z,
                     {
                       item: o,
                       tabIndex: r ? 0 : -1,
@@ -297,7 +297,7 @@ const z = ({
                       className: "flex flex-col ml-4 mt-1 border-l-2 pl-2",
                       style: { borderColor: `${w.colors.border || "#e5e7eb"}80` },
                       children: o.subItems.map((N, P) => /* @__PURE__ */ I(
-                        M,
+                        z,
                         {
                           item: N,
                           tabIndex: r ? 0 : -1,
@@ -474,7 +474,7 @@ const z = ({
       },
       children: [
         /* @__PURE__ */ I(
-          z,
+          Y,
           {
             label: "Departments",
             url: "https://www.franklincountyny.gov/departments/index.php",
@@ -485,7 +485,7 @@ const z = ({
           }
         ),
         /* @__PURE__ */ I(
-          z,
+          Y,
           {
             label: "Residents",
             url: "https://www.franklincountyny.gov/residents/index.php",
@@ -496,7 +496,7 @@ const z = ({
           }
         ),
         /* @__PURE__ */ I(
-          z,
+          Y,
           {
             label: "Visitors",
             url: "https://www.franklincountyny.gov/visitors/index.php",
@@ -507,7 +507,7 @@ const z = ({
           }
         ),
         /* @__PURE__ */ I(
-          z,
+          Y,
           {
             label: "Business",
             url: "https://www.franklincountyny.gov/business/index.php",
@@ -518,7 +518,7 @@ const z = ({
           }
         ),
         /* @__PURE__ */ I(
-          z,
+          Y,
           {
             label: "Our Communities",
             url: "https://www.franklincountyny.gov/our_communities/index.php",
@@ -529,7 +529,7 @@ const z = ({
           }
         ),
         /* @__PURE__ */ I(
-          z,
+          Y,
           {
             label: "How Do I?",
             url: "https://www.franklincountyny.gov/how_do_i/index.php",
@@ -638,7 +638,7 @@ const z = ({
         children: [
           d.map(
             (s, x) => s.items && s.items.length > 0 ? /* @__PURE__ */ I(
-              z,
+              Y,
               {
                 label: s.label,
                 url: s.url,
@@ -1001,21 +1001,21 @@ function fI({
                     children: c.label
                   }
                 ),
-                /* @__PURE__ */ I("div", { className: "flex flex-col gap-1", children: R.map((T, G) => /* @__PURE__ */ I(
+                /* @__PURE__ */ I("div", { className: "flex flex-col gap-1", children: R.map((G, M) => /* @__PURE__ */ I(
                   B,
                   {
-                    to: T.url,
+                    to: G.url,
                     onClick: () => s(!1),
                     className: "block w-full text-center text-[13px] font-bold uppercase tracking-widest transition-all duration-200 py-3 px-6 rounded-xl interactive-effect",
-                    style: ({ isActive: Y }) => ({
-                      color: Y ? p.colors.primary.dark : p.colors.text.primary,
-                      backgroundColor: Y ? `${p.colors.primary.DEFAULT}10` : "transparent",
-                      borderLeft: Y ? `4px solid ${p.colors.primary.DEFAULT}` : "4px solid transparent",
-                      borderRight: Y ? `4px solid ${p.colors.primary.DEFAULT}` : "4px solid transparent"
+                    style: ({ isActive: T }) => ({
+                      color: T ? p.colors.primary.dark : p.colors.text.primary,
+                      backgroundColor: T ? `${p.colors.primary.DEFAULT}10` : "transparent",
+                      borderLeft: T ? `4px solid ${p.colors.primary.DEFAULT}` : "4px solid transparent",
+                      borderRight: T ? `4px solid ${p.colors.primary.DEFAULT}` : "4px solid transparent"
                     }),
-                    children: T.label
+                    children: G.label
                   },
-                  G
+                  M
                 )) })
               ] }, y);
             }
@@ -1048,19 +1048,17 @@ function fI({
               { title: "How Do I?", items: gI, url: "https://www.franklincountyny.gov/how_do_i/index.php" }
             ].map((c, y) => /* @__PURE__ */ t("div", { children: [
               /* @__PURE__ */ I("a", { href: c.url, target: "_blank", rel: "noopener noreferrer", className: "block text-center mb-3", children: /* @__PURE__ */ I("h3", { className: "text-xs font-bold uppercase tracking-widest inline-block", style: { color: p.colors.secondary.dark }, children: c.title }) }),
-              /* @__PURE__ */ I("div", { className: "grid grid-cols-2 gap-2", children: c.items.map((R, T) => /* @__PURE__ */ I(
+              /* @__PURE__ */ I("div", { className: "grid grid-cols-2 gap-2", children: c.items.map((R, G) => /* @__PURE__ */ I(
                 "a",
                 {
                   href: R.url,
                   target: R.url?.startsWith("http") ? "_blank" : void 0,
                   rel: R.url?.startsWith("http") ? "noopener noreferrer" : void 0,
-                  className: "text-xs transition-colors text-center py-1",
+                  className: "block w-full text-center text-xs transition-all duration-200 py-2 px-2 rounded-lg interactive-effect",
                   style: { color: p.colors.text.primary },
-                  onMouseEnter: (G) => G.currentTarget.style.color = p.colors.secondary.DEFAULT,
-                  onMouseLeave: (G) => G.currentTarget.style.color = p.colors.text.primary,
                   children: R.label
                 },
-                T
+                G
               )) })
             ] }, y)) })
           ] })
@@ -1482,7 +1480,7 @@ export {
   QI as ContentCard,
   xI as Footer,
   KI as Layout,
-  z as NavDropdown,
+  Y as NavDropdown,
   yI as Navbar,
   JI as PDFPlaceholder,
   FI as PageHeader,

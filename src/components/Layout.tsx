@@ -360,10 +360,8 @@ function LayoutInner({
                                                             href={item.url}
                                                             target={item.url?.startsWith('http') ? '_blank' : undefined}
                                                             rel={item.url?.startsWith('http') ? 'noopener noreferrer' : undefined}
-                                                            className="text-xs transition-colors text-center py-1"
+                                                            className="block w-full text-center text-xs transition-all duration-200 py-2 px-2 rounded-lg interactive-effect"
                                                             style={{ color: theme.colors.text.primary }}
-                                                            onMouseEnter={(e) => e.currentTarget.style.color = theme.colors.secondary.DEFAULT}
-                                                            onMouseLeave={(e) => e.currentTarget.style.color = theme.colors.text.primary}
                                                         >
                                                             {item.label}
                                                         </a>
