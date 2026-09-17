@@ -959,43 +959,34 @@ function fI({
                 const y = c.currentTarget.elements.namedItem("q");
                 y.value.trim() && h && (h(y.value.trim()), y.value = "");
               },
-              className: "relative group w-full",
-              children: /* @__PURE__ */ t(
-                "div",
-                {
-                  className: "relative flex items-center w-full rounded-2xl border-2 transition-all duration-300 overflow-hidden shadow-sm focus-within:shadow-md",
-                  style: {
-                    borderColor: `${p.colors.primary.DEFAULT}33`,
-                    backgroundColor: "rgba(255, 255, 255, 0.8)"
-                  },
-                  children: [
-                    /* @__PURE__ */ I("div", { className: "pl-4 pr-2 flex items-center pointer-events-none", children: /* @__PURE__ */ I("svg", { className: "w-5 h-5 transition-colors", style: { color: p.colors.primary.DEFAULT }, fill: "none", stroke: "currentColor", viewBox: "0 0 24 24", "aria-hidden": "true", children: /* @__PURE__ */ I("path", { strokeLinecap: "round", strokeLinejoin: "round", strokeWidth: 2, d: "M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" }) }) }),
-                    /* @__PURE__ */ I(
-                      "input",
-                      {
-                        type: "search",
-                        name: "q",
-                        placeholder: "Search...",
-                        "aria-label": "Search",
-                        className: "w-full py-3.5 pr-2 text-base bg-transparent border-none focus:outline-none focus:ring-0",
-                        style: { color: p.colors.text.primary }
-                      }
-                    ),
-                    /* @__PURE__ */ I(
-                      "button",
-                      {
-                        type: "submit",
-                        className: "mr-2 px-4 py-2 rounded-xl text-xs font-bold uppercase tracking-wider transition-colors interactive-effect shrink-0",
-                        style: {
-                          backgroundColor: p.colors.primary.DEFAULT,
-                          color: "#ffffff"
-                        },
-                        children: "Go"
-                      }
-                    )
-                  ]
-                }
-              )
+              className: "w-full",
+              children: /* @__PURE__ */ t("div", { className: "relative flex items-center", children: [
+                /* @__PURE__ */ I(
+                  "input",
+                  {
+                    type: "search",
+                    name: "q",
+                    placeholder: "Search...",
+                    "aria-label": "Search",
+                    className: "w-full px-4 py-3 pr-12 text-base rounded-xl border transition-all duration-200 focus:outline-none focus:ring-2 placeholder-white/70",
+                    style: {
+                      backgroundColor: p.colors.primary.DEFAULT,
+                      borderColor: p.colors.primary.dark,
+                      color: p.colors.text.onDark
+                    }
+                  }
+                ),
+                /* @__PURE__ */ I(
+                  "button",
+                  {
+                    type: "submit",
+                    "aria-label": "Submit search",
+                    className: "absolute right-3 p-1 transition-colors",
+                    style: { color: p.colors.text.onDark },
+                    children: /* @__PURE__ */ I("svg", { className: "w-5 h-5", fill: "none", stroke: "currentColor", viewBox: "0 0 24 24", "aria-hidden": "true", children: /* @__PURE__ */ I("path", { strokeLinecap: "round", strokeLinejoin: "round", strokeWidth: 2, d: "M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" }) })
+                  }
+                )
+              ] })
             }
           ) }),
           /* @__PURE__ */ I("nav", { className: "flex flex-col gap-8 text-center mb-12", "aria-label": "Mobile site navigation", children: a.map((c, y) => {
