@@ -40,7 +40,7 @@ export function PageHeader({ title, subtitle, image, video, isHomePage = false }
             
             {/* Hero text */}
             {title && (
-                <div className="container mx-auto px-6 relative z-10 text-center pt-48">
+                <div className="container mx-auto px-6 relative z-10 text-center">
                     <h1
                         className="inline-block font-serif font-black leading-tight mb-8 px-4 sm:px-8 py-4 rounded-2xl shadow-lg text-shadow-lg mx-auto animate-fade-in-up"
                         style={{

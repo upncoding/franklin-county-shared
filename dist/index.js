@@ -1369,7 +1369,7 @@ function FI({ title: n, subtitle: e, image: C, video: A, isHomePage: g = !1 }) {
     ),
     !A && !C && /* @__PURE__ */ I("div", { className: "absolute inset-0", style: { background: a.colors.bg.main } }),
     /* @__PURE__ */ I("div", { className: "absolute inset-0 bg-linear-to-b from-black/30 via-black/10 to-transparent" }),
-    n && /* @__PURE__ */ t("div", { className: "container mx-auto px-6 relative z-10 text-center pt-48", children: [
+    n && /* @__PURE__ */ t("div", { className: "container mx-auto px-6 relative z-10 text-center", children: [
       /* @__PURE__ */ I(
         "h1",
         {
