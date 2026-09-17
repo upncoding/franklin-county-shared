@@ -1,8 +1,8 @@
-import { jsx as I, jsxs as n, Fragment as M } from "react/jsx-runtime";
+import { jsx as I, jsxs as n, Fragment as z } from "react/jsx-runtime";
 import { createContext as eI, useEffect as S, useContext as AI, forwardRef as oI, useState as F, useRef as U, useLayoutEffect as nI } from "react";
-import { Link as rI, useLocation as W, NavLink as B } from "react-router-dom";
+import { Link as rI, useLocation as D, NavLink as B } from "react-router-dom";
 import { useFloating as tI, autoUpdate as lI, offset as aI, flip as iI, shift as sI, FloatingPortal as cI } from "@floating-ui/react";
-import { AnimatePresence as D, motion as z } from "framer-motion";
+import { AnimatePresence as W, motion as Z } from "framer-motion";
 const dI = {
   name: "Vibrant Adirondack",
   colors: {
@@ -120,7 +120,7 @@ const Y = ({
   textColor: g,
   variant: r = "standard"
 }) => {
-  const [t, i] = F(!1), [b, u] = F(null), a = U(null), E = U(null), m = U(null), d = U(null), v = U(null), O = U(!1), { theme: j } = k(), Q = W(), N = `nav-menu-${o.replace(/\s+/g, "-").toLowerCase()}`, p = C.some((l) => Q.pathname === l.url ? !0 : l.subItems ? l.subItems.some((w) => Q.pathname === w.url) : !1), s = Q.pathname === A || p, x = () => {
+  const [t, i] = F(!1), [b, u] = F(null), a = U(null), E = U(null), m = U(null), d = U(null), v = U(null), O = U(!1), { theme: j } = k(), Q = D(), N = `nav-menu-${o.replace(/\s+/g, "-").toLowerCase()}`, p = C.some((l) => Q.pathname === l.url ? !0 : l.subItems ? l.subItems.some((w) => Q.pathname === w.url) : !1), s = Q.pathname === A || p, x = () => {
     if (E.current) {
       const l = E.current.getBoundingClientRect();
       u(l.bottom + 8);
@@ -179,7 +179,7 @@ const Y = ({
       default:
         return "md:grid-cols-1";
     }
-  }, Z = t || s ? j.colors.secondary.DEFAULT : g || "rgba(255, 255, 255, 0.9)", G = "mx-4 my-2 text-xs font-bold uppercase tracking-widest transition-colors inline-block relative z-20 bg-transparent border-0 cursor-pointer p-0";
+  }, M = t || s ? j.colors.secondary.DEFAULT : g || "rgba(255, 255, 255, 0.9)", G = "mx-4 my-2 text-xs font-bold uppercase tracking-widest transition-colors inline-block relative z-20 bg-transparent border-0 cursor-pointer p-0";
   return /* @__PURE__ */ n("div", { ref: a, className: "relative inline-block", onMouseLeave: y, children: [
     A !== "#" ? /* @__PURE__ */ I(
       L,
@@ -189,7 +189,7 @@ const Y = ({
         "aria-expanded": t,
         "aria-controls": N,
         className: G,
-        style: { color: Z },
+        style: { color: M },
         onMouseEnter: h,
         onKeyDown: J,
         children: o
@@ -202,7 +202,7 @@ const Y = ({
         "aria-expanded": t,
         "aria-controls": N,
         className: G,
-        style: { color: Z },
+        style: { color: M },
         onMouseEnter: h,
         onKeyDown: R,
         onClick: () => i((l) => !l),
@@ -707,7 +707,7 @@ const Y = ({
 }, EI = (o) => {
   const A = encodeURIComponent(o), C = navigator.userAgent || navigator.vendor || window.opera;
   return /iPad|iPhone|iPod/.test(C) && !window.MSStream ? `maps://maps.apple.com/?q=${A}` : /android/i.test(C) ? `geo:0,0?q=${A}` : `https://www.google.com/maps/search/?api=1&query=${A}`;
-}, V = "518-891-2280", xI = "36 Church St Saranac Lake NY 12983", RI = /* @__PURE__ */ n(M, { children: [
+}, V = "518-891-2280", xI = "36 Church St Saranac Lake NY 12983", RI = /* @__PURE__ */ n(z, { children: [
   "36 Church St",
   /* @__PURE__ */ I("br", {}),
   "Saranac Lake, NY 12983",
@@ -875,7 +875,7 @@ function bI({
   footerPhone: b,
   footerAddress: u
 }) {
-  const [a, E] = F(!1), [m, d] = F(!1), [v, O] = F(!1), [j, Q] = F(80), N = W(), { theme: p } = k(), s = U(null), x = U(null), f = U(null), J = U(null);
+  const [a, E] = F(!1), [m, d] = F(!1), [v, O] = F(!1), [j, Q] = F(80), N = D(), { theme: p } = k(), s = U(null), x = U(null), f = U(null), J = U(null);
   S(() => {
     const c = navigator.userAgent || navigator.vendor || window.opera || "", h = /android|webos|iphone|ipad|ipod|blackberry|iemobile|opera mini/i.test(c), y = /macintosh/i.test(c) && navigator.maxTouchPoints > 1;
     O(!!(h || y));
@@ -1006,7 +1006,7 @@ function bI({
                     children: c.label
                   }
                 ),
-                /* @__PURE__ */ I("div", { className: "flex flex-col gap-1", children: y.map((T, Z) => /* @__PURE__ */ I(
+                /* @__PURE__ */ I("div", { className: "flex flex-col gap-1", children: y.map((T, M) => /* @__PURE__ */ I(
                   B,
                   {
                     to: T.url,
@@ -1020,7 +1020,7 @@ function bI({
                     }),
                     children: T.label
                   },
-                  Z
+                  M
                 )) })
               ] }, h);
             }
@@ -1042,7 +1042,7 @@ function bI({
             );
           }) }),
           R.length > 0 && r.some((c) => c.items) && /* @__PURE__ */ I("div", { className: "border-t my-6 max-w-md mx-auto", style: { borderColor: `${p.colors.secondary.DEFAULT}4D` } }),
-          C && /* @__PURE__ */ n(M, { children: [
+          C && /* @__PURE__ */ n(z, { children: [
             r.length > 0 && /* @__PURE__ */ I("div", { className: "border-t my-6 max-w-md mx-auto", style: { borderColor: `${p.colors.secondary.DEFAULT}4D` } }),
             /* @__PURE__ */ I("div", { className: "max-w-md mx-auto space-y-6 pb-12", children: [
               { title: "Departments", items: H, url: "https://www.franklincountyny.gov/departments/index.php" },
@@ -1108,7 +1108,7 @@ const FI = ({ triggerText: o, tooltipContent: A, isActive: C, onToggle: e }) => 
       })
     ]
   }), u = C || r;
-  return /* @__PURE__ */ n(M, { children: [
+  return /* @__PURE__ */ n(z, { children: [
     /* @__PURE__ */ I(
       "button",
       {
@@ -1173,9 +1173,9 @@ const FI = ({ triggerText: o, tooltipContent: A, isActive: C, onToggle: e }) => 
   }, p = (s, x) => {
     g && g(s, x), E || t();
   };
-  return /* @__PURE__ */ n(M, { children: [
-    /* @__PURE__ */ I(D, { children: r && !E && /* @__PURE__ */ I(
-      z.div,
+  return /* @__PURE__ */ n(z, { children: [
+    /* @__PURE__ */ I(W, { children: r && !E && /* @__PURE__ */ I(
+      Z.div,
       {
         initial: { opacity: 0 },
         animate: { opacity: 1 },
@@ -1186,7 +1186,7 @@ const FI = ({ triggerText: o, tooltipContent: A, isActive: C, onToggle: e }) => 
       }
     ) }),
     /* @__PURE__ */ n(
-      z.aside,
+      Z.aside,
       {
         initial: !1,
         animate: {
@@ -1311,8 +1311,8 @@ const FI = ({ triggerText: o, tooltipContent: A, isActive: C, onToggle: e }) => 
                     ] })
                   }
                 ),
-                /* @__PURE__ */ I(D, { initial: !1, children: x && J && /* @__PURE__ */ I(
-                  z.ul,
+                /* @__PURE__ */ I(W, { initial: !1, children: x && J && /* @__PURE__ */ I(
+                  Z.ul,
                   {
                     initial: { height: 0, opacity: 0 },
                     animate: { height: "auto", opacity: 1 },
@@ -1322,7 +1322,7 @@ const FI = ({ triggerText: o, tooltipContent: A, isActive: C, onToggle: e }) => 
                     children: s.subNodes.map((R, c) => {
                       const h = C === R.id;
                       return /* @__PURE__ */ I(
-                        z.li,
+                        Z.li,
                         {
                           initial: { x: -10, opacity: 0 },
                           animate: { x: 0, opacity: 1 },
@@ -1367,18 +1367,13 @@ function vI({ images: o, interval: A = 5e3, className: C = "" }) {
       g((t) => (t + 1) % o.length);
     }, A);
     return () => clearInterval(r);
-  }, [o, A]), !o || o.length === 0 ? null : /* @__PURE__ */ I("div", { className: `relative w-full h-full overflow-hidden ${C}`, children: /* @__PURE__ */ I(D, { initial: !1, children: /* @__PURE__ */ I(
-    z.div,
+  }, [o, A]), !o || o.length === 0 ? null : /* @__PURE__ */ I("div", { className: `w-full h-full overflow-hidden ${C}`, children: /* @__PURE__ */ I(
+    "div",
     {
-      initial: { opacity: 0, scale: 1.05 },
-      animate: { opacity: 1, scale: 1 },
-      exit: { opacity: 0 },
-      transition: { duration: 1.5, ease: "easeInOut" },
-      className: "absolute inset-0 bg-cover bg-center",
+      className: "absolute inset-0 bg-cover bg-center transition-all duration-1000",
       style: { backgroundImage: `url('${o[e]}')` }
-    },
-    e
-  ) }) });
+    }
+  ) });
 }
 function JI({ title: o, subtitle: A, image: C, images: e, video: g, isHomePage: r = !1 }) {
   const { theme: t } = k();
@@ -1647,7 +1642,7 @@ function PI({
 }
 function BI({ rows: o }) {
   const { theme: A } = k();
-  return /* @__PURE__ */ n(M, { children: [
+  return /* @__PURE__ */ n(z, { children: [
     /* @__PURE__ */ n("table", { className: "w-full text-sm text-left hidden md:table", children: [
       /* @__PURE__ */ I("thead", { children: /* @__PURE__ */ n("tr", { className: "border-b-2", style: { borderColor: `${A.colors.secondary.DEFAULT}40` }, children: [
         /* @__PURE__ */ I("th", { className: "font-bold pb-3", style: { color: A.colors.secondary.dark }, children: "Date" }),
@@ -1796,7 +1791,7 @@ function VI({
   ] }) });
 }
 function qI() {
-  const { pathname: o } = W(), A = U(0);
+  const { pathname: o } = D(), A = U(0);
   return nI(() => {
     "scrollRestoration" in window.history && (window.history.scrollRestoration = "manual");
     const C = document.documentElement.style.scrollBehavior, e = document.body.style.scrollBehavior;
