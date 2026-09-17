@@ -9,9 +9,9 @@ export interface ImageCarouselProps {
 export function ImageCarousel({ images, interval = 5000, className = '' }: ImageCarouselProps) {
     const [currentIndex, setCurrentIndex] = useState(0);
 
-    // Auto-advance the carousel. 
-    // Adding currentIndex to the dependency array ensures that if a user manually clicks a dot, 
-    // the timer resets so it doesn't immediately skip to the next image.
+    // Automatically cycle through the image array.
+    // Including currentIndex in the dependency array resets the interval upon manual navigation,
+    // ensuring a full delay before the next automatic transition.
     useEffect(() => {
         if (!images || images.length <= 1) return;
         
