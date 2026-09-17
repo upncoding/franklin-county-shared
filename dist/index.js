@@ -1,6 +1,6 @@
-import { jsx as I, jsxs as n, Fragment as L } from "react/jsx-runtime";
-import { createContext as eI, useEffect as S, useContext as AI, forwardRef as oI, useState as F, useRef as U, useLayoutEffect as nI } from "react";
-import { Link as tI, useLocation as D, NavLink as B } from "react-router-dom";
+import { jsx as I, jsxs as t, Fragment as L } from "react/jsx-runtime";
+import { createContext as eI, useEffect as S, useContext as AI, forwardRef as oI, useState as J, useRef as N, useLayoutEffect as tI } from "react";
+import { Link as nI, useLocation as D, NavLink as B } from "react-router-dom";
 import { useFloating as rI, autoUpdate as lI, offset as aI, flip as iI, shift as sI, FloatingPortal as cI } from "@floating-ui/react";
 import { AnimatePresence as W, motion as Z } from "framer-motion";
 const dI = {
@@ -80,17 +80,17 @@ function hI({ children: A, theme: o }) {
     C.style.setProperty("--theme-bg-main", g.bg.main), C.style.setProperty("--theme-bg-main-from", g.bg.mainFrom), C.style.setProperty("--theme-bg-main-via", g.bg.mainVia), C.style.setProperty("--theme-bg-main-to", g.bg.mainTo), C.style.setProperty("--theme-bg-card", g.bg.card), C.style.setProperty("--theme-bg-card-alt", g.bg.cardAlt), C.style.setProperty("--theme-bg-sidebar", g.bg.sidebar), C.style.setProperty("--theme-bg-header", g.bg.header), C.style.setProperty("--theme-bg-footer", g.bg.footer), C.style.setProperty("--theme-text-primary", g.text.primary), C.style.setProperty("--theme-text-secondary", g.text.secondary), C.style.setProperty("--theme-text-muted", g.text.muted), C.style.setProperty("--theme-text-on-dark", g.text.onDark), C.style.setProperty("--theme-primary", g.primary.DEFAULT), C.style.setProperty("--theme-primary-light", g.primary.light), C.style.setProperty("--theme-primary-dark", g.primary.dark), C.style.setProperty("--theme-secondary", g.secondary.DEFAULT), C.style.setProperty("--theme-secondary-light", g.secondary.light), C.style.setProperty("--theme-secondary-dark", g.secondary.dark), C.style.setProperty("--theme-hover-card", g.hover.card), C.style.setProperty("--theme-hover-sidebar", g.hover.sidebar), C.style.setProperty("--theme-hover-button", g.hover.button), C.style.setProperty("--theme-hover-link", g.hover.link), C.style.setProperty("--theme-shadow", g.shadow), C.style.setProperty("--theme-shadow-dark", g.shadowDark), C.style.setProperty("--theme-glow", g.glow), C.style.setProperty("--theme-border", g.border);
   }, [e]), /* @__PURE__ */ I(q.Provider, { value: { theme: e }, children: A });
 }
-function k() {
+function R() {
   const A = AI(q);
   if (A === void 0)
     throw new Error("useTheme must be used within a ThemeProvider");
   return A;
 }
-const z = oI(
-  ({ item: A, className: o, style: e, children: C, ...g }, t) => A.url.startsWith("http") ? /* @__PURE__ */ I(
+const M = oI(
+  ({ item: A, className: o, style: e, children: C, ...g }, n) => A.url.startsWith("http") ? /* @__PURE__ */ I(
     "a",
     {
-      ref: t,
+      ref: n,
       href: A.url,
       target: "_blank",
       rel: "noopener noreferrer",
@@ -100,9 +100,9 @@ const z = oI(
       children: C
     }
   ) : /* @__PURE__ */ I(
-    tI,
+    nI,
     {
-      ref: t,
+      ref: n,
       to: A.url,
       className: o,
       style: e,
@@ -111,64 +111,64 @@ const z = oI(
     }
   )
 );
-z.displayName = "NavLinkOrA";
+M.displayName = "NavLinkOrA";
 const Y = ({
   label: A,
   url: o = "#",
   items: e,
   columns: C = 1,
   textColor: g,
-  variant: t = "standard"
+  variant: n = "standard"
 }) => {
-  const [r, i] = F(!1), [b, u] = F(null), a = U(null), E = U(null), m = U(null), d = U(null), v = U(null), O = U(!1), { theme: j } = k(), Q = D(), N = `nav-menu-${A.replace(/\s+/g, "-").toLowerCase()}`, p = e.some((l) => Q.pathname === l.url ? !0 : l.subItems ? l.subItems.some((w) => Q.pathname === w.url) : !1), s = Q.pathname === o || p, x = () => {
-    if (E.current) {
-      const l = E.current.getBoundingClientRect();
-      u(l.bottom + 8);
+  const [r, s] = J(!1), [f, k] = J(null), p = N(null), d = N(null), m = N(null), h = N(null), E = N(null), O = N(!1), { theme: b } = R(), F = D(), K = `nav-menu-${A.replace(/\s+/g, "-").toLowerCase()}`, u = e.some((l) => F.pathname === l.url ? !0 : l.subItems ? l.subItems.some((x) => F.pathname === x.url) : !1), z = F.pathname === o || u, T = () => {
+    if (d.current) {
+      const l = d.current.getBoundingClientRect();
+      k(l.bottom + 8);
     }
-    window.dispatchEvent(new CustomEvent("navdropdown:opened", { detail: { menuId: N } })), i(!0);
-  }, f = () => {
-    i(!1), O.current = !1, E.current?.focus();
+    window.dispatchEvent(new CustomEvent("navdropdown:opened", { detail: { menuId: K } })), s(!0);
+  }, a = () => {
+    s(!1), O.current = !1, d.current?.focus();
   };
   S(() => {
-    const l = (w) => {
-      w.detail.menuId !== N && (i(!1), O.current = !1);
+    const l = (x) => {
+      x.detail.menuId !== K && (s(!1), O.current = !1);
     };
     return window.addEventListener("navdropdown:opened", l), () => window.removeEventListener("navdropdown:opened", l);
-  }, [N]), S(() => {
-    const l = (w) => {
-      a.current && !a.current.contains(w.target) && (i(!1), O.current = !1);
+  }, [K]), S(() => {
+    const l = (x) => {
+      p.current && !p.current.contains(x.target) && (s(!1), O.current = !1);
     };
     return r && document.addEventListener("mousedown", l), () => document.removeEventListener("mousedown", l);
   }, [r]), S(() => {
     r && O.current && m.current && m.current.querySelector("a, button")?.focus();
   }, [r]);
-  const J = (l) => {
-    l.key === " " || l.key === "ArrowDown" ? (l.preventDefault(), O.current = !0, x()) : l.key === "Escape" && (i(!1), O.current = !1);
-  }, R = (l) => {
-    l.key === "Enter" || l.key === " " || l.key === "ArrowDown" ? (l.preventDefault(), O.current = !0, r ? i(!1) : x()) : l.key === "Escape" && (i(!1), O.current = !1);
+  const w = (l) => {
+    l.key === " " || l.key === "ArrowDown" ? (l.preventDefault(), O.current = !0, T()) : l.key === "Escape" && (s(!1), O.current = !1);
+  }, v = (l) => {
+    l.key === "Enter" || l.key === " " || l.key === "ArrowDown" ? (l.preventDefault(), O.current = !0, r ? s(!1) : T()) : l.key === "Escape" && (s(!1), O.current = !1);
   }, c = (l) => {
     if (l.key === "Escape") {
-      l.preventDefault(), f();
+      l.preventDefault(), a();
       return;
     }
     if (l.key === "ArrowDown" || l.key === "ArrowUp") {
       if (l.preventDefault(), !m.current) return;
-      const w = Array.from(m.current.querySelectorAll("a, button")), K = w.indexOf(document.activeElement);
-      l.key === "ArrowDown" ? w[(K + 1) % w.length]?.focus() : w[(K - 1 + w.length) % w.length]?.focus();
+      const x = Array.from(m.current.querySelectorAll("a, button")), j = x.indexOf(document.activeElement);
+      l.key === "ArrowDown" ? x[(j + 1) % x.length]?.focus() : x[(j - 1 + x.length) % x.length]?.focus();
     }
     if (l.key === "Tab") {
-      const w = Array.from(m.current?.querySelectorAll("a, button") ?? []), K = w[w.length - 1];
-      !l.shiftKey && document.activeElement === K && i(!1), l.shiftKey && document.activeElement === w[0] && (l.preventDefault(), f());
+      const x = Array.from(m.current?.querySelectorAll("a, button") ?? []), j = x[x.length - 1];
+      !l.shiftKey && document.activeElement === j && s(!1), l.shiftKey && document.activeElement === x[0] && (l.preventDefault(), a());
     }
-  }, h = () => {
-    d.current && (window.clearTimeout(d.current), d.current = null), !r && !v.current && (v.current = window.setTimeout(() => {
-      x(), v.current = null;
+  }, i = () => {
+    h.current && (window.clearTimeout(h.current), h.current = null), !r && !E.current && (E.current = window.setTimeout(() => {
+      T(), E.current = null;
     }, 150));
   }, y = () => {
-    v.current && (window.clearTimeout(v.current), v.current = null), d.current = window.setTimeout(() => {
-      i(!1), d.current = null;
+    E.current && (window.clearTimeout(E.current), E.current = null), h.current = window.setTimeout(() => {
+      s(!1), h.current = null;
     }, 300);
-  }, T = () => {
+  }, U = () => {
     switch (C) {
       case 2:
         return "md:grid-cols-2";
@@ -179,62 +179,62 @@ const Y = ({
       default:
         return "md:grid-cols-1";
     }
-  }, M = r || s ? j.colors.secondary.DEFAULT : g || "rgba(255, 255, 255, 0.9)", G = "mx-4 my-2 text-xs font-bold uppercase tracking-widest transition-colors inline-block relative z-20 bg-transparent border-0 cursor-pointer p-0";
-  return /* @__PURE__ */ n("div", { ref: a, className: "relative inline-block", onMouseLeave: y, children: [
+  }, G = r || z ? b.colors.secondary.DEFAULT : g || "rgba(255, 255, 255, 0.9)", Q = "mx-4 my-2 text-xs font-bold uppercase tracking-widest transition-colors inline-block relative z-20 bg-transparent border-0 cursor-pointer p-0";
+  return /* @__PURE__ */ t("div", { ref: p, className: "relative inline-block", onMouseLeave: y, children: [
     o !== "#" ? /* @__PURE__ */ I(
-      z,
+      M,
       {
-        ref: E,
+        ref: d,
         item: { label: A, url: o },
         "aria-expanded": r,
-        "aria-controls": N,
-        className: G,
-        style: { color: M },
-        onMouseEnter: h,
-        onKeyDown: J,
+        "aria-controls": K,
+        className: Q,
+        style: { color: G },
+        onMouseEnter: i,
+        onKeyDown: w,
         children: A
       }
     ) : /* @__PURE__ */ I(
       "button",
       {
-        ref: E,
+        ref: d,
         type: "button",
         "aria-expanded": r,
-        "aria-controls": N,
-        className: G,
-        style: { color: M },
-        onMouseEnter: h,
-        onKeyDown: R,
-        onClick: () => i((l) => !l),
+        "aria-controls": K,
+        className: Q,
+        style: { color: G },
+        onMouseEnter: i,
+        onKeyDown: v,
+        onClick: () => s((l) => !l),
         children: A
       }
     ),
-    t === "fullWidth" ? (
+    n === "fullWidth" ? (
       /* ── Mega Menu (Full Width) ── */
       /* @__PURE__ */ I(
         "div",
         {
-          id: N,
+          id: K,
           ref: m,
           "aria-label": A,
           ...r ? {} : { inert: !0 },
           className: `fixed left-0 w-full z-[100] transition-all duration-300 ease-out ${r ? "opacity-100 translate-y-0 visible pointer-events-auto" : "opacity-0 -translate-y-2 invisible pointer-events-none"}`,
-          style: { top: b ? `${b}px` : "var(--fc-header-height, 50px)" },
-          onMouseEnter: h,
+          style: { top: f ? `${f}px` : "var(--fc-header-height, 50px)" },
+          onMouseEnter: i,
           onKeyDown: c,
           children: /* @__PURE__ */ I("div", { className: "container mx-auto px-6", onMouseLeave: y, children: /* @__PURE__ */ I(
             "div",
             {
               className: "rounded-b-lg shadow-2xl elevation-xl border-t overflow-hidden text-left mt-0",
-              style: { backgroundColor: j.colors.bg.card, borderTopColor: j.colors.border },
-              children: /* @__PURE__ */ I("div", { className: `grid ${T()} gap-4 p-8`, children: e.map((l, w) => /* @__PURE__ */ n("div", { className: "flex flex-col", children: [
+              style: { backgroundColor: b.colors.bg.card, borderTopColor: b.colors.border },
+              children: /* @__PURE__ */ I("div", { className: `grid ${U()} gap-4 p-8`, children: e.map((l, x) => /* @__PURE__ */ t("div", { className: "flex flex-col", children: [
                 /* @__PURE__ */ I(
-                  z,
+                  M,
                   {
                     item: l,
                     tabIndex: r ? 0 : -1,
                     className: "block px-4 py-2 text-sm font-medium rounded transition-all duration-200 interactive-effect border border-transparent",
-                    style: { color: j.colors.text.primary },
+                    style: { color: b.colors.text.primary },
                     children: l.label
                   }
                 ),
@@ -242,21 +242,21 @@ const Y = ({
                   "div",
                   {
                     className: "flex flex-col ml-4 mt-1 border-l-2 pl-2",
-                    style: { borderColor: `${j.colors.border || "#e5e7eb"}80` },
-                    children: l.subItems.map((K, P) => /* @__PURE__ */ I(
-                      z,
+                    style: { borderColor: `${b.colors.border || "#e5e7eb"}80` },
+                    children: l.subItems.map((j, P) => /* @__PURE__ */ I(
+                      M,
                       {
-                        item: K,
+                        item: j,
                         tabIndex: r ? 0 : -1,
                         className: "block px-4 py-1.5 text-xs rounded transition-all duration-200 opacity-90 interactive-effect border border-transparent",
-                        style: { color: j.colors.text.primary },
-                        children: K.label
+                        style: { color: b.colors.text.primary },
+                        children: j.label
                       },
                       P
                     ))
                   }
                 )
-              ] }, w)) })
+              ] }, x)) })
             }
           ) })
         }
@@ -266,28 +266,28 @@ const Y = ({
       /* @__PURE__ */ I(
         "div",
         {
-          id: N,
+          id: K,
           ref: m,
           "aria-label": A,
           ...r ? {} : { inert: !0 },
           className: `absolute left-1/2 -translate-x-1/2 top-full pt-4 z-[100] transition-all duration-300 ease-out ${r ? "opacity-100 translate-y-0 visible pointer-events-auto" : "opacity-0 -translate-y-2 invisible pointer-events-none"}`,
-          onMouseEnter: h,
+          onMouseEnter: i,
           onKeyDown: c,
-          children: /* @__PURE__ */ n(
+          children: /* @__PURE__ */ t(
             "div",
             {
               className: "w-75 rounded-2xl shadow-2xl elevation-xl border overflow-hidden text-left",
-              style: { backgroundColor: j.colors.bg.card, borderColor: j.colors.border },
+              style: { backgroundColor: b.colors.bg.card, borderColor: b.colors.border },
               onMouseLeave: y,
               children: [
-                /* @__PURE__ */ I("div", { className: `grid ${T()} gap-2 p-4`, children: e.map((l, w) => /* @__PURE__ */ n("div", { className: "flex flex-col", children: [
+                /* @__PURE__ */ I("div", { className: `grid ${U()} gap-2 p-4`, children: e.map((l, x) => /* @__PURE__ */ t("div", { className: "flex flex-col", children: [
                   /* @__PURE__ */ I(
-                    z,
+                    M,
                     {
                       item: l,
                       tabIndex: r ? 0 : -1,
                       className: "block px-4 py-3 text-sm font-bold rounded-xl transition-all duration-200 interactive-effect border border-transparent",
-                      style: { color: j.colors.text.primary },
+                      style: { color: b.colors.text.primary },
                       children: l.label
                     }
                   ),
@@ -295,22 +295,22 @@ const Y = ({
                     "div",
                     {
                       className: "flex flex-col ml-4 mt-1 border-l-2 pl-2",
-                      style: { borderColor: `${j.colors.border || "#e5e7eb"}80` },
-                      children: l.subItems.map((K, P) => /* @__PURE__ */ I(
-                        z,
+                      style: { borderColor: `${b.colors.border || "#e5e7eb"}80` },
+                      children: l.subItems.map((j, P) => /* @__PURE__ */ I(
+                        M,
                         {
-                          item: K,
+                          item: j,
                           tabIndex: r ? 0 : -1,
                           className: "block px-4 py-2 text-xs font-medium rounded-lg transition-all duration-200 opacity-80 interactive-effect border border-transparent hover:opacity-100",
-                          style: { color: j.colors.text.primary },
-                          children: K.label
+                          style: { color: b.colors.text.primary },
+                          children: j.label
                         },
                         P
                       ))
                     }
                   )
-                ] }, w)) }),
-                /* @__PURE__ */ I("div", { className: "h-1 w-full", style: { backgroundColor: j.colors.secondary.DEFAULT } })
+                ] }, x)) }),
+                /* @__PURE__ */ I("div", { className: "h-1 w-full", style: { backgroundColor: b.colors.secondary.DEFAULT } })
               ]
             }
           )
@@ -463,8 +463,8 @@ const Y = ({
     ]
   }
 ], uI = () => {
-  const { theme: A } = k(), o = A.colors.text.onDark;
-  return /* @__PURE__ */ n(
+  const { theme: A } = R(), o = A.colors.text.onDark;
+  return /* @__PURE__ */ t(
     "div",
     {
       className: "hidden xl:flex justify-end gap-2 border-b pb-2",
@@ -548,16 +548,16 @@ const Y = ({
   onClick: e,
   textColor: C
 }) => {
-  const { theme: g } = k();
+  const { theme: g } = R();
   return /* @__PURE__ */ I(
     B,
     {
       to: A,
       onClick: e,
-      className: ({ isActive: t }) => `block w-full text-center text-2xl md:text-sm font-bold uppercase tracking-widest transition-all duration-200 py-4 px-6 rounded-2xl active:scale-95 ${t ? "" : "interactive-effect"}`,
-      style: ({ isActive: t }) => ({
-        color: t ? g.colors.secondary.DEFAULT : C || g.colors.text.primary,
-        backgroundColor: t ? `${g.colors.secondary.DEFAULT}10` : "transparent"
+      className: ({ isActive: n }) => `block w-full text-center text-2xl md:text-sm font-bold uppercase tracking-widest transition-all duration-200 py-4 px-6 rounded-2xl active:scale-95 ${n ? "" : "interactive-effect"}`,
+      style: ({ isActive: n }) => ({
+        color: n ? g.colors.secondary.DEFAULT : C || g.colors.text.primary,
+        backgroundColor: n ? `${g.colors.secondary.DEFAULT}10` : "transparent"
       }),
       children: o
     }
@@ -566,12 +566,12 @@ const Y = ({
   onSearch: A,
   isMobile: o = !1
 }) => {
-  const { theme: e } = k();
+  const { theme: e } = R();
   return /* @__PURE__ */ I("form", { onSubmit: (g) => {
     g.preventDefault();
     const r = g.currentTarget.elements.namedItem("q");
     r.value.trim() && A && (A(r.value.trim()), r.value = "");
-  }, role: "search", "aria-label": "Site search", className: o ? "w-full" : "", children: /* @__PURE__ */ n("div", { className: "relative flex items-center", children: [
+  }, role: "search", "aria-label": "Site search", className: o ? "w-full" : "", children: /* @__PURE__ */ t("div", { className: "relative flex items-center", children: [
     /* @__PURE__ */ I(
       "input",
       {
@@ -604,58 +604,58 @@ const Y = ({
   showTopbar: e = !1,
   showSearch: C = !1,
   onSearch: g,
-  isMobileMenuOpen: t,
+  isMobileMenuOpen: n,
   onMobileMenuToggle: r,
-  isMobileOrTablet: i,
-  isScrolled: b
+  isMobileOrTablet: s,
+  isScrolled: f
 }) => {
-  const { theme: u } = k(), a = u.colors.text.onDark, E = i, m = o.slice(0, 8);
+  const { theme: k } = R(), p = k.colors.text.onDark, d = s, m = o.slice(0, 8);
   return process.env.NODE_ENV !== "production" && o.length > 8 && console.warn(
     "[Navbar] navItems exceeds the 8-item maximum. Only the first 8 will be rendered."
-  ), /* @__PURE__ */ n("div", { className: "flex justify-between items-center", children: [
-    /* @__PURE__ */ n("div", { className: "flex items-center gap-4", children: [
-      /* @__PURE__ */ n("div", { className: "relative group shrink-0", children: [
+  ), /* @__PURE__ */ t("div", { className: "flex justify-between items-center", children: [
+    /* @__PURE__ */ t("div", { className: "flex items-center gap-4", children: [
+      /* @__PURE__ */ t("div", { className: "relative group shrink-0", children: [
         /* @__PURE__ */ I("div", { className: "absolute -inset-1 bg-linear-to-r from-county-gold-light to-county-gold rounded-full opacity-0 group-hover:opacity-30 blur transition duration-300" }),
         /* @__PURE__ */ I(
           "img",
           {
             src: CI,
             alt: "Franklin County Seal",
-            className: `relative transition-all duration-500 object-contain ${b || t ? "h-12 w-12" : "h-16 w-16 md:h-20 md:w-20"}`
+            className: `relative transition-all duration-500 object-contain ${f || n ? "h-12 w-12" : "h-16 w-16 md:h-20 md:w-20"}`
           }
         )
       ] }),
-      /* @__PURE__ */ n("div", { className: "flex flex-col transition-opacity duration-300 opacity-100", style: { color: a }, children: [
+      /* @__PURE__ */ t("div", { className: "flex flex-col transition-opacity duration-300 opacity-100", style: { color: p }, children: [
         /* @__PURE__ */ I("span", { className: "text-xs uppercase tracking-[0.3em] font-light leading-tight", children: "Franklin County" }),
         /* @__PURE__ */ I("span", { className: "font-serif font-black text-xl md:text-2xl leading-none tracking-tight", children: A })
       ] })
     ] }),
-    m.length > 0 && /* @__PURE__ */ n(
+    m.length > 0 && /* @__PURE__ */ t(
       "nav",
       {
-        className: `${E ? "hidden" : "hidden xl:flex"} items-center gap-4`,
+        className: `${d ? "hidden" : "hidden xl:flex"} items-center gap-4`,
         "aria-label": "Main navigation",
         children: [
           m.map(
-            (d, v) => d.items && d.items.length > 0 ? /* @__PURE__ */ I(
+            (h, E) => h.items && h.items.length > 0 ? /* @__PURE__ */ I(
               Y,
               {
-                label: d.label,
-                url: d.url,
-                items: d.items,
-                columns: d.columns,
-                textColor: a,
-                variant: d.variant
+                label: h.label,
+                url: h.url,
+                items: h.items,
+                columns: h.columns,
+                textColor: p,
+                variant: h.variant
               },
-              v
+              E
             ) : /* @__PURE__ */ I(
               mI,
               {
-                to: d.url || "/",
-                label: d.label,
-                textColor: a
+                to: h.url || "/",
+                label: h.label,
+                textColor: p
               },
-              v
+              E
             )
           ),
           C && /* @__PURE__ */ I(yI, { onSearch: g })
@@ -666,38 +666,38 @@ const Y = ({
       "button",
       {
         type: "button",
-        className: `${i ? "block" : "xl:hidden"} p-2 cursor-pointer transition-opacity rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-county-gold`,
-        style: { color: a },
+        className: `${s ? "block" : "xl:hidden"} p-2 cursor-pointer transition-opacity rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-county-gold`,
+        style: { color: p },
         onClick: r,
-        "aria-label": t ? "Close navigation menu" : "Open navigation menu",
-        "aria-expanded": t,
+        "aria-label": n ? "Close navigation menu" : "Open navigation menu",
+        "aria-expanded": n,
         "aria-controls": "fc-mobile-nav",
-        onMouseEnter: (d) => {
-          d.currentTarget.querySelectorAll("span").forEach((v) => v.style.backgroundColor = u.colors.secondary.DEFAULT);
+        onMouseEnter: (h) => {
+          h.currentTarget.querySelectorAll("span").forEach((E) => E.style.backgroundColor = k.colors.secondary.DEFAULT);
         },
-        onMouseLeave: (d) => {
-          d.currentTarget.querySelectorAll("span").forEach((v) => v.style.backgroundColor = a);
+        onMouseLeave: (h) => {
+          h.currentTarget.querySelectorAll("span").forEach((E) => E.style.backgroundColor = p);
         },
-        children: /* @__PURE__ */ n("div", { className: "space-y-1.5", "aria-hidden": "true", children: [
+        children: /* @__PURE__ */ t("div", { className: "space-y-1.5", "aria-hidden": "true", children: [
           /* @__PURE__ */ I(
             "span",
             {
               className: "block w-8 h-0.5 transition-all duration-300",
-              style: { backgroundColor: a, transform: t ? "translateY(8px) rotate(45deg)" : "none" }
+              style: { backgroundColor: p, transform: n ? "translateY(8px) rotate(45deg)" : "none" }
             }
           ),
           /* @__PURE__ */ I(
             "span",
             {
-              className: `block w-8 h-0.5 transition-all duration-300 ${t ? "opacity-0" : ""}`,
-              style: { backgroundColor: a }
+              className: `block w-8 h-0.5 transition-all duration-300 ${n ? "opacity-0" : ""}`,
+              style: { backgroundColor: p }
             }
           ),
           /* @__PURE__ */ I(
             "span",
             {
               className: "block w-8 h-0.5 transition-all duration-300",
-              style: { backgroundColor: a, transform: t ? "translateY(-8px) rotate(-45deg)" : "none" }
+              style: { backgroundColor: p, transform: n ? "translateY(-8px) rotate(-45deg)" : "none" }
             }
           )
         ] })
@@ -707,7 +707,7 @@ const Y = ({
 }, EI = (A) => {
   const o = encodeURIComponent(A), e = navigator.userAgent || navigator.vendor || window.opera;
   return /iPad|iPhone|iPod/.test(e) && !window.MSStream ? `maps://maps.apple.com/?q=${o}` : /android/i.test(e) ? `geo:0,0?q=${o}` : `https://www.google.com/maps/search/?api=1&query=${o}`;
-}, V = "518-891-2280", xI = "36 Church St Saranac Lake NY 12983", RI = /* @__PURE__ */ n(L, { children: [
+}, V = "518-891-2280", xI = "36 Church St Saranac Lake NY 12983", RI = /* @__PURE__ */ t(L, { children: [
   "36 Church St",
   /* @__PURE__ */ I("br", {}),
   "Saranac Lake, NY 12983",
@@ -717,7 +717,7 @@ const Y = ({
   phone: A = V,
   address: o = RI
 }) => {
-  const { theme: e } = k(), C = A === V ? xI : void 0;
+  const { theme: e } = R(), C = A === V ? xI : void 0;
   return /* @__PURE__ */ I(
     "footer",
     {
@@ -728,9 +728,9 @@ const Y = ({
         borderTopColor: e.colors.secondary.DEFAULT,
         color: e.colors.text.onDark
       },
-      children: /* @__PURE__ */ n("div", { className: "container mx-auto px-6", children: [
-        /* @__PURE__ */ n("div", { className: "grid md:grid-cols-3 gap-8 mb-8 items-start", children: [
-          /* @__PURE__ */ n("div", { className: "flex items-center gap-4", children: [
+      children: /* @__PURE__ */ t("div", { className: "container mx-auto px-6", children: [
+        /* @__PURE__ */ t("div", { className: "grid md:grid-cols-3 gap-8 mb-8 items-start", children: [
+          /* @__PURE__ */ t("div", { className: "flex items-center gap-4", children: [
             /* @__PURE__ */ I("div", { className: "bg-white/10 p-4 rounded-full", "aria-hidden": "true", children: /* @__PURE__ */ I(
               "svg",
               {
@@ -751,7 +751,7 @@ const Y = ({
                 )
               }
             ) }),
-            /* @__PURE__ */ n("div", { children: [
+            /* @__PURE__ */ t("div", { children: [
               /* @__PURE__ */ I("div", { className: "text-xs uppercase tracking-wider mb-1", style: { color: e.colors.text.onDark }, children: "Contact Us" }),
               /* @__PURE__ */ I(
                 "a",
@@ -767,8 +767,8 @@ const Y = ({
               )
             ] })
           ] }),
-          /* @__PURE__ */ n("div", { className: "flex items-center gap-4", children: [
-            /* @__PURE__ */ I("div", { className: "bg-white/10 p-4 rounded-full", "aria-hidden": "true", children: /* @__PURE__ */ n(
+          /* @__PURE__ */ t("div", { className: "flex items-center gap-4", children: [
+            /* @__PURE__ */ I("div", { className: "bg-white/10 p-4 rounded-full", "aria-hidden": "true", children: /* @__PURE__ */ t(
               "svg",
               {
                 className: "w-6 h-6",
@@ -799,7 +799,7 @@ const Y = ({
                 ]
               }
             ) }),
-            /* @__PURE__ */ n("div", { children: [
+            /* @__PURE__ */ t("div", { children: [
               /* @__PURE__ */ I("div", { className: "text-xs uppercase tracking-wider mb-1", style: { color: e.colors.text.onDark }, children: "County Office" }),
               C ? /* @__PURE__ */ I(
                 "a",
@@ -817,8 +817,8 @@ const Y = ({
               ) : /* @__PURE__ */ I("address", { className: "text-sm font-medium leading-snug not-italic", style: { color: e.colors.text.onDark }, children: o })
             ] })
           ] }),
-          /* @__PURE__ */ n("div", { className: "flex items-center gap-4 md:justify-end", children: [
-            /* @__PURE__ */ I("div", { children: /* @__PURE__ */ n(
+          /* @__PURE__ */ t("div", { className: "flex items-center gap-4 md:justify-end", children: [
+            /* @__PURE__ */ I("div", { children: /* @__PURE__ */ t(
               "a",
               {
                 href: "/",
@@ -843,7 +843,7 @@ const Y = ({
             )
           ] })
         ] }),
-        /* @__PURE__ */ I("div", { className: "pt-6 border-t border-white/10 text-center", children: /* @__PURE__ */ n("p", { className: "text-xs", style: { color: e.colors.text.onDark }, children: [
+        /* @__PURE__ */ I("div", { className: "pt-6 border-t border-white/10 text-center", children: /* @__PURE__ */ t("p", { className: "text-xs", style: { color: e.colors.text.onDark }, children: [
           "© ",
           (/* @__PURE__ */ new Date()).getFullYear(),
           " Franklin County, NY"
@@ -869,69 +869,78 @@ function bI({
   showTopbar: e = !0,
   showNavbar: C = !0,
   showFooter: g = !0,
-  navItems: t = [],
+  navItems: n = [],
   showSearch: r = !1,
-  onSearch: i,
-  footerPhone: b,
-  footerAddress: u
+  onSearch: s,
+  footerPhone: f,
+  footerAddress: k
 }) {
-  const [a, E] = F(!1), [m, d] = F(!1), [v, O] = F(!1), [j, Q] = F(80), N = D(), { theme: p } = k(), s = U(null), x = U(null), f = U(null), J = U(null);
+  const [p, d] = J(!1), [m, h] = J(!1), [E, O] = J(!1), [b, F] = J(80), K = D(), { theme: u } = R(), z = N(null), T = N(null), a = N(null), w = N(null);
   S(() => {
-    const c = navigator.userAgent || navigator.vendor || window.opera || "", h = /android|webos|iphone|ipad|ipod|blackberry|iemobile|opera mini/i.test(c), y = /macintosh/i.test(c) && navigator.maxTouchPoints > 1;
-    O(!!(h || y));
+    const c = navigator.userAgent || navigator.vendor || window.opera || "", i = /android|webos|iphone|ipad|ipod|blackberry|iemobile|opera mini/i.test(c), y = /macintosh/i.test(c) && navigator.maxTouchPoints > 1;
+    O(!!(i || y));
   }, []), S(() => {
-    const c = () => E(window.scrollY > 50);
+    const c = () => d(window.scrollY > 50);
     return window.addEventListener("scroll", c), () => window.removeEventListener("scroll", c);
   }, []), S(() => {
-    if (!f.current || !J.current) return;
-    const c = () => {
-      const y = f.current.offsetHeight;
-      Q(y), J.current.style.setProperty("--fc-header-height", `${y}px`);
+    if (!a.current || !w.current) return;
+    let c = window.innerWidth, i = 0, y;
+    const U = () => {
+      clearTimeout(y), y = setTimeout(() => {
+        if (!a.current) return;
+        const Q = a.current.offsetHeight, l = window.innerWidth;
+        l !== c ? (c = l, i = Q) : i = Math.max(i, Q), F((x) => {
+          const j = i;
+          return x !== j ? (w.current?.style.setProperty("--fc-header-height", `${j}px`), j) : x;
+        });
+      }, 100);
     };
-    c();
-    const h = new ResizeObserver(c);
-    return h.observe(f.current), () => h.disconnect();
-  }, [e, a]), S(() => {
-    d(!1);
-  }, [N]), S(() => {
-    const c = window.matchMedia("(min-width: 1280px)"), h = (y) => {
-      y.matches && d(!1);
+    U();
+    const G = new ResizeObserver(U);
+    return G.observe(a.current), () => {
+      G.disconnect(), clearTimeout(y);
     };
-    return h(c), c.addEventListener("change", h), () => c.removeEventListener("change", h);
+  }, []), S(() => {
+    h(!1);
+  }, [K]), S(() => {
+    const c = window.matchMedia("(min-width: 1280px)"), i = (y) => {
+      y.matches && h(!1);
+    };
+    return i(c), c.addEventListener("change", i), () => c.removeEventListener("change", i);
   }, []), S(() => (document.body.style.overflow = m ? "hidden" : "unset", () => {
     document.body.style.overflow = "unset";
   }), [m]), S(() => {
-    m && x.current ? x.current.querySelector(
+    m && T.current ? T.current.querySelector(
       'a[href], button:not([disabled]), input, [tabindex]:not([tabindex="-1"])'
-    )?.focus() : m || s.current?.focus();
+    )?.focus() : m || z.current?.focus();
   }, [m]);
-  const R = wI(t);
-  return /* @__PURE__ */ n("div", { ref: J, className: "min-h-screen flex flex-col font-sans text-county-charcoal", children: [
+  const v = wI(n);
+  return /* @__PURE__ */ t("div", { ref: w, className: "min-h-screen flex flex-col font-sans text-county-charcoal", children: [
     /* @__PURE__ */ I("a", { href: "#fc-main-content", className: "skip-to-content", children: "Skip to main content" }),
     C && /* @__PURE__ */ I(
       "header",
       {
-        ref: f,
+        ref: a,
         role: "banner",
-        className: `fixed top-0 left-0 w-full z-50 transition-all duration-500 ease-in-out ${a ? "py-2 shadow-2xl" : "py-4 text-shadow"}`,
+        className: `fixed top-0 left-0 w-full z-50 transition-all duration-500 ease-in-out ${p ? "py-2 shadow-2xl" : "py-4 text-shadow"}`,
         style: {
-          backgroundColor: p.colors.primary.DEFAULT,
-          background: p.colors.bg.header
+          backgroundColor: u.colors.primary.DEFAULT,
+          background: u.colors.bg.header
         },
-        children: /* @__PURE__ */ n("div", { className: "container mx-auto px-6", children: [
+        children: /* @__PURE__ */ t("div", { className: "container mx-auto px-6", children: [
           e && /* @__PURE__ */ I(uI, {}),
           /* @__PURE__ */ I(
             kI,
             {
               siteTitle: o,
-              navItems: t,
+              navItems: n,
               showTopbar: e,
               showSearch: r,
-              onSearch: i,
+              onSearch: s,
               isMobileMenuOpen: m,
-              onMobileMenuToggle: () => d((c) => !c),
-              isMobileOrTablet: v,
-              isScrolled: a
+              onMobileMenuToggle: () => h((c) => !c),
+              isMobileOrTablet: E,
+              isScrolled: p
             }
           )
         ] })
@@ -941,19 +950,19 @@ function bI({
       "nav",
       {
         id: "fc-mobile-nav",
-        ref: x,
+        ref: T,
         "aria-label": "Mobile navigation",
         "aria-hidden": !m,
         ...m ? {} : { inert: !0 },
         className: `fixed inset-0 z-[45] flex flex-col transition-all duration-500 ${m ? "opacity-100 visible pointer-events-auto" : "opacity-0 invisible pointer-events-none"}`,
-        style: { backgroundColor: "#ffffff", background: p.colors.bg.sidebar },
+        style: { backgroundColor: "#ffffff", background: u.colors.bg.sidebar },
         onKeyDown: (c) => {
           if (c.key === "Escape") {
-            d(!1);
+            h(!1);
             return;
           }
         },
-        children: /* @__PURE__ */ I("div", { className: "overflow-y-auto flex-1 pt-32 pb-8", tabIndex: 0, role: "region", "aria-label": "Mobile Navigation Content", children: /* @__PURE__ */ n("div", { className: "container mx-auto px-6", children: [
+        children: /* @__PURE__ */ I("div", { className: "overflow-y-auto flex-1 pt-32 pb-8", tabIndex: 0, role: "region", "aria-label": "Mobile Navigation Content", children: /* @__PURE__ */ t("div", { className: "container mx-auto px-6", children: [
           r && /* @__PURE__ */ I("div", { className: "px-6 w-full max-w-md mx-auto mb-10", children: /* @__PURE__ */ I(
             "form",
             {
@@ -961,11 +970,11 @@ function bI({
               "aria-label": "Site search",
               onSubmit: (c) => {
                 c.preventDefault();
-                const h = c.currentTarget.elements.namedItem("q");
-                h.value.trim() && i && (i(h.value.trim()), h.value = "");
+                const i = c.currentTarget.elements.namedItem("q");
+                i.value.trim() && s && (s(i.value.trim()), i.value = "");
               },
               className: "w-full",
-              children: /* @__PURE__ */ n("div", { className: "relative flex items-center", children: [
+              children: /* @__PURE__ */ t("div", { className: "relative flex items-center", children: [
                 /* @__PURE__ */ I(
                   "input",
                   {
@@ -975,9 +984,9 @@ function bI({
                     "aria-label": "Search",
                     className: "w-full px-4 py-3 pr-12 text-base rounded-xl border transition-all duration-200 focus:outline-none focus:ring-2 placeholder-white/70",
                     style: {
-                      backgroundColor: p.colors.primary.DEFAULT,
-                      borderColor: p.colors.primary.dark,
-                      color: p.colors.text.onDark
+                      backgroundColor: u.colors.primary.DEFAULT,
+                      borderColor: u.colors.primary.dark,
+                      color: u.colors.text.onDark
                     }
                   }
                 ),
@@ -987,63 +996,63 @@ function bI({
                     type: "submit",
                     "aria-label": "Submit search",
                     className: "absolute right-3 p-1 transition-colors",
-                    style: { color: p.colors.text.onDark },
+                    style: { color: u.colors.text.onDark },
                     children: /* @__PURE__ */ I("svg", { className: "w-5 h-5", fill: "none", stroke: "currentColor", viewBox: "0 0 24 24", "aria-hidden": "true", children: /* @__PURE__ */ I("path", { strokeLinecap: "round", strokeLinejoin: "round", strokeWidth: 2, d: "M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" }) })
                   }
                 )
               ] })
             }
           ) }),
-          /* @__PURE__ */ I("nav", { className: "flex flex-col gap-8 text-center mb-12", "aria-label": "Mobile site navigation", children: t.map((c, h) => {
+          /* @__PURE__ */ I("nav", { className: "flex flex-col gap-8 text-center mb-12", "aria-label": "Mobile site navigation", children: n.map((c, i) => {
             if (c.items && c.items.length > 0) {
               const y = c.items;
-              return /* @__PURE__ */ n("div", { className: "space-y-1", children: [
+              return /* @__PURE__ */ t("div", { className: "space-y-1", children: [
                 /* @__PURE__ */ I(
                   "span",
                   {
                     className: "text-sm font-black uppercase tracking-[0.2em] mb-3 mt-4 block text-center",
-                    style: { color: p.colors.secondary.dark },
+                    style: { color: u.colors.secondary.dark },
                     children: c.label
                   }
                 ),
-                /* @__PURE__ */ I("div", { className: "flex flex-col gap-1", children: y.map((T, M) => /* @__PURE__ */ I(
+                /* @__PURE__ */ I("div", { className: "flex flex-col gap-1", children: y.map((U, G) => /* @__PURE__ */ I(
                   B,
                   {
-                    to: T.url,
-                    onClick: () => d(!1),
+                    to: U.url,
+                    onClick: () => h(!1),
                     className: "block w-full text-center text-[13px] font-bold uppercase tracking-widest transition-all duration-200 py-3 px-6 rounded-xl interactive-effect",
-                    style: ({ isActive: G }) => ({
-                      color: G ? p.colors.primary.dark : p.colors.text.primary,
-                      backgroundColor: G ? `${p.colors.primary.DEFAULT}10` : "transparent",
-                      borderLeft: G ? `4px solid ${p.colors.primary.DEFAULT}` : "4px solid transparent",
-                      borderRight: G ? `4px solid ${p.colors.primary.DEFAULT}` : "4px solid transparent"
+                    style: ({ isActive: Q }) => ({
+                      color: Q ? u.colors.primary.dark : u.colors.text.primary,
+                      backgroundColor: Q ? `${u.colors.primary.DEFAULT}10` : "transparent",
+                      borderLeft: Q ? `4px solid ${u.colors.primary.DEFAULT}` : "4px solid transparent",
+                      borderRight: Q ? `4px solid ${u.colors.primary.DEFAULT}` : "4px solid transparent"
                     }),
-                    children: T.label
+                    children: U.label
                   },
-                  M
+                  G
                 )) })
-              ] }, h);
+              ] }, i);
             }
             return /* @__PURE__ */ I(
               B,
               {
                 to: c.url || "/",
-                onClick: () => d(!1),
+                onClick: () => h(!1),
                 className: "block w-full text-center text-[13px] font-bold uppercase tracking-widest transition-all duration-200 py-3 px-6 rounded-xl interactive-effect",
                 style: ({ isActive: y }) => ({
-                  color: y ? p.colors.primary.dark : p.colors.text.primary,
-                  backgroundColor: y ? `${p.colors.primary.DEFAULT}10` : "transparent",
-                  borderLeft: y ? `4px solid ${p.colors.primary.DEFAULT}` : "4px solid transparent",
-                  borderRight: y ? `4px solid ${p.colors.primary.DEFAULT}` : "4px solid transparent"
+                  color: y ? u.colors.primary.dark : u.colors.text.primary,
+                  backgroundColor: y ? `${u.colors.primary.DEFAULT}10` : "transparent",
+                  borderLeft: y ? `4px solid ${u.colors.primary.DEFAULT}` : "4px solid transparent",
+                  borderRight: y ? `4px solid ${u.colors.primary.DEFAULT}` : "4px solid transparent"
                 }),
                 children: c.label
               },
-              h
+              i
             );
           }) }),
-          R.length > 0 && t.some((c) => c.items) && /* @__PURE__ */ I("div", { className: "border-t my-6 max-w-md mx-auto", style: { borderColor: `${p.colors.secondary.DEFAULT}4D` } }),
-          e && /* @__PURE__ */ n(L, { children: [
-            t.length > 0 && /* @__PURE__ */ I("div", { className: "border-t my-6 max-w-md mx-auto", style: { borderColor: `${p.colors.secondary.DEFAULT}4D` } }),
+          v.length > 0 && n.some((c) => c.items) && /* @__PURE__ */ I("div", { className: "border-t my-6 max-w-md mx-auto", style: { borderColor: `${u.colors.secondary.DEFAULT}4D` } }),
+          e && /* @__PURE__ */ t(L, { children: [
+            n.length > 0 && /* @__PURE__ */ I("div", { className: "border-t my-6 max-w-md mx-auto", style: { borderColor: `${u.colors.secondary.DEFAULT}4D` } }),
             /* @__PURE__ */ I("div", { className: "max-w-md mx-auto space-y-6 pb-12", children: [
               { title: "Departments", items: H, url: "https://www.franklincountyny.gov/departments/index.php" },
               { title: "Residents", items: X, url: "https://www.franklincountyny.gov/residents/index.php" },
@@ -1051,21 +1060,21 @@ function bI({
               { title: "Business", items: $, url: "https://www.franklincountyny.gov/business/index.php" },
               { title: "Our Communities", items: II, url: "https://www.franklincountyny.gov/our_communities/index.php" },
               { title: "How Do I?", items: gI, url: "https://www.franklincountyny.gov/how_do_i/index.php" }
-            ].map((c, h) => /* @__PURE__ */ n("div", { children: [
-              /* @__PURE__ */ I("a", { href: c.url, target: "_blank", rel: "noopener noreferrer", className: "block text-center mb-3", children: /* @__PURE__ */ I("h3", { className: "text-xs font-bold uppercase tracking-widest inline-block", style: { color: p.colors.secondary.dark }, children: c.title }) }),
-              /* @__PURE__ */ I("div", { className: "grid grid-cols-2 gap-2", children: c.items.map((y, T) => /* @__PURE__ */ I(
+            ].map((c, i) => /* @__PURE__ */ t("div", { children: [
+              /* @__PURE__ */ I("a", { href: c.url, target: "_blank", rel: "noopener noreferrer", className: "block text-center mb-3", children: /* @__PURE__ */ I("h3", { className: "text-xs font-bold uppercase tracking-widest inline-block", style: { color: u.colors.secondary.dark }, children: c.title }) }),
+              /* @__PURE__ */ I("div", { className: "grid grid-cols-2 gap-2", children: c.items.map((y, U) => /* @__PURE__ */ I(
                 "a",
                 {
                   href: y.url,
                   target: y.url?.startsWith("http") ? "_blank" : void 0,
                   rel: y.url?.startsWith("http") ? "noopener noreferrer" : void 0,
                   className: "block w-full text-center text-xs transition-all duration-200 py-2 px-2 rounded-lg interactive-effect",
-                  style: { color: p.colors.text.primary },
+                  style: { color: u.colors.text.primary },
                   children: y.label
                 },
-                T
+                U
               )) })
-            ] }, h)) })
+            ] }, i)) })
           ] })
         ] }) })
       }
@@ -1075,7 +1084,7 @@ function bI({
       {
         id: "fc-main-content",
         className: "grow",
-        style: { background: p.colors.bg.main, paddingTop: C ? j : 0 },
+        style: { background: u.colors.bg.main, paddingTop: C ? b : 0 },
         ...m ? { inert: !0 } : {},
         children: A
       }
@@ -1084,8 +1093,8 @@ function bI({
       fI,
       {
         siteTitle: o,
-        phone: b,
-        address: u
+        phone: f,
+        address: k
       }
     ) })
   ] });
@@ -1094,7 +1103,7 @@ function KI({ theme: A, ...o }) {
   return /* @__PURE__ */ I(hI, { theme: A, children: /* @__PURE__ */ I(bI, { ...o }) });
 }
 const FI = ({ triggerText: A, tooltipContent: o, isActive: e, onToggle: C }) => {
-  const { theme: g } = k(), [t, r] = F(!1), { refs: i, floatingStyles: b } = rI({
+  const { theme: g } = R(), [n, r] = J(!1), { refs: s, floatingStyles: f } = rI({
     placement: "bottom",
     whileElementsMounted: lI,
     middleware: [
@@ -1107,31 +1116,31 @@ const FI = ({ triggerText: A, tooltipContent: o, isActive: e, onToggle: C }) => 
         padding: 32
       })
     ]
-  }), u = e || t;
-  return /* @__PURE__ */ n(L, { children: [
+  }), k = e || n;
+  return /* @__PURE__ */ t(L, { children: [
     /* @__PURE__ */ I(
       "button",
       {
         type: "button",
-        ref: i.setReference,
+        ref: s.setReference,
         className: "cursor-help font-bold border-b-2 border-dotted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-1 rounded-sm transition-colors opacity-90 hover:opacity-100",
         style: {
           color: g.colors.primary.DEFAULT,
           borderColor: g.colors.primary.DEFAULT
         },
-        onClick: (a) => {
-          a.preventDefault(), a.stopPropagation(), C();
+        onClick: (p) => {
+          p.preventDefault(), p.stopPropagation(), C();
         },
         onMouseEnter: () => r(!0),
         onMouseLeave: () => r(!1),
         children: A
       }
     ),
-    u && /* @__PURE__ */ I(cI, { children: /* @__PURE__ */ I(
+    k && /* @__PURE__ */ I(cI, { children: /* @__PURE__ */ I(
       "div",
       {
-        ref: i.setFloating,
-        style: b,
+        ref: s.setFloating,
+        style: f,
         className: "w-80 max-w-[calc(100vw-4rem)] p-4 bg-gray-900 text-white text-sm leading-relaxed rounded-lg shadow-2xl z-50",
         children: o
       }
@@ -1143,38 +1152,39 @@ const FI = ({ triggerText: A, tooltipContent: o, isActive: e, onToggle: C }) => 
   activeSubNodeId: e,
   onNodeSelect: C,
   onSubNodeSelect: g,
-  isMobileMenuOpen: t,
+  isMobileMenuOpen: n,
   onClose: r,
-  backLinkUrl: i,
-  backLinkText: b,
-  title: u
+  backLinkUrl: s,
+  backLinkText: f,
+  title: k,
+  isOpen: p
 }) => {
-  const { theme: a } = k(), [E, m] = F(typeof window < "u" ? window.innerWidth >= 1024 : !0), [d, v] = F(/* @__PURE__ */ new Set([o || A[0]?.id])), O = U({}), j = U(d);
+  const { theme: d } = R(), [m, h] = J(typeof window < "u" ? window.innerWidth >= 1024 : !0), [E, O] = J(/* @__PURE__ */ new Set([o || A[0]?.id])), b = N({}), F = p !== void 0 ? p : m ? !0 : n, K = N(E);
   S(() => {
-    const s = Array.from(d).find((x) => !j.current.has(x));
-    if (s !== void 0) {
-      const x = O.current[s];
-      x && setTimeout(() => {
-        const f = x.closest("aside");
-        f && f.scrollTo({ top: x.offsetTop - 24, behavior: "smooth" });
+    const a = Array.from(E).find((w) => !K.current.has(w));
+    if (a !== void 0) {
+      const w = b.current[a];
+      w && setTimeout(() => {
+        const v = w.closest("aside");
+        v && v.scrollTo({ top: w.offsetTop - 24, behavior: "smooth" });
       }, 450);
     }
-    j.current = new Set(d);
-  }, [d]), S(() => {
-    const s = () => m(window.innerWidth >= 1024);
-    return window.addEventListener("resize", s), () => window.removeEventListener("resize", s);
+    K.current = new Set(E);
+  }, [E]), S(() => {
+    const a = () => h(window.innerWidth >= 1024);
+    return window.addEventListener("resize", a), () => window.removeEventListener("resize", a);
   }, []);
-  const Q = (s, x) => {
-    x.stopPropagation();
-    const f = new Set(d);
-    f.has(s) ? f.delete(s) : f.add(s), v(f);
-  }, N = (s) => {
-    d.has(s) || v(new Set(d).add(s)), C(s);
-  }, p = (s, x) => {
-    g && g(s, x), E || r();
+  const u = (a, w) => {
+    w.stopPropagation();
+    const v = new Set(E);
+    v.has(a) ? v.delete(a) : v.add(a), O(v);
+  }, z = (a) => {
+    E.has(a) || O(new Set(E).add(a)), C(a);
+  }, T = (a, w) => {
+    g && g(a, w), m || r();
   };
-  return /* @__PURE__ */ n(L, { children: [
-    /* @__PURE__ */ I(W, { children: t && !E && /* @__PURE__ */ I(
+  return /* @__PURE__ */ t(L, { children: [
+    /* @__PURE__ */ I(W, { children: !m && F && /* @__PURE__ */ I(
       Z.div,
       {
         initial: { opacity: 0 },
@@ -1185,120 +1195,120 @@ const FI = ({ triggerText: A, tooltipContent: o, isActive: e, onToggle: C }) => 
         style: { top: "var(--fc-header-height, 80px)" }
       }
     ) }),
-    /* @__PURE__ */ n(
+    /* @__PURE__ */ t(
       Z.aside,
       {
         initial: !1,
         animate: {
-          x: E || t ? 0 : -320,
-          visibility: E || t ? "visible" : "hidden"
+          x: F ? 0 : -320,
+          visibility: F ? "visible" : "hidden"
         },
         transition: { type: "spring", damping: 30, stiffness: 300 },
-        className: `w-80 z-40 overflow-y-auto backdrop-blur-xl border-r shadow-2xl xl:shadow-none xl:sticky
+        className: `w-80 z-40 overflow-y-auto backdrop-blur-xl border-r shadow-2xl lg:shadow-none lg:sticky
                           fixed left-0 pt-0 pb-24
                           top-[var(--fc-header-height,80px)]
                           h-[calc(100vh-var(--fc-header-height,80px))]`,
         style: {
-          backgroundColor: a.colors.bg.sidebar,
-          borderColor: `${a.colors.border}30`
+          backgroundColor: d.colors.bg.sidebar,
+          borderColor: `${d.colors.border}30`
         },
         children: [
-          /* @__PURE__ */ n("div", { className: "flex justify-between items-center px-4 mb-6 sticky top-0 bg-white/80 backdrop-blur-md pt-4 pb-2 z-10 lg:hidden", children: [
-            i && b ? /* @__PURE__ */ n(
+          /* @__PURE__ */ t("div", { className: "flex justify-between items-center px-4 mb-6 sticky top-0 bg-white/80 backdrop-blur-md pt-4 pb-2 z-10", children: [
+            s && f ? /* @__PURE__ */ t(
               "a",
               {
-                href: i,
+                href: s,
                 className: "flex-1 btn-interactive interactive-effect group mr-4",
                 children: [
                   /* @__PURE__ */ I("svg", { className: "w-4 h-4 transition-transform duration-300 group-hover:-translate-x-1", fill: "none", stroke: "currentColor", viewBox: "0 0 24 24", children: /* @__PURE__ */ I("path", { strokeLinecap: "round", strokeLinejoin: "round", strokeWidth: 2.5, d: "M10 19l-7-7m0 0l7-7m-7 7h18" }) }),
-                  b
+                  f
                 ]
               }
             ) : /* @__PURE__ */ I("div", {}),
-            !E && t && /* @__PURE__ */ I(
+            F && /* @__PURE__ */ I(
               "button",
               {
                 onClick: r,
                 className: "shrink-0 p-2.5 rounded-lg cursor-pointer text-gray-600 shadow-md hover:shadow-lg transition-all duration-300 hover:scale-110 bg-white",
                 "aria-label": "Close sidebar",
-                onMouseEnter: (s) => s.currentTarget.style.color = a.colors.primary.DEFAULT,
-                onMouseLeave: (s) => s.currentTarget.style.color = "#4B5563",
+                onMouseEnter: (a) => a.currentTarget.style.color = d.colors.primary.DEFAULT,
+                onMouseLeave: (a) => a.currentTarget.style.color = "#4B5563",
                 children: /* @__PURE__ */ I("svg", { className: "w-5 h-5", fill: "none", stroke: "currentColor", viewBox: "0 0 24 24", children: /* @__PURE__ */ I("path", { strokeLinecap: "round", strokeLinejoin: "round", strokeWidth: 2.5, d: "M6 18L18 6M6 6l12 12" }) })
               }
             )
           ] }),
-          /* @__PURE__ */ n("nav", { className: "px-4 lg:pt-8", children: [
-            u && /* @__PURE__ */ I(
+          /* @__PURE__ */ t("nav", { className: "px-4 lg:pt-8", children: [
+            k && /* @__PURE__ */ I(
               "h2",
               {
                 className: "text-lg font-serif font-bold mb-6 tracking-wide bg-clip-text text-transparent",
-                style: { backgroundImage: `linear-gradient(to right, ${a.colors.primary.DEFAULT}, ${a.colors.primary.light})` },
-                children: u
+                style: { backgroundImage: `linear-gradient(to right, ${d.colors.primary.DEFAULT}, ${d.colors.primary.light})` },
+                children: k
               }
             ),
-            /* @__PURE__ */ I("ul", { className: "space-y-4", children: A.map((s) => {
-              const x = d.has(s.id), f = o === s.id, J = s.subNodes && s.subNodes.length > 0;
-              return /* @__PURE__ */ n("li", { ref: (R) => {
-                O.current[s.id] = R;
+            /* @__PURE__ */ I("ul", { className: "space-y-4", children: A.map((a) => {
+              const w = E.has(a.id), v = o === a.id, c = a.subNodes && a.subNodes.length > 0;
+              return /* @__PURE__ */ t("li", { ref: (i) => {
+                b.current[a.id] = i;
               }, className: "flex flex-col relative", children: [
                 /* @__PURE__ */ I(
                   "div",
                   {
                     className: "rounded-xl transition-all duration-300 group",
                     style: {
-                      borderLeft: f ? "4px solid" : "4px solid transparent",
-                      borderImage: f ? `linear-gradient(to bottom, ${a.colors.secondary.light}, ${a.colors.secondary.dark}) 1` : "none",
-                      backgroundColor: f ? `${a.colors.primary.DEFAULT}08` : "rgba(255, 255, 255, 0.6)",
-                      boxShadow: f ? `0 8px 24px -6px ${a.colors.primary.DEFAULT}33` : "0 4px 12px -3px rgba(0, 0, 0, 0.1)"
+                      borderLeft: v ? "4px solid" : "4px solid transparent",
+                      borderImage: v ? `linear-gradient(to bottom, ${d.colors.secondary.light}, ${d.colors.secondary.dark}) 1` : "none",
+                      backgroundColor: v ? `${d.colors.primary.DEFAULT}08` : "rgba(255, 255, 255, 0.6)",
+                      boxShadow: v ? `0 8px 24px -6px ${d.colors.primary.DEFAULT}33` : "0 4px 12px -3px rgba(0, 0, 0, 0.1)"
                     },
-                    children: /* @__PURE__ */ n("div", { className: "relative flex items-center justify-between p-3.5", children: [
-                      /* @__PURE__ */ n(
+                    children: /* @__PURE__ */ t("div", { className: "relative flex items-center justify-between p-3.5", children: [
+                      /* @__PURE__ */ t(
                         "div",
                         {
                           className: "flex-1 text-left cursor-pointer",
-                          onClick: () => N(s.id),
+                          onClick: () => z(a.id),
                           children: [
-                            s.badge && /* @__PURE__ */ I(
+                            a.badge && /* @__PURE__ */ I(
                               "span",
                               {
                                 className: "block text-xs font-bold uppercase tracking-wider bg-clip-text text-transparent mb-1",
-                                style: { backgroundImage: `linear-gradient(to right, ${a.colors.secondary.light}, ${a.colors.secondary.dark})` },
-                                children: s.badge
+                                style: { backgroundImage: `linear-gradient(to right, ${d.colors.secondary.light}, ${d.colors.secondary.dark})` },
+                                children: a.badge
                               }
                             ),
                             /* @__PURE__ */ I(
                               "span",
                               {
                                 className: "block font-semibold text-sm leading-snug transition-colors duration-300 text-gray-800",
-                                children: s.title
+                                children: a.title
                               }
                             ),
-                            s.subtitle && /* @__PURE__ */ I("div", { className: "text-xs text-gray-500 mt-1.5 flex items-center gap-1", children: s.subtitle })
+                            a.subtitle && /* @__PURE__ */ I("div", { className: "text-xs text-gray-500 mt-1.5 flex items-center gap-1", children: a.subtitle })
                           ]
                         }
                       ),
-                      J && /* @__PURE__ */ I(
+                      c && /* @__PURE__ */ I(
                         "button",
                         {
-                          onClick: (R) => Q(s.id, R),
-                          onKeyDown: (R) => {
-                            (R.key === "Enter" || R.key === " ") && (R.preventDefault(), Q(s.id, R));
+                          onClick: (i) => u(a.id, i),
+                          onKeyDown: (i) => {
+                            (i.key === "Enter" || i.key === " ") && (i.preventDefault(), u(a.id, i));
                           },
                           className: "p-2 rounded-lg cursor-pointer border-2 bg-white/80 transition-all duration-300 hover:scale-110 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 shrink-0",
                           style: {
                             borderColor: "#D1D5DB"
                             // gray-300
                           },
-                          onMouseEnter: (R) => R.currentTarget.style.borderColor = a.colors.primary.DEFAULT,
-                          onMouseLeave: (R) => R.currentTarget.style.borderColor = "#D1D5DB",
-                          "aria-label": x ? "Collapse" : "Expand",
+                          onMouseEnter: (i) => i.currentTarget.style.borderColor = d.colors.primary.DEFAULT,
+                          onMouseLeave: (i) => i.currentTarget.style.borderColor = "#D1D5DB",
+                          "aria-label": w ? "Collapse" : "Expand",
                           children: /* @__PURE__ */ I(
                             "svg",
                             {
                               className: "w-5 h-5 transition-transform duration-400",
                               style: {
-                                color: a.colors.primary.DEFAULT,
-                                transform: x ? "rotate(90deg)" : "rotate(0deg)"
+                                color: d.colors.primary.DEFAULT,
+                                transform: w ? "rotate(90deg)" : "rotate(0deg)"
                               },
                               fill: "none",
                               stroke: "currentColor",
@@ -1311,7 +1321,7 @@ const FI = ({ triggerText: A, tooltipContent: o, isActive: e, onToggle: C }) => 
                     ] })
                   }
                 ),
-                /* @__PURE__ */ I(W, { initial: !1, children: x && J && /* @__PURE__ */ I(
+                /* @__PURE__ */ I(W, { initial: !1, children: w && c && /* @__PURE__ */ I(
                   Z.ul,
                   {
                     initial: { height: 0, opacity: 0 },
@@ -1319,39 +1329,39 @@ const FI = ({ triggerText: A, tooltipContent: o, isActive: e, onToggle: C }) => 
                     exit: { height: 0, opacity: 0 },
                     transition: { duration: 0.4, ease: [0.4, 0, 0.2, 1] },
                     className: "overflow-hidden ml-3 mt-2 space-y-1.5",
-                    children: s.subNodes.map((R, c) => {
-                      const h = e === R.id;
+                    children: a.subNodes.map((i, y) => {
+                      const U = e === i.id;
                       return /* @__PURE__ */ I(
                         Z.li,
                         {
                           initial: { x: -10, opacity: 0 },
                           animate: { x: 0, opacity: 1 },
-                          transition: { delay: c * 0.05 },
-                          children: /* @__PURE__ */ n(
+                          transition: { delay: y * 0.05 },
+                          children: /* @__PURE__ */ t(
                             "button",
                             {
-                              onClick: () => p(s.id, R.id),
-                              className: `group w-full text-left px-3.5 py-2.5 rounded-lg text-sm cursor-pointer transition-all duration-300 flex items-start gap-2.5 bg-transparent border-transparent interactive-effect ${h ? "active translate-x-1" : "hover:translate-x-1"}`,
+                              onClick: () => T(a.id, i.id),
+                              className: `group w-full text-left px-3.5 py-2.5 rounded-lg text-sm cursor-pointer transition-all duration-300 flex items-start gap-2.5 bg-transparent border-transparent interactive-effect ${U ? "active translate-x-1" : "hover:translate-x-1"}`,
                               children: [
                                 /* @__PURE__ */ I(
                                   "span",
                                   {
                                     className: "mt-0.5 transition-colors",
-                                    style: { color: h ? a.colors.secondary.light : a.colors.secondary.DEFAULT },
+                                    style: { color: U ? d.colors.secondary.light : d.colors.secondary.DEFAULT },
                                     children: "→"
                                   }
                                 ),
-                                /* @__PURE__ */ I("span", { className: "flex-1 leading-snug font-medium", children: R.title })
+                                /* @__PURE__ */ I("span", { className: "flex-1 leading-snug font-medium", children: i.title })
                               ]
                             }
                           )
                         },
-                        R.id
+                        i.id
                       );
                     })
                   }
                 ) })
-              ] }, s.id);
+              ] }, a.id);
             }) })
           ] })
         ]
@@ -1360,20 +1370,20 @@ const FI = ({ triggerText: A, tooltipContent: o, isActive: e, onToggle: C }) => 
   ] });
 };
 function vI({ images: A, interval: o = 5e3, className: e = "" }) {
-  const [C, g] = F(0);
+  const [C, g] = J(0);
   return S(() => {
     if (!A || A.length <= 1) return;
-    const t = setInterval(() => {
+    const n = setInterval(() => {
       g((r) => (r + 1) % A.length);
     }, o);
-    return () => clearInterval(t);
-  }, [A, o, C]), !A || A.length === 0 ? null : /* @__PURE__ */ n("div", { className: `w-full h-full overflow-hidden ${e}`, children: [
-    A.map((t, r) => /* @__PURE__ */ I(
+    return () => clearInterval(n);
+  }, [A, o, C]), !A || A.length === 0 ? null : /* @__PURE__ */ t("div", { className: `w-full h-full overflow-hidden ${e}`, children: [
+    A.map((n, r) => /* @__PURE__ */ I(
       "div",
       {
         className: "absolute inset-0 bg-cover bg-center transition-opacity duration-1000 ease-in-out",
         style: {
-          backgroundImage: `url('${t}')`,
+          backgroundImage: `url('${n}')`,
           opacity: r === C ? 1 : 0,
           zIndex: r === C ? 10 : 0
         },
@@ -1381,7 +1391,7 @@ function vI({ images: A, interval: o = 5e3, className: e = "" }) {
       },
       r
     )),
-    A.length > 1 && /* @__PURE__ */ I("div", { className: "absolute bottom-10 left-1/2 -translate-x-1/2 flex items-center gap-3 z-20", children: A.map((t, r) => /* @__PURE__ */ I(
+    A.length > 1 && /* @__PURE__ */ I("div", { className: "absolute bottom-10 left-1/2 -translate-x-1/2 flex items-center gap-3 z-20", children: A.map((n, r) => /* @__PURE__ */ I(
       "button",
       {
         onClick: () => g(r),
@@ -1393,13 +1403,13 @@ function vI({ images: A, interval: o = 5e3, className: e = "" }) {
     )) })
   ] });
 }
-function JI({ title: A, subtitle: o, image: e, images: C, video: g, isHomePage: t = !1 }) {
-  const { theme: r } = k();
-  return !A && !e && (!C || C.length === 0) && !g ? null : /* @__PURE__ */ n(
+function JI({ title: A, subtitle: o, image: e, images: C, video: g, isHomePage: n = !1 }) {
+  const { theme: r } = R();
+  return !A && !e && (!C || C.length === 0) && !g ? null : /* @__PURE__ */ t(
     "div",
     {
       className: "relative w-full flex items-center justify-center overflow-hidden",
-      style: t ? { minHeight: "calc(100vh - var(--fc-header-height, 0px))" } : { height: "60vh" },
+      style: n ? { minHeight: "calc(100vh - var(--fc-header-height, 0px))" } : { height: "60vh" },
       children: [
         g && /* @__PURE__ */ I("video", { autoPlay: !0, loop: !0, muted: !0, playsInline: !0, className: "absolute inset-0 w-full h-full object-cover", children: /* @__PURE__ */ I("source", { src: g, type: "video/mp4" }) }),
         !g && C && C.length > 0 && /* @__PURE__ */ I(vI, { images: C, className: "absolute inset-0 scale-105" }),
@@ -1412,7 +1422,7 @@ function JI({ title: A, subtitle: o, image: e, images: C, video: g, isHomePage: 
         ),
         !g && !e && (!C || C.length === 0) && /* @__PURE__ */ I("div", { className: "absolute inset-0", style: { background: r.colors.bg.main } }),
         /* @__PURE__ */ I("div", { className: "absolute inset-0 bg-linear-to-b from-black/30 via-black/10 to-transparent pointer-events-none" }),
-        A && /* @__PURE__ */ n("div", { className: "container mx-auto px-6 relative z-10 text-center", children: [
+        A && /* @__PURE__ */ t("div", { className: "container mx-auto px-6 relative z-10 text-center", children: [
           /* @__PURE__ */ I(
             "h1",
             {
@@ -1444,8 +1454,8 @@ function JI({ title: A, subtitle: o, image: e, images: C, video: g, isHomePage: 
   );
 }
 function TI({ title: A, children: o, className: e = "", style: C }) {
-  const { theme: g } = k();
-  return /* @__PURE__ */ n("div", { className: `content-card hover-lift elevation-md transition-all duration-500 ${e}`, style: C, children: [
+  const { theme: g } = R();
+  return /* @__PURE__ */ t("div", { className: `content-card hover-lift elevation-md transition-all duration-500 ${e}`, style: C, children: [
     A && /* @__PURE__ */ I(
       "h2",
       {
@@ -1463,14 +1473,14 @@ function GI({
   description: e = "This document is available for download.",
   url: C
 }) {
-  const { theme: g } = k(), t = C || `/docs/${o}`;
-  return /* @__PURE__ */ I("div", { className: "space-y-6", children: /* @__PURE__ */ n("div", { className: "border-l-4 p-6 rounded-r shadow-sm", style: { borderLeftColor: g.colors.secondary.DEFAULT, background: g.colors.bg.card }, children: [
+  const { theme: g } = R(), n = C || `/docs/${o}`;
+  return /* @__PURE__ */ I("div", { className: "space-y-6", children: /* @__PURE__ */ t("div", { className: "border-l-4 p-6 rounded-r shadow-sm", style: { borderLeftColor: g.colors.secondary.DEFAULT, background: g.colors.bg.card }, children: [
     /* @__PURE__ */ I("h2", { className: "text-xl font-bold mb-2", style: { color: g.colors.text.primary }, children: A }),
     /* @__PURE__ */ I("p", { className: "mb-6 text-sm italic", style: { color: g.colors.text.muted }, children: e }),
-    /* @__PURE__ */ n("div", { className: "flex flex-col gap-4 p-4 border rounded max-w-md fluid-container", style: { background: g.colors.bg.cardAlt, borderColor: g.colors.border }, children: [
-      /* @__PURE__ */ n("div", { className: "flex items-center gap-4 w-full min-w-0", children: [
+    /* @__PURE__ */ t("div", { className: "flex flex-col gap-4 p-4 border rounded max-w-md fluid-container", style: { background: g.colors.bg.cardAlt, borderColor: g.colors.border }, children: [
+      /* @__PURE__ */ t("div", { className: "flex items-center gap-4 w-full min-w-0", children: [
         /* @__PURE__ */ I("div", { className: "p-3 rounded-lg shrink-0", style: { backgroundColor: `${g.colors.secondary.DEFAULT}33`, color: g.colors.secondary.DEFAULT }, children: /* @__PURE__ */ I("svg", { xmlns: "http://www.w3.org/2000/svg", className: "h-8 w-8", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor", children: /* @__PURE__ */ I("path", { strokeLinecap: "round", strokeLinejoin: "round", strokeWidth: 1.5, d: "M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z" }) }) }),
-        /* @__PURE__ */ n("div", { className: "min-w-0 flex-1", children: [
+        /* @__PURE__ */ t("div", { className: "min-w-0 flex-1", children: [
           /* @__PURE__ */ I(
             "div",
             {
@@ -1486,11 +1496,11 @@ function GI({
           /* @__PURE__ */ I("div", { className: "text-xs mt-1 font-medium", style: { color: g.colors.text.muted }, children: "PDF Document" })
         ] })
       ] }),
-      /* @__PURE__ */ n("div", { className: "grid grid-cols-2 gap-3 mt-2", children: [
+      /* @__PURE__ */ t("div", { className: "grid grid-cols-2 gap-3 mt-2", children: [
         /* @__PURE__ */ I(
           "a",
           {
-            href: t,
+            href: n,
             target: "_blank",
             rel: "noopener noreferrer",
             className: "w-full flex items-center justify-center px-4 py-2.5 text-sm font-bold rounded-lg transition-all border-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2",
@@ -1508,7 +1518,7 @@ function GI({
         /* @__PURE__ */ I(
           "a",
           {
-            href: t,
+            href: n,
             download: !0,
             className: "w-full flex items-center justify-center px-4 py-2.5 text-black text-sm font-bold rounded-lg transition-all shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2",
             style: { backgroundColor: g.colors.secondary.DEFAULT },
@@ -1523,7 +1533,7 @@ function GI({
   ] }) });
 }
 function YI({ children: A, variant: o = "primary", className: e = "" }) {
-  const { theme: C } = k(), g = "inline-block px-4 py-1 rounded-full font-bold text-xs uppercase tracking-widest";
+  const { theme: C } = R(), g = "inline-block px-4 py-1 rounded-full font-bold text-xs uppercase tracking-widest";
   return o === "primary" ? /* @__PURE__ */ I("div", { className: `${g} ${e}`, style: { backgroundColor: C.colors.primary.DEFAULT, color: "#ffffff" }, children: A }) : o === "secondary" ? /* @__PURE__ */ I("div", { className: `${g} ${e}`, style: { backgroundColor: C.colors.secondary.DEFAULT, color: C.colors.primary.dark }, children: A }) : /* @__PURE__ */ I("div", { className: `${g} ${{
     blue: "bg-blue-100 text-blue-800",
     green: "bg-green-100 text-green-800",
@@ -1531,23 +1541,23 @@ function YI({ children: A, variant: o = "primary", className: e = "" }) {
     gray: "bg-gray-100 text-gray-800"
   }[o]} ${e}`, children: A });
 }
-function zI({ title: A, children: o, className: e = "" }) {
-  const { theme: C } = k();
-  return /* @__PURE__ */ n("div", { className: `p-6 rounded-xl bg-white shadow-sm border border-black/5 ${e}`, children: [
+function MI({ title: A, children: o, className: e = "" }) {
+  const { theme: C } = R();
+  return /* @__PURE__ */ t("div", { className: `p-6 rounded-xl bg-white shadow-sm border border-black/5 ${e}`, children: [
     /* @__PURE__ */ I("h3", { className: "font-bold mb-2", style: { color: C.colors.secondary.dark }, children: A }),
     /* @__PURE__ */ I("div", { className: "text-sm leading-relaxed", style: { color: C.colors.text.muted }, children: o })
   ] });
 }
-function LI({ preheader: A, title: o, url: e, className: C = "" }) {
-  const { theme: g } = k();
-  return /* @__PURE__ */ n(
+function zI({ preheader: A, title: o, url: e, className: C = "" }) {
+  const { theme: g } = R();
+  return /* @__PURE__ */ t(
     "a",
     {
       href: e,
       className: `flex items-center justify-between p-6 rounded-xl border-2 transition-all duration-300 group ${C}`,
       style: { borderColor: g.colors.secondary.DEFAULT, color: g.colors.text.primary, backgroundColor: "white" },
       children: [
-        /* @__PURE__ */ n("div", { children: [
+        /* @__PURE__ */ t("div", { children: [
           A && /* @__PURE__ */ I("span", { className: "block text-xs uppercase tracking-widest mb-1", style: { color: g.colors.secondary.dark }, children: A }),
           /* @__PURE__ */ I("span", { className: "text-xl font-bold", children: o })
         ] }),
@@ -1556,26 +1566,26 @@ function LI({ preheader: A, title: o, url: e, className: C = "" }) {
     }
   );
 }
-function MI({
+function LI({
   date: A,
   title: o,
   time: e,
   location: C,
   actionLabel: g = "Register Now",
-  actionUrl: t = "#",
+  actionUrl: n = "#",
   className: r = ""
 }) {
-  const { theme: i } = k(), b = A.split(" "), u = b[0], a = b.length > 1 ? b[1].replace(",", "") : "";
-  return /* @__PURE__ */ I("div", { className: `content-card hover-lift elevation-md transition-all duration-500 border-l-8 ${r}`, style: { borderLeftColor: i.colors.secondary.DEFAULT, backgroundColor: "white" }, children: /* @__PURE__ */ n("div", { className: "flex flex-col md:flex-row md:items-center justify-between gap-6", children: [
-    /* @__PURE__ */ n("div", { className: "flex gap-6 items-center", children: [
-      /* @__PURE__ */ n("div", { className: "text-center min-w-[80px]", children: [
-        /* @__PURE__ */ I("span", { className: "block text-2xl font-black", style: { color: i.colors.text.primary }, children: a }),
-        /* @__PURE__ */ I("span", { className: "block text-xs font-bold uppercase tracking-widest", style: { color: i.colors.secondary.dark }, children: u })
+  const { theme: s } = R(), f = A.split(" "), k = f[0], p = f.length > 1 ? f[1].replace(",", "") : "";
+  return /* @__PURE__ */ I("div", { className: `content-card hover-lift elevation-md transition-all duration-500 border-l-8 ${r}`, style: { borderLeftColor: s.colors.secondary.DEFAULT, backgroundColor: "white" }, children: /* @__PURE__ */ t("div", { className: "flex flex-col md:flex-row md:items-center justify-between gap-6", children: [
+    /* @__PURE__ */ t("div", { className: "flex gap-6 items-center", children: [
+      /* @__PURE__ */ t("div", { className: "text-center min-w-[80px]", children: [
+        /* @__PURE__ */ I("span", { className: "block text-2xl font-black", style: { color: s.colors.text.primary }, children: p }),
+        /* @__PURE__ */ I("span", { className: "block text-xs font-bold uppercase tracking-widest", style: { color: s.colors.secondary.dark }, children: k })
       ] }),
       /* @__PURE__ */ I("div", { className: "w-px h-12 bg-black/10" }),
-      /* @__PURE__ */ n("div", { children: [
-        /* @__PURE__ */ I("h3", { className: "text-xl font-bold mb-1", style: { color: i.colors.text.primary }, children: o }),
-        (e || C) && /* @__PURE__ */ n("p", { className: "text-sm font-medium", style: { color: i.colors.text.muted }, children: [
+      /* @__PURE__ */ t("div", { children: [
+        /* @__PURE__ */ I("h3", { className: "text-xl font-bold mb-1", style: { color: s.colors.text.primary }, children: o }),
+        (e || C) && /* @__PURE__ */ t("p", { className: "text-sm font-medium", style: { color: s.colors.text.muted }, children: [
           e,
           " ",
           e && C && "•",
@@ -1587,14 +1597,14 @@ function MI({
     /* @__PURE__ */ I(
       "a",
       {
-        href: t,
+        href: n,
         className: "inline-block text-center px-6 py-2 rounded-lg font-bold text-sm transition-all border-2",
-        style: { borderColor: i.colors.secondary.DEFAULT, color: i.colors.text.primary },
-        onMouseEnter: (E) => {
-          E.currentTarget.style.backgroundColor = i.colors.secondary.DEFAULT;
+        style: { borderColor: s.colors.secondary.DEFAULT, color: s.colors.text.primary },
+        onMouseEnter: (d) => {
+          d.currentTarget.style.backgroundColor = s.colors.secondary.DEFAULT;
         },
-        onMouseLeave: (E) => {
-          E.currentTarget.style.backgroundColor = "transparent";
+        onMouseLeave: (d) => {
+          d.currentTarget.style.backgroundColor = "transparent";
         },
         children: g
       }
@@ -1602,8 +1612,8 @@ function MI({
   ] }) });
 }
 function ZI({ title: A, description: o, buttonText: e, buttonUrl: C, className: g = "" }) {
-  const { theme: t } = k();
-  return /* @__PURE__ */ n("section", { className: `content-card text-center py-12 ${g}`, style: { backgroundColor: t.colors.primary.dark, color: "#ffffff" }, children: [
+  const { theme: n } = R();
+  return /* @__PURE__ */ t("section", { className: `content-card text-center py-12 ${g}`, style: { backgroundColor: n.colors.primary.dark, color: "#ffffff" }, children: [
     /* @__PURE__ */ I("h2", { className: "text-3xl font-serif font-black mb-4", children: A }),
     /* @__PURE__ */ I("p", { className: "text-white/80 mb-8 max-w-2xl mx-auto leading-relaxed", children: o }),
     /* @__PURE__ */ I(
@@ -1611,7 +1621,7 @@ function ZI({ title: A, description: o, buttonText: e, buttonUrl: C, className: 
       {
         href: C,
         className: "inline-block px-8 py-4 rounded-xl font-black uppercase tracking-widest transition-all hover:scale-105",
-        style: { backgroundColor: t.colors.secondary.DEFAULT, color: t.colors.primary.dark },
+        style: { backgroundColor: n.colors.secondary.DEFAULT, color: n.colors.primary.dark },
         children: e
       }
     )
@@ -1623,16 +1633,16 @@ function PI({
   contacts: e,
   preheader: C = "Crisis & Support"
 }) {
-  const { theme: g } = k();
-  return /* @__PURE__ */ n("section", { "aria-label": "Crisis and Emergency Contacts", className: "py-16 relative overflow-hidden", style: { background: g.colors.bg.mainTo }, children: [
+  const { theme: g } = R();
+  return /* @__PURE__ */ t("section", { "aria-label": "Crisis and Emergency Contacts", className: "py-16 relative overflow-hidden", style: { background: g.colors.bg.mainTo }, children: [
     /* @__PURE__ */ I("div", { className: "absolute inset-0 opacity-5 pointer-events-none", "aria-hidden": "true", children: /* @__PURE__ */ I("div", { className: "absolute inset-0", style: { backgroundImage: `radial-gradient(circle at 2px 2px, ${g.colors.secondary.dark} 1px, transparent 0)`, backgroundSize: "40px 40px" } }) }),
-    /* @__PURE__ */ I("div", { className: "container mx-auto px-6 relative z-10", children: /* @__PURE__ */ n("div", { className: "flex flex-col md:flex-row items-center justify-between gap-12", children: [
-      /* @__PURE__ */ n("div", { className: "w-full md:w-1/3", children: [
+    /* @__PURE__ */ I("div", { className: "container mx-auto px-6 relative z-10", children: /* @__PURE__ */ t("div", { className: "flex flex-col md:flex-row items-center justify-between gap-12", children: [
+      /* @__PURE__ */ t("div", { className: "w-full md:w-1/3", children: [
         /* @__PURE__ */ I("div", { className: "inline-block px-4 py-1 rounded-full font-bold text-[10px] uppercase tracking-[0.2em] mb-4", style: { backgroundColor: g.colors.secondary.DEFAULT, color: g.colors.text.primary }, children: C }),
         /* @__PURE__ */ I("h2", { className: "text-4xl font-serif font-black leading-tight mb-4", style: { color: g.colors.text.primary }, children: A }),
         /* @__PURE__ */ I("p", { className: "text-lg leading-relaxed", style: { color: g.colors.text.muted }, children: o })
       ] }),
-      /* @__PURE__ */ I("div", { className: "w-full md:w-2/3 grid sm:grid-cols-2 gap-6", children: e.map((t, r) => /* @__PURE__ */ n(
+      /* @__PURE__ */ I("div", { className: "w-full md:w-2/3 grid sm:grid-cols-2 gap-6", children: e.map((n, r) => /* @__PURE__ */ t(
         "div",
         {
           className: "p-6 sm:p-8 rounded-3xl border transition-all duration-300 group hover-lift elevation-sm fluid-container",
@@ -1641,23 +1651,23 @@ function PI({
             borderColor: `${g.colors.secondary.DEFAULT}20`
           },
           children: [
-            /* @__PURE__ */ I("span", { className: "block text-[10px] font-black uppercase tracking-widest mb-3", style: { color: g.colors.secondary.dark }, children: t.label }),
-            /* @__PURE__ */ I("div", { className: "flex flex-col gap-2", children: t.number.split(" or ").map((i, b) => /* @__PURE__ */ I(
+            /* @__PURE__ */ I("span", { className: "block text-[10px] font-black uppercase tracking-widest mb-3", style: { color: g.colors.secondary.dark }, children: n.label }),
+            /* @__PURE__ */ I("div", { className: "flex flex-col gap-2", children: n.number.split(" or ").map((s, f) => /* @__PURE__ */ I(
               "a",
               {
-                href: `tel:${i.replace(/[^0-9]/g, "")}`,
+                href: `tel:${s.replace(/[^0-9]/g, "")}`,
                 className: "font-black block hover:underline decoration-4 underline-offset-8 whitespace-nowrap",
                 style: {
                   color: g.colors.text.primary,
                   textDecorationColor: g.colors.secondary.DEFAULT,
                   fontSize: "clamp(1rem, 10.5cqw, 1.875rem)"
                 },
-                "aria-label": `Call ${t.label}: ${i}`,
-                children: i
+                "aria-label": `Call ${n.label}: ${s}`,
+                children: s
               },
-              b
+              f
             )) }),
-            /* @__PURE__ */ I("p", { className: "text-sm font-medium mt-1", style: { color: g.colors.text.muted }, children: t.description })
+            /* @__PURE__ */ I("p", { className: "text-sm font-medium mt-1", style: { color: g.colors.text.muted }, children: n.description })
           ]
         },
         r
@@ -1666,61 +1676,61 @@ function PI({
   ] });
 }
 function BI({ rows: A }) {
-  const { theme: o } = k();
-  return /* @__PURE__ */ n(L, { children: [
-    /* @__PURE__ */ n("table", { className: "w-full text-sm text-left hidden md:table", children: [
-      /* @__PURE__ */ I("thead", { children: /* @__PURE__ */ n("tr", { className: "border-b-2", style: { borderColor: `${o.colors.secondary.DEFAULT}40` }, children: [
+  const { theme: o } = R();
+  return /* @__PURE__ */ t(L, { children: [
+    /* @__PURE__ */ t("table", { className: "w-full text-sm text-left hidden md:table", children: [
+      /* @__PURE__ */ I("thead", { children: /* @__PURE__ */ t("tr", { className: "border-b-2", style: { borderColor: `${o.colors.secondary.DEFAULT}40` }, children: [
         /* @__PURE__ */ I("th", { className: "font-bold pb-3", style: { color: o.colors.secondary.dark }, children: "Date" }),
         /* @__PURE__ */ I("th", { className: "font-bold pb-3", style: { color: o.colors.secondary.dark }, children: "Title" }),
         /* @__PURE__ */ I("th", { className: "font-bold pb-3", style: { color: o.colors.secondary.dark }, children: "Documents" })
       ] }) }),
-      /* @__PURE__ */ I("tbody", { className: "divide-y divide-gray-200", children: A.map((e, C) => /* @__PURE__ */ n("tr", { children: [
+      /* @__PURE__ */ I("tbody", { className: "divide-y divide-gray-200", children: A.map((e, C) => /* @__PURE__ */ t("tr", { children: [
         /* @__PURE__ */ I("td", { className: "py-4 font-medium", style: { color: o.colors.text.primary }, children: e.date }),
         /* @__PURE__ */ I("td", { className: "py-4", style: { color: o.colors.text.primary }, children: e.title }),
-        /* @__PURE__ */ I("td", { className: "py-4", children: /* @__PURE__ */ I("div", { className: "flex gap-4", children: e.links.map((g, t) => /* @__PURE__ */ n("span", { children: [
+        /* @__PURE__ */ I("td", { className: "py-4", children: /* @__PURE__ */ I("div", { className: "flex gap-4", children: e.links.map((g, n) => /* @__PURE__ */ t("span", { children: [
           /* @__PURE__ */ I("a", { href: g.url, className: "font-bold hover:underline", style: { color: o.colors.secondary.dark }, children: g.label }),
-          t < e.links.length - 1 && /* @__PURE__ */ I("span", { className: "ml-4", style: { color: o.colors.text.muted }, children: "|" })
-        ] }, t)) }) })
+          n < e.links.length - 1 && /* @__PURE__ */ I("span", { className: "ml-4", style: { color: o.colors.text.muted }, children: "|" })
+        ] }, n)) }) })
       ] }, C)) })
     ] }),
-    /* @__PURE__ */ I("div", { className: "md:hidden space-y-4", children: A.map((e, C) => /* @__PURE__ */ n("div", { className: "p-4 rounded-lg border border-gray-100 bg-white shadow-sm", children: [
+    /* @__PURE__ */ I("div", { className: "md:hidden space-y-4", children: A.map((e, C) => /* @__PURE__ */ t("div", { className: "p-4 rounded-lg border border-gray-100 bg-white shadow-sm", children: [
       /* @__PURE__ */ I("div", { className: "text-xs uppercase tracking-wider font-bold mb-1", style: { color: o.colors.secondary.dark }, children: e.date }),
       /* @__PURE__ */ I("div", { className: "font-bold mb-3", style: { color: o.colors.text.primary }, children: e.title }),
-      /* @__PURE__ */ I("div", { className: "flex flex-wrap gap-4 text-sm font-bold", style: { color: o.colors.secondary.dark }, children: e.links.map((g, t) => /* @__PURE__ */ n("span", { className: "flex items-center", children: [
+      /* @__PURE__ */ I("div", { className: "flex flex-wrap gap-4 text-sm font-bold", style: { color: o.colors.secondary.dark }, children: e.links.map((g, n) => /* @__PURE__ */ t("span", { className: "flex items-center", children: [
         /* @__PURE__ */ I("a", { href: g.url, className: "hover:underline", children: g.label }),
-        t < e.links.length - 1 && /* @__PURE__ */ I("span", { className: "mx-4 font-normal text-gray-300", children: "|" })
-      ] }, t)) })
+        n < e.links.length - 1 && /* @__PURE__ */ I("span", { className: "mx-4 font-normal text-gray-300", children: "|" })
+      ] }, n)) })
     ] }, C)) })
   ] });
 }
 function DI({ title: A, className: o = "" }) {
-  const { theme: e } = k();
-  return /* @__PURE__ */ n("div", { className: `flex items-center justify-between mb-8 ${o}`, children: [
+  const { theme: e } = R();
+  return /* @__PURE__ */ t("div", { className: `flex items-center justify-between mb-8 ${o}`, children: [
     /* @__PURE__ */ I("h2", { className: "text-3xl font-serif font-black", style: { color: e.colors.text.primary }, children: A }),
     /* @__PURE__ */ I("div", { className: "h-1 flex-1 mx-8 bg-black/5 rounded-full" })
   ] });
 }
 function WI({ title: A, number: o, description: e, href: C, className: g = "" }) {
-  const { theme: t } = k();
-  return /* @__PURE__ */ n("div", { className: `content-card text-center hover-lift elevation-md transition-all duration-500 border-b-4 ${g}`, style: { borderBottomColor: t.colors.secondary.DEFAULT, backgroundColor: "white" }, children: [
-    /* @__PURE__ */ I("h3", { className: "font-bold text-xs uppercase tracking-widest mb-2", style: { color: t.colors.secondary.dark }, children: A }),
+  const { theme: n } = R();
+  return /* @__PURE__ */ t("div", { className: `content-card text-center hover-lift elevation-md transition-all duration-500 border-b-4 ${g}`, style: { borderBottomColor: n.colors.secondary.DEFAULT, backgroundColor: "white" }, children: [
+    /* @__PURE__ */ I("h3", { className: "font-bold text-xs uppercase tracking-widest mb-2", style: { color: n.colors.secondary.dark }, children: A }),
     C ? /* @__PURE__ */ I(
       "a",
       {
         href: C,
         className: "text-2xl font-black mb-2 block hover:underline decoration-4 underline-offset-4 transition-all",
-        style: { color: t.colors.text.primary, textDecorationColor: t.colors.secondary.DEFAULT },
+        style: { color: n.colors.text.primary, textDecorationColor: n.colors.secondary.DEFAULT },
         children: o
       }
     ) : /* @__PURE__ */ I(
       "span",
       {
         className: "text-2xl font-black mb-2 block",
-        style: { color: t.colors.text.primary },
+        style: { color: n.colors.text.primary },
         children: o
       }
     ),
-    /* @__PURE__ */ I("p", { className: "text-sm", style: { color: t.colors.text.muted }, children: e })
+    /* @__PURE__ */ I("p", { className: "text-sm", style: { color: n.colors.text.muted }, children: e })
   ] });
 }
 function VI({
@@ -1729,34 +1739,34 @@ function VI({
   categories: e = [],
   address: C,
   hours: g,
-  website: t,
+  website: n,
   email: r,
-  phone: i,
-  className: b = ""
+  phone: s,
+  className: f = ""
 }) {
-  const { theme: u } = k();
-  return /* @__PURE__ */ I("div", { className: `content-card hover-lift elevation-md transition-all duration-500 ${b}`, style: { backgroundColor: "white" }, children: /* @__PURE__ */ n("div", { className: "flex flex-col md:flex-row justify-between gap-6", children: [
-    /* @__PURE__ */ n("div", { className: "flex-1", children: [
-      e.length > 0 && /* @__PURE__ */ I("div", { className: "flex flex-wrap items-center gap-3 mb-3", children: e.map((a, E) => /* @__PURE__ */ I(
+  const { theme: k } = R();
+  return /* @__PURE__ */ I("div", { className: `content-card hover-lift elevation-md transition-all duration-500 ${f}`, style: { backgroundColor: "white" }, children: /* @__PURE__ */ t("div", { className: "flex flex-col md:flex-row justify-between gap-6", children: [
+    /* @__PURE__ */ t("div", { className: "flex-1", children: [
+      e.length > 0 && /* @__PURE__ */ I("div", { className: "flex flex-wrap items-center gap-3 mb-3", children: e.map((p, d) => /* @__PURE__ */ I(
         "span",
         {
           className: "px-3 py-1 text-[10px] font-bold uppercase tracking-widest rounded-full",
-          style: { backgroundColor: u.colors.bg.mainTo, color: u.colors.text.primary },
-          children: a
+          style: { backgroundColor: k.colors.bg.mainTo, color: k.colors.text.primary },
+          children: p
         },
-        E
+        d
       )) }),
-      /* @__PURE__ */ I("h3", { className: "text-xl font-bold mb-1", style: { color: u.colors.text.primary }, children: A }),
-      /* @__PURE__ */ I("p", { className: "text-sm", style: { color: u.colors.text.muted }, children: o }),
-      /* @__PURE__ */ n("div", { className: "flex flex-col gap-2 mt-4", children: [
-        C && /* @__PURE__ */ n(
+      /* @__PURE__ */ I("h3", { className: "text-xl font-bold mb-1", style: { color: k.colors.text.primary }, children: A }),
+      /* @__PURE__ */ I("p", { className: "text-sm", style: { color: k.colors.text.muted }, children: o }),
+      /* @__PURE__ */ t("div", { className: "flex flex-col gap-2 mt-4", children: [
+        C && /* @__PURE__ */ t(
           "a",
           {
             href: `https://maps.google.com/?q=${encodeURIComponent(C)}`,
             target: "_blank",
             rel: "noopener noreferrer",
             className: "inline-flex items-start text-sm font-medium hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2",
-            style: { color: u.colors.text.primary },
+            style: { color: k.colors.text.primary },
             "aria-label": `Open address in Google Maps: ${C}`,
             children: [
               /* @__PURE__ */ I("span", { className: "mr-1.5", "aria-hidden": "true", children: "📍" }),
@@ -1764,31 +1774,31 @@ function VI({
             ]
           }
         ),
-        g && /* @__PURE__ */ n("p", { className: "inline-flex items-start text-sm font-medium", style: { color: u.colors.text.primary }, children: [
+        g && /* @__PURE__ */ t("p", { className: "inline-flex items-start text-sm font-medium", style: { color: k.colors.text.primary }, children: [
           /* @__PURE__ */ I("span", { className: "mr-1.5", "aria-hidden": "true", children: "🕒" }),
           /* @__PURE__ */ I("span", { className: "text-left leading-tight", children: g })
         ] }),
-        t && /* @__PURE__ */ n(
+        n && /* @__PURE__ */ t(
           "a",
           {
-            href: t.startsWith("http") ? t : `https://${t}`,
+            href: n.startsWith("http") ? n : `https://${n}`,
             target: "_blank",
             rel: "noopener noreferrer",
             className: "inline-flex items-center text-sm font-bold hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2",
-            style: { color: u.colors.secondary.dark },
+            style: { color: k.colors.secondary.dark },
             "aria-label": `Visit website for ${A} (opens in new tab)`,
             children: [
               /* @__PURE__ */ I("span", { className: "mr-1.5", "aria-hidden": "true", children: "🌐" }),
-              /* @__PURE__ */ I("span", { className: "text-left leading-tight truncate max-w-[250px] sm:max-w-xs", children: t.replace(/^https?:\/\/(www\.)?/, "").replace(/\/$/, "") })
+              /* @__PURE__ */ I("span", { className: "text-left leading-tight truncate max-w-[250px] sm:max-w-xs", children: n.replace(/^https?:\/\/(www\.)?/, "").replace(/\/$/, "") })
             ]
           }
         ),
-        r && /* @__PURE__ */ n(
+        r && /* @__PURE__ */ t(
           "a",
           {
             href: `mailto:${r}`,
             className: "inline-flex items-center text-sm font-bold hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 break-all",
-            style: { color: u.colors.secondary.dark },
+            style: { color: k.colors.secondary.dark },
             "aria-label": `Email ${A} at ${r}`,
             children: [
               /* @__PURE__ */ I("span", { className: "mr-1.5", "aria-hidden": "true", children: "✉️" }),
@@ -1798,50 +1808,50 @@ function VI({
         )
       ] })
     ] }),
-    i && /* @__PURE__ */ n(
+    s && /* @__PURE__ */ t(
       "a",
       {
-        href: `tel:${i.replace(/[^0-9+]/g, "")}`,
+        href: `tel:${s.replace(/[^0-9+]/g, "")}`,
         className: "px-6 py-3 rounded-lg font-bold text-sm transition-all flex items-center justify-center gap-2 self-start md:self-center shrink-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2",
-        style: { backgroundColor: u.colors.secondary.DEFAULT, color: u.colors.text.primary },
-        onMouseEnter: (a) => a.currentTarget.style.filter = "brightness(1.1)",
-        onMouseLeave: (a) => a.currentTarget.style.filter = "none",
-        "aria-label": `Call ${A} at ${i}`,
+        style: { backgroundColor: k.colors.secondary.DEFAULT, color: k.colors.text.primary },
+        onMouseEnter: (p) => p.currentTarget.style.filter = "brightness(1.1)",
+        onMouseLeave: (p) => p.currentTarget.style.filter = "none",
+        "aria-label": `Call ${A} at ${s}`,
         children: [
           /* @__PURE__ */ I("svg", { className: "w-4 h-4", fill: "none", stroke: "currentColor", viewBox: "0 0 24 24", "aria-hidden": "true", children: /* @__PURE__ */ I("path", { strokeLinecap: "round", strokeLinejoin: "round", strokeWidth: 2, d: "M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" }) }),
-          i
+          s
         ]
       }
     )
   ] }) });
 }
 function qI() {
-  const { pathname: A } = D(), o = U(0);
-  return nI(() => {
+  const { pathname: A } = D(), o = N(0);
+  return tI(() => {
     "scrollRestoration" in window.history && (window.history.scrollRestoration = "manual");
     const e = document.documentElement.style.scrollBehavior, C = document.body.style.scrollBehavior;
     document.documentElement.style.scrollBehavior = "auto", document.body.style.scrollBehavior = "auto", o.current = 0;
     const g = setInterval(() => {
       window.scrollTo(0, 0), document.documentElement.scrollTop = 0, document.body.scrollTop = 0;
-    }, 10), t = setTimeout(() => {
+    }, 10), n = setTimeout(() => {
       clearInterval(g), document.documentElement.style.scrollBehavior = e, document.body.style.scrollBehavior = C;
     }, 1e3);
     return () => {
-      clearInterval(g), clearTimeout(t), document.documentElement.style.scrollBehavior = e, document.body.style.scrollBehavior = C;
+      clearInterval(g), clearTimeout(n), document.documentElement.style.scrollBehavior = e, document.body.style.scrollBehavior = C;
     };
   }, [A]), null;
 }
 export {
   dI as APP_THEME,
-  LI as ActionCard,
+  zI as ActionCard,
   YI as Badge,
   ZI as CallToAction,
   WI as ContactCard,
   TI as ContentCard,
   BI as DocumentTable,
   PI as EmergencyBlock,
-  MI as EventCard,
-  zI as FeatureCard,
+  LI as EventCard,
+  MI as FeatureCard,
   fI as Footer,
   vI as ImageCarousel,
   KI as Layout,
@@ -1863,7 +1873,7 @@ export {
   EI as getNativeMapUrl,
   gI as howDoIItems,
   X as residentsItems,
-  k as useTheme,
+  R as useTheme,
   _ as visitorsItems
 };
 //# sourceMappingURL=index.js.map

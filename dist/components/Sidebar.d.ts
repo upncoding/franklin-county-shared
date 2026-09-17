@@ -16,5 +16,6 @@ export interface SidebarProps {
     backLinkUrl?: string;
     backLinkText?: string;
     title?: string;
+    isOpen?: boolean;
 }
-export declare const Sidebar: ({ nodes, activeNodeId, activeSubNodeId, onNodeSelect, onSubNodeSelect, isMobileMenuOpen, onClose, backLinkUrl, backLinkText, title, }: SidebarProps) => import("react").JSX.Element;
+export declare const Sidebar: ({ nodes, activeNodeId, activeSubNodeId, onNodeSelect, onSubNodeSelect, isMobileMenuOpen, onClose, backLinkUrl, backLinkText, title, isOpen, }: SidebarProps) => import("react").JSX.Element;

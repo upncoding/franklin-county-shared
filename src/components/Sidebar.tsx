@@ -21,6 +21,7 @@ export interface SidebarProps {
     backLinkUrl?: string;
     backLinkText?: string;
     title?: string;
+    isOpen?: boolean;
 }
 
 export const Sidebar = ({
@@ -34,11 +35,13 @@ export const Sidebar = ({
     backLinkUrl,
     backLinkText,
     title,
+    isOpen,
 }: SidebarProps) => {
     const { theme } = useTheme();
     const [isDesktop, setIsDesktop] = useState(typeof window !== 'undefined' ? window.innerWidth >= 1024 : true);
     const [expandedNodes, setExpandedNodes] = useState<Set<string | number>>(new Set([activeNodeId || nodes[0]?.id]));
     const nodeRefs = useRef<{ [key: string | number]: HTMLLIElement | null }>({});
+    const resolvedIsOpen = isOpen !== undefined ? isOpen : (isDesktop ? true : isMobileMenuOpen);
     const prevExpandedNodes = useRef<Set<string | number>>(expandedNodes);
 
     useEffect(() => {
@@ -93,7 +96,7 @@ export const Sidebar = ({
     return (
         <>
             <AnimatePresence>
-                {isMobileMenuOpen && !isDesktop && (
+                {!isDesktop && resolvedIsOpen && (
                     <motion.div
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
@@ -108,11 +111,11 @@ export const Sidebar = ({
             <motion.aside
                 initial={false}
                 animate={{
-                    x: isDesktop ? 0 : (isMobileMenuOpen ? 0 : -320),
-                    visibility: isDesktop ? "visible" : (isMobileMenuOpen ? "visible" : "hidden"),
+                    x: resolvedIsOpen ? 0 : -320,
+                    visibility: resolvedIsOpen ? "visible" : "hidden",
                 }}
                 transition={{ type: 'spring', damping: 30, stiffness: 300 }}
-                className="w-80 z-40 overflow-y-auto backdrop-blur-xl border-r shadow-2xl xl:shadow-none xl:sticky
+                className="w-80 z-40 overflow-y-auto backdrop-blur-xl border-r shadow-2xl lg:shadow-none lg:sticky
                           fixed left-0 pt-0 pb-24
                           top-[var(--fc-header-height,80px)]
                           h-[calc(100vh-var(--fc-header-height,80px))]"
@@ -136,7 +139,7 @@ export const Sidebar = ({
                         <div />
                     )}
                     
-                    {!isDesktop && isMobileMenuOpen && (
+                    {resolvedIsOpen && (
                         <button
                             onClick={onClose}
                             className="shrink-0 p-2.5 rounded-lg cursor-pointer text-gray-600 shadow-md hover:shadow-lg transition-all duration-300 hover:scale-110 bg-white"
