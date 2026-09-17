@@ -19,7 +19,8 @@ export function PageHeader({ title, subtitle, image, images, video, isHomePage =
     }
 
     return (
-        <div className={`relative w-full flex items-center justify-center ${isHomePage ? 'min-h-screen' : 'h-[60vh]'} overflow-hidden`}>
+        <div className="relative w-full flex items-center justify-center overflow-hidden"
+            style={isHomePage ? { minHeight: 'calc(100vh - var(--fc-header-height, 0px))' } : { height: '60vh' }}>
             {/* Video background */}
             {video && (
                 <video autoPlay loop muted playsInline className="absolute inset-0 w-full h-full object-cover">
@@ -42,7 +43,7 @@ export function PageHeader({ title, subtitle, image, images, video, isHomePage =
                 <div className="absolute inset-0" style={{ background: theme.colors.bg.main }} />
             )}
             {/* Overlay */}
-            <div className="absolute inset-0 bg-linear-to-b from-black/30 via-black/10 to-transparent" />
+            <div className="absolute inset-0 bg-linear-to-b from-black/30 via-black/10 to-transparent pointer-events-none" />
             
             {/* Hero text */}
             {title && (

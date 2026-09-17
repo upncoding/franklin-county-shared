@@ -47,7 +47,7 @@ export function ImageCarousel({ images, interval = 5000, className = '' }: Image
                         <button
                             key={idx}
                             onClick={() => setCurrentIndex(idx)}
-                            className={`h-2.5 rounded-full transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-black/50 ${
+                            className={`cursor-pointer h-2.5 rounded-full transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-black/50 ${
                                 idx === currentIndex 
                                     ? 'w-8 bg-white' 
                                     : 'w-2.5 bg-white/50 hover:bg-white/80'
