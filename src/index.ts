@@ -41,3 +41,8 @@ export * from './components/FeatureCard';
 export * from './components/ActionCard';
 export * from './components/EventCard';
 export * from './components/CallToAction';
+export * from './components/EmergencyBlock';
+export * from './components/DocumentTable';
+export * from './components/SectionHeader';
+export * from './components/ContactCard';
+export * from './components/ResourceCard';
