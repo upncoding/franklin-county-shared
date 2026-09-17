@@ -154,6 +154,22 @@ function LayoutInner({
     // Close mobile menu on route change
     useEffect(() => { setIsMobileMenuOpen(false); }, [location]);
 
+    // Auto-close mobile menu on desktop resize
+    useEffect(() => {
+        const mql = window.matchMedia('(min-width: 1280px)'); // xl breakpoint
+        const handleMatch = (e: MediaQueryListEvent | MediaQueryList) => {
+            if (e.matches) {
+                setIsMobileMenuOpen(false);
+            }
+        };
+        // Initial check
+        handleMatch(mql);
+        
+        mql.addEventListener('change', handleMatch);
+        return () => mql.removeEventListener('change', handleMatch);
+    }, []);
+
+
     // Lock body scroll when mobile menu open
     useEffect(() => {
         document.body.style.overflow = isMobileMenuOpen ? 'hidden' : 'unset';

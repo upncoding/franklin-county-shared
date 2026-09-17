@@ -1,7 +1,8 @@
-import type { ReactNode } from 'react';
+import type { ReactNode, CSSProperties } from 'react';
 export interface ContentCardProps {
     title?: string;
     children: ReactNode;
     className?: string;
+    style?: CSSProperties;
 }
-export declare function ContentCard({ title, children, className }: ContentCardProps): import("react").JSX.Element;
+export declare function ContentCard({ title, children, className, style }: ContentCardProps): import("react").JSX.Element;
