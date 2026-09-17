@@ -1,8 +1,8 @@
-import { jsx as I, jsxs as r, Fragment as z } from "react/jsx-runtime";
-import { createContext as eI, useEffect as O, useContext as AI, forwardRef as oI, useState as F, useRef as U, useLayoutEffect as rI } from "react";
-import { Link as nI, useLocation as D, NavLink as B } from "react-router-dom";
+import { jsx as I, jsxs as n, Fragment as M } from "react/jsx-runtime";
+import { createContext as eI, useEffect as S, useContext as AI, forwardRef as oI, useState as F, useRef as U, useLayoutEffect as nI } from "react";
+import { Link as rI, useLocation as W, NavLink as B } from "react-router-dom";
 import { useFloating as tI, autoUpdate as lI, offset as aI, flip as iI, shift as sI, FloatingPortal as cI } from "@floating-ui/react";
-import { AnimatePresence as W, motion as Z } from "framer-motion";
+import { AnimatePresence as D, motion as z } from "framer-motion";
 const dI = {
   name: "Vibrant Adirondack",
   colors: {
@@ -75,7 +75,7 @@ const dI = {
 }, pI = () => dI, q = eI(void 0);
 function hI({ children: o, theme: A }) {
   const C = A ?? pI();
-  return O(() => {
+  return S(() => {
     const e = document.documentElement, g = C.colors;
     e.style.setProperty("--theme-bg-main", g.bg.main), e.style.setProperty("--theme-bg-main-from", g.bg.mainFrom), e.style.setProperty("--theme-bg-main-via", g.bg.mainVia), e.style.setProperty("--theme-bg-main-to", g.bg.mainTo), e.style.setProperty("--theme-bg-card", g.bg.card), e.style.setProperty("--theme-bg-card-alt", g.bg.cardAlt), e.style.setProperty("--theme-bg-sidebar", g.bg.sidebar), e.style.setProperty("--theme-bg-header", g.bg.header), e.style.setProperty("--theme-bg-footer", g.bg.footer), e.style.setProperty("--theme-text-primary", g.text.primary), e.style.setProperty("--theme-text-secondary", g.text.secondary), e.style.setProperty("--theme-text-muted", g.text.muted), e.style.setProperty("--theme-text-on-dark", g.text.onDark), e.style.setProperty("--theme-primary", g.primary.DEFAULT), e.style.setProperty("--theme-primary-light", g.primary.light), e.style.setProperty("--theme-primary-dark", g.primary.dark), e.style.setProperty("--theme-secondary", g.secondary.DEFAULT), e.style.setProperty("--theme-secondary-light", g.secondary.light), e.style.setProperty("--theme-secondary-dark", g.secondary.dark), e.style.setProperty("--theme-hover-card", g.hover.card), e.style.setProperty("--theme-hover-sidebar", g.hover.sidebar), e.style.setProperty("--theme-hover-button", g.hover.button), e.style.setProperty("--theme-hover-link", g.hover.link), e.style.setProperty("--theme-shadow", g.shadow), e.style.setProperty("--theme-shadow-dark", g.shadowDark), e.style.setProperty("--theme-glow", g.glow), e.style.setProperty("--theme-border", g.border);
   }, [C]), /* @__PURE__ */ I(q.Provider, { value: { theme: C }, children: o });
@@ -87,10 +87,10 @@ function k() {
   return o;
 }
 const L = oI(
-  ({ item: o, className: A, style: C, children: e, ...g }, n) => o.url.startsWith("http") ? /* @__PURE__ */ I(
+  ({ item: o, className: A, style: C, children: e, ...g }, r) => o.url.startsWith("http") ? /* @__PURE__ */ I(
     "a",
     {
-      ref: n,
+      ref: r,
       href: o.url,
       target: "_blank",
       rel: "noopener noreferrer",
@@ -100,9 +100,9 @@ const L = oI(
       children: e
     }
   ) : /* @__PURE__ */ I(
-    nI,
+    rI,
     {
-      ref: n,
+      ref: r,
       to: o.url,
       className: A,
       style: C,
@@ -118,34 +118,34 @@ const Y = ({
   items: C,
   columns: e = 1,
   textColor: g,
-  variant: n = "standard"
+  variant: r = "standard"
 }) => {
-  const [t, i] = F(!1), [b, u] = F(null), a = U(null), E = U(null), m = U(null), d = U(null), v = U(null), S = U(!1), { theme: j } = k(), Q = D(), N = `nav-menu-${o.replace(/\s+/g, "-").toLowerCase()}`, p = C.some((l) => Q.pathname === l.url ? !0 : l.subItems ? l.subItems.some((w) => Q.pathname === w.url) : !1), s = Q.pathname === A || p, x = () => {
+  const [t, i] = F(!1), [b, u] = F(null), a = U(null), E = U(null), m = U(null), d = U(null), v = U(null), O = U(!1), { theme: j } = k(), Q = W(), N = `nav-menu-${o.replace(/\s+/g, "-").toLowerCase()}`, p = C.some((l) => Q.pathname === l.url ? !0 : l.subItems ? l.subItems.some((w) => Q.pathname === w.url) : !1), s = Q.pathname === A || p, x = () => {
     if (E.current) {
       const l = E.current.getBoundingClientRect();
       u(l.bottom + 8);
     }
     window.dispatchEvent(new CustomEvent("navdropdown:opened", { detail: { menuId: N } })), i(!0);
   }, f = () => {
-    i(!1), S.current = !1, E.current?.focus();
+    i(!1), O.current = !1, E.current?.focus();
   };
-  O(() => {
+  S(() => {
     const l = (w) => {
-      w.detail.menuId !== N && (i(!1), S.current = !1);
+      w.detail.menuId !== N && (i(!1), O.current = !1);
     };
     return window.addEventListener("navdropdown:opened", l), () => window.removeEventListener("navdropdown:opened", l);
-  }, [N]), O(() => {
+  }, [N]), S(() => {
     const l = (w) => {
-      a.current && !a.current.contains(w.target) && (i(!1), S.current = !1);
+      a.current && !a.current.contains(w.target) && (i(!1), O.current = !1);
     };
     return t && document.addEventListener("mousedown", l), () => document.removeEventListener("mousedown", l);
-  }, [t]), O(() => {
-    t && S.current && m.current && m.current.querySelector("a, button")?.focus();
+  }, [t]), S(() => {
+    t && O.current && m.current && m.current.querySelector("a, button")?.focus();
   }, [t]);
   const J = (l) => {
-    l.key === " " || l.key === "ArrowDown" ? (l.preventDefault(), S.current = !0, x()) : l.key === "Escape" && (i(!1), S.current = !1);
+    l.key === " " || l.key === "ArrowDown" ? (l.preventDefault(), O.current = !0, x()) : l.key === "Escape" && (i(!1), O.current = !1);
   }, R = (l) => {
-    l.key === "Enter" || l.key === " " || l.key === "ArrowDown" ? (l.preventDefault(), S.current = !0, t ? i(!1) : x()) : l.key === "Escape" && (i(!1), S.current = !1);
+    l.key === "Enter" || l.key === " " || l.key === "ArrowDown" ? (l.preventDefault(), O.current = !0, t ? i(!1) : x()) : l.key === "Escape" && (i(!1), O.current = !1);
   }, c = (l) => {
     if (l.key === "Escape") {
       l.preventDefault(), f();
@@ -179,8 +179,8 @@ const Y = ({
       default:
         return "md:grid-cols-1";
     }
-  }, M = t || s ? j.colors.secondary.DEFAULT : g || "rgba(255, 255, 255, 0.9)", G = "mx-4 my-2 text-xs font-bold uppercase tracking-widest transition-colors inline-block relative z-20 bg-transparent border-0 cursor-pointer p-0";
-  return /* @__PURE__ */ r("div", { ref: a, className: "relative inline-block", onMouseLeave: y, children: [
+  }, Z = t || s ? j.colors.secondary.DEFAULT : g || "rgba(255, 255, 255, 0.9)", G = "mx-4 my-2 text-xs font-bold uppercase tracking-widest transition-colors inline-block relative z-20 bg-transparent border-0 cursor-pointer p-0";
+  return /* @__PURE__ */ n("div", { ref: a, className: "relative inline-block", onMouseLeave: y, children: [
     A !== "#" ? /* @__PURE__ */ I(
       L,
       {
@@ -189,7 +189,7 @@ const Y = ({
         "aria-expanded": t,
         "aria-controls": N,
         className: G,
-        style: { color: M },
+        style: { color: Z },
         onMouseEnter: h,
         onKeyDown: J,
         children: o
@@ -202,14 +202,14 @@ const Y = ({
         "aria-expanded": t,
         "aria-controls": N,
         className: G,
-        style: { color: M },
+        style: { color: Z },
         onMouseEnter: h,
         onKeyDown: R,
         onClick: () => i((l) => !l),
         children: o
       }
     ),
-    n === "fullWidth" ? (
+    r === "fullWidth" ? (
       /* ── Mega Menu (Full Width) ── */
       /* @__PURE__ */ I(
         "div",
@@ -227,7 +227,7 @@ const Y = ({
             {
               className: "rounded-b-lg shadow-2xl elevation-xl border-t overflow-hidden text-left mt-0",
               style: { backgroundColor: j.colors.bg.card, borderTopColor: j.colors.border },
-              children: /* @__PURE__ */ I("div", { className: `grid ${T()} gap-4 p-8`, children: C.map((l, w) => /* @__PURE__ */ r("div", { className: "flex flex-col", children: [
+              children: /* @__PURE__ */ I("div", { className: `grid ${T()} gap-4 p-8`, children: C.map((l, w) => /* @__PURE__ */ n("div", { className: "flex flex-col", children: [
                 /* @__PURE__ */ I(
                   L,
                   {
@@ -273,14 +273,14 @@ const Y = ({
           className: `absolute left-1/2 -translate-x-1/2 top-full pt-4 z-[100] transition-all duration-300 ease-out ${t ? "opacity-100 translate-y-0 visible pointer-events-auto" : "opacity-0 -translate-y-2 invisible pointer-events-none"}`,
           onMouseEnter: h,
           onKeyDown: c,
-          children: /* @__PURE__ */ r(
+          children: /* @__PURE__ */ n(
             "div",
             {
               className: "w-75 rounded-2xl shadow-2xl elevation-xl border overflow-hidden text-left",
               style: { backgroundColor: j.colors.bg.card, borderColor: j.colors.border },
               onMouseLeave: y,
               children: [
-                /* @__PURE__ */ I("div", { className: `grid ${T()} gap-2 p-4`, children: C.map((l, w) => /* @__PURE__ */ r("div", { className: "flex flex-col", children: [
+                /* @__PURE__ */ I("div", { className: `grid ${T()} gap-2 p-4`, children: C.map((l, w) => /* @__PURE__ */ n("div", { className: "flex flex-col", children: [
                   /* @__PURE__ */ I(
                     L,
                     {
@@ -464,7 +464,7 @@ const Y = ({
   }
 ], uI = () => {
   const { theme: o } = k(), A = o.colors.text.onDark;
-  return /* @__PURE__ */ r(
+  return /* @__PURE__ */ n(
     "div",
     {
       className: "hidden xl:flex justify-end gap-2 border-b pb-2",
@@ -554,10 +554,10 @@ const Y = ({
     {
       to: o,
       onClick: C,
-      className: ({ isActive: n }) => `block w-full text-center text-2xl md:text-sm font-bold uppercase tracking-widest transition-all duration-200 py-4 px-6 rounded-2xl active:scale-95 ${n ? "" : "interactive-effect"}`,
-      style: ({ isActive: n }) => ({
-        color: n ? g.colors.secondary.DEFAULT : e || g.colors.text.primary,
-        backgroundColor: n ? `${g.colors.secondary.DEFAULT}10` : "transparent"
+      className: ({ isActive: r }) => `block w-full text-center text-2xl md:text-sm font-bold uppercase tracking-widest transition-all duration-200 py-4 px-6 rounded-2xl active:scale-95 ${r ? "" : "interactive-effect"}`,
+      style: ({ isActive: r }) => ({
+        color: r ? g.colors.secondary.DEFAULT : e || g.colors.text.primary,
+        backgroundColor: r ? `${g.colors.secondary.DEFAULT}10` : "transparent"
       }),
       children: A
     }
@@ -571,7 +571,7 @@ const Y = ({
     g.preventDefault();
     const t = g.currentTarget.elements.namedItem("q");
     t.value.trim() && o && (o(t.value.trim()), t.value = "");
-  }, role: "search", "aria-label": "Site search", className: A ? "w-full" : "", children: /* @__PURE__ */ r("div", { className: "relative flex items-center", children: [
+  }, role: "search", "aria-label": "Site search", className: A ? "w-full" : "", children: /* @__PURE__ */ n("div", { className: "relative flex items-center", children: [
     /* @__PURE__ */ I(
       "input",
       {
@@ -604,7 +604,7 @@ const Y = ({
   showTopbar: C = !1,
   showSearch: e = !1,
   onSearch: g,
-  isMobileMenuOpen: n,
+  isMobileMenuOpen: r,
   onMobileMenuToggle: t,
   isMobileOrTablet: i,
   isScrolled: b
@@ -612,25 +612,25 @@ const Y = ({
   const { theme: u } = k(), a = u.colors.text.onDark, E = i, m = A.slice(0, 8);
   return process.env.NODE_ENV !== "production" && A.length > 8 && console.warn(
     "[Navbar] navItems exceeds the 8-item maximum. Only the first 8 will be rendered."
-  ), /* @__PURE__ */ r("div", { className: "flex justify-between items-center", children: [
-    /* @__PURE__ */ r("div", { className: "flex items-center gap-4", children: [
-      /* @__PURE__ */ r("div", { className: "relative group shrink-0", children: [
+  ), /* @__PURE__ */ n("div", { className: "flex justify-between items-center", children: [
+    /* @__PURE__ */ n("div", { className: "flex items-center gap-4", children: [
+      /* @__PURE__ */ n("div", { className: "relative group shrink-0", children: [
         /* @__PURE__ */ I("div", { className: "absolute -inset-1 bg-linear-to-r from-county-gold-light to-county-gold rounded-full opacity-0 group-hover:opacity-30 blur transition duration-300" }),
         /* @__PURE__ */ I(
           "img",
           {
             src: CI,
             alt: "Franklin County Seal",
-            className: `relative transition-all duration-500 object-contain ${b || n ? "h-12 w-12" : "h-16 w-16 md:h-20 md:w-20"}`
+            className: `relative transition-all duration-500 object-contain ${b || r ? "h-12 w-12" : "h-16 w-16 md:h-20 md:w-20"}`
           }
         )
       ] }),
-      /* @__PURE__ */ r("div", { className: "flex flex-col transition-opacity duration-300 opacity-100", style: { color: a }, children: [
+      /* @__PURE__ */ n("div", { className: "flex flex-col transition-opacity duration-300 opacity-100", style: { color: a }, children: [
         /* @__PURE__ */ I("span", { className: "text-xs uppercase tracking-[0.3em] font-light leading-tight", children: "Franklin County" }),
         /* @__PURE__ */ I("span", { className: "font-serif font-black text-xl md:text-2xl leading-none tracking-tight", children: o })
       ] })
     ] }),
-    m.length > 0 && /* @__PURE__ */ r(
+    m.length > 0 && /* @__PURE__ */ n(
       "nav",
       {
         className: `${E ? "hidden" : "hidden xl:flex"} items-center gap-4`,
@@ -669,8 +669,8 @@ const Y = ({
         className: `${i ? "block" : "xl:hidden"} p-2 cursor-pointer transition-opacity rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-county-gold`,
         style: { color: a },
         onClick: t,
-        "aria-label": n ? "Close navigation menu" : "Open navigation menu",
-        "aria-expanded": n,
+        "aria-label": r ? "Close navigation menu" : "Open navigation menu",
+        "aria-expanded": r,
         "aria-controls": "fc-mobile-nav",
         onMouseEnter: (d) => {
           d.currentTarget.querySelectorAll("span").forEach((v) => v.style.backgroundColor = u.colors.secondary.DEFAULT);
@@ -678,18 +678,18 @@ const Y = ({
         onMouseLeave: (d) => {
           d.currentTarget.querySelectorAll("span").forEach((v) => v.style.backgroundColor = a);
         },
-        children: /* @__PURE__ */ r("div", { className: "space-y-1.5", "aria-hidden": "true", children: [
+        children: /* @__PURE__ */ n("div", { className: "space-y-1.5", "aria-hidden": "true", children: [
           /* @__PURE__ */ I(
             "span",
             {
               className: "block w-8 h-0.5 transition-all duration-300",
-              style: { backgroundColor: a, transform: n ? "translateY(8px) rotate(45deg)" : "none" }
+              style: { backgroundColor: a, transform: r ? "translateY(8px) rotate(45deg)" : "none" }
             }
           ),
           /* @__PURE__ */ I(
             "span",
             {
-              className: `block w-8 h-0.5 transition-all duration-300 ${n ? "opacity-0" : ""}`,
+              className: `block w-8 h-0.5 transition-all duration-300 ${r ? "opacity-0" : ""}`,
               style: { backgroundColor: a }
             }
           ),
@@ -697,7 +697,7 @@ const Y = ({
             "span",
             {
               className: "block w-8 h-0.5 transition-all duration-300",
-              style: { backgroundColor: a, transform: n ? "translateY(-8px) rotate(-45deg)" : "none" }
+              style: { backgroundColor: a, transform: r ? "translateY(-8px) rotate(-45deg)" : "none" }
             }
           )
         ] })
@@ -707,7 +707,7 @@ const Y = ({
 }, EI = (o) => {
   const A = encodeURIComponent(o), C = navigator.userAgent || navigator.vendor || window.opera;
   return /iPad|iPhone|iPod/.test(C) && !window.MSStream ? `maps://maps.apple.com/?q=${A}` : /android/i.test(C) ? `geo:0,0?q=${A}` : `https://www.google.com/maps/search/?api=1&query=${A}`;
-}, V = "518-891-2280", xI = "36 Church St Saranac Lake NY 12983", RI = /* @__PURE__ */ r(z, { children: [
+}, V = "518-891-2280", xI = "36 Church St Saranac Lake NY 12983", RI = /* @__PURE__ */ n(M, { children: [
   "36 Church St",
   /* @__PURE__ */ I("br", {}),
   "Saranac Lake, NY 12983",
@@ -728,9 +728,9 @@ const Y = ({
         borderTopColor: C.colors.secondary.DEFAULT,
         color: C.colors.text.onDark
       },
-      children: /* @__PURE__ */ r("div", { className: "container mx-auto px-6", children: [
-        /* @__PURE__ */ r("div", { className: "grid md:grid-cols-3 gap-8 mb-8 items-start", children: [
-          /* @__PURE__ */ r("div", { className: "flex items-center gap-4", children: [
+      children: /* @__PURE__ */ n("div", { className: "container mx-auto px-6", children: [
+        /* @__PURE__ */ n("div", { className: "grid md:grid-cols-3 gap-8 mb-8 items-start", children: [
+          /* @__PURE__ */ n("div", { className: "flex items-center gap-4", children: [
             /* @__PURE__ */ I("div", { className: "bg-white/10 p-4 rounded-full", "aria-hidden": "true", children: /* @__PURE__ */ I(
               "svg",
               {
@@ -751,7 +751,7 @@ const Y = ({
                 )
               }
             ) }),
-            /* @__PURE__ */ r("div", { children: [
+            /* @__PURE__ */ n("div", { children: [
               /* @__PURE__ */ I("div", { className: "text-xs uppercase tracking-wider mb-1", style: { color: C.colors.text.onDark }, children: "Contact Us" }),
               /* @__PURE__ */ I(
                 "a",
@@ -767,8 +767,8 @@ const Y = ({
               )
             ] })
           ] }),
-          /* @__PURE__ */ r("div", { className: "flex items-center gap-4", children: [
-            /* @__PURE__ */ I("div", { className: "bg-white/10 p-4 rounded-full", "aria-hidden": "true", children: /* @__PURE__ */ r(
+          /* @__PURE__ */ n("div", { className: "flex items-center gap-4", children: [
+            /* @__PURE__ */ I("div", { className: "bg-white/10 p-4 rounded-full", "aria-hidden": "true", children: /* @__PURE__ */ n(
               "svg",
               {
                 className: "w-6 h-6",
@@ -799,7 +799,7 @@ const Y = ({
                 ]
               }
             ) }),
-            /* @__PURE__ */ r("div", { children: [
+            /* @__PURE__ */ n("div", { children: [
               /* @__PURE__ */ I("div", { className: "text-xs uppercase tracking-wider mb-1", style: { color: C.colors.text.onDark }, children: "County Office" }),
               e ? /* @__PURE__ */ I(
                 "a",
@@ -817,8 +817,8 @@ const Y = ({
               ) : /* @__PURE__ */ I("address", { className: "text-sm font-medium leading-snug not-italic", style: { color: C.colors.text.onDark }, children: A })
             ] })
           ] }),
-          /* @__PURE__ */ r("div", { className: "flex items-center gap-4 md:justify-end", children: [
-            /* @__PURE__ */ I("div", { children: /* @__PURE__ */ r(
+          /* @__PURE__ */ n("div", { className: "flex items-center gap-4 md:justify-end", children: [
+            /* @__PURE__ */ I("div", { children: /* @__PURE__ */ n(
               "a",
               {
                 href: "/",
@@ -843,7 +843,7 @@ const Y = ({
             )
           ] })
         ] }),
-        /* @__PURE__ */ I("div", { className: "pt-6 border-t border-white/10 text-center", children: /* @__PURE__ */ r("p", { className: "text-xs", style: { color: C.colors.text.onDark }, children: [
+        /* @__PURE__ */ I("div", { className: "pt-6 border-t border-white/10 text-center", children: /* @__PURE__ */ n("p", { className: "text-xs", style: { color: C.colors.text.onDark }, children: [
           "© ",
           (/* @__PURE__ */ new Date()).getFullYear(),
           " Franklin County, NY"
@@ -869,20 +869,20 @@ function bI({
   showTopbar: C = !0,
   showNavbar: e = !0,
   showFooter: g = !0,
-  navItems: n = [],
+  navItems: r = [],
   showSearch: t = !1,
   onSearch: i,
   footerPhone: b,
   footerAddress: u
 }) {
-  const [a, E] = F(!1), [m, d] = F(!1), [v, S] = F(!1), [j, Q] = F(80), N = D(), { theme: p } = k(), s = U(null), x = U(null), f = U(null), J = U(null);
-  O(() => {
+  const [a, E] = F(!1), [m, d] = F(!1), [v, O] = F(!1), [j, Q] = F(80), N = W(), { theme: p } = k(), s = U(null), x = U(null), f = U(null), J = U(null);
+  S(() => {
     const c = navigator.userAgent || navigator.vendor || window.opera || "", h = /android|webos|iphone|ipad|ipod|blackberry|iemobile|opera mini/i.test(c), y = /macintosh/i.test(c) && navigator.maxTouchPoints > 1;
-    S(!!(h || y));
-  }, []), O(() => {
+    O(!!(h || y));
+  }, []), S(() => {
     const c = () => E(window.scrollY > 50);
     return window.addEventListener("scroll", c), () => window.removeEventListener("scroll", c);
-  }, []), O(() => {
+  }, []), S(() => {
     if (!f.current || !J.current) return;
     const c = () => {
       const y = f.current.offsetHeight;
@@ -891,22 +891,22 @@ function bI({
     c();
     const h = new ResizeObserver(c);
     return h.observe(f.current), () => h.disconnect();
-  }, [C, a]), O(() => {
+  }, [C, a]), S(() => {
     d(!1);
-  }, [N]), O(() => {
+  }, [N]), S(() => {
     const c = window.matchMedia("(min-width: 1280px)"), h = (y) => {
       y.matches && d(!1);
     };
     return h(c), c.addEventListener("change", h), () => c.removeEventListener("change", h);
-  }, []), O(() => (document.body.style.overflow = m ? "hidden" : "unset", () => {
+  }, []), S(() => (document.body.style.overflow = m ? "hidden" : "unset", () => {
     document.body.style.overflow = "unset";
-  }), [m]), O(() => {
+  }), [m]), S(() => {
     m && x.current ? x.current.querySelector(
       'a[href], button:not([disabled]), input, [tabindex]:not([tabindex="-1"])'
     )?.focus() : m || s.current?.focus();
   }, [m]);
-  const R = wI(n);
-  return /* @__PURE__ */ r("div", { ref: J, className: "min-h-screen flex flex-col font-sans text-county-charcoal", children: [
+  const R = wI(r);
+  return /* @__PURE__ */ n("div", { ref: J, className: "min-h-screen flex flex-col font-sans text-county-charcoal", children: [
     /* @__PURE__ */ I("a", { href: "#fc-main-content", className: "skip-to-content", children: "Skip to main content" }),
     e && /* @__PURE__ */ I(
       "header",
@@ -918,13 +918,13 @@ function bI({
           backgroundColor: p.colors.primary.DEFAULT,
           background: p.colors.bg.header
         },
-        children: /* @__PURE__ */ r("div", { className: "container mx-auto px-6", children: [
+        children: /* @__PURE__ */ n("div", { className: "container mx-auto px-6", children: [
           C && /* @__PURE__ */ I(uI, {}),
           /* @__PURE__ */ I(
             kI,
             {
               siteTitle: A,
-              navItems: n,
+              navItems: r,
               showTopbar: C,
               showSearch: t,
               onSearch: i,
@@ -953,7 +953,7 @@ function bI({
             return;
           }
         },
-        children: /* @__PURE__ */ I("div", { className: "overflow-y-auto flex-1 pt-32 pb-8", tabIndex: 0, role: "region", "aria-label": "Mobile Navigation Content", children: /* @__PURE__ */ r("div", { className: "container mx-auto px-6", children: [
+        children: /* @__PURE__ */ I("div", { className: "overflow-y-auto flex-1 pt-32 pb-8", tabIndex: 0, role: "region", "aria-label": "Mobile Navigation Content", children: /* @__PURE__ */ n("div", { className: "container mx-auto px-6", children: [
           t && /* @__PURE__ */ I("div", { className: "px-6 w-full max-w-md mx-auto mb-10", children: /* @__PURE__ */ I(
             "form",
             {
@@ -965,7 +965,7 @@ function bI({
                 h.value.trim() && i && (i(h.value.trim()), h.value = "");
               },
               className: "w-full",
-              children: /* @__PURE__ */ r("div", { className: "relative flex items-center", children: [
+              children: /* @__PURE__ */ n("div", { className: "relative flex items-center", children: [
                 /* @__PURE__ */ I(
                   "input",
                   {
@@ -994,10 +994,10 @@ function bI({
               ] })
             }
           ) }),
-          /* @__PURE__ */ I("nav", { className: "flex flex-col gap-8 text-center mb-12", "aria-label": "Mobile site navigation", children: n.map((c, h) => {
+          /* @__PURE__ */ I("nav", { className: "flex flex-col gap-8 text-center mb-12", "aria-label": "Mobile site navigation", children: r.map((c, h) => {
             if (c.items && c.items.length > 0) {
               const y = c.items;
-              return /* @__PURE__ */ r("div", { className: "space-y-1", children: [
+              return /* @__PURE__ */ n("div", { className: "space-y-1", children: [
                 /* @__PURE__ */ I(
                   "span",
                   {
@@ -1006,7 +1006,7 @@ function bI({
                     children: c.label
                   }
                 ),
-                /* @__PURE__ */ I("div", { className: "flex flex-col gap-1", children: y.map((T, M) => /* @__PURE__ */ I(
+                /* @__PURE__ */ I("div", { className: "flex flex-col gap-1", children: y.map((T, Z) => /* @__PURE__ */ I(
                   B,
                   {
                     to: T.url,
@@ -1020,7 +1020,7 @@ function bI({
                     }),
                     children: T.label
                   },
-                  M
+                  Z
                 )) })
               ] }, h);
             }
@@ -1041,9 +1041,9 @@ function bI({
               h
             );
           }) }),
-          R.length > 0 && n.some((c) => c.items) && /* @__PURE__ */ I("div", { className: "border-t my-6 max-w-md mx-auto", style: { borderColor: `${p.colors.secondary.DEFAULT}4D` } }),
-          C && /* @__PURE__ */ r(z, { children: [
-            n.length > 0 && /* @__PURE__ */ I("div", { className: "border-t my-6 max-w-md mx-auto", style: { borderColor: `${p.colors.secondary.DEFAULT}4D` } }),
+          R.length > 0 && r.some((c) => c.items) && /* @__PURE__ */ I("div", { className: "border-t my-6 max-w-md mx-auto", style: { borderColor: `${p.colors.secondary.DEFAULT}4D` } }),
+          C && /* @__PURE__ */ n(M, { children: [
+            r.length > 0 && /* @__PURE__ */ I("div", { className: "border-t my-6 max-w-md mx-auto", style: { borderColor: `${p.colors.secondary.DEFAULT}4D` } }),
             /* @__PURE__ */ I("div", { className: "max-w-md mx-auto space-y-6 pb-12", children: [
               { title: "Departments", items: H, url: "https://www.franklincountyny.gov/departments/index.php" },
               { title: "Residents", items: X, url: "https://www.franklincountyny.gov/residents/index.php" },
@@ -1051,7 +1051,7 @@ function bI({
               { title: "Business", items: $, url: "https://www.franklincountyny.gov/business/index.php" },
               { title: "Our Communities", items: II, url: "https://www.franklincountyny.gov/our_communities/index.php" },
               { title: "How Do I?", items: gI, url: "https://www.franklincountyny.gov/how_do_i/index.php" }
-            ].map((c, h) => /* @__PURE__ */ r("div", { children: [
+            ].map((c, h) => /* @__PURE__ */ n("div", { children: [
               /* @__PURE__ */ I("a", { href: c.url, target: "_blank", rel: "noopener noreferrer", className: "block text-center mb-3", children: /* @__PURE__ */ I("h3", { className: "text-xs font-bold uppercase tracking-widest inline-block", style: { color: p.colors.secondary.dark }, children: c.title }) }),
               /* @__PURE__ */ I("div", { className: "grid grid-cols-2 gap-2", children: c.items.map((y, T) => /* @__PURE__ */ I(
                 "a",
@@ -1090,11 +1090,11 @@ function bI({
     ) })
   ] });
 }
-function NI({ theme: o, ...A }) {
+function KI({ theme: o, ...A }) {
   return /* @__PURE__ */ I(hI, { theme: o, children: /* @__PURE__ */ I(bI, { ...A }) });
 }
-const KI = ({ triggerText: o, tooltipContent: A, isActive: C, onToggle: e }) => {
-  const { theme: g } = k(), [n, t] = F(!1), { refs: i, floatingStyles: b } = tI({
+const FI = ({ triggerText: o, tooltipContent: A, isActive: C, onToggle: e }) => {
+  const { theme: g } = k(), [r, t] = F(!1), { refs: i, floatingStyles: b } = tI({
     placement: "bottom",
     whileElementsMounted: lI,
     middleware: [
@@ -1107,8 +1107,8 @@ const KI = ({ triggerText: o, tooltipContent: A, isActive: C, onToggle: e }) => 
         padding: 32
       })
     ]
-  }), u = C || n;
-  return /* @__PURE__ */ r(z, { children: [
+  }), u = C || r;
+  return /* @__PURE__ */ n(M, { children: [
     /* @__PURE__ */ I(
       "button",
       {
@@ -1137,30 +1137,30 @@ const KI = ({ triggerText: o, tooltipContent: A, isActive: C, onToggle: e }) => 
       }
     ) })
   ] });
-}, FI = ({
+}, QI = ({
   nodes: o,
   activeNodeId: A,
   activeSubNodeId: C,
   onNodeSelect: e,
   onSubNodeSelect: g,
-  isMobileMenuOpen: n,
+  isMobileMenuOpen: r,
   onClose: t,
   backLinkUrl: i,
   backLinkText: b,
   title: u
 }) => {
-  const { theme: a } = k(), [E, m] = F(typeof window < "u" ? window.innerWidth >= 1024 : !0), [d, v] = F(/* @__PURE__ */ new Set([A || o[0]?.id])), S = U({}), j = U(d);
-  O(() => {
+  const { theme: a } = k(), [E, m] = F(typeof window < "u" ? window.innerWidth >= 1024 : !0), [d, v] = F(/* @__PURE__ */ new Set([A || o[0]?.id])), O = U({}), j = U(d);
+  S(() => {
     const s = Array.from(d).find((x) => !j.current.has(x));
     if (s !== void 0) {
-      const x = S.current[s];
+      const x = O.current[s];
       x && setTimeout(() => {
         const f = x.closest("aside");
         f && f.scrollTo({ top: x.offsetTop - 24, behavior: "smooth" });
       }, 450);
     }
     j.current = new Set(d);
-  }, [d]), O(() => {
+  }, [d]), S(() => {
     const s = () => m(window.innerWidth >= 1024);
     return window.addEventListener("resize", s), () => window.removeEventListener("resize", s);
   }, []);
@@ -1173,9 +1173,9 @@ const KI = ({ triggerText: o, tooltipContent: A, isActive: C, onToggle: e }) => 
   }, p = (s, x) => {
     g && g(s, x), E || t();
   };
-  return /* @__PURE__ */ r(z, { children: [
-    /* @__PURE__ */ I(W, { children: n && !E && /* @__PURE__ */ I(
-      Z.div,
+  return /* @__PURE__ */ n(M, { children: [
+    /* @__PURE__ */ I(D, { children: r && !E && /* @__PURE__ */ I(
+      z.div,
       {
         initial: { opacity: 0 },
         animate: { opacity: 1 },
@@ -1185,13 +1185,13 @@ const KI = ({ triggerText: o, tooltipContent: A, isActive: C, onToggle: e }) => 
         style: { top: "var(--fc-header-height, 80px)" }
       }
     ) }),
-    /* @__PURE__ */ r(
-      Z.aside,
+    /* @__PURE__ */ n(
+      z.aside,
       {
         initial: !1,
         animate: {
-          x: E || n ? 0 : -320,
-          visibility: E || n ? "visible" : "hidden"
+          x: E || r ? 0 : -320,
+          visibility: E || r ? "visible" : "hidden"
         },
         transition: { type: "spring", damping: 30, stiffness: 300 },
         className: `w-80 z-40 overflow-y-auto backdrop-blur-xl border-r shadow-2xl xl:shadow-none xl:sticky
@@ -1203,8 +1203,8 @@ const KI = ({ triggerText: o, tooltipContent: A, isActive: C, onToggle: e }) => 
           borderColor: `${a.colors.border}30`
         },
         children: [
-          /* @__PURE__ */ r("div", { className: "flex justify-between items-center px-4 mb-6 sticky top-0 bg-white/80 backdrop-blur-md pt-4 pb-2 z-10 lg:hidden", children: [
-            i && b ? /* @__PURE__ */ r(
+          /* @__PURE__ */ n("div", { className: "flex justify-between items-center px-4 mb-6 sticky top-0 bg-white/80 backdrop-blur-md pt-4 pb-2 z-10 lg:hidden", children: [
+            i && b ? /* @__PURE__ */ n(
               "a",
               {
                 href: i,
@@ -1215,7 +1215,7 @@ const KI = ({ triggerText: o, tooltipContent: A, isActive: C, onToggle: e }) => 
                 ]
               }
             ) : /* @__PURE__ */ I("div", {}),
-            !E && n && /* @__PURE__ */ I(
+            !E && r && /* @__PURE__ */ I(
               "button",
               {
                 onClick: t,
@@ -1227,7 +1227,7 @@ const KI = ({ triggerText: o, tooltipContent: A, isActive: C, onToggle: e }) => 
               }
             )
           ] }),
-          /* @__PURE__ */ r("nav", { className: "px-4 lg:pt-8", children: [
+          /* @__PURE__ */ n("nav", { className: "px-4 lg:pt-8", children: [
             u && /* @__PURE__ */ I(
               "h2",
               {
@@ -1238,8 +1238,8 @@ const KI = ({ triggerText: o, tooltipContent: A, isActive: C, onToggle: e }) => 
             ),
             /* @__PURE__ */ I("ul", { className: "space-y-4", children: o.map((s) => {
               const x = d.has(s.id), f = A === s.id, J = s.subNodes && s.subNodes.length > 0;
-              return /* @__PURE__ */ r("li", { ref: (R) => {
-                S.current[s.id] = R;
+              return /* @__PURE__ */ n("li", { ref: (R) => {
+                O.current[s.id] = R;
               }, className: "flex flex-col relative", children: [
                 /* @__PURE__ */ I(
                   "div",
@@ -1251,8 +1251,8 @@ const KI = ({ triggerText: o, tooltipContent: A, isActive: C, onToggle: e }) => 
                       backgroundColor: f ? `${a.colors.primary.DEFAULT}08` : "rgba(255, 255, 255, 0.6)",
                       boxShadow: f ? `0 8px 24px -6px ${a.colors.primary.DEFAULT}33` : "0 4px 12px -3px rgba(0, 0, 0, 0.1)"
                     },
-                    children: /* @__PURE__ */ r("div", { className: "relative flex items-center justify-between p-3.5", children: [
-                      /* @__PURE__ */ r(
+                    children: /* @__PURE__ */ n("div", { className: "relative flex items-center justify-between p-3.5", children: [
+                      /* @__PURE__ */ n(
                         "div",
                         {
                           className: "flex-1 text-left cursor-pointer",
@@ -1311,8 +1311,8 @@ const KI = ({ triggerText: o, tooltipContent: A, isActive: C, onToggle: e }) => 
                     ] })
                   }
                 ),
-                /* @__PURE__ */ I(W, { initial: !1, children: x && J && /* @__PURE__ */ I(
-                  Z.ul,
+                /* @__PURE__ */ I(D, { initial: !1, children: x && J && /* @__PURE__ */ I(
+                  z.ul,
                   {
                     initial: { height: 0, opacity: 0 },
                     animate: { height: "auto", opacity: 1 },
@@ -1322,12 +1322,12 @@ const KI = ({ triggerText: o, tooltipContent: A, isActive: C, onToggle: e }) => 
                     children: s.subNodes.map((R, c) => {
                       const h = C === R.id;
                       return /* @__PURE__ */ I(
-                        Z.li,
+                        z.li,
                         {
                           initial: { x: -10, opacity: 0 },
                           animate: { x: 0, opacity: 1 },
                           transition: { delay: c * 0.05 },
-                          children: /* @__PURE__ */ r(
+                          children: /* @__PURE__ */ n(
                             "button",
                             {
                               onClick: () => p(s.id, R.id),
@@ -1359,20 +1359,42 @@ const KI = ({ triggerText: o, tooltipContent: A, isActive: C, onToggle: e }) => 
     )
   ] });
 };
-function QI({ title: o, subtitle: A, image: C, video: e, isHomePage: g = !1 }) {
-  const { theme: n } = k();
-  return !o && !C && !e ? null : /* @__PURE__ */ r("div", { className: `relative w-full flex items-center justify-center ${g ? "min-h-screen" : "h-[60vh]"} overflow-hidden`, children: [
-    e && /* @__PURE__ */ I("video", { autoPlay: !0, loop: !0, muted: !0, playsInline: !0, className: "absolute inset-0 w-full h-full object-cover", children: /* @__PURE__ */ I("source", { src: e, type: "video/mp4" }) }),
-    !e && C && /* @__PURE__ */ I(
+function vI({ images: o, interval: A = 5e3, className: C = "" }) {
+  const [e, g] = F(0);
+  return S(() => {
+    if (!o || o.length <= 1) return;
+    const r = setInterval(() => {
+      g((t) => (t + 1) % o.length);
+    }, A);
+    return () => clearInterval(r);
+  }, [o, A]), !o || o.length === 0 ? null : /* @__PURE__ */ I("div", { className: `relative w-full h-full overflow-hidden ${C}`, children: /* @__PURE__ */ I(D, { initial: !1, children: /* @__PURE__ */ I(
+    z.div,
+    {
+      initial: { opacity: 0, scale: 1.05 },
+      animate: { opacity: 1, scale: 1 },
+      exit: { opacity: 0 },
+      transition: { duration: 1.5, ease: "easeInOut" },
+      className: "absolute inset-0 bg-cover bg-center",
+      style: { backgroundImage: `url('${o[e]}')` }
+    },
+    e
+  ) }) });
+}
+function JI({ title: o, subtitle: A, image: C, images: e, video: g, isHomePage: r = !1 }) {
+  const { theme: t } = k();
+  return !o && !C && (!e || e.length === 0) && !g ? null : /* @__PURE__ */ n("div", { className: `relative w-full flex items-center justify-center ${r ? "min-h-screen" : "h-[60vh]"} overflow-hidden`, children: [
+    g && /* @__PURE__ */ I("video", { autoPlay: !0, loop: !0, muted: !0, playsInline: !0, className: "absolute inset-0 w-full h-full object-cover", children: /* @__PURE__ */ I("source", { src: g, type: "video/mp4" }) }),
+    !g && e && e.length > 0 && /* @__PURE__ */ I(vI, { images: e, className: "absolute inset-0 scale-105" }),
+    !g && !e && C && /* @__PURE__ */ I(
       "div",
       {
         className: "absolute inset-0 bg-cover bg-center parallax-bg scale-105",
         style: { backgroundImage: `url('${C}')` }
       }
     ),
-    !e && !C && /* @__PURE__ */ I("div", { className: "absolute inset-0", style: { background: n.colors.bg.main } }),
+    !g && !C && (!e || e.length === 0) && /* @__PURE__ */ I("div", { className: "absolute inset-0", style: { background: t.colors.bg.main } }),
     /* @__PURE__ */ I("div", { className: "absolute inset-0 bg-linear-to-b from-black/30 via-black/10 to-transparent" }),
-    o && /* @__PURE__ */ r("div", { className: "container mx-auto px-6 relative z-10 text-center", children: [
+    o && /* @__PURE__ */ n("div", { className: "container mx-auto px-6 relative z-10 text-center", children: [
       /* @__PURE__ */ I(
         "h1",
         {
@@ -1401,9 +1423,9 @@ function QI({ title: o, subtitle: A, image: C, video: e, isHomePage: g = !1 }) {
     ] })
   ] });
 }
-function JI({ title: o, children: A, className: C = "", style: e }) {
+function TI({ title: o, children: A, className: C = "", style: e }) {
   const { theme: g } = k();
-  return /* @__PURE__ */ r("div", { className: `content-card hover-lift elevation-md transition-all duration-500 ${C}`, style: e, children: [
+  return /* @__PURE__ */ n("div", { className: `content-card hover-lift elevation-md transition-all duration-500 ${C}`, style: e, children: [
     o && /* @__PURE__ */ I(
       "h2",
       {
@@ -1415,20 +1437,20 @@ function JI({ title: o, children: A, className: C = "", style: e }) {
     A
   ] });
 }
-function TI({
+function GI({
   title: o,
   filename: A,
   description: C = "This document is available for download.",
   url: e
 }) {
-  const { theme: g } = k(), n = e || `/docs/${A}`;
-  return /* @__PURE__ */ I("div", { className: "space-y-6", children: /* @__PURE__ */ r("div", { className: "border-l-4 p-6 rounded-r shadow-sm", style: { borderLeftColor: g.colors.secondary.DEFAULT, background: g.colors.bg.card }, children: [
+  const { theme: g } = k(), r = e || `/docs/${A}`;
+  return /* @__PURE__ */ I("div", { className: "space-y-6", children: /* @__PURE__ */ n("div", { className: "border-l-4 p-6 rounded-r shadow-sm", style: { borderLeftColor: g.colors.secondary.DEFAULT, background: g.colors.bg.card }, children: [
     /* @__PURE__ */ I("h2", { className: "text-xl font-bold mb-2", style: { color: g.colors.text.primary }, children: o }),
     /* @__PURE__ */ I("p", { className: "mb-6 text-sm italic", style: { color: g.colors.text.muted }, children: C }),
-    /* @__PURE__ */ r("div", { className: "flex flex-col gap-4 p-4 border rounded max-w-md fluid-container", style: { background: g.colors.bg.cardAlt, borderColor: g.colors.border }, children: [
-      /* @__PURE__ */ r("div", { className: "flex items-center gap-4 w-full min-w-0", children: [
+    /* @__PURE__ */ n("div", { className: "flex flex-col gap-4 p-4 border rounded max-w-md fluid-container", style: { background: g.colors.bg.cardAlt, borderColor: g.colors.border }, children: [
+      /* @__PURE__ */ n("div", { className: "flex items-center gap-4 w-full min-w-0", children: [
         /* @__PURE__ */ I("div", { className: "p-3 rounded-lg shrink-0", style: { backgroundColor: `${g.colors.secondary.DEFAULT}33`, color: g.colors.secondary.DEFAULT }, children: /* @__PURE__ */ I("svg", { xmlns: "http://www.w3.org/2000/svg", className: "h-8 w-8", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor", children: /* @__PURE__ */ I("path", { strokeLinecap: "round", strokeLinejoin: "round", strokeWidth: 1.5, d: "M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z" }) }) }),
-        /* @__PURE__ */ r("div", { className: "min-w-0 flex-1", children: [
+        /* @__PURE__ */ n("div", { className: "min-w-0 flex-1", children: [
           /* @__PURE__ */ I(
             "div",
             {
@@ -1444,11 +1466,11 @@ function TI({
           /* @__PURE__ */ I("div", { className: "text-xs mt-1 font-medium", style: { color: g.colors.text.muted }, children: "PDF Document" })
         ] })
       ] }),
-      /* @__PURE__ */ r("div", { className: "grid grid-cols-2 gap-3 mt-2", children: [
+      /* @__PURE__ */ n("div", { className: "grid grid-cols-2 gap-3 mt-2", children: [
         /* @__PURE__ */ I(
           "a",
           {
-            href: n,
+            href: r,
             target: "_blank",
             rel: "noopener noreferrer",
             className: "w-full flex items-center justify-center px-4 py-2.5 text-sm font-bold rounded-lg transition-all border-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2",
@@ -1466,7 +1488,7 @@ function TI({
         /* @__PURE__ */ I(
           "a",
           {
-            href: n,
+            href: r,
             download: !0,
             className: "w-full flex items-center justify-center px-4 py-2.5 text-black text-sm font-bold rounded-lg transition-all shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2",
             style: { backgroundColor: g.colors.secondary.DEFAULT },
@@ -1480,7 +1502,7 @@ function TI({
     ] })
   ] }) });
 }
-function GI({ children: o, variant: A = "primary", className: C = "" }) {
+function YI({ children: o, variant: A = "primary", className: C = "" }) {
   const { theme: e } = k(), g = "inline-block px-4 py-1 rounded-full font-bold text-xs uppercase tracking-widest";
   return A === "primary" ? /* @__PURE__ */ I("div", { className: `${g} ${C}`, style: { backgroundColor: e.colors.primary.DEFAULT, color: "#ffffff" }, children: o }) : A === "secondary" ? /* @__PURE__ */ I("div", { className: `${g} ${C}`, style: { backgroundColor: e.colors.secondary.DEFAULT, color: e.colors.primary.dark }, children: o }) : /* @__PURE__ */ I("div", { className: `${g} ${{
     blue: "bg-blue-100 text-blue-800",
@@ -1489,23 +1511,23 @@ function GI({ children: o, variant: A = "primary", className: C = "" }) {
     gray: "bg-gray-100 text-gray-800"
   }[A]} ${C}`, children: o });
 }
-function YI({ title: o, children: A, className: C = "" }) {
+function LI({ title: o, children: A, className: C = "" }) {
   const { theme: e } = k();
-  return /* @__PURE__ */ r("div", { className: `p-6 rounded-xl bg-white shadow-sm border border-black/5 ${C}`, children: [
+  return /* @__PURE__ */ n("div", { className: `p-6 rounded-xl bg-white shadow-sm border border-black/5 ${C}`, children: [
     /* @__PURE__ */ I("h3", { className: "font-bold mb-2", style: { color: e.colors.secondary.dark }, children: o }),
     /* @__PURE__ */ I("div", { className: "text-sm leading-relaxed", style: { color: e.colors.text.muted }, children: A })
   ] });
 }
-function LI({ preheader: o, title: A, url: C, className: e = "" }) {
+function zI({ preheader: o, title: A, url: C, className: e = "" }) {
   const { theme: g } = k();
-  return /* @__PURE__ */ r(
+  return /* @__PURE__ */ n(
     "a",
     {
       href: C,
       className: `flex items-center justify-between p-6 rounded-xl border-2 transition-all duration-300 group ${e}`,
       style: { borderColor: g.colors.secondary.DEFAULT, color: g.colors.text.primary, backgroundColor: "white" },
       children: [
-        /* @__PURE__ */ r("div", { children: [
+        /* @__PURE__ */ n("div", { children: [
           o && /* @__PURE__ */ I("span", { className: "block text-xs uppercase tracking-widest mb-1", style: { color: g.colors.secondary.dark }, children: o }),
           /* @__PURE__ */ I("span", { className: "text-xl font-bold", children: A })
         ] }),
@@ -1514,26 +1536,26 @@ function LI({ preheader: o, title: A, url: C, className: e = "" }) {
     }
   );
 }
-function zI({
+function MI({
   date: o,
   title: A,
   time: C,
   location: e,
   actionLabel: g = "Register Now",
-  actionUrl: n = "#",
+  actionUrl: r = "#",
   className: t = ""
 }) {
   const { theme: i } = k(), b = o.split(" "), u = b[0], a = b.length > 1 ? b[1].replace(",", "") : "";
-  return /* @__PURE__ */ I("div", { className: `content-card hover-lift elevation-md transition-all duration-500 border-l-8 ${t}`, style: { borderLeftColor: i.colors.secondary.DEFAULT, backgroundColor: "white" }, children: /* @__PURE__ */ r("div", { className: "flex flex-col md:flex-row md:items-center justify-between gap-6", children: [
-    /* @__PURE__ */ r("div", { className: "flex gap-6 items-center", children: [
-      /* @__PURE__ */ r("div", { className: "text-center min-w-[80px]", children: [
+  return /* @__PURE__ */ I("div", { className: `content-card hover-lift elevation-md transition-all duration-500 border-l-8 ${t}`, style: { borderLeftColor: i.colors.secondary.DEFAULT, backgroundColor: "white" }, children: /* @__PURE__ */ n("div", { className: "flex flex-col md:flex-row md:items-center justify-between gap-6", children: [
+    /* @__PURE__ */ n("div", { className: "flex gap-6 items-center", children: [
+      /* @__PURE__ */ n("div", { className: "text-center min-w-[80px]", children: [
         /* @__PURE__ */ I("span", { className: "block text-2xl font-black", style: { color: i.colors.text.primary }, children: a }),
         /* @__PURE__ */ I("span", { className: "block text-xs font-bold uppercase tracking-widest", style: { color: i.colors.secondary.dark }, children: u })
       ] }),
       /* @__PURE__ */ I("div", { className: "w-px h-12 bg-black/10" }),
-      /* @__PURE__ */ r("div", { children: [
+      /* @__PURE__ */ n("div", { children: [
         /* @__PURE__ */ I("h3", { className: "text-xl font-bold mb-1", style: { color: i.colors.text.primary }, children: A }),
-        (C || e) && /* @__PURE__ */ r("p", { className: "text-sm font-medium", style: { color: i.colors.text.muted }, children: [
+        (C || e) && /* @__PURE__ */ n("p", { className: "text-sm font-medium", style: { color: i.colors.text.muted }, children: [
           C,
           " ",
           C && e && "•",
@@ -1545,7 +1567,7 @@ function zI({
     /* @__PURE__ */ I(
       "a",
       {
-        href: n,
+        href: r,
         className: "inline-block text-center px-6 py-2 rounded-lg font-bold text-sm transition-all border-2",
         style: { borderColor: i.colors.secondary.DEFAULT, color: i.colors.text.primary },
         onMouseEnter: (E) => {
@@ -1559,9 +1581,9 @@ function zI({
     )
   ] }) });
 }
-function MI({ title: o, description: A, buttonText: C, buttonUrl: e, className: g = "" }) {
-  const { theme: n } = k();
-  return /* @__PURE__ */ r("section", { className: `content-card text-center py-12 ${g}`, style: { backgroundColor: n.colors.primary.dark, color: "#ffffff" }, children: [
+function ZI({ title: o, description: A, buttonText: C, buttonUrl: e, className: g = "" }) {
+  const { theme: r } = k();
+  return /* @__PURE__ */ n("section", { className: `content-card text-center py-12 ${g}`, style: { backgroundColor: r.colors.primary.dark, color: "#ffffff" }, children: [
     /* @__PURE__ */ I("h2", { className: "text-3xl font-serif font-black mb-4", children: o }),
     /* @__PURE__ */ I("p", { className: "text-white/80 mb-8 max-w-2xl mx-auto leading-relaxed", children: A }),
     /* @__PURE__ */ I(
@@ -1569,28 +1591,28 @@ function MI({ title: o, description: A, buttonText: C, buttonUrl: e, className: 
       {
         href: e,
         className: "inline-block px-8 py-4 rounded-xl font-black uppercase tracking-widest transition-all hover:scale-105",
-        style: { backgroundColor: n.colors.secondary.DEFAULT, color: n.colors.primary.dark },
+        style: { backgroundColor: r.colors.secondary.DEFAULT, color: r.colors.primary.dark },
         children: C
       }
     )
   ] });
 }
-function ZI({
+function PI({
   title: o = "Need Immediate Help?",
   description: A = "If you or someone you know is in crisis, help is available 24/7 through these dedicated services.",
   contacts: C,
   preheader: e = "Crisis & Support"
 }) {
   const { theme: g } = k();
-  return /* @__PURE__ */ r("section", { "aria-label": "Crisis and Emergency Contacts", className: "py-16 relative overflow-hidden", style: { background: g.colors.bg.mainTo }, children: [
+  return /* @__PURE__ */ n("section", { "aria-label": "Crisis and Emergency Contacts", className: "py-16 relative overflow-hidden", style: { background: g.colors.bg.mainTo }, children: [
     /* @__PURE__ */ I("div", { className: "absolute inset-0 opacity-5 pointer-events-none", "aria-hidden": "true", children: /* @__PURE__ */ I("div", { className: "absolute inset-0", style: { backgroundImage: `radial-gradient(circle at 2px 2px, ${g.colors.secondary.dark} 1px, transparent 0)`, backgroundSize: "40px 40px" } }) }),
-    /* @__PURE__ */ I("div", { className: "container mx-auto px-6 relative z-10", children: /* @__PURE__ */ r("div", { className: "flex flex-col md:flex-row items-center justify-between gap-12", children: [
-      /* @__PURE__ */ r("div", { className: "w-full md:w-1/3", children: [
+    /* @__PURE__ */ I("div", { className: "container mx-auto px-6 relative z-10", children: /* @__PURE__ */ n("div", { className: "flex flex-col md:flex-row items-center justify-between gap-12", children: [
+      /* @__PURE__ */ n("div", { className: "w-full md:w-1/3", children: [
         /* @__PURE__ */ I("div", { className: "inline-block px-4 py-1 rounded-full font-bold text-[10px] uppercase tracking-[0.2em] mb-4", style: { backgroundColor: g.colors.secondary.DEFAULT, color: g.colors.text.primary }, children: e }),
         /* @__PURE__ */ I("h2", { className: "text-4xl font-serif font-black leading-tight mb-4", style: { color: g.colors.text.primary }, children: o }),
         /* @__PURE__ */ I("p", { className: "text-lg leading-relaxed", style: { color: g.colors.text.muted }, children: A })
       ] }),
-      /* @__PURE__ */ I("div", { className: "w-full md:w-2/3 grid sm:grid-cols-2 gap-6", children: C.map((n, t) => /* @__PURE__ */ r(
+      /* @__PURE__ */ I("div", { className: "w-full md:w-2/3 grid sm:grid-cols-2 gap-6", children: C.map((r, t) => /* @__PURE__ */ n(
         "div",
         {
           className: "p-6 sm:p-8 rounded-3xl border transition-all duration-300 group hover-lift elevation-sm fluid-container",
@@ -1599,8 +1621,8 @@ function ZI({
             borderColor: `${g.colors.secondary.DEFAULT}20`
           },
           children: [
-            /* @__PURE__ */ I("span", { className: "block text-[10px] font-black uppercase tracking-widest mb-3", style: { color: g.colors.secondary.dark }, children: n.label }),
-            /* @__PURE__ */ I("div", { className: "flex flex-col gap-2", children: n.number.split(" or ").map((i, b) => /* @__PURE__ */ I(
+            /* @__PURE__ */ I("span", { className: "block text-[10px] font-black uppercase tracking-widest mb-3", style: { color: g.colors.secondary.dark }, children: r.label }),
+            /* @__PURE__ */ I("div", { className: "flex flex-col gap-2", children: r.number.split(" or ").map((i, b) => /* @__PURE__ */ I(
               "a",
               {
                 href: `tel:${i.replace(/[^0-9]/g, "")}`,
@@ -1610,12 +1632,12 @@ function ZI({
                   textDecorationColor: g.colors.secondary.DEFAULT,
                   fontSize: "clamp(1rem, 10.5cqw, 1.875rem)"
                 },
-                "aria-label": `Call ${n.label}: ${i}`,
+                "aria-label": `Call ${r.label}: ${i}`,
                 children: i
               },
               b
             )) }),
-            /* @__PURE__ */ I("p", { className: "text-sm font-medium mt-1", style: { color: g.colors.text.muted }, children: n.description })
+            /* @__PURE__ */ I("p", { className: "text-sm font-medium mt-1", style: { color: g.colors.text.muted }, children: r.description })
           ]
         },
         t
@@ -1623,78 +1645,78 @@ function ZI({
     ] }) })
   ] });
 }
-function PI({ rows: o }) {
+function BI({ rows: o }) {
   const { theme: A } = k();
-  return /* @__PURE__ */ r(z, { children: [
-    /* @__PURE__ */ r("table", { className: "w-full text-sm text-left hidden md:table", children: [
-      /* @__PURE__ */ I("thead", { children: /* @__PURE__ */ r("tr", { className: "border-b-2", style: { borderColor: `${A.colors.secondary.DEFAULT}40` }, children: [
+  return /* @__PURE__ */ n(M, { children: [
+    /* @__PURE__ */ n("table", { className: "w-full text-sm text-left hidden md:table", children: [
+      /* @__PURE__ */ I("thead", { children: /* @__PURE__ */ n("tr", { className: "border-b-2", style: { borderColor: `${A.colors.secondary.DEFAULT}40` }, children: [
         /* @__PURE__ */ I("th", { className: "font-bold pb-3", style: { color: A.colors.secondary.dark }, children: "Date" }),
         /* @__PURE__ */ I("th", { className: "font-bold pb-3", style: { color: A.colors.secondary.dark }, children: "Title" }),
         /* @__PURE__ */ I("th", { className: "font-bold pb-3", style: { color: A.colors.secondary.dark }, children: "Documents" })
       ] }) }),
-      /* @__PURE__ */ I("tbody", { className: "divide-y divide-gray-200", children: o.map((C, e) => /* @__PURE__ */ r("tr", { children: [
+      /* @__PURE__ */ I("tbody", { className: "divide-y divide-gray-200", children: o.map((C, e) => /* @__PURE__ */ n("tr", { children: [
         /* @__PURE__ */ I("td", { className: "py-4 font-medium", style: { color: A.colors.text.primary }, children: C.date }),
         /* @__PURE__ */ I("td", { className: "py-4", style: { color: A.colors.text.primary }, children: C.title }),
-        /* @__PURE__ */ I("td", { className: "py-4", children: /* @__PURE__ */ I("div", { className: "flex gap-4", children: C.links.map((g, n) => /* @__PURE__ */ r("span", { children: [
+        /* @__PURE__ */ I("td", { className: "py-4", children: /* @__PURE__ */ I("div", { className: "flex gap-4", children: C.links.map((g, r) => /* @__PURE__ */ n("span", { children: [
           /* @__PURE__ */ I("a", { href: g.url, className: "font-bold hover:underline", style: { color: A.colors.secondary.dark }, children: g.label }),
-          n < C.links.length - 1 && /* @__PURE__ */ I("span", { className: "ml-4", style: { color: A.colors.text.muted }, children: "|" })
-        ] }, n)) }) })
+          r < C.links.length - 1 && /* @__PURE__ */ I("span", { className: "ml-4", style: { color: A.colors.text.muted }, children: "|" })
+        ] }, r)) }) })
       ] }, e)) })
     ] }),
-    /* @__PURE__ */ I("div", { className: "md:hidden space-y-4", children: o.map((C, e) => /* @__PURE__ */ r("div", { className: "p-4 rounded-lg border border-gray-100 bg-white shadow-sm", children: [
+    /* @__PURE__ */ I("div", { className: "md:hidden space-y-4", children: o.map((C, e) => /* @__PURE__ */ n("div", { className: "p-4 rounded-lg border border-gray-100 bg-white shadow-sm", children: [
       /* @__PURE__ */ I("div", { className: "text-xs uppercase tracking-wider font-bold mb-1", style: { color: A.colors.secondary.dark }, children: C.date }),
       /* @__PURE__ */ I("div", { className: "font-bold mb-3", style: { color: A.colors.text.primary }, children: C.title }),
-      /* @__PURE__ */ I("div", { className: "flex flex-wrap gap-4 text-sm font-bold", style: { color: A.colors.secondary.dark }, children: C.links.map((g, n) => /* @__PURE__ */ r("span", { className: "flex items-center", children: [
+      /* @__PURE__ */ I("div", { className: "flex flex-wrap gap-4 text-sm font-bold", style: { color: A.colors.secondary.dark }, children: C.links.map((g, r) => /* @__PURE__ */ n("span", { className: "flex items-center", children: [
         /* @__PURE__ */ I("a", { href: g.url, className: "hover:underline", children: g.label }),
-        n < C.links.length - 1 && /* @__PURE__ */ I("span", { className: "mx-4 font-normal text-gray-300", children: "|" })
-      ] }, n)) })
+        r < C.links.length - 1 && /* @__PURE__ */ I("span", { className: "mx-4 font-normal text-gray-300", children: "|" })
+      ] }, r)) })
     ] }, e)) })
   ] });
 }
-function BI({ title: o, className: A = "" }) {
+function DI({ title: o, className: A = "" }) {
   const { theme: C } = k();
-  return /* @__PURE__ */ r("div", { className: `flex items-center justify-between mb-8 ${A}`, children: [
+  return /* @__PURE__ */ n("div", { className: `flex items-center justify-between mb-8 ${A}`, children: [
     /* @__PURE__ */ I("h2", { className: "text-3xl font-serif font-black", style: { color: C.colors.text.primary }, children: o }),
     /* @__PURE__ */ I("div", { className: "h-1 flex-1 mx-8 bg-black/5 rounded-full" })
   ] });
 }
-function DI({ title: o, number: A, description: C, href: e, className: g = "" }) {
-  const { theme: n } = k();
-  return /* @__PURE__ */ r("div", { className: `content-card text-center hover-lift elevation-md transition-all duration-500 border-b-4 ${g}`, style: { borderBottomColor: n.colors.secondary.DEFAULT, backgroundColor: "white" }, children: [
-    /* @__PURE__ */ I("h3", { className: "font-bold text-xs uppercase tracking-widest mb-2", style: { color: n.colors.secondary.dark }, children: o }),
+function WI({ title: o, number: A, description: C, href: e, className: g = "" }) {
+  const { theme: r } = k();
+  return /* @__PURE__ */ n("div", { className: `content-card text-center hover-lift elevation-md transition-all duration-500 border-b-4 ${g}`, style: { borderBottomColor: r.colors.secondary.DEFAULT, backgroundColor: "white" }, children: [
+    /* @__PURE__ */ I("h3", { className: "font-bold text-xs uppercase tracking-widest mb-2", style: { color: r.colors.secondary.dark }, children: o }),
     e ? /* @__PURE__ */ I(
       "a",
       {
         href: e,
         className: "text-2xl font-black mb-2 block hover:underline decoration-4 underline-offset-4 transition-all",
-        style: { color: n.colors.text.primary, textDecorationColor: n.colors.secondary.DEFAULT },
+        style: { color: r.colors.text.primary, textDecorationColor: r.colors.secondary.DEFAULT },
         children: A
       }
     ) : /* @__PURE__ */ I(
       "span",
       {
         className: "text-2xl font-black mb-2 block",
-        style: { color: n.colors.text.primary },
+        style: { color: r.colors.text.primary },
         children: A
       }
     ),
-    /* @__PURE__ */ I("p", { className: "text-sm", style: { color: n.colors.text.muted }, children: C })
+    /* @__PURE__ */ I("p", { className: "text-sm", style: { color: r.colors.text.muted }, children: C })
   ] });
 }
-function WI({
+function VI({
   name: o,
   description: A,
   categories: C = [],
   address: e,
   hours: g,
-  website: n,
+  website: r,
   email: t,
   phone: i,
   className: b = ""
 }) {
   const { theme: u } = k();
-  return /* @__PURE__ */ I("div", { className: `content-card hover-lift elevation-md transition-all duration-500 ${b}`, style: { backgroundColor: "white" }, children: /* @__PURE__ */ r("div", { className: "flex flex-col md:flex-row justify-between gap-6", children: [
-    /* @__PURE__ */ r("div", { className: "flex-1", children: [
+  return /* @__PURE__ */ I("div", { className: `content-card hover-lift elevation-md transition-all duration-500 ${b}`, style: { backgroundColor: "white" }, children: /* @__PURE__ */ n("div", { className: "flex flex-col md:flex-row justify-between gap-6", children: [
+    /* @__PURE__ */ n("div", { className: "flex-1", children: [
       C.length > 0 && /* @__PURE__ */ I("div", { className: "flex flex-wrap items-center gap-3 mb-3", children: C.map((a, E) => /* @__PURE__ */ I(
         "span",
         {
@@ -1706,8 +1728,8 @@ function WI({
       )) }),
       /* @__PURE__ */ I("h3", { className: "text-xl font-bold mb-1", style: { color: u.colors.text.primary }, children: o }),
       /* @__PURE__ */ I("p", { className: "text-sm", style: { color: u.colors.text.muted }, children: A }),
-      /* @__PURE__ */ r("div", { className: "flex flex-col gap-2 mt-4", children: [
-        e && /* @__PURE__ */ r(
+      /* @__PURE__ */ n("div", { className: "flex flex-col gap-2 mt-4", children: [
+        e && /* @__PURE__ */ n(
           "a",
           {
             href: `https://maps.google.com/?q=${encodeURIComponent(e)}`,
@@ -1722,14 +1744,14 @@ function WI({
             ]
           }
         ),
-        g && /* @__PURE__ */ r("p", { className: "inline-flex items-start text-sm font-medium", style: { color: u.colors.text.primary }, children: [
+        g && /* @__PURE__ */ n("p", { className: "inline-flex items-start text-sm font-medium", style: { color: u.colors.text.primary }, children: [
           /* @__PURE__ */ I("span", { className: "mr-1.5", "aria-hidden": "true", children: "🕒" }),
           /* @__PURE__ */ I("span", { className: "text-left leading-tight", children: g })
         ] }),
-        n && /* @__PURE__ */ r(
+        r && /* @__PURE__ */ n(
           "a",
           {
-            href: n.startsWith("http") ? n : `https://${n}`,
+            href: r.startsWith("http") ? r : `https://${r}`,
             target: "_blank",
             rel: "noopener noreferrer",
             className: "inline-flex items-center text-sm font-bold hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2",
@@ -1737,11 +1759,11 @@ function WI({
             "aria-label": `Visit website for ${o} (opens in new tab)`,
             children: [
               /* @__PURE__ */ I("span", { className: "mr-1.5", "aria-hidden": "true", children: "🌐" }),
-              /* @__PURE__ */ I("span", { className: "text-left leading-tight truncate max-w-[250px] sm:max-w-xs", children: n.replace(/^https?:\/\/(www\.)?/, "").replace(/\/$/, "") })
+              /* @__PURE__ */ I("span", { className: "text-left leading-tight truncate max-w-[250px] sm:max-w-xs", children: r.replace(/^https?:\/\/(www\.)?/, "").replace(/\/$/, "") })
             ]
           }
         ),
-        t && /* @__PURE__ */ r(
+        t && /* @__PURE__ */ n(
           "a",
           {
             href: `mailto:${t}`,
@@ -1756,7 +1778,7 @@ function WI({
         )
       ] })
     ] }),
-    i && /* @__PURE__ */ r(
+    i && /* @__PURE__ */ n(
       "a",
       {
         href: `tel:${i.replace(/[^0-9+]/g, "")}`,
@@ -1773,44 +1795,45 @@ function WI({
     )
   ] }) });
 }
-function VI() {
-  const { pathname: o } = D(), A = U(0);
-  return rI(() => {
+function qI() {
+  const { pathname: o } = W(), A = U(0);
+  return nI(() => {
     "scrollRestoration" in window.history && (window.history.scrollRestoration = "manual");
     const C = document.documentElement.style.scrollBehavior, e = document.body.style.scrollBehavior;
     document.documentElement.style.scrollBehavior = "auto", document.body.style.scrollBehavior = "auto", A.current = 0;
     const g = setInterval(() => {
       window.scrollTo(0, 0), document.documentElement.scrollTop = 0, document.body.scrollTop = 0;
-    }, 10), n = setTimeout(() => {
+    }, 10), r = setTimeout(() => {
       clearInterval(g), document.documentElement.style.scrollBehavior = C, document.body.style.scrollBehavior = e;
     }, 1e3);
     return () => {
-      clearInterval(g), clearTimeout(n), document.documentElement.style.scrollBehavior = C, document.body.style.scrollBehavior = e;
+      clearInterval(g), clearTimeout(r), document.documentElement.style.scrollBehavior = C, document.body.style.scrollBehavior = e;
     };
   }, [o]), null;
 }
 export {
   dI as APP_THEME,
-  LI as ActionCard,
-  GI as Badge,
-  MI as CallToAction,
-  DI as ContactCard,
-  JI as ContentCard,
-  PI as DocumentTable,
-  ZI as EmergencyBlock,
-  zI as EventCard,
-  YI as FeatureCard,
+  zI as ActionCard,
+  YI as Badge,
+  ZI as CallToAction,
+  WI as ContactCard,
+  TI as ContentCard,
+  BI as DocumentTable,
+  PI as EmergencyBlock,
+  MI as EventCard,
+  LI as FeatureCard,
   fI as Footer,
-  NI as Layout,
+  vI as ImageCarousel,
+  KI as Layout,
   Y as NavDropdown,
   kI as Navbar,
-  TI as PDFPlaceholder,
-  QI as PageHeader,
-  WI as ResourceCard,
-  VI as ScrollToTop,
-  BI as SectionHeader,
-  FI as Sidebar,
-  KI as SmartTooltip,
+  GI as PDFPlaceholder,
+  JI as PageHeader,
+  VI as ResourceCard,
+  qI as ScrollToTop,
+  DI as SectionHeader,
+  QI as Sidebar,
+  FI as SmartTooltip,
   hI as ThemeProvider,
   uI as Topbar,
   $ as businessItems,

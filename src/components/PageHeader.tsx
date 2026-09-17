@@ -1,18 +1,20 @@
 import { useTheme } from '../theme/ThemeContext';
+import { ImageCarousel } from './ImageCarousel';
 
 export interface PageHeaderProps {
     title?: string;
     subtitle?: string;
     image?: string;
+    images?: string[];
     video?: string;
     /** If true, the header takes up min-h-screen. Otherwise h-[60vh] */
     isHomePage?: boolean;
 }
 
-export function PageHeader({ title, subtitle, image, video, isHomePage = false }: PageHeaderProps) {
+export function PageHeader({ title, subtitle, image, images, video, isHomePage = false }: PageHeaderProps) {
     const { theme } = useTheme();
 
-    if (!title && !image && !video) {
+    if (!title && !image && (!images || images.length === 0) && !video) {
         return null;
     }
 
@@ -24,15 +26,19 @@ export function PageHeader({ title, subtitle, image, video, isHomePage = false }
                     <source src={video} type="video/mp4" />
                 </video>
             )}
-            {/* Image background */}
-            {!video && image && (
+            {/* Carousel background */}
+            {!video && images && images.length > 0 && (
+                <ImageCarousel images={images} className="absolute inset-0 scale-105" />
+            )}
+            {/* Single Image background */}
+            {!video && !images && image && (
                 <div
                     className="absolute inset-0 bg-cover bg-center parallax-bg scale-105"
                     style={{ backgroundImage: `url('${image}')` }}
                 />
             )}
             {/* Default fallback */}
-            {!video && !image && (
+            {!video && !image && (!images || images.length === 0) && (
                 <div className="absolute inset-0" style={{ background: theme.colors.bg.main }} />
             )}
             {/* Overlay */}

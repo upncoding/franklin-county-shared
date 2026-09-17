@@ -2,8 +2,9 @@ export interface PageHeaderProps {
     title?: string;
     subtitle?: string;
     image?: string;
+    images?: string[];
     video?: string;
     /** If true, the header takes up min-h-screen. Otherwise h-[60vh] */
     isHomePage?: boolean;
 }
-export declare function PageHeader({ title, subtitle, image, video, isHomePage }: PageHeaderProps): import("react").JSX.Element | null;
+export declare function PageHeader({ title, subtitle, image, images, video, isHomePage }: PageHeaderProps): import("react").JSX.Element | null;
