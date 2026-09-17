@@ -34,3 +34,4 @@ export * from './components/SmartTooltip';
 export * from './components/Sidebar';
 export { PageHeader } from './components/PageHeader';
 export { ContentCard } from './components/ContentCard';
+export { PDFPlaceholder } from './components/PDFPlaceholder';

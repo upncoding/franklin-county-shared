@@ -20,9 +20,7 @@ export function ContentCard({ title, children, className = '' }: ContentCardProp
                     {title}
                 </h2>
             )}
-            <div className="space-y-4 text-lg leading-relaxed text-gray-800">
-                {children}
-            </div>
+            {children}
         </div>
     );
 }

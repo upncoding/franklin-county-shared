@@ -1,8 +1,8 @@
 import { jsx as I, jsxs as t, Fragment as Z } from "react/jsx-runtime";
-import { createContext as AI, useEffect as O, useContext as eI, forwardRef as nI, useState as J, useRef as f } from "react";
+import { createContext as AI, useEffect as S, useContext as eI, forwardRef as nI, useState as Q, useRef as O } from "react";
 import { Link as oI, useLocation as V, NavLink as B } from "react-router-dom";
 import { useFloating as tI, autoUpdate as rI, offset as iI, flip as aI, shift as lI, FloatingPortal as sI } from "@floating-ui/react";
-import { AnimatePresence as W, motion as L } from "framer-motion";
+import { AnimatePresence as D, motion as L } from "framer-motion";
 const cI = {
   name: "Vibrant Adirondack",
   colors: {
@@ -73,24 +73,24 @@ const cI = {
     border: "rgba(22, 163, 74, 0.2)"
   }
 }, pI = () => cI, q = AI(void 0);
-function hI({ children: n, theme: e }) {
+function dI({ children: n, theme: e }) {
   const C = e ?? pI();
-  return O(() => {
+  return S(() => {
     const A = document.documentElement, g = C.colors;
     A.style.setProperty("--theme-bg-main", g.bg.main), A.style.setProperty("--theme-bg-main-from", g.bg.mainFrom), A.style.setProperty("--theme-bg-main-via", g.bg.mainVia), A.style.setProperty("--theme-bg-main-to", g.bg.mainTo), A.style.setProperty("--theme-bg-card", g.bg.card), A.style.setProperty("--theme-bg-card-alt", g.bg.cardAlt), A.style.setProperty("--theme-bg-sidebar", g.bg.sidebar), A.style.setProperty("--theme-bg-header", g.bg.header), A.style.setProperty("--theme-bg-footer", g.bg.footer), A.style.setProperty("--theme-text-primary", g.text.primary), A.style.setProperty("--theme-text-secondary", g.text.secondary), A.style.setProperty("--theme-text-muted", g.text.muted), A.style.setProperty("--theme-text-on-dark", g.text.onDark), A.style.setProperty("--theme-primary", g.primary.DEFAULT), A.style.setProperty("--theme-primary-light", g.primary.light), A.style.setProperty("--theme-primary-dark", g.primary.dark), A.style.setProperty("--theme-secondary", g.secondary.DEFAULT), A.style.setProperty("--theme-secondary-light", g.secondary.light), A.style.setProperty("--theme-secondary-dark", g.secondary.dark), A.style.setProperty("--theme-hover-card", g.hover.card), A.style.setProperty("--theme-hover-sidebar", g.hover.sidebar), A.style.setProperty("--theme-hover-button", g.hover.button), A.style.setProperty("--theme-hover-link", g.hover.link), A.style.setProperty("--theme-shadow", g.shadow), A.style.setProperty("--theme-shadow-dark", g.shadowDark), A.style.setProperty("--theme-glow", g.glow), A.style.setProperty("--theme-border", g.border);
   }, [C]), /* @__PURE__ */ I(q.Provider, { value: { theme: C }, children: n });
 }
-function b() {
+function v() {
   const n = eI(q);
   if (n === void 0)
     throw new Error("useTheme must be used within a ThemeProvider");
   return n;
 }
 const M = nI(
-  ({ item: n, className: e, style: C, children: A, ...g }, c) => n.url.startsWith("http") ? /* @__PURE__ */ I(
+  ({ item: n, className: e, style: C, children: A, ...g }, a) => n.url.startsWith("http") ? /* @__PURE__ */ I(
     "a",
     {
-      ref: c,
+      ref: a,
       href: n.url,
       target: "_blank",
       rel: "noopener noreferrer",
@@ -102,7 +102,7 @@ const M = nI(
   ) : /* @__PURE__ */ I(
     oI,
     {
-      ref: c,
+      ref: a,
       to: n.url,
       className: e,
       style: C,
@@ -118,55 +118,55 @@ const z = ({
   items: C,
   columns: A = 1,
   textColor: g,
-  variant: c = "standard"
+  variant: a = "standard"
 }) => {
-  const [a, h] = J(!1), [K, U] = J(null), i = f(null), j = f(null), p = f(null), l = f(null), x = f(null), S = f(!1), { theme: w } = b(), N = V(), v = `nav-menu-${n.replace(/\s+/g, "-").toLowerCase()}`, d = C.some((o) => N.pathname === o.url ? !0 : o.subItems ? o.subItems.some((k) => N.pathname === k.url) : !1), r = N.pathname === e || d, u = () => {
-    if (j.current) {
-      const o = j.current.getBoundingClientRect();
-      U(o.bottom + 8);
+  const [r, d] = Q(!1), [U, K] = Q(null), l = O(null), f = O(null), p = O(null), s = O(null), x = O(null), j = O(!1), { theme: w } = v(), F = V(), b = `nav-menu-${n.replace(/\s+/g, "-").toLowerCase()}`, h = C.some((o) => F.pathname === o.url ? !0 : o.subItems ? o.subItems.some((k) => F.pathname === k.url) : !1), i = F.pathname === e || h, u = () => {
+    if (f.current) {
+      const o = f.current.getBoundingClientRect();
+      K(o.bottom + 8);
     }
-    window.dispatchEvent(new CustomEvent("navdropdown:opened", { detail: { menuId: v } })), h(!0);
-  }, y = () => {
-    h(!1), S.current = !1, j.current?.focus();
+    window.dispatchEvent(new CustomEvent("navdropdown:opened", { detail: { menuId: b } })), d(!0);
+  }, E = () => {
+    d(!1), j.current = !1, f.current?.focus();
   };
-  O(() => {
+  S(() => {
     const o = (k) => {
-      k.detail.menuId !== v && (h(!1), S.current = !1);
+      k.detail.menuId !== b && (d(!1), j.current = !1);
     };
     return window.addEventListener("navdropdown:opened", o), () => window.removeEventListener("navdropdown:opened", o);
-  }, [v]), O(() => {
+  }, [b]), S(() => {
     const o = (k) => {
-      i.current && !i.current.contains(k.target) && (h(!1), S.current = !1);
+      l.current && !l.current.contains(k.target) && (d(!1), j.current = !1);
     };
-    return a && document.addEventListener("mousedown", o), () => document.removeEventListener("mousedown", o);
-  }, [a]), O(() => {
-    a && S.current && p.current && p.current.querySelector("a, button")?.focus();
-  }, [a]);
-  const F = (o) => {
-    o.key === " " || o.key === "ArrowDown" ? (o.preventDefault(), S.current = !0, u()) : o.key === "Escape" && (h(!1), S.current = !1);
+    return r && document.addEventListener("mousedown", o), () => document.removeEventListener("mousedown", o);
+  }, [r]), S(() => {
+    r && j.current && p.current && p.current.querySelector("a, button")?.focus();
+  }, [r]);
+  const J = (o) => {
+    o.key === " " || o.key === "ArrowDown" ? (o.preventDefault(), j.current = !0, u()) : o.key === "Escape" && (d(!1), j.current = !1);
   }, m = (o) => {
-    o.key === "Enter" || o.key === " " || o.key === "ArrowDown" ? (o.preventDefault(), S.current = !0, a ? h(!1) : u()) : o.key === "Escape" && (h(!1), S.current = !1);
-  }, s = (o) => {
+    o.key === "Enter" || o.key === " " || o.key === "ArrowDown" ? (o.preventDefault(), j.current = !0, r ? d(!1) : u()) : o.key === "Escape" && (d(!1), j.current = !1);
+  }, c = (o) => {
     if (o.key === "Escape") {
-      o.preventDefault(), y();
+      o.preventDefault(), E();
       return;
     }
     if (o.key === "ArrowDown" || o.key === "ArrowUp") {
       if (o.preventDefault(), !p.current) return;
-      const k = Array.from(p.current.querySelectorAll("a, button")), Q = k.indexOf(document.activeElement);
-      o.key === "ArrowDown" ? k[(Q + 1) % k.length]?.focus() : k[(Q - 1 + k.length) % k.length]?.focus();
+      const k = Array.from(p.current.querySelectorAll("a, button")), N = k.indexOf(document.activeElement);
+      o.key === "ArrowDown" ? k[(N + 1) % k.length]?.focus() : k[(N - 1 + k.length) % k.length]?.focus();
     }
     if (o.key === "Tab") {
-      const k = Array.from(p.current?.querySelectorAll("a, button") ?? []), Q = k[k.length - 1];
-      !o.shiftKey && document.activeElement === Q && h(!1), o.shiftKey && document.activeElement === k[0] && (o.preventDefault(), y());
+      const k = Array.from(p.current?.querySelectorAll("a, button") ?? []), N = k[k.length - 1];
+      !o.shiftKey && document.activeElement === N && d(!1), o.shiftKey && document.activeElement === k[0] && (o.preventDefault(), E());
     }
-  }, E = () => {
-    l.current && (window.clearTimeout(l.current), l.current = null), !a && !x.current && (x.current = window.setTimeout(() => {
+  }, y = () => {
+    s.current && (window.clearTimeout(s.current), s.current = null), !r && !x.current && (x.current = window.setTimeout(() => {
       u(), x.current = null;
     }, 150));
   }, R = () => {
-    x.current && (window.clearTimeout(x.current), x.current = null), l.current = window.setTimeout(() => {
-      h(!1), l.current = null;
+    x.current && (window.clearTimeout(x.current), x.current = null), s.current = window.setTimeout(() => {
+      d(!1), s.current = null;
     }, 300);
   }, T = () => {
     switch (A) {
@@ -179,49 +179,49 @@ const z = ({
       default:
         return "md:grid-cols-1";
     }
-  }, G = a || r ? w.colors.secondary.DEFAULT : g || "rgba(255, 255, 255, 0.9)", Y = "mx-4 my-2 text-xs font-bold uppercase tracking-widest transition-colors inline-block relative z-20 bg-transparent border-0 cursor-pointer p-0";
-  return /* @__PURE__ */ t("div", { ref: i, className: "relative inline-block", onMouseLeave: R, children: [
+  }, G = r || i ? w.colors.secondary.DEFAULT : g || "rgba(255, 255, 255, 0.9)", Y = "mx-4 my-2 text-xs font-bold uppercase tracking-widest transition-colors inline-block relative z-20 bg-transparent border-0 cursor-pointer p-0";
+  return /* @__PURE__ */ t("div", { ref: l, className: "relative inline-block", onMouseLeave: R, children: [
     e !== "#" ? /* @__PURE__ */ I(
       M,
       {
-        ref: j,
+        ref: f,
         item: { label: n, url: e },
-        "aria-expanded": a,
-        "aria-controls": v,
+        "aria-expanded": r,
+        "aria-controls": b,
         className: Y,
         style: { color: G },
-        onMouseEnter: E,
-        onKeyDown: F,
+        onMouseEnter: y,
+        onKeyDown: J,
         children: n
       }
     ) : /* @__PURE__ */ I(
       "button",
       {
-        ref: j,
+        ref: f,
         type: "button",
-        "aria-expanded": a,
-        "aria-controls": v,
+        "aria-expanded": r,
+        "aria-controls": b,
         className: Y,
         style: { color: G },
-        onMouseEnter: E,
+        onMouseEnter: y,
         onKeyDown: m,
-        onClick: () => h((o) => !o),
+        onClick: () => d((o) => !o),
         children: n
       }
     ),
-    c === "fullWidth" ? (
+    a === "fullWidth" ? (
       /* ── Mega Menu (Full Width) ── */
       /* @__PURE__ */ I(
         "div",
         {
-          id: v,
+          id: b,
           ref: p,
           "aria-label": n,
-          ...a ? {} : { inert: !0 },
-          className: `fixed left-0 w-full z-[100] transition-all duration-300 ease-out ${a ? "opacity-100 translate-y-0 visible pointer-events-auto" : "opacity-0 -translate-y-2 invisible pointer-events-none"}`,
-          style: { top: K ? `${K}px` : "var(--fc-header-height, 50px)" },
-          onMouseEnter: E,
-          onKeyDown: s,
+          ...r ? {} : { inert: !0 },
+          className: `fixed left-0 w-full z-[100] transition-all duration-300 ease-out ${r ? "opacity-100 translate-y-0 visible pointer-events-auto" : "opacity-0 -translate-y-2 invisible pointer-events-none"}`,
+          style: { top: U ? `${U}px` : "var(--fc-header-height, 50px)" },
+          onMouseEnter: y,
+          onKeyDown: c,
           children: /* @__PURE__ */ I("div", { className: "container mx-auto px-6", onMouseLeave: R, children: /* @__PURE__ */ I(
             "div",
             {
@@ -232,7 +232,7 @@ const z = ({
                   M,
                   {
                     item: o,
-                    tabIndex: a ? 0 : -1,
+                    tabIndex: r ? 0 : -1,
                     className: "block px-4 py-2 text-sm font-medium rounded transition-all duration-200 interactive-effect border border-transparent",
                     style: { color: w.colors.text.primary },
                     children: o.label
@@ -243,14 +243,14 @@ const z = ({
                   {
                     className: "flex flex-col ml-4 mt-1 border-l-2 pl-2",
                     style: { borderColor: `${w.colors.border || "#e5e7eb"}80` },
-                    children: o.subItems.map((Q, P) => /* @__PURE__ */ I(
+                    children: o.subItems.map((N, P) => /* @__PURE__ */ I(
                       M,
                       {
-                        item: Q,
-                        tabIndex: a ? 0 : -1,
+                        item: N,
+                        tabIndex: r ? 0 : -1,
                         className: "block px-4 py-1.5 text-xs rounded transition-all duration-200 opacity-90 interactive-effect border border-transparent",
                         style: { color: w.colors.text.primary },
-                        children: Q.label
+                        children: N.label
                       },
                       P
                     ))
@@ -266,13 +266,13 @@ const z = ({
       /* @__PURE__ */ I(
         "div",
         {
-          id: v,
+          id: b,
           ref: p,
           "aria-label": n,
-          ...a ? {} : { inert: !0 },
-          className: `absolute left-1/2 -translate-x-1/2 top-full pt-4 z-[100] transition-all duration-300 ease-out ${a ? "opacity-100 translate-y-0 visible pointer-events-auto" : "opacity-0 -translate-y-2 invisible pointer-events-none"}`,
-          onMouseEnter: E,
-          onKeyDown: s,
+          ...r ? {} : { inert: !0 },
+          className: `absolute left-1/2 -translate-x-1/2 top-full pt-4 z-[100] transition-all duration-300 ease-out ${r ? "opacity-100 translate-y-0 visible pointer-events-auto" : "opacity-0 -translate-y-2 invisible pointer-events-none"}`,
+          onMouseEnter: y,
+          onKeyDown: c,
           children: /* @__PURE__ */ t(
             "div",
             {
@@ -285,7 +285,7 @@ const z = ({
                     M,
                     {
                       item: o,
-                      tabIndex: a ? 0 : -1,
+                      tabIndex: r ? 0 : -1,
                       className: "block px-4 py-3 text-sm font-bold rounded-xl transition-all duration-200 interactive-effect border border-transparent",
                       style: { color: w.colors.text.primary },
                       children: o.label
@@ -296,14 +296,14 @@ const z = ({
                     {
                       className: "flex flex-col ml-4 mt-1 border-l-2 pl-2",
                       style: { borderColor: `${w.colors.border || "#e5e7eb"}80` },
-                      children: o.subItems.map((Q, P) => /* @__PURE__ */ I(
+                      children: o.subItems.map((N, P) => /* @__PURE__ */ I(
                         M,
                         {
-                          item: Q,
-                          tabIndex: a ? 0 : -1,
+                          item: N,
+                          tabIndex: r ? 0 : -1,
                           className: "block px-4 py-2 text-xs font-medium rounded-lg transition-all duration-200 opacity-80 interactive-effect border border-transparent hover:opacity-100",
                           style: { color: w.colors.text.primary },
-                          children: Q.label
+                          children: N.label
                         },
                         P
                       ))
@@ -462,8 +462,8 @@ const z = ({
       { label: "Village Tax Roll", url: "https://www.franklincountyny.gov/departments/finance/real_property_tax_services/index.php#outer-145" }
     ]
   }
-], dI = () => {
-  const { theme: n } = b(), e = n.colors.text.onDark;
+], hI = () => {
+  const { theme: n } = v(), e = n.colors.text.onDark;
   return /* @__PURE__ */ t(
     "div",
     {
@@ -548,16 +548,16 @@ const z = ({
   onClick: C,
   textColor: A
 }) => {
-  const { theme: g } = b();
+  const { theme: g } = v();
   return /* @__PURE__ */ I(
     B,
     {
       to: n,
       onClick: C,
-      className: ({ isActive: c }) => `block w-full text-center text-2xl md:text-sm font-bold uppercase tracking-widest transition-all duration-200 py-4 px-6 rounded-2xl active:scale-95 ${c ? "" : "interactive-effect"}`,
-      style: ({ isActive: c }) => ({
-        color: c ? g.colors.secondary.DEFAULT : A || g.colors.text.primary,
-        backgroundColor: c ? `${g.colors.secondary.DEFAULT}10` : "transparent"
+      className: ({ isActive: a }) => `block w-full text-center text-2xl md:text-sm font-bold uppercase tracking-widest transition-all duration-200 py-4 px-6 rounded-2xl active:scale-95 ${a ? "" : "interactive-effect"}`,
+      style: ({ isActive: a }) => ({
+        color: a ? g.colors.secondary.DEFAULT : A || g.colors.text.primary,
+        backgroundColor: a ? `${g.colors.secondary.DEFAULT}10` : "transparent"
       }),
       children: e
     }
@@ -566,11 +566,11 @@ const z = ({
   onSearch: n,
   isMobile: e = !1
 }) => {
-  const { theme: C } = b();
+  const { theme: C } = v();
   return /* @__PURE__ */ I("form", { onSubmit: (g) => {
     g.preventDefault();
-    const a = g.currentTarget.elements.namedItem("q");
-    a.value.trim() && n && (n(a.value.trim()), a.value = "");
+    const r = g.currentTarget.elements.namedItem("q");
+    r.value.trim() && n && (n(r.value.trim()), r.value = "");
   }, role: "search", "aria-label": "Site search", className: e ? "w-full" : "", children: /* @__PURE__ */ t("div", { className: "relative flex items-center", children: [
     /* @__PURE__ */ I(
       "input",
@@ -598,18 +598,18 @@ const z = ({
       }
     )
   ] }) });
-}, EI = ({
+}, yI = ({
   siteTitle: n,
   navItems: e = [],
   showTopbar: C = !1,
   showSearch: A = !1,
   onSearch: g,
-  isMobileMenuOpen: c,
-  onMobileMenuToggle: a,
-  isMobileOrTablet: h,
-  isScrolled: K
+  isMobileMenuOpen: a,
+  onMobileMenuToggle: r,
+  isMobileOrTablet: d,
+  isScrolled: U
 }) => {
-  const { theme: U } = b(), i = U.colors.text.onDark, j = h, p = e.slice(0, 8);
+  const { theme: K } = v(), l = K.colors.text.onDark, f = d, p = e.slice(0, 8);
   return process.env.NODE_ENV !== "production" && e.length > 8 && console.warn(
     "[Navbar] navItems exceeds the 8-item maximum. Only the first 8 will be rendered."
   ), /* @__PURE__ */ t("div", { className: "flex justify-between items-center", children: [
@@ -621,11 +621,11 @@ const z = ({
           {
             src: CI,
             alt: "Franklin County Seal",
-            className: `relative transition-all duration-500 object-contain ${K || c ? "h-12 w-12" : "h-16 w-16 md:h-20 md:w-20"}`
+            className: `relative transition-all duration-500 object-contain ${U || a ? "h-12 w-12" : "h-16 w-16 md:h-20 md:w-20"}`
           }
         )
       ] }),
-      /* @__PURE__ */ t("div", { className: "flex flex-col transition-opacity duration-300 opacity-100", style: { color: i }, children: [
+      /* @__PURE__ */ t("div", { className: "flex flex-col transition-opacity duration-300 opacity-100", style: { color: l }, children: [
         /* @__PURE__ */ I("span", { className: "text-xs uppercase tracking-[0.3em] font-light leading-tight", children: "Franklin County" }),
         /* @__PURE__ */ I("span", { className: "font-serif font-black text-xl md:text-2xl leading-none tracking-tight", children: n })
       ] })
@@ -633,27 +633,27 @@ const z = ({
     p.length > 0 && /* @__PURE__ */ t(
       "nav",
       {
-        className: `${j ? "hidden" : "hidden xl:flex"} items-center gap-4`,
+        className: `${f ? "hidden" : "hidden xl:flex"} items-center gap-4`,
         "aria-label": "Main navigation",
         children: [
           p.map(
-            (l, x) => l.items && l.items.length > 0 ? /* @__PURE__ */ I(
+            (s, x) => s.items && s.items.length > 0 ? /* @__PURE__ */ I(
               z,
               {
-                label: l.label,
-                url: l.url,
-                items: l.items,
-                columns: l.columns,
-                textColor: i,
-                variant: l.variant
+                label: s.label,
+                url: s.url,
+                items: s.items,
+                columns: s.columns,
+                textColor: l,
+                variant: s.variant
               },
               x
             ) : /* @__PURE__ */ I(
               uI,
               {
-                to: l.url || "/",
-                label: l.label,
-                textColor: i
+                to: s.url || "/",
+                label: s.label,
+                textColor: l
               },
               x
             )
@@ -666,58 +666,58 @@ const z = ({
       "button",
       {
         type: "button",
-        className: `${h ? "block" : "xl:hidden"} p-2 cursor-pointer transition-opacity rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-county-gold`,
-        style: { color: i },
-        onClick: a,
-        "aria-label": c ? "Close navigation menu" : "Open navigation menu",
-        "aria-expanded": c,
+        className: `${d ? "block" : "xl:hidden"} p-2 cursor-pointer transition-opacity rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-county-gold`,
+        style: { color: l },
+        onClick: r,
+        "aria-label": a ? "Close navigation menu" : "Open navigation menu",
+        "aria-expanded": a,
         "aria-controls": "fc-mobile-nav",
-        onMouseEnter: (l) => {
-          l.currentTarget.querySelectorAll("span").forEach((x) => x.style.backgroundColor = U.colors.secondary.DEFAULT);
+        onMouseEnter: (s) => {
+          s.currentTarget.querySelectorAll("span").forEach((x) => x.style.backgroundColor = K.colors.secondary.DEFAULT);
         },
-        onMouseLeave: (l) => {
-          l.currentTarget.querySelectorAll("span").forEach((x) => x.style.backgroundColor = i);
+        onMouseLeave: (s) => {
+          s.currentTarget.querySelectorAll("span").forEach((x) => x.style.backgroundColor = l);
         },
         children: /* @__PURE__ */ t("div", { className: "space-y-1.5", "aria-hidden": "true", children: [
           /* @__PURE__ */ I(
             "span",
             {
               className: "block w-8 h-0.5 transition-all duration-300",
-              style: { backgroundColor: i, transform: c ? "translateY(8px) rotate(45deg)" : "none" }
+              style: { backgroundColor: l, transform: a ? "translateY(8px) rotate(45deg)" : "none" }
             }
           ),
           /* @__PURE__ */ I(
             "span",
             {
-              className: `block w-8 h-0.5 transition-all duration-300 ${c ? "opacity-0" : ""}`,
-              style: { backgroundColor: i }
+              className: `block w-8 h-0.5 transition-all duration-300 ${a ? "opacity-0" : ""}`,
+              style: { backgroundColor: l }
             }
           ),
           /* @__PURE__ */ I(
             "span",
             {
               className: "block w-8 h-0.5 transition-all duration-300",
-              style: { backgroundColor: i, transform: c ? "translateY(-8px) rotate(-45deg)" : "none" }
+              style: { backgroundColor: l, transform: a ? "translateY(-8px) rotate(-45deg)" : "none" }
             }
           )
         ] })
       }
     )
   ] });
-}, yI = (n) => {
+}, EI = (n) => {
   const e = encodeURIComponent(n), C = navigator.userAgent || navigator.vendor || window.opera;
   return /iPad|iPhone|iPod/.test(C) && !window.MSStream ? `maps://maps.apple.com/?q=${e}` : /android/i.test(C) ? `geo:0,0?q=${e}` : `https://www.google.com/maps/search/?api=1&query=${e}`;
-}, D = "518-891-2280", RI = "36 Church St Saranac Lake NY 12983", kI = /* @__PURE__ */ t(Z, { children: [
+}, W = "518-891-2280", RI = "36 Church St Saranac Lake NY 12983", kI = /* @__PURE__ */ t(Z, { children: [
   "36 Church St",
   /* @__PURE__ */ I("br", {}),
   "Saranac Lake, NY 12983",
   /* @__PURE__ */ I("br", {}),
   "P.O. Box 1337"
 ] }), xI = ({
-  phone: n = D,
+  phone: n = W,
   address: e = kI
 }) => {
-  const { theme: C } = b(), A = n === D ? RI : void 0;
+  const { theme: C } = v(), A = n === W ? RI : void 0;
   return /* @__PURE__ */ I(
     "footer",
     {
@@ -804,7 +804,7 @@ const z = ({
               A ? /* @__PURE__ */ I(
                 "a",
                 {
-                  href: yI(A),
+                  href: EI(A),
                   target: "_blank",
                   rel: "noopener noreferrer",
                   className: "text-sm font-medium leading-snug transition-colors cursor-pointer block",
@@ -863,70 +863,70 @@ function wI(n) {
     } else C.url && e.push({ label: C.label, url: C.url });
   return e;
 }
-function jI({
+function fI({
   children: n,
   siteTitle: e,
   showTopbar: C = !0,
   showNavbar: A = !0,
   showFooter: g = !0,
-  navItems: c = [],
-  showSearch: a = !1,
-  onSearch: h,
-  footerPhone: K,
-  footerAddress: U
+  navItems: a = [],
+  showSearch: r = !1,
+  onSearch: d,
+  footerPhone: U,
+  footerAddress: K
 }) {
-  const [i, j] = J(!1), [p, l] = J(!1), [x, S] = J(!1), [w, N] = J(80), v = V(), { theme: d } = b(), r = f(null), u = f(null), y = f(null), F = f(null);
-  O(() => {
-    const s = navigator.userAgent || navigator.vendor || window.opera || "", E = /android|webos|iphone|ipad|ipod|blackberry|iemobile|opera mini/i.test(s), R = /macintosh/i.test(s) && navigator.maxTouchPoints > 1;
-    S(!!(E || R));
-  }, []), O(() => {
-    const s = () => j(window.scrollY > 50);
-    return window.addEventListener("scroll", s), () => window.removeEventListener("scroll", s);
-  }, []), O(() => {
-    if (!y.current || !F.current) return;
-    const s = () => {
-      const R = y.current.offsetHeight;
-      N(R), F.current.style.setProperty("--fc-header-height", `${R}px`);
+  const [l, f] = Q(!1), [p, s] = Q(!1), [x, j] = Q(!1), [w, F] = Q(80), b = V(), { theme: h } = v(), i = O(null), u = O(null), E = O(null), J = O(null);
+  S(() => {
+    const c = navigator.userAgent || navigator.vendor || window.opera || "", y = /android|webos|iphone|ipad|ipod|blackberry|iemobile|opera mini/i.test(c), R = /macintosh/i.test(c) && navigator.maxTouchPoints > 1;
+    j(!!(y || R));
+  }, []), S(() => {
+    const c = () => f(window.scrollY > 50);
+    return window.addEventListener("scroll", c), () => window.removeEventListener("scroll", c);
+  }, []), S(() => {
+    if (!E.current || !J.current) return;
+    const c = () => {
+      const R = E.current.offsetHeight;
+      F(R), J.current.style.setProperty("--fc-header-height", `${R}px`);
     };
-    s();
-    const E = new ResizeObserver(s);
-    return E.observe(y.current), () => E.disconnect();
-  }, [C, i]), O(() => {
-    l(!1);
-  }, [v]), O(() => (document.body.style.overflow = p ? "hidden" : "unset", () => {
+    c();
+    const y = new ResizeObserver(c);
+    return y.observe(E.current), () => y.disconnect();
+  }, [C, l]), S(() => {
+    s(!1);
+  }, [b]), S(() => (document.body.style.overflow = p ? "hidden" : "unset", () => {
     document.body.style.overflow = "unset";
-  }), [p]), O(() => {
+  }), [p]), S(() => {
     p && u.current ? u.current.querySelector(
       'a[href], button:not([disabled]), input, [tabindex]:not([tabindex="-1"])'
-    )?.focus() : p || r.current?.focus();
+    )?.focus() : p || i.current?.focus();
   }, [p]);
-  const m = wI(c);
-  return /* @__PURE__ */ t("div", { ref: F, className: "min-h-screen flex flex-col font-sans text-county-charcoal", children: [
+  const m = wI(a);
+  return /* @__PURE__ */ t("div", { ref: J, className: "min-h-screen flex flex-col font-sans text-county-charcoal", children: [
     /* @__PURE__ */ I("a", { href: "#fc-main-content", className: "skip-to-content", children: "Skip to main content" }),
     A && /* @__PURE__ */ I(
       "header",
       {
-        ref: y,
+        ref: E,
         role: "banner",
-        className: `fixed top-0 left-0 w-full z-50 transition-all duration-500 ease-in-out ${i ? "py-2 shadow-2xl" : "py-4 text-shadow"}`,
+        className: `fixed top-0 left-0 w-full z-50 transition-all duration-500 ease-in-out ${l ? "py-2 shadow-2xl" : "py-4 text-shadow"}`,
         style: {
-          backgroundColor: d.colors.primary.DEFAULT,
-          background: d.colors.bg.header
+          backgroundColor: h.colors.primary.DEFAULT,
+          background: h.colors.bg.header
         },
         children: /* @__PURE__ */ t("div", { className: "container mx-auto px-6", children: [
-          C && /* @__PURE__ */ I(dI, {}),
+          C && /* @__PURE__ */ I(hI, {}),
           /* @__PURE__ */ I(
-            EI,
+            yI,
             {
               siteTitle: e,
-              navItems: c,
+              navItems: a,
               showTopbar: C,
-              showSearch: a,
-              onSearch: h,
+              showSearch: r,
+              onSearch: d,
               isMobileMenuOpen: p,
-              onMobileMenuToggle: () => l((s) => !s),
+              onMobileMenuToggle: () => s((c) => !c),
               isMobileOrTablet: x,
-              isScrolled: i
+              isScrolled: l
             }
           )
         ] })
@@ -941,23 +941,23 @@ function jI({
         "aria-hidden": !p,
         ...p ? {} : { inert: !0 },
         className: `fixed inset-0 z-[45] flex flex-col transition-all duration-500 ${p ? "opacity-100 visible pointer-events-auto" : "opacity-0 invisible pointer-events-none"}`,
-        style: { backgroundColor: "#ffffff", background: d.colors.bg.sidebar },
-        onKeyDown: (s) => {
-          if (s.key === "Escape") {
-            l(!1);
+        style: { backgroundColor: "#ffffff", background: h.colors.bg.sidebar },
+        onKeyDown: (c) => {
+          if (c.key === "Escape") {
+            s(!1);
             return;
           }
         },
         children: /* @__PURE__ */ I("div", { className: "overflow-y-auto flex-1 pt-32 pb-8", tabIndex: 0, role: "region", "aria-label": "Mobile Navigation Content", children: /* @__PURE__ */ t("div", { className: "container mx-auto px-6", children: [
-          a && /* @__PURE__ */ I("div", { className: "px-6 w-full max-w-md mx-auto mb-6", children: /* @__PURE__ */ I(
+          r && /* @__PURE__ */ I("div", { className: "px-6 w-full max-w-md mx-auto mb-6", children: /* @__PURE__ */ I(
             "form",
             {
               role: "search",
               "aria-label": "Site search",
-              onSubmit: (s) => {
-                s.preventDefault();
-                const E = s.currentTarget.elements.namedItem("q");
-                E.value.trim() && h && (h(E.value.trim()), E.value = "");
+              onSubmit: (c) => {
+                c.preventDefault();
+                const y = c.currentTarget.elements.namedItem("q");
+                y.value.trim() && d && (d(y.value.trim()), y.value = "");
               },
               className: "w-full",
               children: /* @__PURE__ */ I(
@@ -968,57 +968,57 @@ function jI({
                   placeholder: "Search...",
                   "aria-label": "Search",
                   className: "w-full px-4 py-3 text-sm rounded-xl border focus:outline-none focus:ring-2",
-                  style: { borderColor: d.colors.border, color: d.colors.text.primary }
+                  style: { borderColor: h.colors.border, color: h.colors.text.primary }
                 }
               )
             }
           ) }),
-          /* @__PURE__ */ I("nav", { className: "flex flex-col gap-8 text-center mb-12", "aria-label": "Mobile site navigation", children: c.map((s, E) => {
-            if (s.items && s.items.length > 0) {
-              const R = s.items;
+          /* @__PURE__ */ I("nav", { className: "flex flex-col gap-8 text-center mb-12", "aria-label": "Mobile site navigation", children: a.map((c, y) => {
+            if (c.items && c.items.length > 0) {
+              const R = c.items;
               return /* @__PURE__ */ t("div", { className: "space-y-1", children: [
                 /* @__PURE__ */ I(
                   "span",
                   {
                     className: "text-[10px] font-black uppercase tracking-[0.2em] mb-4 block",
-                    style: { color: d.colors.secondary.dark },
-                    children: s.label
+                    style: { color: h.colors.secondary.dark },
+                    children: c.label
                   }
                 ),
                 /* @__PURE__ */ I("div", { className: "flex flex-col gap-1", children: R.map((T, G) => /* @__PURE__ */ I(
                   B,
                   {
                     to: T.url,
-                    onClick: () => l(!1),
+                    onClick: () => s(!1),
                     className: ({ isActive: Y }) => `block w-full text-center text-2xl md:text-sm font-bold uppercase tracking-widest transition-all duration-200 py-4 px-6 rounded-2xl ${Y ? "" : "interactive-effect"}`,
                     style: ({ isActive: Y }) => ({
-                      color: Y ? d.colors.secondary.DEFAULT : d.colors.text.primary,
-                      backgroundColor: Y ? `${d.colors.secondary.DEFAULT}10` : "transparent"
+                      color: Y ? h.colors.secondary.DEFAULT : h.colors.text.primary,
+                      backgroundColor: Y ? `${h.colors.secondary.DEFAULT}10` : "transparent"
                     }),
                     children: T.label
                   },
                   G
                 )) })
-              ] }, E);
+              ] }, y);
             }
             return /* @__PURE__ */ I(
               B,
               {
-                to: s.url || "/",
-                onClick: () => l(!1),
+                to: c.url || "/",
+                onClick: () => s(!1),
                 className: ({ isActive: R }) => `block w-full text-center text-2xl md:text-sm font-bold uppercase tracking-widest transition-all duration-200 py-4 px-6 rounded-2xl ${R ? "" : "interactive-effect"}`,
                 style: ({ isActive: R }) => ({
-                  color: R ? d.colors.secondary.DEFAULT : d.colors.text.primary,
-                  backgroundColor: R ? `${d.colors.secondary.DEFAULT}10` : "transparent"
+                  color: R ? h.colors.secondary.DEFAULT : h.colors.text.primary,
+                  backgroundColor: R ? `${h.colors.secondary.DEFAULT}10` : "transparent"
                 }),
-                children: s.label
+                children: c.label
               },
-              E
+              y
             );
           }) }),
-          m.length > 0 && c.some((s) => s.items) && /* @__PURE__ */ I("div", { className: "border-t my-6 max-w-md mx-auto", style: { borderColor: `${d.colors.secondary.DEFAULT}4D` } }),
+          m.length > 0 && a.some((c) => c.items) && /* @__PURE__ */ I("div", { className: "border-t my-6 max-w-md mx-auto", style: { borderColor: `${h.colors.secondary.DEFAULT}4D` } }),
           C && /* @__PURE__ */ t(Z, { children: [
-            c.length > 0 && /* @__PURE__ */ I("div", { className: "border-t my-6 max-w-md mx-auto", style: { borderColor: `${d.colors.secondary.DEFAULT}4D` } }),
+            a.length > 0 && /* @__PURE__ */ I("div", { className: "border-t my-6 max-w-md mx-auto", style: { borderColor: `${h.colors.secondary.DEFAULT}4D` } }),
             /* @__PURE__ */ I("div", { className: "max-w-md mx-auto space-y-6 pb-12", children: [
               { title: "Departments", items: H, url: "https://www.franklincountyny.gov/departments/index.php" },
               { title: "Residents", items: X, url: "https://www.franklincountyny.gov/residents/index.php" },
@@ -1026,23 +1026,23 @@ function jI({
               { title: "Business", items: $, url: "https://www.franklincountyny.gov/business/index.php" },
               { title: "Our Communities", items: II, url: "https://www.franklincountyny.gov/our_communities/index.php" },
               { title: "How Do I?", items: gI, url: "https://www.franklincountyny.gov/how_do_i/index.php" }
-            ].map((s, E) => /* @__PURE__ */ t("div", { children: [
-              /* @__PURE__ */ I("a", { href: s.url, target: "_blank", rel: "noopener noreferrer", className: "block text-center mb-3", children: /* @__PURE__ */ I("h3", { className: "text-xs font-bold uppercase tracking-widest inline-block", style: { color: d.colors.secondary.dark }, children: s.title }) }),
-              /* @__PURE__ */ I("div", { className: "grid grid-cols-2 gap-2", children: s.items.map((R, T) => /* @__PURE__ */ I(
+            ].map((c, y) => /* @__PURE__ */ t("div", { children: [
+              /* @__PURE__ */ I("a", { href: c.url, target: "_blank", rel: "noopener noreferrer", className: "block text-center mb-3", children: /* @__PURE__ */ I("h3", { className: "text-xs font-bold uppercase tracking-widest inline-block", style: { color: h.colors.secondary.dark }, children: c.title }) }),
+              /* @__PURE__ */ I("div", { className: "grid grid-cols-2 gap-2", children: c.items.map((R, T) => /* @__PURE__ */ I(
                 "a",
                 {
                   href: R.url,
                   target: R.url?.startsWith("http") ? "_blank" : void 0,
                   rel: R.url?.startsWith("http") ? "noopener noreferrer" : void 0,
                   className: "text-xs transition-colors text-center py-1",
-                  style: { color: d.colors.text.primary },
-                  onMouseEnter: (G) => G.currentTarget.style.color = d.colors.secondary.DEFAULT,
-                  onMouseLeave: (G) => G.currentTarget.style.color = d.colors.text.primary,
+                  style: { color: h.colors.text.primary },
+                  onMouseEnter: (G) => G.currentTarget.style.color = h.colors.secondary.DEFAULT,
+                  onMouseLeave: (G) => G.currentTarget.style.color = h.colors.text.primary,
                   children: R.label
                 },
                 T
               )) })
-            ] }, E)) })
+            ] }, y)) })
           ] })
         ] }) })
       }
@@ -1052,7 +1052,7 @@ function jI({
       {
         id: "fc-main-content",
         className: "grow",
-        style: { background: d.colors.bg.main, paddingTop: A ? w : 0 },
+        style: { background: h.colors.bg.main, paddingTop: A ? w : 0 },
         ...p ? { inert: !0 } : {},
         children: n
       }
@@ -1061,17 +1061,17 @@ function jI({
       xI,
       {
         siteTitle: e,
-        phone: K,
-        address: U
+        phone: U,
+        address: K
       }
     ) })
   ] });
 }
-function vI({ theme: n, ...e }) {
-  return /* @__PURE__ */ I(hI, { theme: n, children: /* @__PURE__ */ I(jI, { ...e }) });
+function KI({ theme: n, ...e }) {
+  return /* @__PURE__ */ I(dI, { theme: n, children: /* @__PURE__ */ I(fI, { ...e }) });
 }
 const bI = ({ triggerText: n, tooltipContent: e, isActive: C, onToggle: A }) => {
-  const { theme: g } = b(), [c, a] = J(!1), { refs: h, floatingStyles: K } = tI({
+  const { theme: g } = v(), [a, r] = Q(!1), { refs: d, floatingStyles: U } = tI({
     placement: "bottom",
     whileElementsMounted: rI,
     middleware: [
@@ -1084,80 +1084,80 @@ const bI = ({ triggerText: n, tooltipContent: e, isActive: C, onToggle: A }) => 
         padding: 32
       })
     ]
-  }), U = C || c;
+  }), K = C || a;
   return /* @__PURE__ */ t(Z, { children: [
     /* @__PURE__ */ I(
       "button",
       {
         type: "button",
-        ref: h.setReference,
+        ref: d.setReference,
         className: "cursor-help font-bold border-b-2 border-dotted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-1 rounded-sm transition-colors opacity-90 hover:opacity-100",
         style: {
           color: g.colors.primary.DEFAULT,
           borderColor: g.colors.primary.DEFAULT
         },
-        onClick: (i) => {
-          i.preventDefault(), i.stopPropagation(), A();
+        onClick: (l) => {
+          l.preventDefault(), l.stopPropagation(), A();
         },
-        onMouseEnter: () => a(!0),
-        onMouseLeave: () => a(!1),
+        onMouseEnter: () => r(!0),
+        onMouseLeave: () => r(!1),
         children: n
       }
     ),
-    U && /* @__PURE__ */ I(sI, { children: /* @__PURE__ */ I(
+    K && /* @__PURE__ */ I(sI, { children: /* @__PURE__ */ I(
       "div",
       {
-        ref: h.setFloating,
-        style: K,
+        ref: d.setFloating,
+        style: U,
         className: "w-80 max-w-[calc(100vw-4rem)] p-4 bg-gray-900 text-white text-sm leading-relaxed rounded-lg shadow-2xl z-50",
         children: e
       }
     ) })
   ] });
-}, QI = ({
+}, NI = ({
   nodes: n,
   activeNodeId: e,
   activeSubNodeId: C,
   onNodeSelect: A,
   onSubNodeSelect: g,
-  isMobileMenuOpen: c,
-  onClose: a,
-  backLinkUrl: h,
-  backLinkText: K,
-  title: U
+  isMobileMenuOpen: a,
+  onClose: r,
+  backLinkUrl: d,
+  backLinkText: U,
+  title: K
 }) => {
-  const { theme: i } = b(), [j, p] = J(typeof window < "u" ? window.innerWidth >= 1024 : !0), [l, x] = J(/* @__PURE__ */ new Set([e || n[0]?.id])), S = f({}), w = f(l);
-  O(() => {
-    const r = Array.from(l).find((u) => !w.current.has(u));
-    if (r !== void 0) {
-      const u = S.current[r];
+  const { theme: l } = v(), [f, p] = Q(typeof window < "u" ? window.innerWidth >= 1024 : !0), [s, x] = Q(/* @__PURE__ */ new Set([e || n[0]?.id])), j = O({}), w = O(s);
+  S(() => {
+    const i = Array.from(s).find((u) => !w.current.has(u));
+    if (i !== void 0) {
+      const u = j.current[i];
       u && setTimeout(() => {
-        const y = u.closest("aside");
-        y && y.scrollTo({ top: u.offsetTop - 24, behavior: "smooth" });
+        const E = u.closest("aside");
+        E && E.scrollTo({ top: u.offsetTop - 24, behavior: "smooth" });
       }, 450);
     }
-    w.current = new Set(l);
-  }, [l]), O(() => {
-    const r = () => p(window.innerWidth >= 1024);
-    return window.addEventListener("resize", r), () => window.removeEventListener("resize", r);
+    w.current = new Set(s);
+  }, [s]), S(() => {
+    const i = () => p(window.innerWidth >= 1024);
+    return window.addEventListener("resize", i), () => window.removeEventListener("resize", i);
   }, []);
-  const N = (r, u) => {
+  const F = (i, u) => {
     u.stopPropagation();
-    const y = new Set(l);
-    y.has(r) ? y.delete(r) : y.add(r), x(y);
-  }, v = (r) => {
-    l.has(r) || x(new Set(l).add(r)), A(r);
-  }, d = (r, u) => {
-    g && g(r, u), j || a();
+    const E = new Set(s);
+    E.has(i) ? E.delete(i) : E.add(i), x(E);
+  }, b = (i) => {
+    s.has(i) || x(new Set(s).add(i)), A(i);
+  }, h = (i, u) => {
+    g && g(i, u), f || r();
   };
   return /* @__PURE__ */ t(Z, { children: [
-    /* @__PURE__ */ I(W, { children: c && !j && /* @__PURE__ */ I(
+    /* @__PURE__ */ I(D, { children: a && !f && /* @__PURE__ */ I(
       L.div,
       {
         initial: { opacity: 0 },
         animate: { opacity: 1 },
         exit: { opacity: 0 },
-        onClick: a,
+        onClick: r,
         className: "fixed inset-x-0 bottom-0 bg-black/60 backdrop-blur-sm z-30",
         style: { top: "var(--fc-header-height, 80px)" }
       }
@@ -1167,8 +1167,8 @@ const bI = ({ triggerText: n, tooltipContent: e, isActive: C, onToggle: A }) => 
       {
         initial: !1,
         animate: {
-          x: j || c ? 0 : -320,
-          visibility: j || c ? "visible" : "hidden"
+          x: f || a ? 0 : -320,
+          visibility: f || a ? "visible" : "hidden"
         },
         transition: { type: "spring", damping: 30, stiffness: 300 },
         className: `w-80 z-40 overflow-y-auto backdrop-blur-xl border-r shadow-2xl xl:shadow-none xl:sticky
@@ -1176,97 +1176,97 @@ const bI = ({ triggerText: n, tooltipContent: e, isActive: C, onToggle: A }) => 
                           top-[var(--fc-header-height,80px)]
                           h-[calc(100vh-var(--fc-header-height,80px))]`,
         style: {
-          backgroundColor: i.colors.bg.sidebar,
-          borderColor: `${i.colors.border}30`
+          backgroundColor: l.colors.bg.sidebar,
+          borderColor: `${l.colors.border}30`
         },
         children: [
           /* @__PURE__ */ t("div", { className: "flex justify-between items-center px-4 mb-6 sticky top-0 bg-white/80 backdrop-blur-md pt-4 pb-2 z-10 lg:hidden", children: [
-            h && K ? /* @__PURE__ */ t(
+            d && U ? /* @__PURE__ */ t(
               "a",
               {
-                href: h,
+                href: d,
                 className: "flex-1 btn-interactive interactive-effect group mr-4",
                 children: [
                   /* @__PURE__ */ I("svg", { className: "w-4 h-4 transition-transform duration-300 group-hover:-translate-x-1", fill: "none", stroke: "currentColor", viewBox: "0 0 24 24", children: /* @__PURE__ */ I("path", { strokeLinecap: "round", strokeLinejoin: "round", strokeWidth: 2.5, d: "M10 19l-7-7m0 0l7-7m-7 7h18" }) }),
-                  K
+                  U
                 ]
               }
             ) : /* @__PURE__ */ I("div", {}),
-            !j && c && /* @__PURE__ */ I(
+            !f && a && /* @__PURE__ */ I(
               "button",
               {
-                onClick: a,
+                onClick: r,
                 className: "shrink-0 p-2.5 rounded-lg cursor-pointer text-gray-600 shadow-md hover:shadow-lg transition-all duration-300 hover:scale-110 bg-white",
                 "aria-label": "Close sidebar",
-                onMouseEnter: (r) => r.currentTarget.style.color = i.colors.primary.DEFAULT,
-                onMouseLeave: (r) => r.currentTarget.style.color = "#4B5563",
+                onMouseEnter: (i) => i.currentTarget.style.color = l.colors.primary.DEFAULT,
+                onMouseLeave: (i) => i.currentTarget.style.color = "#4B5563",
                 children: /* @__PURE__ */ I("svg", { className: "w-5 h-5", fill: "none", stroke: "currentColor", viewBox: "0 0 24 24", children: /* @__PURE__ */ I("path", { strokeLinecap: "round", strokeLinejoin: "round", strokeWidth: 2.5, d: "M6 18L18 6M6 6l12 12" }) })
               }
             )
           ] }),
           /* @__PURE__ */ t("nav", { className: "px-4 lg:pt-8", children: [
-            U && /* @__PURE__ */ I(
+            K && /* @__PURE__ */ I(
               "h2",
               {
                 className: "text-lg font-serif font-bold mb-6 tracking-wide bg-clip-text text-transparent",
-                style: { backgroundImage: `linear-gradient(to right, ${i.colors.primary.DEFAULT}, ${i.colors.primary.light})` },
-                children: U
+                style: { backgroundImage: `linear-gradient(to right, ${l.colors.primary.DEFAULT}, ${l.colors.primary.light})` },
+                children: K
               }
             ),
-            /* @__PURE__ */ I("ul", { className: "space-y-4", children: n.map((r) => {
-              const u = l.has(r.id), y = e === r.id, F = r.subNodes && r.subNodes.length > 0;
+            /* @__PURE__ */ I("ul", { className: "space-y-4", children: n.map((i) => {
+              const u = s.has(i.id), E = e === i.id, J = i.subNodes && i.subNodes.length > 0;
               return /* @__PURE__ */ t("li", { ref: (m) => {
-                S.current[r.id] = m;
+                j.current[i.id] = m;
               }, className: "flex flex-col relative", children: [
                 /* @__PURE__ */ I(
                   "div",
                   {
                     className: "rounded-xl transition-all duration-300 group",
                     style: {
-                      borderLeft: y ? "4px solid" : "4px solid transparent",
-                      borderImage: y ? `linear-gradient(to bottom, ${i.colors.secondary.light}, ${i.colors.secondary.dark}) 1` : "none",
-                      backgroundColor: y ? `${i.colors.primary.DEFAULT}08` : "rgba(255, 255, 255, 0.6)",
-                      boxShadow: y ? `0 8px 24px -6px ${i.colors.primary.DEFAULT}33` : "0 4px 12px -3px rgba(0, 0, 0, 0.1)"
+                      borderLeft: E ? "4px solid" : "4px solid transparent",
+                      borderImage: E ? `linear-gradient(to bottom, ${l.colors.secondary.light}, ${l.colors.secondary.dark}) 1` : "none",
+                      backgroundColor: E ? `${l.colors.primary.DEFAULT}08` : "rgba(255, 255, 255, 0.6)",
+                      boxShadow: E ? `0 8px 24px -6px ${l.colors.primary.DEFAULT}33` : "0 4px 12px -3px rgba(0, 0, 0, 0.1)"
                     },
                     children: /* @__PURE__ */ t("div", { className: "relative flex items-center justify-between p-3.5", children: [
                       /* @__PURE__ */ t(
                         "div",
                         {
                           className: "flex-1 text-left cursor-pointer",
-                          onClick: () => v(r.id),
+                          onClick: () => b(i.id),
                           children: [
-                            r.badge && /* @__PURE__ */ I(
+                            i.badge && /* @__PURE__ */ I(
                               "span",
                               {
                                 className: "block text-xs font-bold uppercase tracking-wider bg-clip-text text-transparent mb-1",
-                                style: { backgroundImage: `linear-gradient(to right, ${i.colors.secondary.light}, ${i.colors.secondary.dark})` },
-                                children: r.badge
+                                style: { backgroundImage: `linear-gradient(to right, ${l.colors.secondary.light}, ${l.colors.secondary.dark})` },
+                                children: i.badge
                               }
                             ),
                             /* @__PURE__ */ I(
                               "span",
                               {
                                 className: "block font-semibold text-sm leading-snug transition-colors duration-300 text-gray-800",
-                                children: r.title
+                                children: i.title
                               }
                             ),
-                            r.subtitle && /* @__PURE__ */ I("div", { className: "text-xs text-gray-500 mt-1.5 flex items-center gap-1", children: r.subtitle })
+                            i.subtitle && /* @__PURE__ */ I("div", { className: "text-xs text-gray-500 mt-1.5 flex items-center gap-1", children: i.subtitle })
                           ]
                         }
                       ),
-                      F && /* @__PURE__ */ I(
+                      J && /* @__PURE__ */ I(
                         "button",
                         {
-                          onClick: (m) => N(r.id, m),
+                          onClick: (m) => F(i.id, m),
                           onKeyDown: (m) => {
-                            (m.key === "Enter" || m.key === " ") && (m.preventDefault(), N(r.id, m));
+                            (m.key === "Enter" || m.key === " ") && (m.preventDefault(), F(i.id, m));
                           },
                           className: "p-2 rounded-lg cursor-pointer border-2 bg-white/80 transition-all duration-300 hover:scale-110 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 shrink-0",
                           style: {
                             borderColor: "#D1D5DB"
                             // gray-300
                           },
-                          onMouseEnter: (m) => m.currentTarget.style.borderColor = i.colors.primary.DEFAULT,
+                          onMouseEnter: (m) => m.currentTarget.style.borderColor = l.colors.primary.DEFAULT,
                           onMouseLeave: (m) => m.currentTarget.style.borderColor = "#D1D5DB",
                           "aria-label": u ? "Collapse" : "Expand",
                           children: /* @__PURE__ */ I(
@@ -1274,7 +1274,7 @@ const bI = ({ triggerText: n, tooltipContent: e, isActive: C, onToggle: A }) => 
                             {
                               className: "w-5 h-5 transition-transform duration-400",
                               style: {
-                                color: i.colors.primary.DEFAULT,
+                                color: l.colors.primary.DEFAULT,
                                 transform: u ? "rotate(90deg)" : "rotate(0deg)"
                               },
                               fill: "none",
@@ -1288,7 +1288,7 @@ const bI = ({ triggerText: n, tooltipContent: e, isActive: C, onToggle: A }) => 
                     ] })
                   }
                 ),
-                /* @__PURE__ */ I(W, { initial: !1, children: u && F && /* @__PURE__ */ I(
+                /* @__PURE__ */ I(D, { initial: !1, children: u && J && /* @__PURE__ */ I(
                   L.ul,
                   {
                     initial: { height: 0, opacity: 0 },
@@ -1296,25 +1296,25 @@ const bI = ({ triggerText: n, tooltipContent: e, isActive: C, onToggle: A }) => 
                     exit: { height: 0, opacity: 0 },
                     transition: { duration: 0.4, ease: [0.4, 0, 0.2, 1] },
                     className: "overflow-hidden ml-3 mt-2 space-y-1.5",
-                    children: r.subNodes.map((m, s) => {
-                      const E = C === m.id;
+                    children: i.subNodes.map((m, c) => {
+                      const y = C === m.id;
                       return /* @__PURE__ */ I(
                         L.li,
                         {
                           initial: { x: -10, opacity: 0 },
                           animate: { x: 0, opacity: 1 },
-                          transition: { delay: s * 0.05 },
+                          transition: { delay: c * 0.05 },
                           children: /* @__PURE__ */ t(
                             "button",
                             {
-                              onClick: () => d(r.id, m.id),
-                              className: `group w-full text-left px-3.5 py-2.5 rounded-lg text-sm cursor-pointer transition-all duration-300 flex items-start gap-2.5 bg-transparent border-transparent interactive-effect ${E ? "active translate-x-1" : "hover:translate-x-1"}`,
+                              onClick: () => h(i.id, m.id),
+                              className: `group w-full text-left px-3.5 py-2.5 rounded-lg text-sm cursor-pointer transition-all duration-300 flex items-start gap-2.5 bg-transparent border-transparent interactive-effect ${y ? "active translate-x-1" : "hover:translate-x-1"}`,
                               children: [
                                 /* @__PURE__ */ I(
                                   "span",
                                   {
                                     className: "mt-0.5 transition-colors",
-                                    style: { color: E ? i.colors.secondary.light : i.colors.secondary.DEFAULT },
+                                    style: { color: y ? l.colors.secondary.light : l.colors.secondary.DEFAULT },
                                     children: "→"
                                   }
                                 ),
@@ -1328,7 +1328,7 @@ const bI = ({ triggerText: n, tooltipContent: e, isActive: C, onToggle: A }) => 
                     })
                   }
                 ) })
-              ] }, r.id);
+              ] }, i.id);
             }) })
           ] })
         ]
@@ -1336,8 +1336,8 @@ const bI = ({ triggerText: n, tooltipContent: e, isActive: C, onToggle: A }) => 
     )
   ] });
 };
-function JI({ title: n, subtitle: e, image: C, video: A, isHomePage: g = !1 }) {
-  const { theme: c } = b();
+function QI({ title: n, subtitle: e, image: C, video: A, isHomePage: g = !1 }) {
+  const { theme: a } = v();
   return !n && !C && !A ? null : /* @__PURE__ */ t("div", { className: `relative w-full flex items-center justify-center ${g ? "min-h-screen" : "h-[60vh]"} overflow-hidden`, children: [
     A && /* @__PURE__ */ I("video", { autoPlay: !0, loop: !0, muted: !0, playsInline: !0, className: "absolute inset-0 w-full h-full object-cover", children: /* @__PURE__ */ I("source", { src: A, type: "video/mp4" }) }),
     !A && C && /* @__PURE__ */ I(
@@ -1347,7 +1347,7 @@ function JI({ title: n, subtitle: e, image: C, video: A, isHomePage: g = !1 }) {
         style: { backgroundImage: `url('${C}')` }
       }
     ),
-    !A && !C && /* @__PURE__ */ I("div", { className: "absolute inset-0", style: { background: c.colors.bg.main } }),
+    !A && !C && /* @__PURE__ */ I("div", { className: "absolute inset-0", style: { background: a.colors.bg.main } }),
     /* @__PURE__ */ I("div", { className: "absolute inset-0 bg-linear-to-b from-black/30 via-black/10 to-transparent" }),
     n && /* @__PURE__ */ t("div", { className: "container mx-auto px-6 relative z-10 text-center pt-48", children: [
       /* @__PURE__ */ I(
@@ -1378,8 +1378,8 @@ function JI({ title: n, subtitle: e, image: C, video: A, isHomePage: g = !1 }) {
     ] })
   ] });
 }
-function NI({ title: n, children: e, className: C = "" }) {
-  const { theme: A } = b();
+function FI({ title: n, children: e, className: C = "" }) {
+  const { theme: A } = v();
   return /* @__PURE__ */ t("div", { className: `content-card hover-lift elevation-md transition-all duration-500 ${C}`, children: [
     n && /* @__PURE__ */ I(
       "h2",
@@ -1389,29 +1389,95 @@ function NI({ title: n, children: e, className: C = "" }) {
         children: n
       }
     ),
-    /* @__PURE__ */ I("div", { className: "space-y-4 text-lg leading-relaxed text-gray-800", children: e })
+    e
   ] });
+}
+function JI({
+  title: n,
+  filename: e,
+  description: C = "This document is available for download.",
+  url: A
+}) {
+  const { theme: g } = v(), a = A || `/docs/${e}`;
+  return /* @__PURE__ */ I("div", { className: "space-y-6", children: /* @__PURE__ */ t("div", { className: "border-l-4 p-6 rounded-r shadow-sm", style: { borderLeftColor: g.colors.secondary.DEFAULT, background: g.colors.bg.card }, children: [
+    /* @__PURE__ */ I("h2", { className: "text-xl font-bold mb-2", style: { color: g.colors.text.primary }, children: n }),
+    /* @__PURE__ */ I("p", { className: "mb-6 text-sm italic", style: { color: g.colors.text.muted }, children: C }),
+    /* @__PURE__ */ t("div", { className: "flex flex-col gap-4 p-4 border rounded max-w-md fluid-container", style: { background: g.colors.bg.cardAlt, borderColor: g.colors.border }, children: [
+      /* @__PURE__ */ t("div", { className: "flex items-center gap-4 w-full min-w-0", children: [
+        /* @__PURE__ */ I("div", { className: "p-3 rounded-lg shrink-0", style: { backgroundColor: `${g.colors.secondary.DEFAULT}33`, color: g.colors.secondary.DEFAULT }, children: /* @__PURE__ */ I("svg", { xmlns: "http://www.w3.org/2000/svg", className: "h-8 w-8", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor", children: /* @__PURE__ */ I("path", { strokeLinecap: "round", strokeLinejoin: "round", strokeWidth: 1.5, d: "M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z" }) }) }),
+        /* @__PURE__ */ t("div", { className: "min-w-0 flex-1", children: [
+          /* @__PURE__ */ I(
+            "div",
+            {
+              className: "font-bold whitespace-nowrap overflow-hidden text-ellipsis",
+              style: {
+                color: g.colors.text.primary,
+                fontSize: "clamp(0.75rem, 4.1cqw, 1.125rem)"
+              },
+              title: e,
+              children: e
+            }
+          ),
+          /* @__PURE__ */ I("div", { className: "text-xs mt-1 font-medium", style: { color: g.colors.text.muted }, children: "PDF Document" })
+        ] })
+      ] }),
+      /* @__PURE__ */ t("div", { className: "grid grid-cols-2 gap-3 mt-2", children: [
+        /* @__PURE__ */ I(
+          "a",
+          {
+            href: a,
+            target: "_blank",
+            rel: "noopener noreferrer",
+            className: "w-full flex items-center justify-center px-4 py-2.5 text-sm font-bold rounded-lg transition-all border-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2",
+            style: {
+              borderColor: g.colors.secondary.DEFAULT,
+              color: g.colors.text.primary,
+              backgroundColor: "transparent"
+            },
+            onMouseEnter: (r) => r.currentTarget.style.backgroundColor = `${g.colors.secondary.DEFAULT}10`,
+            onMouseLeave: (r) => r.currentTarget.style.backgroundColor = "transparent",
+            "aria-label": `Preview ${n} in a new tab`,
+            children: "Preview"
+          }
+        ),
+        /* @__PURE__ */ I(
+          "a",
+          {
+            href: a,
+            download: !0,
+            className: "w-full flex items-center justify-center px-4 py-2.5 text-black text-sm font-bold rounded-lg transition-all shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2",
+            style: { backgroundColor: g.colors.secondary.DEFAULT },
+            onMouseEnter: (r) => r.currentTarget.style.filter = "brightness(1.05)",
+            onMouseLeave: (r) => r.currentTarget.style.filter = "none",
+            "aria-label": `Download ${n}`,
+            children: "Download"
+          }
+        )
+      ] })
+    ] })
+  ] }) });
 }
 export {
   cI as APP_THEME,
-  NI as ContentCard,
+  FI as ContentCard,
   xI as Footer,
-  vI as Layout,
+  KI as Layout,
   z as NavDropdown,
-  EI as Navbar,
-  JI as PageHeader,
-  QI as Sidebar,
+  yI as Navbar,
+  JI as PDFPlaceholder,
+  QI as PageHeader,
+  NI as Sidebar,
   bI as SmartTooltip,
-  hI as ThemeProvider,
-  dI as Topbar,
+  dI as ThemeProvider,
+  hI as Topbar,
   $ as businessItems,
   II as communitiesItems,
   H as departmentsItems,
   pI as getActiveTheme,
-  yI as getNativeMapUrl,
+  EI as getNativeMapUrl,
   gI as howDoIItems,
   X as residentsItems,
-  b as useTheme,
+  v as useTheme,
   _ as visitorsItems
 };
 //# sourceMappingURL=index.js.map
