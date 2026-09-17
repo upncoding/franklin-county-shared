@@ -264,7 +264,7 @@ function LayoutInner({
                                         return (
                                             <div key={i} className="space-y-1">
                                                 <span
-                                                    className="text-[10px] font-black uppercase tracking-[0.2em] mb-4 block"
+                                                    className="text-2xl font-black uppercase tracking-[0.15em] mb-4 mt-6 block"
                                                     style={{ color: theme.colors.secondary.dark }}
                                                 >
                                                     {item.label}
@@ -276,14 +276,20 @@ function LayoutInner({
                                                             to={sub.url}
                                                             onClick={() => setIsMobileMenuOpen(false)}
                                                             className={({ isActive }) =>
-                                                                `block w-full text-center text-2xl md:text-sm font-bold uppercase tracking-widest transition-all duration-200 py-4 px-6 rounded-2xl ${isActive ? '' : 'interactive-effect'}`
+                                                                `block w-full flex justify-center items-center gap-3 text-xl font-bold uppercase tracking-widest transition-all duration-200 py-4 px-6 rounded-2xl ${isActive ? '' : 'interactive-effect'}`
                                                             }
                                                             style={({ isActive }) => ({
-                                                                color: isActive ? theme.colors.secondary.DEFAULT : theme.colors.text.primary,
-                                                                backgroundColor: isActive ? `${theme.colors.secondary.DEFAULT}10` : 'transparent',
+                                                                color: isActive ? theme.colors.primary.dark : theme.colors.text.primary,
+                                                                backgroundColor: isActive ? `${theme.colors.primary.DEFAULT}15` : 'transparent',
+                                                                borderLeft: isActive ? `4px solid ${theme.colors.primary.DEFAULT}` : '4px solid transparent',
                                                             })}
                                                         >
-                                                            {sub.label}
+                                                            {({ isActive }) => (
+                                                                <>
+                                                                    <span className={`transition-opacity ${isActive ? 'opacity-100' : 'opacity-0'}`}>→</span>
+                                                                    <span>{sub.label}</span>
+                                                                </>
+                                                            )}
                                                         </NavLink>
                                                     ))}
                                                 </div>
@@ -297,14 +303,20 @@ function LayoutInner({
                                             to={item.url || '/'}
                                             onClick={() => setIsMobileMenuOpen(false)}
                                             className={({ isActive }) =>
-                                                `block w-full text-center text-2xl md:text-sm font-bold uppercase tracking-widest transition-all duration-200 py-4 px-6 rounded-2xl ${isActive ? '' : 'interactive-effect'}`
+                                                `block w-full flex justify-center items-center gap-3 text-xl font-bold uppercase tracking-widest transition-all duration-200 py-4 px-6 rounded-2xl ${isActive ? '' : 'interactive-effect'}`
                                             }
                                             style={({ isActive }) => ({
-                                                color: isActive ? theme.colors.secondary.DEFAULT : theme.colors.text.primary,
-                                                backgroundColor: isActive ? `${theme.colors.secondary.DEFAULT}10` : 'transparent',
+                                                color: isActive ? theme.colors.primary.dark : theme.colors.text.primary,
+                                                backgroundColor: isActive ? `${theme.colors.primary.DEFAULT}15` : 'transparent',
+                                                borderLeft: isActive ? `4px solid ${theme.colors.primary.DEFAULT}` : '4px solid transparent',
                                             })}
                                         >
-                                            {item.label}
+                                            {({ isActive }) => (
+                                                <>
+                                                    <span className={`transition-opacity ${isActive ? 'opacity-100' : 'opacity-0'}`}>→</span>
+                                                    <span>{item.label}</span>
+                                                </>
+                                            )}
                                         </NavLink>
                                     );
                                 })}
