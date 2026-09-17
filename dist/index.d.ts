@@ -15,3 +15,5 @@ export { departmentsItems, residentsItems, visitorsItems, businessItems, communi
 export { getNativeMapUrl } from './utils/mapUtils';
 export * from './components/SmartTooltip';
 export * from './components/Sidebar';
+export { PageHeader } from './components/PageHeader';
+export { ContentCard } from './components/ContentCard';

@@ -110,10 +110,6 @@ function LayoutInner({
     onSearch,
     footerPhone,
     footerAddress,
-    heroImage,
-    heroVideo,
-    heroTitle,
-    heroSubtitle,
 }: LayoutProps) {
     const [isScrolled, setIsScrolled] = useState(false);
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -179,7 +175,6 @@ function LayoutInner({
     // Focus trap for mobile menu
 
     const flatMobileItems = flattenForMobile(navItems);
-    const isHomePage = location.pathname === '/';
 
     return (
         <div ref={layoutRef} className="min-h-screen flex flex-col font-sans text-county-charcoal">
@@ -375,58 +370,6 @@ function LayoutInner({
                 style={{ background: theme.colors.bg.main, paddingTop: showNavbar ? headerHeight : 0 }}
                 {...(isMobileMenuOpen ? { "inert": true } : {})}
             >
-                {/* Hero section */}
-                {(heroImage || heroVideo || heroTitle) && (
-                    <div className={`relative w-full flex items-center justify-center ${isHomePage ? 'min-h-screen' : 'h-[60vh]'} overflow-hidden`}>
-                        {/* Video background */}
-                        {heroVideo && (
-                            <video autoPlay loop muted playsInline className="absolute inset-0 w-full h-full object-cover">
-                                <source src={heroVideo} type="video/mp4" />
-                            </video>
-                        )}
-                        {/* Image background */}
-                        {!heroVideo && heroImage && (
-                            <div
-                                className="absolute inset-0 bg-cover bg-center parallax-bg scale-105"
-                                style={{ backgroundImage: `url('${heroImage}')` }}
-                            />
-                        )}
-                        {/* Default fallback */}
-                        {!heroVideo && !heroImage && (
-                            <div className="absolute inset-0" style={{ background: theme.colors.bg.main }} />
-                        )}
-                        {/* Overlay */}
-                        <div className="absolute inset-0 bg-linear-to-b from-black/30 via-black/10 to-transparent" />
-                        {/* Hero text */}
-                        {heroTitle && (
-                            <div className="container mx-auto px-6 relative z-10 text-center pt-48">
-                                <h1
-                                    className="block font-serif font-black leading-tight mb-8 px-4 sm:px-8 py-4 rounded-2xl shadow-lg text-shadow-lg mx-auto animate-fade-in-up"
-                                    style={{
-                                        color: '#ffffff',
-                                        backgroundColor: 'rgba(0, 0, 0, 0.6)',
-                                        fontSize: 'clamp(1.75rem, 8vw, 4.5rem)',
-                                    }}
-                                >
-                                    {heroTitle}
-                                </h1>
-                                {heroSubtitle && (
-                                    <p
-                                        className="max-w-3xl mx-auto leading-relaxed font-light inline-block px-6 py-4 rounded-xl shadow-lg animate-fade-in-up delay-100"
-                                        style={{
-                                            color: '#ffffff',
-                                            backgroundColor: 'rgba(0, 0, 0, 0.5)',
-                                            fontSize: 'clamp(1rem, 4vw, 1.25rem)',
-                                        }}
-                                    >
-                                        {heroSubtitle}
-                                    </p>
-                                )}
-                            </div>
-                        )}
-                    </div>
-                )}
-
                 {/* Page content */}
                 {children}
             </main>
