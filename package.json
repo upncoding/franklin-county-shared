@@ -1,6 +1,6 @@
 {
   "name": "@upncoding/franklin-county-shared",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Shared theme, components, and layout shell for Franklin County sites",
   "type": "module",
   "main": "./dist/index.cjs",
