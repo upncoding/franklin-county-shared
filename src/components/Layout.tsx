@@ -264,7 +264,7 @@ function LayoutInner({
                                         return (
                                             <div key={i} className="space-y-1">
                                                 <span
-                                                    className="text-2xl font-black uppercase tracking-[0.15em] mb-4 mt-6 block"
+                                                    className="text-sm font-black uppercase tracking-[0.2em] mb-3 mt-4 block text-center"
                                                     style={{ color: theme.colors.secondary.dark }}
                                                 >
                                                     {item.label}
@@ -275,21 +275,15 @@ function LayoutInner({
                                                             key={j}
                                                             to={sub.url}
                                                             onClick={() => setIsMobileMenuOpen(false)}
-                                                            className={({ isActive }) =>
-                                                                `block w-full flex justify-center items-center gap-3 text-xl font-bold uppercase tracking-widest transition-all duration-200 py-4 px-6 rounded-2xl ${isActive ? '' : 'interactive-effect'}`
-                                                            }
+                                                            className="block w-full text-center text-[13px] font-bold uppercase tracking-widest transition-all duration-200 py-3 px-6 rounded-xl interactive-effect"
                                                             style={({ isActive }) => ({
                                                                 color: isActive ? theme.colors.primary.dark : theme.colors.text.primary,
-                                                                backgroundColor: isActive ? `${theme.colors.primary.DEFAULT}15` : 'transparent',
+                                                                backgroundColor: isActive ? `${theme.colors.primary.DEFAULT}10` : 'transparent',
                                                                 borderLeft: isActive ? `4px solid ${theme.colors.primary.DEFAULT}` : '4px solid transparent',
+                                                                borderRight: isActive ? `4px solid ${theme.colors.primary.DEFAULT}` : '4px solid transparent',
                                                             })}
                                                         >
-                                                            {({ isActive }) => (
-                                                                <>
-                                                                    <span className={`transition-opacity ${isActive ? 'opacity-100' : 'opacity-0'}`}>→</span>
-                                                                    <span>{sub.label}</span>
-                                                                </>
-                                                            )}
+                                                            {sub.label}
                                                         </NavLink>
                                                     ))}
                                                 </div>
@@ -302,21 +296,15 @@ function LayoutInner({
                                             key={i}
                                             to={item.url || '/'}
                                             onClick={() => setIsMobileMenuOpen(false)}
-                                            className={({ isActive }) =>
-                                                `block w-full flex justify-center items-center gap-3 text-xl font-bold uppercase tracking-widest transition-all duration-200 py-4 px-6 rounded-2xl ${isActive ? '' : 'interactive-effect'}`
-                                            }
+                                            className="block w-full text-center text-[13px] font-bold uppercase tracking-widest transition-all duration-200 py-3 px-6 rounded-xl interactive-effect"
                                             style={({ isActive }) => ({
                                                 color: isActive ? theme.colors.primary.dark : theme.colors.text.primary,
-                                                backgroundColor: isActive ? `${theme.colors.primary.DEFAULT}15` : 'transparent',
+                                                backgroundColor: isActive ? `${theme.colors.primary.DEFAULT}10` : 'transparent',
                                                 borderLeft: isActive ? `4px solid ${theme.colors.primary.DEFAULT}` : '4px solid transparent',
+                                                borderRight: isActive ? `4px solid ${theme.colors.primary.DEFAULT}` : '4px solid transparent',
                                             })}
                                         >
-                                            {({ isActive }) => (
-                                                <>
-                                                    <span className={`transition-opacity ${isActive ? 'opacity-100' : 'opacity-0'}`}>→</span>
-                                                    <span>{item.label}</span>
-                                                </>
-                                            )}
+                                            {item.label}
                                         </NavLink>
                                     );
                                 })}

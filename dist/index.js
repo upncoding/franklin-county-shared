@@ -1,8 +1,8 @@
-import { jsx as I, jsxs as o, Fragment as L } from "react/jsx-runtime";
+import { jsx as I, jsxs as t, Fragment as Z } from "react/jsx-runtime";
 import { createContext as AI, useEffect as S, useContext as eI, forwardRef as nI, useState as F, useRef as O } from "react";
 import { Link as oI, useLocation as V, NavLink as B } from "react-router-dom";
 import { useFloating as tI, autoUpdate as rI, offset as iI, flip as aI, shift as lI, FloatingPortal as sI } from "@floating-ui/react";
-import { AnimatePresence as D, motion as Z } from "framer-motion";
+import { AnimatePresence as D, motion as L } from "framer-motion";
 const cI = {
   name: "Vibrant Adirondack",
   colors: {
@@ -80,7 +80,7 @@ function dI({ children: n, theme: e }) {
     A.style.setProperty("--theme-bg-main", g.bg.main), A.style.setProperty("--theme-bg-main-from", g.bg.mainFrom), A.style.setProperty("--theme-bg-main-via", g.bg.mainVia), A.style.setProperty("--theme-bg-main-to", g.bg.mainTo), A.style.setProperty("--theme-bg-card", g.bg.card), A.style.setProperty("--theme-bg-card-alt", g.bg.cardAlt), A.style.setProperty("--theme-bg-sidebar", g.bg.sidebar), A.style.setProperty("--theme-bg-header", g.bg.header), A.style.setProperty("--theme-bg-footer", g.bg.footer), A.style.setProperty("--theme-text-primary", g.text.primary), A.style.setProperty("--theme-text-secondary", g.text.secondary), A.style.setProperty("--theme-text-muted", g.text.muted), A.style.setProperty("--theme-text-on-dark", g.text.onDark), A.style.setProperty("--theme-primary", g.primary.DEFAULT), A.style.setProperty("--theme-primary-light", g.primary.light), A.style.setProperty("--theme-primary-dark", g.primary.dark), A.style.setProperty("--theme-secondary", g.secondary.DEFAULT), A.style.setProperty("--theme-secondary-light", g.secondary.light), A.style.setProperty("--theme-secondary-dark", g.secondary.dark), A.style.setProperty("--theme-hover-card", g.hover.card), A.style.setProperty("--theme-hover-sidebar", g.hover.sidebar), A.style.setProperty("--theme-hover-button", g.hover.button), A.style.setProperty("--theme-hover-link", g.hover.link), A.style.setProperty("--theme-shadow", g.shadow), A.style.setProperty("--theme-shadow-dark", g.shadowDark), A.style.setProperty("--theme-glow", g.glow), A.style.setProperty("--theme-border", g.border);
   }, [C]), /* @__PURE__ */ I(q.Provider, { value: { theme: C }, children: n });
 }
-function v() {
+function U() {
   const n = eI(q);
   if (n === void 0)
     throw new Error("useTheme must be used within a ThemeProvider");
@@ -120,55 +120,55 @@ const z = ({
   textColor: g,
   variant: a = "standard"
 }) => {
-  const [r, h] = F(!1), [U, K] = F(null), l = O(null), f = O(null), d = O(null), s = O(null), x = O(null), j = O(!1), { theme: w } = v(), J = V(), b = `nav-menu-${n.replace(/\s+/g, "-").toLowerCase()}`, p = C.some((t) => J.pathname === t.url ? !0 : t.subItems ? t.subItems.some((k) => J.pathname === k.url) : !1), i = J.pathname === e || p, m = () => {
+  const [r, h] = F(!1), [v, K] = F(null), l = O(null), f = O(null), d = O(null), s = O(null), x = O(null), j = O(!1), { theme: w } = U(), Q = V(), b = `nav-menu-${n.replace(/\s+/g, "-").toLowerCase()}`, p = C.some((o) => Q.pathname === o.url ? !0 : o.subItems ? o.subItems.some((k) => Q.pathname === k.url) : !1), i = Q.pathname === e || p, u = () => {
     if (f.current) {
-      const t = f.current.getBoundingClientRect();
-      K(t.bottom + 8);
+      const o = f.current.getBoundingClientRect();
+      K(o.bottom + 8);
     }
     window.dispatchEvent(new CustomEvent("navdropdown:opened", { detail: { menuId: b } })), h(!0);
-  }, R = () => {
+  }, E = () => {
     h(!1), j.current = !1, f.current?.focus();
   };
   S(() => {
-    const t = (k) => {
+    const o = (k) => {
       k.detail.menuId !== b && (h(!1), j.current = !1);
     };
-    return window.addEventListener("navdropdown:opened", t), () => window.removeEventListener("navdropdown:opened", t);
+    return window.addEventListener("navdropdown:opened", o), () => window.removeEventListener("navdropdown:opened", o);
   }, [b]), S(() => {
-    const t = (k) => {
+    const o = (k) => {
       l.current && !l.current.contains(k.target) && (h(!1), j.current = !1);
     };
-    return r && document.addEventListener("mousedown", t), () => document.removeEventListener("mousedown", t);
+    return r && document.addEventListener("mousedown", o), () => document.removeEventListener("mousedown", o);
   }, [r]), S(() => {
     r && j.current && d.current && d.current.querySelector("a, button")?.focus();
   }, [r]);
-  const G = (t) => {
-    t.key === " " || t.key === "ArrowDown" ? (t.preventDefault(), j.current = !0, m()) : t.key === "Escape" && (h(!1), j.current = !1);
-  }, y = (t) => {
-    t.key === "Enter" || t.key === " " || t.key === "ArrowDown" ? (t.preventDefault(), j.current = !0, r ? h(!1) : m()) : t.key === "Escape" && (h(!1), j.current = !1);
-  }, c = (t) => {
-    if (t.key === "Escape") {
-      t.preventDefault(), R();
+  const J = (o) => {
+    o.key === " " || o.key === "ArrowDown" ? (o.preventDefault(), j.current = !0, u()) : o.key === "Escape" && (h(!1), j.current = !1);
+  }, m = (o) => {
+    o.key === "Enter" || o.key === " " || o.key === "ArrowDown" ? (o.preventDefault(), j.current = !0, r ? h(!1) : u()) : o.key === "Escape" && (h(!1), j.current = !1);
+  }, c = (o) => {
+    if (o.key === "Escape") {
+      o.preventDefault(), E();
       return;
     }
-    if (t.key === "ArrowDown" || t.key === "ArrowUp") {
-      if (t.preventDefault(), !d.current) return;
-      const k = Array.from(d.current.querySelectorAll("a, button")), Q = k.indexOf(document.activeElement);
-      t.key === "ArrowDown" ? k[(Q + 1) % k.length]?.focus() : k[(Q - 1 + k.length) % k.length]?.focus();
+    if (o.key === "ArrowDown" || o.key === "ArrowUp") {
+      if (o.preventDefault(), !d.current) return;
+      const k = Array.from(d.current.querySelectorAll("a, button")), N = k.indexOf(document.activeElement);
+      o.key === "ArrowDown" ? k[(N + 1) % k.length]?.focus() : k[(N - 1 + k.length) % k.length]?.focus();
     }
-    if (t.key === "Tab") {
-      const k = Array.from(d.current?.querySelectorAll("a, button") ?? []), Q = k[k.length - 1];
-      !t.shiftKey && document.activeElement === Q && h(!1), t.shiftKey && document.activeElement === k[0] && (t.preventDefault(), R());
+    if (o.key === "Tab") {
+      const k = Array.from(d.current?.querySelectorAll("a, button") ?? []), N = k[k.length - 1];
+      !o.shiftKey && document.activeElement === N && h(!1), o.shiftKey && document.activeElement === k[0] && (o.preventDefault(), E());
     }
-  }, E = () => {
+  }, y = () => {
     s.current && (window.clearTimeout(s.current), s.current = null), !r && !x.current && (x.current = window.setTimeout(() => {
-      m(), x.current = null;
+      u(), x.current = null;
     }, 150));
-  }, u = () => {
+  }, R = () => {
     x.current && (window.clearTimeout(x.current), x.current = null), s.current = window.setTimeout(() => {
       h(!1), s.current = null;
     }, 300);
-  }, Y = () => {
+  }, T = () => {
     switch (A) {
       case 2:
         return "md:grid-cols-2";
@@ -179,8 +179,8 @@ const z = ({
       default:
         return "md:grid-cols-1";
     }
-  }, T = r || i ? w.colors.secondary.DEFAULT : g || "rgba(255, 255, 255, 0.9)", N = "mx-4 my-2 text-xs font-bold uppercase tracking-widest transition-colors inline-block relative z-20 bg-transparent border-0 cursor-pointer p-0";
-  return /* @__PURE__ */ o("div", { ref: l, className: "relative inline-block", onMouseLeave: u, children: [
+  }, G = r || i ? w.colors.secondary.DEFAULT : g || "rgba(255, 255, 255, 0.9)", Y = "mx-4 my-2 text-xs font-bold uppercase tracking-widest transition-colors inline-block relative z-20 bg-transparent border-0 cursor-pointer p-0";
+  return /* @__PURE__ */ t("div", { ref: l, className: "relative inline-block", onMouseLeave: R, children: [
     e !== "#" ? /* @__PURE__ */ I(
       M,
       {
@@ -188,10 +188,10 @@ const z = ({
         item: { label: n, url: e },
         "aria-expanded": r,
         "aria-controls": b,
-        className: N,
-        style: { color: T },
-        onMouseEnter: E,
-        onKeyDown: G,
+        className: Y,
+        style: { color: G },
+        onMouseEnter: y,
+        onKeyDown: J,
         children: n
       }
     ) : /* @__PURE__ */ I(
@@ -201,11 +201,11 @@ const z = ({
         type: "button",
         "aria-expanded": r,
         "aria-controls": b,
-        className: N,
-        style: { color: T },
-        onMouseEnter: E,
-        onKeyDown: y,
-        onClick: () => h((t) => !t),
+        className: Y,
+        style: { color: G },
+        onMouseEnter: y,
+        onKeyDown: m,
+        onClick: () => h((o) => !o),
         children: n
       }
     ),
@@ -219,38 +219,38 @@ const z = ({
           "aria-label": n,
           ...r ? {} : { inert: !0 },
           className: `fixed left-0 w-full z-[100] transition-all duration-300 ease-out ${r ? "opacity-100 translate-y-0 visible pointer-events-auto" : "opacity-0 -translate-y-2 invisible pointer-events-none"}`,
-          style: { top: U ? `${U}px` : "var(--fc-header-height, 50px)" },
-          onMouseEnter: E,
+          style: { top: v ? `${v}px` : "var(--fc-header-height, 50px)" },
+          onMouseEnter: y,
           onKeyDown: c,
-          children: /* @__PURE__ */ I("div", { className: "container mx-auto px-6", onMouseLeave: u, children: /* @__PURE__ */ I(
+          children: /* @__PURE__ */ I("div", { className: "container mx-auto px-6", onMouseLeave: R, children: /* @__PURE__ */ I(
             "div",
             {
               className: "rounded-b-lg shadow-2xl elevation-xl border-t overflow-hidden text-left mt-0",
               style: { backgroundColor: w.colors.bg.card, borderTopColor: w.colors.border },
-              children: /* @__PURE__ */ I("div", { className: `grid ${Y()} gap-4 p-8`, children: C.map((t, k) => /* @__PURE__ */ o("div", { className: "flex flex-col", children: [
+              children: /* @__PURE__ */ I("div", { className: `grid ${T()} gap-4 p-8`, children: C.map((o, k) => /* @__PURE__ */ t("div", { className: "flex flex-col", children: [
                 /* @__PURE__ */ I(
                   M,
                   {
-                    item: t,
+                    item: o,
                     tabIndex: r ? 0 : -1,
                     className: "block px-4 py-2 text-sm font-medium rounded transition-all duration-200 interactive-effect border border-transparent",
                     style: { color: w.colors.text.primary },
-                    children: t.label
+                    children: o.label
                   }
                 ),
-                t.subItems && t.subItems.length > 0 && /* @__PURE__ */ I(
+                o.subItems && o.subItems.length > 0 && /* @__PURE__ */ I(
                   "div",
                   {
                     className: "flex flex-col ml-4 mt-1 border-l-2 pl-2",
                     style: { borderColor: `${w.colors.border || "#e5e7eb"}80` },
-                    children: t.subItems.map((Q, P) => /* @__PURE__ */ I(
+                    children: o.subItems.map((N, P) => /* @__PURE__ */ I(
                       M,
                       {
-                        item: Q,
+                        item: N,
                         tabIndex: r ? 0 : -1,
                         className: "block px-4 py-1.5 text-xs rounded transition-all duration-200 opacity-90 interactive-effect border border-transparent",
                         style: { color: w.colors.text.primary },
-                        children: Q.label
+                        children: N.label
                       },
                       P
                     ))
@@ -271,39 +271,39 @@ const z = ({
           "aria-label": n,
           ...r ? {} : { inert: !0 },
           className: `absolute left-1/2 -translate-x-1/2 top-full pt-4 z-[100] transition-all duration-300 ease-out ${r ? "opacity-100 translate-y-0 visible pointer-events-auto" : "opacity-0 -translate-y-2 invisible pointer-events-none"}`,
-          onMouseEnter: E,
+          onMouseEnter: y,
           onKeyDown: c,
-          children: /* @__PURE__ */ o(
+          children: /* @__PURE__ */ t(
             "div",
             {
               className: "w-75 rounded-2xl shadow-2xl elevation-xl border overflow-hidden text-left",
               style: { backgroundColor: w.colors.bg.card, borderColor: w.colors.border },
-              onMouseLeave: u,
+              onMouseLeave: R,
               children: [
-                /* @__PURE__ */ I("div", { className: `grid ${Y()} gap-2 p-4`, children: C.map((t, k) => /* @__PURE__ */ o("div", { className: "flex flex-col", children: [
+                /* @__PURE__ */ I("div", { className: `grid ${T()} gap-2 p-4`, children: C.map((o, k) => /* @__PURE__ */ t("div", { className: "flex flex-col", children: [
                   /* @__PURE__ */ I(
                     M,
                     {
-                      item: t,
+                      item: o,
                       tabIndex: r ? 0 : -1,
                       className: "block px-4 py-3 text-sm font-bold rounded-xl transition-all duration-200 interactive-effect border border-transparent",
                       style: { color: w.colors.text.primary },
-                      children: t.label
+                      children: o.label
                     }
                   ),
-                  t.subItems && t.subItems.length > 0 && /* @__PURE__ */ I(
+                  o.subItems && o.subItems.length > 0 && /* @__PURE__ */ I(
                     "div",
                     {
                       className: "flex flex-col ml-4 mt-1 border-l-2 pl-2",
                       style: { borderColor: `${w.colors.border || "#e5e7eb"}80` },
-                      children: t.subItems.map((Q, P) => /* @__PURE__ */ I(
+                      children: o.subItems.map((N, P) => /* @__PURE__ */ I(
                         M,
                         {
-                          item: Q,
+                          item: N,
                           tabIndex: r ? 0 : -1,
                           className: "block px-4 py-2 text-xs font-medium rounded-lg transition-all duration-200 opacity-80 interactive-effect border border-transparent hover:opacity-100",
                           style: { color: w.colors.text.primary },
-                          children: Q.label
+                          children: N.label
                         },
                         P
                       ))
@@ -463,8 +463,8 @@ const z = ({
     ]
   }
 ], hI = () => {
-  const { theme: n } = v(), e = n.colors.text.onDark;
-  return /* @__PURE__ */ o(
+  const { theme: n } = U(), e = n.colors.text.onDark;
+  return /* @__PURE__ */ t(
     "div",
     {
       className: "hidden xl:flex justify-end gap-2 border-b pb-2",
@@ -548,7 +548,7 @@ const z = ({
   onClick: C,
   textColor: A
 }) => {
-  const { theme: g } = v();
+  const { theme: g } = U();
   return /* @__PURE__ */ I(
     B,
     {
@@ -566,12 +566,12 @@ const z = ({
   onSearch: n,
   isMobile: e = !1
 }) => {
-  const { theme: C } = v();
+  const { theme: C } = U();
   return /* @__PURE__ */ I("form", { onSubmit: (g) => {
     g.preventDefault();
     const r = g.currentTarget.elements.namedItem("q");
     r.value.trim() && n && (n(r.value.trim()), r.value = "");
-  }, role: "search", "aria-label": "Site search", className: e ? "w-full" : "", children: /* @__PURE__ */ o("div", { className: "relative flex items-center", children: [
+  }, role: "search", "aria-label": "Site search", className: e ? "w-full" : "", children: /* @__PURE__ */ t("div", { className: "relative flex items-center", children: [
     /* @__PURE__ */ I(
       "input",
       {
@@ -607,30 +607,30 @@ const z = ({
   isMobileMenuOpen: a,
   onMobileMenuToggle: r,
   isMobileOrTablet: h,
-  isScrolled: U
+  isScrolled: v
 }) => {
-  const { theme: K } = v(), l = K.colors.text.onDark, f = h, d = e.slice(0, 8);
+  const { theme: K } = U(), l = K.colors.text.onDark, f = h, d = e.slice(0, 8);
   return process.env.NODE_ENV !== "production" && e.length > 8 && console.warn(
     "[Navbar] navItems exceeds the 8-item maximum. Only the first 8 will be rendered."
-  ), /* @__PURE__ */ o("div", { className: "flex justify-between items-center", children: [
-    /* @__PURE__ */ o("div", { className: "flex items-center gap-4", children: [
-      /* @__PURE__ */ o("div", { className: "relative group shrink-0", children: [
+  ), /* @__PURE__ */ t("div", { className: "flex justify-between items-center", children: [
+    /* @__PURE__ */ t("div", { className: "flex items-center gap-4", children: [
+      /* @__PURE__ */ t("div", { className: "relative group shrink-0", children: [
         /* @__PURE__ */ I("div", { className: "absolute -inset-1 bg-linear-to-r from-county-gold-light to-county-gold rounded-full opacity-0 group-hover:opacity-30 blur transition duration-300" }),
         /* @__PURE__ */ I(
           "img",
           {
             src: CI,
             alt: "Franklin County Seal",
-            className: `relative transition-all duration-500 object-contain ${U || a ? "h-12 w-12" : "h-16 w-16 md:h-20 md:w-20"}`
+            className: `relative transition-all duration-500 object-contain ${v || a ? "h-12 w-12" : "h-16 w-16 md:h-20 md:w-20"}`
           }
         )
       ] }),
-      /* @__PURE__ */ o("div", { className: "flex flex-col transition-opacity duration-300 opacity-100", style: { color: l }, children: [
+      /* @__PURE__ */ t("div", { className: "flex flex-col transition-opacity duration-300 opacity-100", style: { color: l }, children: [
         /* @__PURE__ */ I("span", { className: "text-xs uppercase tracking-[0.3em] font-light leading-tight", children: "Franklin County" }),
         /* @__PURE__ */ I("span", { className: "font-serif font-black text-xl md:text-2xl leading-none tracking-tight", children: n })
       ] })
     ] }),
-    d.length > 0 && /* @__PURE__ */ o(
+    d.length > 0 && /* @__PURE__ */ t(
       "nav",
       {
         className: `${f ? "hidden" : "hidden xl:flex"} items-center gap-4`,
@@ -678,7 +678,7 @@ const z = ({
         onMouseLeave: (s) => {
           s.currentTarget.querySelectorAll("span").forEach((x) => x.style.backgroundColor = l);
         },
-        children: /* @__PURE__ */ o("div", { className: "space-y-1.5", "aria-hidden": "true", children: [
+        children: /* @__PURE__ */ t("div", { className: "space-y-1.5", "aria-hidden": "true", children: [
           /* @__PURE__ */ I(
             "span",
             {
@@ -707,7 +707,7 @@ const z = ({
 }, EI = (n) => {
   const e = encodeURIComponent(n), C = navigator.userAgent || navigator.vendor || window.opera;
   return /iPad|iPhone|iPod/.test(C) && !window.MSStream ? `maps://maps.apple.com/?q=${e}` : /android/i.test(C) ? `geo:0,0?q=${e}` : `https://www.google.com/maps/search/?api=1&query=${e}`;
-}, W = "518-891-2280", RI = "36 Church St Saranac Lake NY 12983", kI = /* @__PURE__ */ o(L, { children: [
+}, W = "518-891-2280", RI = "36 Church St Saranac Lake NY 12983", kI = /* @__PURE__ */ t(Z, { children: [
   "36 Church St",
   /* @__PURE__ */ I("br", {}),
   "Saranac Lake, NY 12983",
@@ -717,7 +717,7 @@ const z = ({
   phone: n = W,
   address: e = kI
 }) => {
-  const { theme: C } = v(), A = n === W ? RI : void 0;
+  const { theme: C } = U(), A = n === W ? RI : void 0;
   return /* @__PURE__ */ I(
     "footer",
     {
@@ -728,9 +728,9 @@ const z = ({
         borderTopColor: C.colors.secondary.DEFAULT,
         color: C.colors.text.onDark
       },
-      children: /* @__PURE__ */ o("div", { className: "container mx-auto px-6", children: [
-        /* @__PURE__ */ o("div", { className: "grid md:grid-cols-3 gap-8 mb-8 items-start", children: [
-          /* @__PURE__ */ o("div", { className: "flex items-center gap-4", children: [
+      children: /* @__PURE__ */ t("div", { className: "container mx-auto px-6", children: [
+        /* @__PURE__ */ t("div", { className: "grid md:grid-cols-3 gap-8 mb-8 items-start", children: [
+          /* @__PURE__ */ t("div", { className: "flex items-center gap-4", children: [
             /* @__PURE__ */ I("div", { className: "bg-white/10 p-4 rounded-full", "aria-hidden": "true", children: /* @__PURE__ */ I(
               "svg",
               {
@@ -751,7 +751,7 @@ const z = ({
                 )
               }
             ) }),
-            /* @__PURE__ */ o("div", { children: [
+            /* @__PURE__ */ t("div", { children: [
               /* @__PURE__ */ I("div", { className: "text-xs uppercase tracking-wider mb-1", style: { color: C.colors.text.onDark }, children: "Contact Us" }),
               /* @__PURE__ */ I(
                 "a",
@@ -767,8 +767,8 @@ const z = ({
               )
             ] })
           ] }),
-          /* @__PURE__ */ o("div", { className: "flex items-center gap-4", children: [
-            /* @__PURE__ */ I("div", { className: "bg-white/10 p-4 rounded-full", "aria-hidden": "true", children: /* @__PURE__ */ o(
+          /* @__PURE__ */ t("div", { className: "flex items-center gap-4", children: [
+            /* @__PURE__ */ I("div", { className: "bg-white/10 p-4 rounded-full", "aria-hidden": "true", children: /* @__PURE__ */ t(
               "svg",
               {
                 className: "w-6 h-6",
@@ -799,7 +799,7 @@ const z = ({
                 ]
               }
             ) }),
-            /* @__PURE__ */ o("div", { children: [
+            /* @__PURE__ */ t("div", { children: [
               /* @__PURE__ */ I("div", { className: "text-xs uppercase tracking-wider mb-1", style: { color: C.colors.text.onDark }, children: "County Office" }),
               A ? /* @__PURE__ */ I(
                 "a",
@@ -817,8 +817,8 @@ const z = ({
               ) : /* @__PURE__ */ I("address", { className: "text-sm font-medium leading-snug not-italic", style: { color: C.colors.text.onDark }, children: e })
             ] })
           ] }),
-          /* @__PURE__ */ o("div", { className: "flex items-center gap-4 md:justify-end", children: [
-            /* @__PURE__ */ I("div", { children: /* @__PURE__ */ o(
+          /* @__PURE__ */ t("div", { className: "flex items-center gap-4 md:justify-end", children: [
+            /* @__PURE__ */ I("div", { children: /* @__PURE__ */ t(
               "a",
               {
                 href: "/",
@@ -843,7 +843,7 @@ const z = ({
             )
           ] })
         ] }),
-        /* @__PURE__ */ I("div", { className: "pt-6 border-t border-white/10 text-center", children: /* @__PURE__ */ o("p", { className: "text-xs", style: { color: C.colors.text.onDark }, children: [
+        /* @__PURE__ */ I("div", { className: "pt-6 border-t border-white/10 text-center", children: /* @__PURE__ */ t("p", { className: "text-xs", style: { color: C.colors.text.onDark }, children: [
           "© ",
           (/* @__PURE__ */ new Date()).getFullYear(),
           " Franklin County, NY"
@@ -872,48 +872,48 @@ function fI({
   navItems: a = [],
   showSearch: r = !1,
   onSearch: h,
-  footerPhone: U,
+  footerPhone: v,
   footerAddress: K
 }) {
-  const [l, f] = F(!1), [d, s] = F(!1), [x, j] = F(!1), [w, J] = F(80), b = V(), { theme: p } = v(), i = O(null), m = O(null), R = O(null), G = O(null);
+  const [l, f] = F(!1), [d, s] = F(!1), [x, j] = F(!1), [w, Q] = F(80), b = V(), { theme: p } = U(), i = O(null), u = O(null), E = O(null), J = O(null);
   S(() => {
-    const c = navigator.userAgent || navigator.vendor || window.opera || "", E = /android|webos|iphone|ipad|ipod|blackberry|iemobile|opera mini/i.test(c), u = /macintosh/i.test(c) && navigator.maxTouchPoints > 1;
-    j(!!(E || u));
+    const c = navigator.userAgent || navigator.vendor || window.opera || "", y = /android|webos|iphone|ipad|ipod|blackberry|iemobile|opera mini/i.test(c), R = /macintosh/i.test(c) && navigator.maxTouchPoints > 1;
+    j(!!(y || R));
   }, []), S(() => {
     const c = () => f(window.scrollY > 50);
     return window.addEventListener("scroll", c), () => window.removeEventListener("scroll", c);
   }, []), S(() => {
-    if (!R.current || !G.current) return;
+    if (!E.current || !J.current) return;
     const c = () => {
-      const u = R.current.offsetHeight;
-      J(u), G.current.style.setProperty("--fc-header-height", `${u}px`);
+      const R = E.current.offsetHeight;
+      Q(R), J.current.style.setProperty("--fc-header-height", `${R}px`);
     };
     c();
-    const E = new ResizeObserver(c);
-    return E.observe(R.current), () => E.disconnect();
+    const y = new ResizeObserver(c);
+    return y.observe(E.current), () => y.disconnect();
   }, [C, l]), S(() => {
     s(!1);
   }, [b]), S(() => (document.body.style.overflow = d ? "hidden" : "unset", () => {
     document.body.style.overflow = "unset";
   }), [d]), S(() => {
-    d && m.current ? m.current.querySelector(
+    d && u.current ? u.current.querySelector(
       'a[href], button:not([disabled]), input, [tabindex]:not([tabindex="-1"])'
     )?.focus() : d || i.current?.focus();
   }, [d]);
-  const y = wI(a);
-  return /* @__PURE__ */ o("div", { ref: G, className: "min-h-screen flex flex-col font-sans text-county-charcoal", children: [
+  const m = wI(a);
+  return /* @__PURE__ */ t("div", { ref: J, className: "min-h-screen flex flex-col font-sans text-county-charcoal", children: [
     /* @__PURE__ */ I("a", { href: "#fc-main-content", className: "skip-to-content", children: "Skip to main content" }),
     A && /* @__PURE__ */ I(
       "header",
       {
-        ref: R,
+        ref: E,
         role: "banner",
         className: `fixed top-0 left-0 w-full z-50 transition-all duration-500 ease-in-out ${l ? "py-2 shadow-2xl" : "py-4 text-shadow"}`,
         style: {
           backgroundColor: p.colors.primary.DEFAULT,
           background: p.colors.bg.header
         },
-        children: /* @__PURE__ */ o("div", { className: "container mx-auto px-6", children: [
+        children: /* @__PURE__ */ t("div", { className: "container mx-auto px-6", children: [
           C && /* @__PURE__ */ I(hI, {}),
           /* @__PURE__ */ I(
             yI,
@@ -936,7 +936,7 @@ function fI({
       "nav",
       {
         id: "fc-mobile-nav",
-        ref: m,
+        ref: u,
         "aria-label": "Mobile navigation",
         "aria-hidden": !d,
         ...d ? {} : { inert: !0 },
@@ -948,7 +948,7 @@ function fI({
             return;
           }
         },
-        children: /* @__PURE__ */ I("div", { className: "overflow-y-auto flex-1 pt-32 pb-8", tabIndex: 0, role: "region", "aria-label": "Mobile Navigation Content", children: /* @__PURE__ */ o("div", { className: "container mx-auto px-6", children: [
+        children: /* @__PURE__ */ I("div", { className: "overflow-y-auto flex-1 pt-32 pb-8", tabIndex: 0, role: "region", "aria-label": "Mobile Navigation Content", children: /* @__PURE__ */ t("div", { className: "container mx-auto px-6", children: [
           r && /* @__PURE__ */ I("div", { className: "px-6 w-full max-w-md mx-auto mb-6", children: /* @__PURE__ */ I(
             "form",
             {
@@ -956,8 +956,8 @@ function fI({
               "aria-label": "Site search",
               onSubmit: (c) => {
                 c.preventDefault();
-                const E = c.currentTarget.elements.namedItem("q");
-                E.value.trim() && h && (h(E.value.trim()), E.value = "");
+                const y = c.currentTarget.elements.namedItem("q");
+                y.value.trim() && h && (h(y.value.trim()), y.value = "");
               },
               className: "w-full",
               children: /* @__PURE__ */ I(
@@ -973,59 +973,55 @@ function fI({
               )
             }
           ) }),
-          /* @__PURE__ */ I("nav", { className: "flex flex-col gap-8 text-center mb-12", "aria-label": "Mobile site navigation", children: a.map((c, E) => {
+          /* @__PURE__ */ I("nav", { className: "flex flex-col gap-8 text-center mb-12", "aria-label": "Mobile site navigation", children: a.map((c, y) => {
             if (c.items && c.items.length > 0) {
-              const u = c.items;
-              return /* @__PURE__ */ o("div", { className: "space-y-1", children: [
+              const R = c.items;
+              return /* @__PURE__ */ t("div", { className: "space-y-1", children: [
                 /* @__PURE__ */ I(
                   "span",
                   {
-                    className: "text-2xl font-black uppercase tracking-[0.15em] mb-4 mt-6 block",
+                    className: "text-sm font-black uppercase tracking-[0.2em] mb-3 mt-4 block text-center",
                     style: { color: p.colors.secondary.dark },
                     children: c.label
                   }
                 ),
-                /* @__PURE__ */ I("div", { className: "flex flex-col gap-1", children: u.map((Y, T) => /* @__PURE__ */ I(
+                /* @__PURE__ */ I("div", { className: "flex flex-col gap-1", children: R.map((T, G) => /* @__PURE__ */ I(
                   B,
                   {
-                    to: Y.url,
+                    to: T.url,
                     onClick: () => s(!1),
-                    className: ({ isActive: N }) => `block w-full flex justify-center items-center gap-3 text-xl font-bold uppercase tracking-widest transition-all duration-200 py-4 px-6 rounded-2xl ${N ? "" : "interactive-effect"}`,
-                    style: ({ isActive: N }) => ({
-                      color: N ? p.colors.primary.dark : p.colors.text.primary,
-                      backgroundColor: N ? `${p.colors.primary.DEFAULT}15` : "transparent",
-                      borderLeft: N ? `4px solid ${p.colors.primary.DEFAULT}` : "4px solid transparent"
+                    className: "block w-full text-center text-[13px] font-bold uppercase tracking-widest transition-all duration-200 py-3 px-6 rounded-xl interactive-effect",
+                    style: ({ isActive: Y }) => ({
+                      color: Y ? p.colors.primary.dark : p.colors.text.primary,
+                      backgroundColor: Y ? `${p.colors.primary.DEFAULT}10` : "transparent",
+                      borderLeft: Y ? `4px solid ${p.colors.primary.DEFAULT}` : "4px solid transparent",
+                      borderRight: Y ? `4px solid ${p.colors.primary.DEFAULT}` : "4px solid transparent"
                     }),
-                    children: ({ isActive: N }) => /* @__PURE__ */ o(L, { children: [
-                      /* @__PURE__ */ I("span", { className: `transition-opacity ${N ? "opacity-100" : "opacity-0"}`, children: "→" }),
-                      /* @__PURE__ */ I("span", { children: Y.label })
-                    ] })
+                    children: T.label
                   },
-                  T
+                  G
                 )) })
-              ] }, E);
+              ] }, y);
             }
             return /* @__PURE__ */ I(
               B,
               {
                 to: c.url || "/",
                 onClick: () => s(!1),
-                className: ({ isActive: u }) => `block w-full flex justify-center items-center gap-3 text-xl font-bold uppercase tracking-widest transition-all duration-200 py-4 px-6 rounded-2xl ${u ? "" : "interactive-effect"}`,
-                style: ({ isActive: u }) => ({
-                  color: u ? p.colors.primary.dark : p.colors.text.primary,
-                  backgroundColor: u ? `${p.colors.primary.DEFAULT}15` : "transparent",
-                  borderLeft: u ? `4px solid ${p.colors.primary.DEFAULT}` : "4px solid transparent"
+                className: "block w-full text-center text-[13px] font-bold uppercase tracking-widest transition-all duration-200 py-3 px-6 rounded-xl interactive-effect",
+                style: ({ isActive: R }) => ({
+                  color: R ? p.colors.primary.dark : p.colors.text.primary,
+                  backgroundColor: R ? `${p.colors.primary.DEFAULT}10` : "transparent",
+                  borderLeft: R ? `4px solid ${p.colors.primary.DEFAULT}` : "4px solid transparent",
+                  borderRight: R ? `4px solid ${p.colors.primary.DEFAULT}` : "4px solid transparent"
                 }),
-                children: ({ isActive: u }) => /* @__PURE__ */ o(L, { children: [
-                  /* @__PURE__ */ I("span", { className: `transition-opacity ${u ? "opacity-100" : "opacity-0"}`, children: "→" }),
-                  /* @__PURE__ */ I("span", { children: c.label })
-                ] })
+                children: c.label
               },
-              E
+              y
             );
           }) }),
-          y.length > 0 && a.some((c) => c.items) && /* @__PURE__ */ I("div", { className: "border-t my-6 max-w-md mx-auto", style: { borderColor: `${p.colors.secondary.DEFAULT}4D` } }),
-          C && /* @__PURE__ */ o(L, { children: [
+          m.length > 0 && a.some((c) => c.items) && /* @__PURE__ */ I("div", { className: "border-t my-6 max-w-md mx-auto", style: { borderColor: `${p.colors.secondary.DEFAULT}4D` } }),
+          C && /* @__PURE__ */ t(Z, { children: [
             a.length > 0 && /* @__PURE__ */ I("div", { className: "border-t my-6 max-w-md mx-auto", style: { borderColor: `${p.colors.secondary.DEFAULT}4D` } }),
             /* @__PURE__ */ I("div", { className: "max-w-md mx-auto space-y-6 pb-12", children: [
               { title: "Departments", items: H, url: "https://www.franklincountyny.gov/departments/index.php" },
@@ -1034,23 +1030,23 @@ function fI({
               { title: "Business", items: $, url: "https://www.franklincountyny.gov/business/index.php" },
               { title: "Our Communities", items: II, url: "https://www.franklincountyny.gov/our_communities/index.php" },
               { title: "How Do I?", items: gI, url: "https://www.franklincountyny.gov/how_do_i/index.php" }
-            ].map((c, E) => /* @__PURE__ */ o("div", { children: [
+            ].map((c, y) => /* @__PURE__ */ t("div", { children: [
               /* @__PURE__ */ I("a", { href: c.url, target: "_blank", rel: "noopener noreferrer", className: "block text-center mb-3", children: /* @__PURE__ */ I("h3", { className: "text-xs font-bold uppercase tracking-widest inline-block", style: { color: p.colors.secondary.dark }, children: c.title }) }),
-              /* @__PURE__ */ I("div", { className: "grid grid-cols-2 gap-2", children: c.items.map((u, Y) => /* @__PURE__ */ I(
+              /* @__PURE__ */ I("div", { className: "grid grid-cols-2 gap-2", children: c.items.map((R, T) => /* @__PURE__ */ I(
                 "a",
                 {
-                  href: u.url,
-                  target: u.url?.startsWith("http") ? "_blank" : void 0,
-                  rel: u.url?.startsWith("http") ? "noopener noreferrer" : void 0,
+                  href: R.url,
+                  target: R.url?.startsWith("http") ? "_blank" : void 0,
+                  rel: R.url?.startsWith("http") ? "noopener noreferrer" : void 0,
                   className: "text-xs transition-colors text-center py-1",
                   style: { color: p.colors.text.primary },
-                  onMouseEnter: (T) => T.currentTarget.style.color = p.colors.secondary.DEFAULT,
-                  onMouseLeave: (T) => T.currentTarget.style.color = p.colors.text.primary,
-                  children: u.label
+                  onMouseEnter: (G) => G.currentTarget.style.color = p.colors.secondary.DEFAULT,
+                  onMouseLeave: (G) => G.currentTarget.style.color = p.colors.text.primary,
+                  children: R.label
                 },
-                Y
+                T
               )) })
-            ] }, E)) })
+            ] }, y)) })
           ] })
         ] }) })
       }
@@ -1069,7 +1065,7 @@ function fI({
       xI,
       {
         siteTitle: e,
-        phone: U,
+        phone: v,
         address: K
       }
     ) })
@@ -1079,7 +1075,7 @@ function KI({ theme: n, ...e }) {
   return /* @__PURE__ */ I(dI, { theme: n, children: /* @__PURE__ */ I(fI, { ...e }) });
 }
 const bI = ({ triggerText: n, tooltipContent: e, isActive: C, onToggle: A }) => {
-  const { theme: g } = v(), [a, r] = F(!1), { refs: h, floatingStyles: U } = tI({
+  const { theme: g } = U(), [a, r] = F(!1), { refs: h, floatingStyles: v } = tI({
     placement: "bottom",
     whileElementsMounted: rI,
     middleware: [
@@ -1093,7 +1089,7 @@ const bI = ({ triggerText: n, tooltipContent: e, isActive: C, onToggle: A }) => 
       })
     ]
   }), K = C || a;
-  return /* @__PURE__ */ o(L, { children: [
+  return /* @__PURE__ */ t(Z, { children: [
     /* @__PURE__ */ I(
       "button",
       {
@@ -1116,7 +1112,7 @@ const bI = ({ triggerText: n, tooltipContent: e, isActive: C, onToggle: A }) => 
       "div",
       {
         ref: h.setFloating,
-        style: U,
+        style: v,
         className: "w-80 max-w-[calc(100vw-4rem)] p-4 bg-gray-900 text-white text-sm leading-relaxed rounded-lg shadow-2xl z-50",
         children: e
       }
@@ -1131,17 +1127,17 @@ const bI = ({ triggerText: n, tooltipContent: e, isActive: C, onToggle: A }) => 
   isMobileMenuOpen: a,
   onClose: r,
   backLinkUrl: h,
-  backLinkText: U,
+  backLinkText: v,
   title: K
 }) => {
-  const { theme: l } = v(), [f, d] = F(typeof window < "u" ? window.innerWidth >= 1024 : !0), [s, x] = F(/* @__PURE__ */ new Set([e || n[0]?.id])), j = O({}), w = O(s);
+  const { theme: l } = U(), [f, d] = F(typeof window < "u" ? window.innerWidth >= 1024 : !0), [s, x] = F(/* @__PURE__ */ new Set([e || n[0]?.id])), j = O({}), w = O(s);
   S(() => {
-    const i = Array.from(s).find((m) => !w.current.has(m));
+    const i = Array.from(s).find((u) => !w.current.has(u));
     if (i !== void 0) {
-      const m = j.current[i];
-      m && setTimeout(() => {
-        const R = m.closest("aside");
-        R && R.scrollTo({ top: m.offsetTop - 24, behavior: "smooth" });
+      const u = j.current[i];
+      u && setTimeout(() => {
+        const E = u.closest("aside");
+        E && E.scrollTo({ top: u.offsetTop - 24, behavior: "smooth" });
       }, 450);
     }
     w.current = new Set(s);
@@ -1149,18 +1145,18 @@ const bI = ({ triggerText: n, tooltipContent: e, isActive: C, onToggle: A }) => 
     const i = () => d(window.innerWidth >= 1024);
     return window.addEventListener("resize", i), () => window.removeEventListener("resize", i);
   }, []);
-  const J = (i, m) => {
-    m.stopPropagation();
-    const R = new Set(s);
-    R.has(i) ? R.delete(i) : R.add(i), x(R);
+  const Q = (i, u) => {
+    u.stopPropagation();
+    const E = new Set(s);
+    E.has(i) ? E.delete(i) : E.add(i), x(E);
   }, b = (i) => {
     s.has(i) || x(new Set(s).add(i)), A(i);
-  }, p = (i, m) => {
-    g && g(i, m), f || r();
+  }, p = (i, u) => {
+    g && g(i, u), f || r();
   };
-  return /* @__PURE__ */ o(L, { children: [
+  return /* @__PURE__ */ t(Z, { children: [
     /* @__PURE__ */ I(D, { children: a && !f && /* @__PURE__ */ I(
-      Z.div,
+      L.div,
       {
         initial: { opacity: 0 },
         animate: { opacity: 1 },
@@ -1170,8 +1166,8 @@ const bI = ({ triggerText: n, tooltipContent: e, isActive: C, onToggle: A }) => 
         style: { top: "var(--fc-header-height, 80px)" }
       }
     ) }),
-    /* @__PURE__ */ o(
-      Z.aside,
+    /* @__PURE__ */ t(
+      L.aside,
       {
         initial: !1,
         animate: {
@@ -1188,15 +1184,15 @@ const bI = ({ triggerText: n, tooltipContent: e, isActive: C, onToggle: A }) => 
           borderColor: `${l.colors.border}30`
         },
         children: [
-          /* @__PURE__ */ o("div", { className: "flex justify-between items-center px-4 mb-6 sticky top-0 bg-white/80 backdrop-blur-md pt-4 pb-2 z-10 lg:hidden", children: [
-            h && U ? /* @__PURE__ */ o(
+          /* @__PURE__ */ t("div", { className: "flex justify-between items-center px-4 mb-6 sticky top-0 bg-white/80 backdrop-blur-md pt-4 pb-2 z-10 lg:hidden", children: [
+            h && v ? /* @__PURE__ */ t(
               "a",
               {
                 href: h,
                 className: "flex-1 btn-interactive interactive-effect group mr-4",
                 children: [
                   /* @__PURE__ */ I("svg", { className: "w-4 h-4 transition-transform duration-300 group-hover:-translate-x-1", fill: "none", stroke: "currentColor", viewBox: "0 0 24 24", children: /* @__PURE__ */ I("path", { strokeLinecap: "round", strokeLinejoin: "round", strokeWidth: 2.5, d: "M10 19l-7-7m0 0l7-7m-7 7h18" }) }),
-                  U
+                  v
                 ]
               }
             ) : /* @__PURE__ */ I("div", {}),
@@ -1212,7 +1208,7 @@ const bI = ({ triggerText: n, tooltipContent: e, isActive: C, onToggle: A }) => 
               }
             )
           ] }),
-          /* @__PURE__ */ o("nav", { className: "px-4 lg:pt-8", children: [
+          /* @__PURE__ */ t("nav", { className: "px-4 lg:pt-8", children: [
             K && /* @__PURE__ */ I(
               "h2",
               {
@@ -1222,22 +1218,22 @@ const bI = ({ triggerText: n, tooltipContent: e, isActive: C, onToggle: A }) => 
               }
             ),
             /* @__PURE__ */ I("ul", { className: "space-y-4", children: n.map((i) => {
-              const m = s.has(i.id), R = e === i.id, G = i.subNodes && i.subNodes.length > 0;
-              return /* @__PURE__ */ o("li", { ref: (y) => {
-                j.current[i.id] = y;
+              const u = s.has(i.id), E = e === i.id, J = i.subNodes && i.subNodes.length > 0;
+              return /* @__PURE__ */ t("li", { ref: (m) => {
+                j.current[i.id] = m;
               }, className: "flex flex-col relative", children: [
                 /* @__PURE__ */ I(
                   "div",
                   {
                     className: "rounded-xl transition-all duration-300 group",
                     style: {
-                      borderLeft: R ? "4px solid" : "4px solid transparent",
-                      borderImage: R ? `linear-gradient(to bottom, ${l.colors.secondary.light}, ${l.colors.secondary.dark}) 1` : "none",
-                      backgroundColor: R ? `${l.colors.primary.DEFAULT}08` : "rgba(255, 255, 255, 0.6)",
-                      boxShadow: R ? `0 8px 24px -6px ${l.colors.primary.DEFAULT}33` : "0 4px 12px -3px rgba(0, 0, 0, 0.1)"
+                      borderLeft: E ? "4px solid" : "4px solid transparent",
+                      borderImage: E ? `linear-gradient(to bottom, ${l.colors.secondary.light}, ${l.colors.secondary.dark}) 1` : "none",
+                      backgroundColor: E ? `${l.colors.primary.DEFAULT}08` : "rgba(255, 255, 255, 0.6)",
+                      boxShadow: E ? `0 8px 24px -6px ${l.colors.primary.DEFAULT}33` : "0 4px 12px -3px rgba(0, 0, 0, 0.1)"
                     },
-                    children: /* @__PURE__ */ o("div", { className: "relative flex items-center justify-between p-3.5", children: [
-                      /* @__PURE__ */ o(
+                    children: /* @__PURE__ */ t("div", { className: "relative flex items-center justify-between p-3.5", children: [
+                      /* @__PURE__ */ t(
                         "div",
                         {
                           className: "flex-1 text-left cursor-pointer",
@@ -1262,28 +1258,28 @@ const bI = ({ triggerText: n, tooltipContent: e, isActive: C, onToggle: A }) => 
                           ]
                         }
                       ),
-                      G && /* @__PURE__ */ I(
+                      J && /* @__PURE__ */ I(
                         "button",
                         {
-                          onClick: (y) => J(i.id, y),
-                          onKeyDown: (y) => {
-                            (y.key === "Enter" || y.key === " ") && (y.preventDefault(), J(i.id, y));
+                          onClick: (m) => Q(i.id, m),
+                          onKeyDown: (m) => {
+                            (m.key === "Enter" || m.key === " ") && (m.preventDefault(), Q(i.id, m));
                           },
                           className: "p-2 rounded-lg cursor-pointer border-2 bg-white/80 transition-all duration-300 hover:scale-110 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 shrink-0",
                           style: {
                             borderColor: "#D1D5DB"
                             // gray-300
                           },
-                          onMouseEnter: (y) => y.currentTarget.style.borderColor = l.colors.primary.DEFAULT,
-                          onMouseLeave: (y) => y.currentTarget.style.borderColor = "#D1D5DB",
-                          "aria-label": m ? "Collapse" : "Expand",
+                          onMouseEnter: (m) => m.currentTarget.style.borderColor = l.colors.primary.DEFAULT,
+                          onMouseLeave: (m) => m.currentTarget.style.borderColor = "#D1D5DB",
+                          "aria-label": u ? "Collapse" : "Expand",
                           children: /* @__PURE__ */ I(
                             "svg",
                             {
                               className: "w-5 h-5 transition-transform duration-400",
                               style: {
                                 color: l.colors.primary.DEFAULT,
-                                transform: m ? "rotate(90deg)" : "rotate(0deg)"
+                                transform: u ? "rotate(90deg)" : "rotate(0deg)"
                               },
                               fill: "none",
                               stroke: "currentColor",
@@ -1296,42 +1292,42 @@ const bI = ({ triggerText: n, tooltipContent: e, isActive: C, onToggle: A }) => 
                     ] })
                   }
                 ),
-                /* @__PURE__ */ I(D, { initial: !1, children: m && G && /* @__PURE__ */ I(
-                  Z.ul,
+                /* @__PURE__ */ I(D, { initial: !1, children: u && J && /* @__PURE__ */ I(
+                  L.ul,
                   {
                     initial: { height: 0, opacity: 0 },
                     animate: { height: "auto", opacity: 1 },
                     exit: { height: 0, opacity: 0 },
                     transition: { duration: 0.4, ease: [0.4, 0, 0.2, 1] },
                     className: "overflow-hidden ml-3 mt-2 space-y-1.5",
-                    children: i.subNodes.map((y, c) => {
-                      const E = C === y.id;
+                    children: i.subNodes.map((m, c) => {
+                      const y = C === m.id;
                       return /* @__PURE__ */ I(
-                        Z.li,
+                        L.li,
                         {
                           initial: { x: -10, opacity: 0 },
                           animate: { x: 0, opacity: 1 },
                           transition: { delay: c * 0.05 },
-                          children: /* @__PURE__ */ o(
+                          children: /* @__PURE__ */ t(
                             "button",
                             {
-                              onClick: () => p(i.id, y.id),
-                              className: `group w-full text-left px-3.5 py-2.5 rounded-lg text-sm cursor-pointer transition-all duration-300 flex items-start gap-2.5 bg-transparent border-transparent interactive-effect ${E ? "active translate-x-1" : "hover:translate-x-1"}`,
+                              onClick: () => p(i.id, m.id),
+                              className: `group w-full text-left px-3.5 py-2.5 rounded-lg text-sm cursor-pointer transition-all duration-300 flex items-start gap-2.5 bg-transparent border-transparent interactive-effect ${y ? "active translate-x-1" : "hover:translate-x-1"}`,
                               children: [
                                 /* @__PURE__ */ I(
                                   "span",
                                   {
                                     className: "mt-0.5 transition-colors",
-                                    style: { color: E ? l.colors.secondary.light : l.colors.secondary.DEFAULT },
+                                    style: { color: y ? l.colors.secondary.light : l.colors.secondary.DEFAULT },
                                     children: "→"
                                   }
                                 ),
-                                /* @__PURE__ */ I("span", { className: "flex-1 leading-snug font-medium", children: y.title })
+                                /* @__PURE__ */ I("span", { className: "flex-1 leading-snug font-medium", children: m.title })
                               ]
                             }
                           )
                         },
-                        y.id
+                        m.id
                       );
                     })
                   }
@@ -1344,9 +1340,9 @@ const bI = ({ triggerText: n, tooltipContent: e, isActive: C, onToggle: A }) => 
     )
   ] });
 };
-function QI({ title: n, subtitle: e, image: C, video: A, isHomePage: g = !1 }) {
-  const { theme: a } = v();
-  return !n && !C && !A ? null : /* @__PURE__ */ o("div", { className: `relative w-full flex items-center justify-center ${g ? "min-h-screen" : "h-[60vh]"} overflow-hidden`, children: [
+function FI({ title: n, subtitle: e, image: C, video: A, isHomePage: g = !1 }) {
+  const { theme: a } = U();
+  return !n && !C && !A ? null : /* @__PURE__ */ t("div", { className: `relative w-full flex items-center justify-center ${g ? "min-h-screen" : "h-[60vh]"} overflow-hidden`, children: [
     A && /* @__PURE__ */ I("video", { autoPlay: !0, loop: !0, muted: !0, playsInline: !0, className: "absolute inset-0 w-full h-full object-cover", children: /* @__PURE__ */ I("source", { src: A, type: "video/mp4" }) }),
     !A && C && /* @__PURE__ */ I(
       "div",
@@ -1357,7 +1353,7 @@ function QI({ title: n, subtitle: e, image: C, video: A, isHomePage: g = !1 }) {
     ),
     !A && !C && /* @__PURE__ */ I("div", { className: "absolute inset-0", style: { background: a.colors.bg.main } }),
     /* @__PURE__ */ I("div", { className: "absolute inset-0 bg-linear-to-b from-black/30 via-black/10 to-transparent" }),
-    n && /* @__PURE__ */ o("div", { className: "container mx-auto px-6 relative z-10 text-center pt-48", children: [
+    n && /* @__PURE__ */ t("div", { className: "container mx-auto px-6 relative z-10 text-center pt-48", children: [
       /* @__PURE__ */ I(
         "h1",
         {
@@ -1386,9 +1382,9 @@ function QI({ title: n, subtitle: e, image: C, video: A, isHomePage: g = !1 }) {
     ] })
   ] });
 }
-function FI({ title: n, children: e, className: C = "" }) {
-  const { theme: A } = v();
-  return /* @__PURE__ */ o("div", { className: `content-card hover-lift elevation-md transition-all duration-500 ${C}`, children: [
+function QI({ title: n, children: e, className: C = "" }) {
+  const { theme: A } = U();
+  return /* @__PURE__ */ t("div", { className: `content-card hover-lift elevation-md transition-all duration-500 ${C}`, children: [
     n && /* @__PURE__ */ I(
       "h2",
       {
@@ -1406,14 +1402,14 @@ function JI({
   description: C = "This document is available for download.",
   url: A
 }) {
-  const { theme: g } = v(), a = A || `/docs/${e}`;
-  return /* @__PURE__ */ I("div", { className: "space-y-6", children: /* @__PURE__ */ o("div", { className: "border-l-4 p-6 rounded-r shadow-sm", style: { borderLeftColor: g.colors.secondary.DEFAULT, background: g.colors.bg.card }, children: [
+  const { theme: g } = U(), a = A || `/docs/${e}`;
+  return /* @__PURE__ */ I("div", { className: "space-y-6", children: /* @__PURE__ */ t("div", { className: "border-l-4 p-6 rounded-r shadow-sm", style: { borderLeftColor: g.colors.secondary.DEFAULT, background: g.colors.bg.card }, children: [
     /* @__PURE__ */ I("h2", { className: "text-xl font-bold mb-2", style: { color: g.colors.text.primary }, children: n }),
     /* @__PURE__ */ I("p", { className: "mb-6 text-sm italic", style: { color: g.colors.text.muted }, children: C }),
-    /* @__PURE__ */ o("div", { className: "flex flex-col gap-4 p-4 border rounded max-w-md fluid-container", style: { background: g.colors.bg.cardAlt, borderColor: g.colors.border }, children: [
-      /* @__PURE__ */ o("div", { className: "flex items-center gap-4 w-full min-w-0", children: [
+    /* @__PURE__ */ t("div", { className: "flex flex-col gap-4 p-4 border rounded max-w-md fluid-container", style: { background: g.colors.bg.cardAlt, borderColor: g.colors.border }, children: [
+      /* @__PURE__ */ t("div", { className: "flex items-center gap-4 w-full min-w-0", children: [
         /* @__PURE__ */ I("div", { className: "p-3 rounded-lg shrink-0", style: { backgroundColor: `${g.colors.secondary.DEFAULT}33`, color: g.colors.secondary.DEFAULT }, children: /* @__PURE__ */ I("svg", { xmlns: "http://www.w3.org/2000/svg", className: "h-8 w-8", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor", children: /* @__PURE__ */ I("path", { strokeLinecap: "round", strokeLinejoin: "round", strokeWidth: 1.5, d: "M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z" }) }) }),
-        /* @__PURE__ */ o("div", { className: "min-w-0 flex-1", children: [
+        /* @__PURE__ */ t("div", { className: "min-w-0 flex-1", children: [
           /* @__PURE__ */ I(
             "div",
             {
@@ -1429,7 +1425,7 @@ function JI({
           /* @__PURE__ */ I("div", { className: "text-xs mt-1 font-medium", style: { color: g.colors.text.muted }, children: "PDF Document" })
         ] })
       ] }),
-      /* @__PURE__ */ o("div", { className: "grid grid-cols-2 gap-3 mt-2", children: [
+      /* @__PURE__ */ t("div", { className: "grid grid-cols-2 gap-3 mt-2", children: [
         /* @__PURE__ */ I(
           "a",
           {
@@ -1467,13 +1463,13 @@ function JI({
 }
 export {
   cI as APP_THEME,
-  FI as ContentCard,
+  QI as ContentCard,
   xI as Footer,
   KI as Layout,
   z as NavDropdown,
   yI as Navbar,
   JI as PDFPlaceholder,
-  QI as PageHeader,
+  FI as PageHeader,
   NI as Sidebar,
   bI as SmartTooltip,
   dI as ThemeProvider,
@@ -1485,7 +1481,7 @@ export {
   EI as getNativeMapUrl,
   gI as howDoIItems,
   X as residentsItems,
-  v as useTheme,
+  U as useTheme,
   _ as visitorsItems
 };
 //# sourceMappingURL=index.js.map
