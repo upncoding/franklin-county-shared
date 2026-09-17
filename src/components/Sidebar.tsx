@@ -122,7 +122,7 @@ export const Sidebar = ({
                 }}
             >
                 {/* Mobile Header: Back Link and Close Button */}
-                <div className="flex justify-between items-center px-4 mb-6 sticky top-0 bg-white/80 backdrop-blur-md pt-4 pb-2 z-10 lg:hidden">
+                <div className="flex justify-between items-center px-4 mb-6 sticky top-0 bg-white/80 backdrop-blur-md pt-4 pb-2 z-10">
                     {backLinkUrl && backLinkText ? (
                         <a href={backLinkUrl} 
                            className="flex-1 btn-interactive interactive-effect group mr-4"

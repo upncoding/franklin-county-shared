@@ -140,16 +140,50 @@ function LayoutInner({
     // Measure header height and expose as CSS variable so consuming apps can use it
     useEffect(() => {
         if (!headerRef.current || !layoutRef.current) return;
-        const update = () => {
-            const h = headerRef.current!.offsetHeight;
-            setHeaderHeight(h);
-            layoutRef.current!.style.setProperty('--fc-header-height', `${h}px`);
+        
+        let lastWidth = window.innerWidth;
+        let maxObserved = 0;
+        let timeoutId: any;
+
+        const handleResize = () => {
+            clearTimeout(timeoutId);
+            timeoutId = setTimeout(() => {
+                if (!headerRef.current) return;
+                const h = headerRef.current.offsetHeight;
+                const w = window.innerWidth;
+                
+                // If width changes (e.g., orientation change), reset max height
+                if (w !== lastWidth) {
+                    lastWidth = w;
+                    maxObserved = h;
+                } else {
+                    maxObserved = Math.max(maxObserved, h);
+                }
+
+                setHeaderHeight(prev => {
+                    const next = maxObserved;
+                    if (prev !== next) {
+                        layoutRef.current?.style.setProperty('--fc-header-height', `${next}px`);
+                        return next;
+                    }
+                    return prev;
+                });
+            }, 100);
         };
-        update();
-        const ro = new ResizeObserver(update);
+        
+        // Initial measurement
+        handleResize();
+        
+        // Use ResizeObserver but heavily debounced to prevent React from re-rendering
+        // 60 times a second during CSS transitions.
+        const ro = new ResizeObserver(handleResize);
         ro.observe(headerRef.current);
-        return () => ro.disconnect();
-    }, [showTopbar, isScrolled]);
+        
+        return () => {
+            ro.disconnect();
+            clearTimeout(timeoutId);
+        };
+    }, []);
 
     // Close mobile menu on route change
     useEffect(() => { setIsMobileMenuOpen(false); }, [location]);
