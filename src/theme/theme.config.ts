@@ -53,7 +53,7 @@ export const APP_THEME: Theme = {
         secondary: {
             DEFAULT: '#eab308', // Golden Yellow (Accents)
             light: '#facc15',
-            dark: '#ca8a04'     // Darkened for better contrast
+            dark: '#854d0e'     // Darkened for better contrast
         },
 
         // =====================================================

@@ -80,7 +80,7 @@ async function runTests() {
         
         const navBtn = await mob.$('button[aria-controls="fc-mobile-nav"]');
         if (navBtn) {
-            await navBtn.click();
+            await mob.evaluate(el => el.click(), navBtn);
             await new Promise(r => setTimeout(r, 800));
             record('mobile/menu', 'Mobile Menu Open', await runAxe(mob));
         } else {

@@ -21,7 +21,7 @@ const dI = {
       DEFAULT: "#eab308",
       // Golden Yellow (Accents)
       light: "#facc15",
-      dark: "#ca8a04"
+      dark: "#854d0e"
       // Darkened for better contrast
     },
     // =====================================================

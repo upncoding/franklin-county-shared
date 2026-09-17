@@ -13,5 +13,10 @@
     "context": "mobile/base",
     "label": "Mobile Base",
     "violations": []
+  },
+  {
+    "context": "mobile/menu",
+    "label": "Mobile Menu Open",
+    "violations": []
   }
 ]
