@@ -130,63 +130,67 @@ function LayoutInner({
         setIsMobileOrTablet(!!(isMobileUA || isIPad));
     }, []);
 
+    const isInitialMount = useRef(true);
+    const wasOpenRef = useRef(false);
+
+    const updateHeaderDimensions = () => {
+        if (!headerRef.current) return;
+        const h = headerRef.current.offsetHeight;
+        document.documentElement.style.setProperty('--fc-header-actual-height', `${h}px`);
+        document.documentElement.style.setProperty('--fc-header-height', `${h}px`);
+        layoutRef.current?.style.setProperty('--fc-header-actual-height', `${h}px`);
+        layoutRef.current?.style.setProperty('--fc-header-height', `${h}px`);
+        setHeaderHeight(h);
+    };
+
     // Scroll shrink effect
     useEffect(() => {
-        const handleScroll = () => setIsScrolled(window.scrollY > 50);
-        window.addEventListener('scroll', handleScroll);
+        const handleScroll = () => {
+            setIsScrolled(window.scrollY > 50);
+            updateHeaderDimensions();
+        };
+        handleScroll();
+        window.addEventListener('scroll', handleScroll, { passive: true });
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
 
-    // Measure header height and expose as CSS variable so consuming apps can use it
+    // Measure header height and expose as CSS variables
     useEffect(() => {
-        if (!headerRef.current || !layoutRef.current) return;
-        
-        let lastWidth = window.innerWidth;
-        let maxObserved = 0;
-        let timeoutId: any;
+        updateHeaderDimensions();
 
         const handleResize = () => {
-            clearTimeout(timeoutId);
-            timeoutId = setTimeout(() => {
-                if (!headerRef.current) return;
-                const h = headerRef.current.offsetHeight;
-                const w = window.innerWidth;
-                
-                // If width changes (e.g., orientation change), reset max height
-                if (w !== lastWidth) {
-                    lastWidth = w;
-                    maxObserved = h;
-                } else {
-                    maxObserved = Math.max(maxObserved, h);
-                }
-
-                setHeaderHeight(prev => {
-                    const next = maxObserved;
-                    if (prev !== next) {
-                        layoutRef.current?.style.setProperty('--fc-header-height', `${next}px`);
-                        return next;
-                    }
-                    return prev;
-                });
-            }, 100);
+            updateHeaderDimensions();
         };
-        
-        // Initial measurement
-        handleResize();
-        
-        // Use ResizeObserver but heavily debounced to prevent React from re-rendering
-        // 60 times a second during CSS transitions.
-        const ro = new ResizeObserver(handleResize);
-        ro.observe(headerRef.current);
-        
+
+        const ro = new ResizeObserver(() => {
+            updateHeaderDimensions();
+        });
+        if (headerRef.current) {
+            ro.observe(headerRef.current);
+        }
+        window.addEventListener('resize', handleResize);
+
         return () => {
             ro.disconnect();
-            clearTimeout(timeoutId);
+            window.removeEventListener('resize', handleResize);
         };
     }, []);
 
-    // Close mobile menu on route change
-    useEffect(() => { setIsMobileMenuOpen(false); }, [location]);
+    const prevPathnameRef = useRef(location.pathname);
+
+    // Close mobile menu on route change and cancel focus return so page transitions don't focus header
+    useEffect(() => {
+        if (prevPathnameRef.current !== location.pathname) {
+            prevPathnameRef.current = location.pathname;
+            wasOpenRef.current = false;
+            setIsMobileMenuOpen(false);
+        }
+    }, [location.pathname]);
+
+    const handleMobileNavClick = () => {
+        wasOpenRef.current = false;
+        setIsMobileMenuOpen(false);
+    };
 
     // Auto-close mobile menu on desktop resize
     useEffect(() => {
@@ -196,28 +200,44 @@ function LayoutInner({
                 setIsMobileMenuOpen(false);
             }
         };
-        // Initial check
         handleMatch(mql);
-        
         mql.addEventListener('change', handleMatch);
         return () => mql.removeEventListener('change', handleMatch);
     }, []);
 
-
-    // Lock body scroll when mobile menu open
+    // Lock body and html scroll when mobile menu open
     useEffect(() => {
-        document.body.style.overflow = isMobileMenuOpen ? 'hidden' : 'unset';
-        return () => { document.body.style.overflow = 'unset'; };
+        if (isMobileMenuOpen) {
+            const origBodyOverflow = document.body.style.overflow;
+            const origHtmlOverflow = document.documentElement.style.overflow;
+            document.body.style.overflow = 'hidden';
+            document.documentElement.style.overflow = 'hidden';
+            return () => {
+                document.body.style.overflow = origBodyOverflow;
+                document.documentElement.style.overflow = origHtmlOverflow;
+            };
+        } else {
+            document.body.style.overflow = 'unset';
+            document.documentElement.style.overflow = 'unset';
+        }
     }, [isMobileMenuOpen]);
 
-    // Focus management: mobile menu open → first item; closed → hamburger
+    // Focus management: mobile menu open → first item; closed → hamburger only if previously open
     useEffect(() => {
+        if (isInitialMount.current) {
+            isInitialMount.current = false;
+            wasOpenRef.current = isMobileMenuOpen;
+            return;
+        }
+
         if (isMobileMenuOpen && mobileMenuRef.current) {
+            wasOpenRef.current = true;
             const first = mobileMenuRef.current.querySelector<HTMLElement>(
                 'a[href], button:not([disabled]), input, [tabindex]:not([tabindex="-1"])'
             );
             first?.focus();
-        } else if (!isMobileMenuOpen) {
+        } else if (!isMobileMenuOpen && wasOpenRef.current) {
+            wasOpenRef.current = false;
             hamburgerRef.current?.focus();
         }
     }, [isMobileMenuOpen]);
@@ -340,7 +360,7 @@ function LayoutInner({
                                                         <NavLink
                                                             key={j}
                                                             to={sub.url}
-                                                            onClick={() => setIsMobileMenuOpen(false)}
+                                                            onClick={handleMobileNavClick}
                                                             className="block w-full text-center text-[13px] font-bold uppercase tracking-widest transition-all duration-200 py-3 px-6 rounded-xl interactive-effect"
                                                             style={({ isActive }) => ({
                                                                 color: isActive ? theme.colors.primary.dark : theme.colors.text.primary,
@@ -361,7 +381,7 @@ function LayoutInner({
                                         <NavLink
                                             key={i}
                                             to={item.url || '/'}
-                                            onClick={() => setIsMobileMenuOpen(false)}
+                                            onClick={handleMobileNavClick}
                                             className="block w-full text-center text-[13px] font-bold uppercase tracking-widest transition-all duration-200 py-3 px-6 rounded-xl interactive-effect"
                                             style={({ isActive }) => ({
                                                 color: isActive ? theme.colors.primary.dark : theme.colors.text.primary,

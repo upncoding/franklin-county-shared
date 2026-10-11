@@ -33,6 +33,24 @@ body {
     scrollbar-color: #15803d #f0fdf4;
   }
 
+  aside {
+    scrollbar-width: thin;
+    scrollbar-color: #15803d rgba(0, 0, 0, 0.05);
+  }
+
+  aside::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  aside::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.03);
+  }
+
+  aside::-webkit-scrollbar-thumb {
+    background: #15803d;
+    border-radius: 3px;
+  }
+
 /* ==========================================
    ACCESSIBILITY
    ========================================== */

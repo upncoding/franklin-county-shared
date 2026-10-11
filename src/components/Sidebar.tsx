@@ -42,9 +42,16 @@ export const Sidebar = ({
     const [expandedNodes, setExpandedNodes] = useState<Set<string | number>>(new Set([activeNodeId || nodes[0]?.id]));
     const nodeRefs = useRef<{ [key: string | number]: HTMLLIElement | null }>({});
     const resolvedIsOpen = isOpen !== undefined ? isOpen : (isDesktop ? true : isMobileMenuOpen);
+    const isInitialMount = useRef(true);
     const prevExpandedNodes = useRef<Set<string | number>>(expandedNodes);
 
     useEffect(() => {
+        if (isInitialMount.current) {
+            isInitialMount.current = false;
+            prevExpandedNodes.current = new Set(expandedNodes);
+            return;
+        }
+
         const newlyExpanded = Array.from(expandedNodes).find(id => !prevExpandedNodes.current.has(id));
         if (newlyExpanded !== undefined) {
             const element = nodeRefs.current[newlyExpanded];
@@ -60,11 +67,89 @@ export const Sidebar = ({
         prevExpandedNodes.current = new Set(expandedNodes);
     }, [expandedNodes]);
 
+    const asideRef = useRef<HTMLElement | null>(null);
+    const closeBtnRef = useRef<HTMLButtonElement | null>(null);
+
+    // Track desktop media query (1024px)
     useEffect(() => {
-        const handleResize = () => setIsDesktop(window.innerWidth >= 1024);
-        window.addEventListener('resize', handleResize);
-        return () => window.removeEventListener('resize', handleResize);
+        const mql = window.matchMedia('(min-width: 1024px)');
+        const handleMatch = (e: MediaQueryListEvent | MediaQueryList) => {
+            setIsDesktop(e.matches);
+            if (e.matches) {
+                document.body.style.overflow = 'unset';
+                document.documentElement.style.overflow = 'unset';
+            }
+        };
+        handleMatch(mql);
+        mql.addEventListener('change', handleMatch);
+        return () => mql.removeEventListener('change', handleMatch);
     }, []);
+
+    // Body & HTML scroll lock on mobile when sidebar is open
+    useEffect(() => {
+        if (!isDesktop && resolvedIsOpen) {
+            const originalBodyOverflow = document.body.style.overflow;
+            const originalHtmlOverflow = document.documentElement.style.overflow;
+            document.body.style.overflow = 'hidden';
+            document.documentElement.style.overflow = 'hidden';
+            return () => {
+                document.body.style.overflow = originalBodyOverflow;
+                document.documentElement.style.overflow = originalHtmlOverflow;
+            };
+        } else {
+            document.body.style.overflow = 'unset';
+            document.documentElement.style.overflow = 'unset';
+        }
+    }, [isDesktop, resolvedIsOpen]);
+
+    // Focus management & Escape key handling for mobile drawer
+    useEffect(() => {
+        if (!isDesktop && resolvedIsOpen) {
+            // Auto focus close button or first interactive element
+            const timer = setTimeout(() => {
+                if (closeBtnRef.current) {
+                    closeBtnRef.current.focus();
+                } else if (asideRef.current) {
+                    const firstFocusable = asideRef.current.querySelector<HTMLElement>(
+                        'a[href], button:not([disabled]), input, [tabindex]:not([tabindex="-1"])'
+                    );
+                    firstFocusable?.focus();
+                }
+            }, 100);
+
+            const handleKeyDown = (e: KeyboardEvent) => {
+                if (e.key === 'Escape') {
+                    e.preventDefault();
+                    onClose();
+                    return;
+                }
+
+                if (e.key === 'Tab' && asideRef.current) {
+                    const focusables = asideRef.current.querySelectorAll<HTMLElement>(
+                        'a[href], button:not([disabled]), input, [tabindex]:not([tabindex="-1"])'
+                    );
+                    if (focusables.length === 0) return;
+
+                    const first = focusables[0];
+                    const last = focusables[focusables.length - 1];
+
+                    if (e.shiftKey && document.activeElement === first) {
+                        e.preventDefault();
+                        last.focus();
+                    } else if (!e.shiftKey && document.activeElement === last) {
+                        e.preventDefault();
+                        first.focus();
+                    }
+                }
+            };
+
+            window.addEventListener('keydown', handleKeyDown);
+            return () => {
+                clearTimeout(timer);
+                window.removeEventListener('keydown', handleKeyDown);
+            };
+        }
+    }, [isDesktop, resolvedIsOpen, onClose]);
 
     const toggleNode = (nodeId: string | number, e: React.MouseEvent | React.KeyboardEvent) => {
         e.stopPropagation();
@@ -93,68 +178,42 @@ export const Sidebar = ({
         }
     };
 
-    return (
+    const headerHeightVar = 'var(--fc-header-actual-height, var(--fc-header-height, 80px))';
+
+    const renderInnerContent = () => (
         <>
-            <AnimatePresence>
-                {!isDesktop && resolvedIsOpen && (
-                    <motion.div
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        exit={{ opacity: 0 }}
-                        onClick={onClose}
-                        className="fixed inset-x-0 bottom-0 bg-black/60 backdrop-blur-sm z-30"
-                        style={{ top: 'var(--fc-header-height, 80px)' }}
-                    />
+            {/* Header: Back Link and (on mobile) Close Button */}
+            <div className="flex justify-between items-center px-4 mb-6 sticky top-0 bg-white/80 backdrop-blur-md pt-4 pb-2 z-10">
+                {backLinkUrl && backLinkText ? (
+                    <a href={backLinkUrl} 
+                       className="flex-1 btn-interactive interactive-effect group mr-4"
+                    >
+                        <svg className="w-4 h-4 transition-transform duration-300 group-hover:-translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+                        </svg>
+                        {backLinkText}
+                    </a>
+                ) : (
+                    <div />
                 )}
-            </AnimatePresence>
+                
+                {!isDesktop && resolvedIsOpen && (
+                    <button
+                        ref={closeBtnRef}
+                        onClick={onClose}
+                        className="shrink-0 p-2.5 rounded-lg cursor-pointer text-gray-600 shadow-md hover:shadow-lg transition-all duration-300 hover:scale-110 bg-white"
+                        aria-label="Close sidebar"
+                        onMouseEnter={(e) => e.currentTarget.style.color = theme.colors.primary.DEFAULT}
+                        onMouseLeave={(e) => e.currentTarget.style.color = '#4B5563'}
+                    >
+                        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                    </button>
+                )}
+            </div>
 
-            <motion.aside
-                initial={false}
-                animate={{
-                    x: resolvedIsOpen ? 0 : -320,
-                    visibility: resolvedIsOpen ? "visible" : "hidden",
-                }}
-                transition={{ type: 'spring', damping: 30, stiffness: 300 }}
-                className="w-80 z-40 overflow-y-auto backdrop-blur-xl border-r shadow-2xl lg:shadow-none lg:sticky
-                          fixed left-0 pt-0 pb-24
-                          top-[var(--fc-header-height,80px)]
-                          h-[calc(100vh-var(--fc-header-height,80px))]"
-                style={{
-                    backgroundColor: theme.colors.bg.sidebar,
-                    borderColor: `${theme.colors.border}30`,
-                }}
-            >
-                {/* Mobile Header: Back Link and Close Button */}
-                <div className="flex justify-between items-center px-4 mb-6 sticky top-0 bg-white/80 backdrop-blur-md pt-4 pb-2 z-10">
-                    {backLinkUrl && backLinkText ? (
-                        <a href={backLinkUrl} 
-                           className="flex-1 btn-interactive interactive-effect group mr-4"
-                        >
-                            <svg className="w-4 h-4 transition-transform duration-300 group-hover:-translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
-                            </svg>
-                            {backLinkText}
-                        </a>
-                    ) : (
-                        <div />
-                    )}
-                    
-                    {resolvedIsOpen && (
-                        <button
-                            onClick={onClose}
-                            className="shrink-0 p-2.5 rounded-lg cursor-pointer text-gray-600 shadow-md hover:shadow-lg transition-all duration-300 hover:scale-110 bg-white"
-                            aria-label="Close sidebar"
-                            onMouseEnter={(e) => e.currentTarget.style.color = theme.colors.primary.DEFAULT}
-                            onMouseLeave={(e) => e.currentTarget.style.color = '#4B5563'}
-                        >
-                            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M6 18L18 6M6 6l12 12" />
-                            </svg>
-                        </button>
-                    )}
-                </div>
-
-                <nav className="px-4 lg:pt-8">
+            <nav className="px-4 lg:pt-2">
                     {title && (
                         <h2 className="text-lg font-serif font-bold mb-6 tracking-wide bg-clip-text text-transparent"
                             style={{ backgroundImage: `linear-gradient(to right, ${theme.colors.primary.DEFAULT}, ${theme.colors.primary.light})` }}
@@ -289,6 +348,71 @@ export const Sidebar = ({
                         })}
                     </ul>
                 </nav>
+        </>
+    );
+
+    if (isDesktop) {
+        return (
+            <aside
+                ref={asideRef}
+                className="w-80 shrink-0 sticky z-20 border-r"
+                style={{
+                    backgroundColor: theme.colors.bg.sidebar,
+                    borderColor: `${theme.colors.border}30`,
+                    top: headerHeightVar,
+                    height: `calc(100dvh - ${headerHeightVar})`,
+                    maxHeight: `calc(100dvh - ${headerHeightVar})`,
+                    overflowY: 'auto',
+                    overscrollBehavior: 'contain',
+                    paddingBottom: '2rem',
+                    transition: 'top 300ms ease, height 300ms ease',
+                }}
+            >
+                {renderInnerContent()}
+            </aside>
+        );
+    }
+
+    return (
+        <>
+            <AnimatePresence>
+                {resolvedIsOpen && (
+                    <motion.div
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        onClick={onClose}
+                        onTouchMove={(e) => e.preventDefault()}
+                        className="fixed inset-0 bg-black/60 backdrop-blur-sm z-30"
+                    />
+                )}
+            </AnimatePresence>
+
+            <motion.aside
+                ref={asideRef}
+                role="dialog"
+                aria-modal={resolvedIsOpen}
+                aria-label={title || "Sidebar Navigation"}
+                initial={false}
+                animate={{
+                    x: resolvedIsOpen ? 0 : -320,
+                    visibility: resolvedIsOpen ? "visible" : "hidden",
+                }}
+                transition={{ type: 'spring', damping: 30, stiffness: 300 }}
+                className="w-80 fixed left-0 z-40 border-r shadow-2xl flex flex-col"
+                style={{
+                    backgroundColor: theme.colors.bg.sidebar,
+                    borderColor: `${theme.colors.border}30`,
+                    top: headerHeightVar,
+                    height: `calc(100dvh - ${headerHeightVar})`,
+                    maxHeight: `calc(100dvh - ${headerHeightVar})`,
+                    overflowY: 'auto',
+                    overscrollBehavior: 'contain',
+                    WebkitOverflowScrolling: 'touch',
+                    paddingBottom: '3rem',
+                }}
+            >
+                {renderInnerContent()}
             </motion.aside>
         </>
     );
