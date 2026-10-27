@@ -2,18 +2,25 @@ import { useTheme } from '../theme/ThemeContext';
 
 export interface PDFPlaceholderProps {
     title: string;
-    filename: string;
+    filename?: string;
     description?: string;
     url?: string;
+    available?: boolean;
 }
 
 export function PDFPlaceholder({ 
     title, 
     filename, 
     description = "This document is available for download.",
-    url
+    url,
+    available = true
 }: PDFPlaceholderProps) {
     const { theme } = useTheme();
+
+    if (!available || (!filename && !url) || filename === '' || url === '#') {
+        return null;
+    }
+
     const fileUrl = url || `/docs/${filename}`;
 
     return (
