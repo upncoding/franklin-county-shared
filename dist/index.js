@@ -2589,40 +2589,56 @@ function Ye({ title: e, children: t, className: n = "", style: r }) {
 	});
 }
 // src/components/PDFPlaceholder.tsx
-function Xe({ title: e, filename: t, description: n = "This document is available for download.", url: r }) {
-	let { theme: i } = A(), a = r || `/docs/${t}`;
+function Xe({ title: e, filename: t, description: n = "This document is available for download.", url: r, available: i = !0, unavailableMessage: a = "This document is currently being updated and will be available for download soon.", unavailableTooltip: o = "This file is currently unavailable and will be published soon." }) {
+	let { theme: s } = A();
+	if ((!t && !r || t === "" || r === "#") && !e) return null;
+	let c = !!(i && (t || r) && t !== "" && r !== "#"), l = r || `/docs/${t}`;
 	return /* @__PURE__ */ d("div", {
 		className: "space-y-6",
 		children: /* @__PURE__ */ f("div", {
 			className: "border-l-4 p-6 rounded-r shadow-sm",
 			style: {
-				borderLeftColor: i.colors.secondary.DEFAULT,
-				background: i.colors.bg.card
+				borderLeftColor: s.colors.secondary.DEFAULT,
+				background: s.colors.bg.card
 			},
 			children: [
+				!c && /* @__PURE__ */ f("div", {
+					className: "inline-flex items-center gap-1.5 px-3 py-1 rounded-md text-xs font-bold uppercase tracking-wider bg-amber-100 text-amber-900 border border-amber-200 mb-3",
+					children: [/* @__PURE__ */ d("svg", {
+						className: "w-3.5 h-3.5 shrink-0",
+						fill: "currentColor",
+						viewBox: "0 0 20 20",
+						"aria-hidden": "true",
+						children: /* @__PURE__ */ d("path", {
+							fillRule: "evenodd",
+							d: "M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z",
+							clipRule: "evenodd"
+						})
+					}), /* @__PURE__ */ d("span", { children: "Document Currently Unavailable" })]
+				}),
 				/* @__PURE__ */ d("h2", {
 					className: "text-xl font-bold mb-2",
-					style: { color: i.colors.text.primary },
+					style: { color: s.colors.text.primary },
 					children: e
 				}),
 				/* @__PURE__ */ d("p", {
 					className: "mb-6 text-sm italic",
-					style: { color: i.colors.text.muted },
-					children: n
+					style: { color: s.colors.text.muted },
+					children: c ? n : a
 				}),
 				/* @__PURE__ */ f("div", {
 					className: "flex flex-col gap-4 p-4 border rounded max-w-md fluid-container",
 					style: {
-						background: i.colors.bg.cardAlt,
-						borderColor: i.colors.border
+						background: s.colors.bg.cardAlt,
+						borderColor: s.colors.border
 					},
 					children: [/* @__PURE__ */ f("div", {
 						className: "flex items-center gap-4 w-full min-w-0",
 						children: [/* @__PURE__ */ d("div", {
 							className: "p-3 rounded-lg shrink-0",
 							style: {
-								backgroundColor: `${i.colors.secondary.DEFAULT}33`,
-								color: i.colors.secondary.DEFAULT
+								backgroundColor: c ? `${s.colors.secondary.DEFAULT}33` : `${s.colors.secondary.DEFAULT}15`,
+								color: c ? s.colors.secondary.DEFAULT : s.colors.text.muted
 							},
 							children: /* @__PURE__ */ d("svg", {
 								xmlns: "http://www.w3.org/2000/svg",
@@ -2642,43 +2658,75 @@ function Xe({ title: e, filename: t, description: n = "This document is availabl
 							children: [/* @__PURE__ */ d("div", {
 								className: "font-bold whitespace-nowrap overflow-hidden text-ellipsis",
 								style: {
-									color: i.colors.text.primary,
+									color: s.colors.text.primary,
 									fontSize: "clamp(0.75rem, 4.1cqw, 1.125rem)"
 								},
 								title: t,
-								children: t
+								children: t || e
 							}), /* @__PURE__ */ d("div", {
 								className: "text-xs mt-1 font-medium",
-								style: { color: i.colors.text.muted },
-								children: "PDF Document"
+								style: { color: c ? s.colors.text.muted : "#92400e" },
+								children: c ? "PDF Document" : "PDF Document • Pending Publication"
 							})]
 						})]
-					}), /* @__PURE__ */ f("div", {
+					}), /* @__PURE__ */ d("div", {
 						className: "grid grid-cols-2 gap-3 mt-2",
-						children: [/* @__PURE__ */ d("a", {
-							href: a,
+						children: c ? /* @__PURE__ */ f(u, { children: [/* @__PURE__ */ d("a", {
+							href: l,
 							target: "_blank",
 							rel: "noopener noreferrer",
 							className: "w-full flex items-center justify-center px-4 py-2.5 text-sm font-bold rounded-lg transition-all border-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2",
 							style: {
-								borderColor: i.colors.secondary.DEFAULT,
-								color: i.colors.text.primary,
+								borderColor: s.colors.secondary.DEFAULT,
+								color: s.colors.text.primary,
 								backgroundColor: "transparent"
 							},
-							onMouseEnter: (e) => e.currentTarget.style.backgroundColor = `${i.colors.secondary.DEFAULT}10`,
+							onMouseEnter: (e) => e.currentTarget.style.backgroundColor = `${s.colors.secondary.DEFAULT}10`,
 							onMouseLeave: (e) => e.currentTarget.style.backgroundColor = "transparent",
 							"aria-label": `Preview ${e} in a new tab`,
 							children: "Preview"
 						}), /* @__PURE__ */ d("a", {
-							href: a,
+							href: l,
 							download: !0,
 							className: "w-full flex items-center justify-center px-4 py-2.5 text-black text-sm font-bold rounded-lg transition-all shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2",
-							style: { backgroundColor: i.colors.secondary.DEFAULT },
+							style: { backgroundColor: s.colors.secondary.DEFAULT },
 							onMouseEnter: (e) => e.currentTarget.style.filter = "brightness(1.05)",
 							onMouseLeave: (e) => e.currentTarget.style.filter = "none",
 							"aria-label": `Download ${e}`,
 							children: "Download"
-						})]
+						})] }) : /* @__PURE__ */ f(u, { children: [/* @__PURE__ */ f("div", {
+							className: "relative group",
+							children: [/* @__PURE__ */ d("button", {
+								type: "button",
+								"aria-disabled": "true",
+								tabIndex: 0,
+								onClick: (e) => e.preventDefault(),
+								className: "w-full flex items-center justify-center px-4 py-2.5 text-sm font-bold rounded-lg border-2 border-gray-300 bg-gray-100 text-gray-500 cursor-not-allowed opacity-75 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2",
+								title: o,
+								"aria-label": `Preview ${e} (${o})`,
+								children: "Preview"
+							}), /* @__PURE__ */ d("span", {
+								role: "tooltip",
+								className: "pointer-events-none absolute bottom-full left-1/2 -translate-x-1/2 mb-2 hidden group-hover:block group-focus-within:block w-max max-w-xs px-3 py-1.5 text-xs font-medium text-white bg-gray-900 rounded-md shadow-lg z-20 text-center",
+								children: o
+							})]
+						}), /* @__PURE__ */ f("div", {
+							className: "relative group",
+							children: [/* @__PURE__ */ d("button", {
+								type: "button",
+								"aria-disabled": "true",
+								tabIndex: 0,
+								onClick: (e) => e.preventDefault(),
+								className: "w-full flex items-center justify-center px-4 py-2.5 text-sm font-bold rounded-lg bg-gray-200 text-gray-500 cursor-not-allowed opacity-75 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2",
+								title: o,
+								"aria-label": `Download ${e} (${o})`,
+								children: "Download"
+							}), /* @__PURE__ */ d("span", {
+								role: "tooltip",
+								className: "pointer-events-none absolute bottom-full left-1/2 -translate-x-1/2 mb-2 hidden group-hover:block group-focus-within:block w-max max-w-xs px-3 py-1.5 text-xs font-medium text-white bg-gray-900 rounded-md shadow-lg z-20 text-center",
+								children: o
+							})]
+						})] })
 					})]
 				})
 			]
@@ -2729,28 +2777,59 @@ function Qe({ title: e, children: t, className: n = "" }) {
 	});
 }
 // src/components/ActionCard.tsx
-function $e({ preheader: e, title: t, url: n, className: r = "" }) {
-	let { theme: i } = A();
-	return /* @__PURE__ */ f("a", {
+function $e({ preheader: e, title: t, url: n, className: r = "", available: i = !0, unavailableTooltip: a = "This document is currently unavailable and will be published soon." }) {
+	let { theme: o } = A();
+	return i && n && n !== "#" ? /* @__PURE__ */ f("a", {
 		href: n,
 		className: `flex items-center justify-between p-6 rounded-xl border-2 transition-all duration-300 group ${r}`,
 		style: {
-			borderColor: i.colors.secondary.DEFAULT,
-			color: i.colors.text.primary,
+			borderColor: o.colors.secondary.DEFAULT,
+			color: o.colors.text.primary,
 			backgroundColor: "white"
 		},
 		children: [/* @__PURE__ */ f("div", { children: [e && /* @__PURE__ */ d("span", {
 			className: "block text-xs uppercase tracking-widest mb-1",
-			style: { color: i.colors.secondary.dark },
+			style: { color: o.colors.secondary.dark },
 			children: e
 		}), /* @__PURE__ */ d("span", {
 			className: "text-xl font-bold",
 			children: t
 		})] }), /* @__PURE__ */ d("span", {
 			className: "text-2xl group-hover:translate-x-1 transition-transform",
-			style: { color: i.colors.secondary.dark },
+			style: { color: o.colors.secondary.dark },
 			children: "→"
 		})]
+	}) : /* @__PURE__ */ f("div", {
+		className: `flex items-center justify-between p-6 rounded-xl border-2 transition-all duration-300 relative group cursor-not-allowed opacity-75 bg-gray-50 ${r}`,
+		style: {
+			borderColor: o.colors.border,
+			color: o.colors.text.muted
+		},
+		tabIndex: 0,
+		"aria-disabled": "true",
+		title: a,
+		"aria-label": `${e ? `${e} ` : ""}${t} (${a})`,
+		children: [
+			/* @__PURE__ */ f("div", { children: [e && /* @__PURE__ */ f("span", {
+				className: "block text-xs uppercase tracking-widest mb-1 text-gray-500 font-bold",
+				children: [e, " • Unavailable"]
+			}), /* @__PURE__ */ d("span", {
+				className: "text-xl font-bold text-gray-700",
+				children: t
+			})] }),
+			/* @__PURE__ */ d("div", {
+				className: "flex items-center gap-2",
+				children: /* @__PURE__ */ d("span", {
+					className: "text-xs font-bold px-2 py-1 bg-amber-100 text-amber-800 rounded border border-amber-200",
+					children: "Coming Soon"
+				})
+			}),
+			/* @__PURE__ */ d("span", {
+				role: "tooltip",
+				className: "pointer-events-none absolute bottom-full left-1/2 -translate-x-1/2 mb-2 hidden group-hover:block group-focus-within:block w-max max-w-xs px-3 py-1.5 text-xs font-medium text-white bg-gray-900 rounded-md shadow-lg z-20 text-center",
+				children: a
+			})
+		]
 	});
 }
 // src/components/EventCard.tsx
