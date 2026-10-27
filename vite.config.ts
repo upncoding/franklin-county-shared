@@ -6,7 +6,7 @@ export default defineConfig({
     plugins: [react()],
     build: {
         lib: {
-            entry: resolve(__dirname, 'src/index.ts'),
+            entry: resolve(import.meta.dirname, 'src/index.ts'),
             name: 'FranklinCountyShared',
             formats: ['es', 'cjs'],
             fileName: (format) => format === 'es' ? 'index.js' : 'index.cjs',
@@ -35,7 +35,7 @@ export default defineConfig({
     // Resolve path alias for cleaner imports inside the package
     resolve: {
         alias: {
-            '@': resolve(__dirname, 'src'),
+            '@': resolve(import.meta.dirname, 'src'),
         },
     },
 });

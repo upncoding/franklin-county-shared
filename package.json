@@ -1,6 +1,6 @@
 {
   "name": "@upncoding/franklin-county-shared",
-  "version": "0.4.3",
+  "version": "0.4.4",
   "description": "Shared theme, components, and layout shell for Franklin County sites",
   "type": "module",
   "main": "./dist/index.cjs",
@@ -36,17 +36,17 @@
     "@types/node": "^26.6.1",
     "@types/react": "^19.2.5",
     "@types/react-dom": "^19.2.3",
-    "@vitejs/plugin-react": "^5.1.1",
-    "autoprefixer": "^10.4.23",
-    "axe-core": "^4.13.0",
-    "postcss": "^8.5.6",
-    "puppeteer": "^25.11.0",
-    "react": "^19.2.0",
-    "react-dom": "^19.2.0",
+    "@vitejs/plugin-react": "^6.1.2",
+    "autoprefixer": "^10.6.2",
+    "axe-core": "^4.14.0",
+    "postcss": "^8.5.32",
+    "puppeteer": "^25.16.0",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1",
     "react-router-dom": "^7.12.0",
     "tailwindcss": "^4.1.18",
     "typescript": "~5.9.3",
-    "vite": "^7.2.4"
+    "vite": "^8.3.5"
   },
   "publishConfig": {
     "registry": "https://npm.pkg.github.com"
@@ -57,7 +57,10 @@
   },
   "dependencies": {
     "@floating-ui/react": "^0.27.20",
-    "framer-motion": "^13.4.0",
-    "lucide-react": "^1.46.0"
+    "framer-motion": "^13.5.1",
+    "lucide-react": "^1.62.0"
+  },
+  "engines": {
+    "node": ">=24"
   }
 }
