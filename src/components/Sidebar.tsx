@@ -41,7 +41,7 @@ export const Sidebar = ({
     const [isDesktop, setIsDesktop] = useState(typeof window !== 'undefined' ? window.innerWidth >= 1024 : true);
     const [expandedNodes, setExpandedNodes] = useState<Set<string | number>>(new Set([activeNodeId || nodes[0]?.id]));
     const nodeRefs = useRef<{ [key: string | number]: HTMLLIElement | null }>({});
-    const resolvedIsOpen = isOpen !== undefined ? isOpen : (isDesktop ? true : isMobileMenuOpen);
+    const resolvedIsOpen = isOpen !== undefined ? isOpen : isMobileMenuOpen;
     const isInitialMount = useRef(true);
     const prevExpandedNodes = useRef<Set<string | number>>(expandedNodes);
 
@@ -197,7 +197,7 @@ export const Sidebar = ({
                     <div />
                 )}
                 
-                {!isDesktop && resolvedIsOpen && (
+                {resolvedIsOpen && (
                     <button
                         ref={closeBtnRef}
                         onClick={onClose}
@@ -355,20 +355,23 @@ export const Sidebar = ({
         return (
             <aside
                 ref={asideRef}
-                className="w-80 shrink-0 sticky z-20 border-r"
+                className={`shrink-0 sticky z-20 border-r transition-[width,opacity] duration-300 ease-in-out ${
+                    resolvedIsOpen ? 'w-80 opacity-100 visible' : 'w-0 opacity-0 invisible overflow-hidden border-r-0'
+                }`}
                 style={{
                     backgroundColor: theme.colors.bg.sidebar,
                     borderColor: `${theme.colors.border}30`,
                     top: headerHeightVar,
                     height: `calc(100dvh - ${headerHeightVar})`,
                     maxHeight: `calc(100dvh - ${headerHeightVar})`,
-                    overflowY: 'auto',
+                    overflowY: resolvedIsOpen ? 'auto' : 'hidden',
                     overscrollBehavior: 'contain',
-                    paddingBottom: '2rem',
-                    transition: 'top 300ms ease, height 300ms ease',
+                    paddingBottom: resolvedIsOpen ? '2rem' : 0,
                 }}
             >
-                {renderInnerContent()}
+                <div className="w-80">
+                    {renderInnerContent()}
+                </div>
             </aside>
         );
     }

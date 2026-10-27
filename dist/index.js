@@ -1576,7 +1576,7 @@ var Me = ({ to: e, label: t, onClick: n, textColor: r }) => {
 					children: [/* @__PURE__ */ d("div", { className: "absolute -inset-1 bg-linear-to-r from-county-gold-light to-county-gold rounded-full opacity-0 group-hover:opacity-30 blur transition duration-300" }), /* @__PURE__ */ d("img", {
 						src: B,
 						alt: "Franklin County Seal",
-						className: `relative transition-all duration-500 object-contain ${l || o ? "h-10 w-10 lg:h-11 lg:w-11 xl:h-12 xl:w-12" : "h-12 w-12 lg:h-14 lg:w-14 xl:h-16 xl:w-16 2xl:h-20 2xl:w-20"}`
+						className: `relative transition-all duration-300 object-contain ${l || o ? "h-10 w-10 lg:h-11 lg:w-11 xl:h-12 xl:w-12" : "h-12 w-12 lg:h-14 lg:w-14 xl:h-16 xl:w-16 2xl:h-20 2xl:w-20"}`
 					})]
 				}), /* @__PURE__ */ f("div", {
 					className: "flex flex-col transition-opacity duration-300 opacity-100",
@@ -1863,10 +1863,19 @@ function Ue({ children: e, siteTitle: t, showTopbar: n = !0, showNavbar: r = !0,
 		document.documentElement.style.setProperty("--fc-header-actual-height", `${e}px`), document.documentElement.style.setProperty("--fc-header-height", `${e}px`), B.current?.style.setProperty("--fc-header-actual-height", `${e}px`), B.current?.style.setProperty("--fc-header-height", `${e}px`), E(e);
 	};
 	i(() => {
-		let e = () => {
-			b(window.scrollY > 50), U();
+		let e, t = typeof window < "u" && window.scrollY > 50, n = () => {
+			let n = window.scrollY > 50;
+			if (n !== t) {
+				t = n, b(n);
+				let r = performance.now(), i = () => {
+					U(), performance.now() - r < 350 && (e = requestAnimationFrame(i));
+				};
+				cancelAnimationFrame(e), e = requestAnimationFrame(i);
+			}
 		};
-		return e(), window.addEventListener("scroll", e, { passive: !0 }), () => window.removeEventListener("scroll", e);
+		return n(), window.addEventListener("scroll", n, { passive: !0 }), () => {
+			window.removeEventListener("scroll", n), cancelAnimationFrame(e);
+		};
 	}, []), i(() => {
 		U();
 		let e = () => {
@@ -1915,7 +1924,7 @@ function Ue({ children: e, siteTitle: t, showTopbar: n = !0, showNavbar: r = !0,
 			r && /* @__PURE__ */ d("header", {
 				ref: M,
 				role: "banner",
-				className: `fixed top-0 left-0 w-full z-50 transition-all duration-500 ease-in-out ${y ? "py-2 shadow-2xl" : "py-4 text-shadow"}`,
+				className: `fixed top-0 left-0 w-full z-50 transition-all duration-300 ease-in-out ${y ? "py-2 shadow-2xl" : "py-4 text-shadow"}`,
 				style: {
 					backgroundColor: O.colors.primary.DEFAULT,
 					background: O.colors.bg.header
@@ -2185,7 +2194,7 @@ var Ge = ({ triggerText: e, tooltipContent: t, isActive: n, onToggle: r }) => {
 		children: t
 	}) })] });
 }, Ke = ({ nodes: e, activeNodeId: t, activeSubNodeId: n, onNodeSelect: r, onSubNodeSelect: a, isMobileMenuOpen: o, onClose: s, backLinkUrl: p, backLinkText: m, title: h, isOpen: g }) => {
-	let { theme: _ } = A(), [v, y] = l(typeof window < "u" ? window.innerWidth >= 1024 : !0), [b, x] = l(/* @__PURE__ */ new Set([t || e[0]?.id])), S = c({}), C = g === void 0 ? v ? !0 : o : g, E = c(!0), D = c(b);
+	let { theme: _ } = A(), [v, y] = l(typeof window < "u" ? window.innerWidth >= 1024 : !0), [b, x] = l(/* @__PURE__ */ new Set([t || e[0]?.id])), S = c({}), C = g === void 0 ? o : g, E = c(!0), D = c(b);
 	i(() => {
 		if (E.current) {
 			E.current = !1, D.current = new Set(b);
@@ -2265,7 +2274,7 @@ var Ge = ({ triggerText: e, tooltipContent: t, isActive: n, onToggle: r }) => {
 					d: "M10 19l-7-7m0 0l7-7m-7 7h18"
 				})
 			}), m]
-		}) : /* @__PURE__ */ d("div", {}), !v && C && /* @__PURE__ */ d("button", {
+		}) : /* @__PURE__ */ d("div", {}), C && /* @__PURE__ */ d("button", {
 			ref: k,
 			onClick: s,
 			className: "shrink-0 p-2.5 rounded-lg cursor-pointer text-gray-600 shadow-md hover:shadow-lg transition-all duration-300 hover:scale-110 bg-white",
@@ -2415,19 +2424,21 @@ var Ge = ({ triggerText: e, tooltipContent: t, isActive: n, onToggle: r }) => {
 	})] });
 	return v ? /* @__PURE__ */ d("aside", {
 		ref: O,
-		className: "w-80 shrink-0 sticky z-20 border-r",
+		className: `shrink-0 sticky z-20 border-r transition-[width,opacity] duration-300 ease-in-out ${C ? "w-80 opacity-100 visible" : "w-0 opacity-0 invisible overflow-hidden border-r-0"}`,
 		style: {
 			backgroundColor: _.colors.bg.sidebar,
 			borderColor: `${_.colors.border}30`,
 			top: P,
 			height: `calc(100dvh - ${P})`,
 			maxHeight: `calc(100dvh - ${P})`,
-			overflowY: "auto",
+			overflowY: C ? "auto" : "hidden",
 			overscrollBehavior: "contain",
-			paddingBottom: "2rem",
-			transition: "top 300ms ease, height 300ms ease"
+			paddingBottom: C ? "2rem" : 0
 		},
-		children: F()
+		children: /* @__PURE__ */ d("div", {
+			className: "w-80",
+			children: F()
+		})
 	}) : /* @__PURE__ */ f(u, { children: [/* @__PURE__ */ d(w, { children: C && /* @__PURE__ */ d(T.div, {
 		initial: { opacity: 0 },
 		animate: { opacity: 1 },

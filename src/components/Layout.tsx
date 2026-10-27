@@ -161,15 +161,35 @@ function LayoutInner({
         setHeaderHeight(h);
     };
 
-    // Scroll shrink effect
+    // Scroll shrink effect with animation frame tracking
     useEffect(() => {
+        let animFrameId: number;
+        let lastScrolled = typeof window !== 'undefined' ? window.scrollY > 50 : false;
+
         const handleScroll = () => {
-            setIsScrolled(window.scrollY > 50);
-            updateHeaderDimensions();
+            const scrolled = window.scrollY > 50;
+            if (scrolled !== lastScrolled) {
+                lastScrolled = scrolled;
+                setIsScrolled(scrolled);
+                
+                // Track header dimensions frame-by-frame during the transition window
+                const startTime = performance.now();
+                const track = () => {
+                    updateHeaderDimensions();
+                    if (performance.now() - startTime < 350) {
+                        animFrameId = requestAnimationFrame(track);
+                    }
+                };
+                cancelAnimationFrame(animFrameId);
+                animFrameId = requestAnimationFrame(track);
+            }
         };
         handleScroll();
         window.addEventListener('scroll', handleScroll, { passive: true });
-        return () => window.removeEventListener('scroll', handleScroll);
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+            cancelAnimationFrame(animFrameId);
+        };
     }, []);
 
     // Measure header height and expose as CSS variables
@@ -281,7 +301,7 @@ function LayoutInner({
                 <header
                     ref={headerRef}
                     role="banner"
-                    className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 ease-in-out ${isScrolled ? 'py-2 shadow-2xl' : 'py-4 text-shadow'}`}
+                    className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ease-in-out ${isScrolled ? 'py-2 shadow-2xl' : 'py-4 text-shadow'}`}
                     style={{ 
                         backgroundColor: theme.colors.primary.DEFAULT,
                         background: theme.colors.bg.header 

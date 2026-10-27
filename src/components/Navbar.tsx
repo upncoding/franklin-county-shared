@@ -181,7 +181,7 @@ export const Navbar = ({
                     <img
                         src={seal}
                         alt="Franklin County Seal"
-                        className={`relative transition-all duration-500 object-contain ${isScrolled || isMobileMenuOpen ? 'h-10 w-10 lg:h-11 lg:w-11 xl:h-12 xl:w-12' : 'h-12 w-12 lg:h-14 lg:w-14 xl:h-16 xl:w-16 2xl:h-20 2xl:w-20'}`}
+                        className={`relative transition-all duration-300 object-contain ${isScrolled || isMobileMenuOpen ? 'h-10 w-10 lg:h-11 lg:w-11 xl:h-12 xl:w-12' : 'h-12 w-12 lg:h-14 lg:w-14 xl:h-16 xl:w-16 2xl:h-20 2xl:w-20'}`}
                     />
                 </div>
                 <div className="flex flex-col transition-opacity duration-300 opacity-100" style={{ color: headerTextColor }}>
