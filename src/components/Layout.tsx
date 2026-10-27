@@ -328,7 +328,7 @@ function LayoutInner({
                     ref={headerRef}
                     role="banner"
                     onTransitionEnd={handleHeaderTransitionEnd}
-                    className={`fixed top-0 left-0 w-full z-50 transition-[padding,box-shadow,background-color] duration-300 ease-in-out ${isScrolled ? 'py-2 shadow-2xl' : 'py-4 text-shadow'}`}
+                    className={`fixed top-0 left-0 w-full z-50 transition-[padding,box-shadow,background-color] duration-300 ease-in-out ${isScrolled ? 'py-2 shadow-2xl' : 'py-4'}`}
                     style={{ 
                         backgroundColor: theme.colors.primary.DEFAULT,
                         background: theme.colors.bg.header 

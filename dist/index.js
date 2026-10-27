@@ -180,7 +180,8 @@ var M = ({ label: e, url: t = "#", items: n, columns: r = 1, textColor: a, varia
 					className: "rounded-b-lg shadow-2xl elevation-xl border-t overflow-hidden text-left mt-0",
 					style: {
 						backgroundColor: w.colors.bg.card,
-						borderTopColor: w.colors.border
+						borderTopColor: w.colors.border,
+						textShadow: "none"
 					},
 					children: /* @__PURE__ */ d("div", {
 						className: `grid ${R()} gap-4 p-8`,
@@ -219,7 +220,8 @@ var M = ({ label: e, url: t = "#", items: n, columns: r = 1, textColor: a, varia
 				className: "w-75 rounded-2xl shadow-2xl elevation-xl border overflow-hidden text-left",
 				style: {
 					backgroundColor: w.colors.bg.card,
-					borderColor: w.colors.border
+					borderColor: w.colors.border,
+					textShadow: "none"
 				},
 				onMouseLeave: L,
 				children: [/* @__PURE__ */ d("div", {
@@ -1925,7 +1927,7 @@ function Ue({ children: e, siteTitle: t, showTopbar: n = !0, showNavbar: r = !0,
 				ref: M,
 				role: "banner",
 				onTransitionEnd: te,
-				className: `fixed top-0 left-0 w-full z-50 transition-[padding,box-shadow,background-color] duration-300 ease-in-out ${y ? "py-2 shadow-2xl" : "py-4 text-shadow"}`,
+				className: `fixed top-0 left-0 w-full z-50 transition-[padding,box-shadow,background-color] duration-300 ease-in-out ${y ? "py-2 shadow-2xl" : "py-4"}`,
 				style: {
 					backgroundColor: O.colors.primary.DEFAULT,
 					background: O.colors.bg.header

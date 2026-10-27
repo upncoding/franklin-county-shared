@@ -282,7 +282,7 @@ export const NavDropdown = ({
                     <div className="container mx-auto px-6" onMouseLeave={handleMouseLeave}>
                         <div
                             className="rounded-b-lg shadow-2xl elevation-xl border-t overflow-hidden text-left mt-0"
-                            style={{ backgroundColor: theme.colors.bg.card, borderTopColor: theme.colors.border }}
+                            style={{ backgroundColor: theme.colors.bg.card, borderTopColor: theme.colors.border, textShadow: 'none' }}
                         >
                             <div className={`grid ${getGridClass()} gap-4 p-8`}>
                                 {items.map((item, index) => (
@@ -335,7 +335,7 @@ export const NavDropdown = ({
                 >
                     <div
                         className="w-75 rounded-2xl shadow-2xl elevation-xl border overflow-hidden text-left"
-                        style={{ backgroundColor: theme.colors.bg.card, borderColor: theme.colors.border }}
+                        style={{ backgroundColor: theme.colors.bg.card, borderColor: theme.colors.border, textShadow: 'none' }}
                         onMouseLeave={handleMouseLeave}
                     >
                         <div className={`grid ${getGridClass()} gap-2 p-4`}>
