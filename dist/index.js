@@ -135,7 +135,7 @@ var M = ({ label: e, url: t = "#", items: n, columns: r = 1, textColor: a, varia
 			case 4: return "md:grid-cols-4";
 			default: return "md:grid-cols-1";
 		}
-	}, z = s || O || p ? w.colors.secondary.DEFAULT : a || "rgba(255, 255, 255, 0.9)", B = "mx-1.5 lg:mx-2 xl:mx-3 my-2 text-[11px] xl:text-xs font-bold uppercase tracking-wider xl:tracking-widest transition-colors inline-block relative z-20 bg-transparent border-0 cursor-pointer p-0";
+	}, z = s || O || p ? w.colors.secondary.DEFAULT : a || "rgba(255, 255, 255, 0.9)", B = "mx-1 lg:mx-1.5 xl:mx-2 my-0.5 py-1.5 px-1 text-[11px] xl:text-xs font-bold uppercase tracking-wider xl:tracking-widest transition-colors inline-block relative z-20 bg-transparent border-0 cursor-pointer";
 	return /* @__PURE__ */ f("div", {
 		ref: v,
 		className: "relative inline-block",

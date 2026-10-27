@@ -227,7 +227,7 @@ export const NavDropdown = ({
         : (textColor || 'rgba(255, 255, 255, 0.9)');
 
     const sharedTriggerClass =
-        'mx-1.5 lg:mx-2 xl:mx-3 my-2 text-[11px] xl:text-xs font-bold uppercase tracking-wider xl:tracking-widest transition-colors inline-block relative z-20 bg-transparent border-0 cursor-pointer p-0';
+        'mx-1 lg:mx-1.5 xl:mx-2 my-0.5 py-1.5 px-1 text-[11px] xl:text-xs font-bold uppercase tracking-wider xl:tracking-widest transition-colors inline-block relative z-20 bg-transparent border-0 cursor-pointer';
 
     return (
         <div ref={dropdownRef} className="relative inline-block" onMouseLeave={handleMouseLeave}>
