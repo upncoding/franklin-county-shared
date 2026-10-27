@@ -1570,7 +1570,7 @@ var Me = ({ to: e, label: t, onClick: n, textColor: r }) => {
 		className: "flex justify-between items-center",
 		children: [
 			/* @__PURE__ */ f("div", {
-				className: "flex items-center gap-2.5 lg:gap-3 xl:gap-4 shrink-0",
+				className: "flex items-center gap-2.5 lg:gap-3 xl:gap-4 min-w-0 flex-1 mr-2",
 				children: [/* @__PURE__ */ f("div", {
 					className: "relative group shrink-0",
 					children: [/* @__PURE__ */ d("div", { className: "absolute -inset-1 bg-linear-to-r from-county-gold-light to-county-gold rounded-full opacity-0 group-hover:opacity-30 blur transition duration-300" }), /* @__PURE__ */ d("img", {
@@ -1579,13 +1579,13 @@ var Me = ({ to: e, label: t, onClick: n, textColor: r }) => {
 						className: `relative transition-all duration-300 object-contain ${l || o ? "h-10 w-10 lg:h-11 lg:w-11 xl:h-12 xl:w-12" : "h-12 w-12 lg:h-14 lg:w-14 xl:h-16 xl:w-16 2xl:h-20 2xl:w-20"}`
 					})]
 				}), /* @__PURE__ */ f("div", {
-					className: "flex flex-col transition-opacity duration-300 opacity-100",
+					className: "flex flex-col min-w-0 transition-opacity duration-300 opacity-100",
 					style: { color: p },
 					children: [/* @__PURE__ */ d("span", {
 						className: "text-[10px] lg:text-[11px] xl:text-xs uppercase tracking-[0.2em] xl:tracking-[0.3em] font-light leading-tight",
 						children: "Franklin County"
 					}), /* @__PURE__ */ d("span", {
-						className: "font-serif font-black text-lg lg:text-xl xl:text-2xl leading-none tracking-tight",
+						className: "font-serif font-black text-sm sm:text-base lg:text-xl xl:text-2xl leading-tight tracking-tight",
 						children: e
 					})]
 				})]
@@ -1617,7 +1617,7 @@ var Me = ({ to: e, label: t, onClick: n, textColor: r }) => {
 				className: `${c ? "block" : "lg:hidden"} p-2 cursor-pointer transition-opacity rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-county-gold`,
 				style: { color: p },
 				onClick: s,
-				"aria-label": o ? "Close navigation menu" : "Open navigation menu",
+				"aria-label": o ? "Close county navigation menu" : "Open county navigation menu",
 				"aria-expanded": o,
 				"aria-controls": "fc-mobile-nav",
 				onMouseEnter: (e) => {

@@ -174,7 +174,7 @@ export const Navbar = ({
     return (
         <div className="flex justify-between items-center">
             {/* ── Brand Identity ── */}
-            <div className="flex items-center gap-2.5 lg:gap-3 xl:gap-4 shrink-0">
+            <div className="flex items-center gap-2.5 lg:gap-3 xl:gap-4 min-w-0 flex-1 mr-2">
                 <div className="relative group shrink-0">
                     {/* Gold glow on hover */}
                     <div className="absolute -inset-1 bg-linear-to-r from-county-gold-light to-county-gold rounded-full opacity-0 group-hover:opacity-30 blur transition duration-300" />
@@ -184,9 +184,9 @@ export const Navbar = ({
                         className={`relative transition-all duration-300 object-contain ${isScrolled || isMobileMenuOpen ? 'h-10 w-10 lg:h-11 lg:w-11 xl:h-12 xl:w-12' : 'h-12 w-12 lg:h-14 lg:w-14 xl:h-16 xl:w-16 2xl:h-20 2xl:w-20'}`}
                     />
                 </div>
-                <div className="flex flex-col transition-opacity duration-300 opacity-100" style={{ color: headerTextColor }}>
+                <div className="flex flex-col min-w-0 transition-opacity duration-300 opacity-100" style={{ color: headerTextColor }}>
                     <span className="text-[10px] lg:text-[11px] xl:text-xs uppercase tracking-[0.2em] xl:tracking-[0.3em] font-light leading-tight">Franklin County</span>
-                    <span className="font-serif font-black text-lg lg:text-xl xl:text-2xl leading-none tracking-tight">{siteTitle}</span>
+                    <span className="font-serif font-black text-sm sm:text-base lg:text-xl xl:text-2xl leading-tight tracking-tight">{siteTitle}</span>
                 </div>
             </div>
 
@@ -231,7 +231,7 @@ export const Navbar = ({
                     className={`${isMobileOrTablet ? 'block' : 'lg:hidden'} p-2 cursor-pointer transition-opacity rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-county-gold`}
                     style={{ color: headerTextColor }}
                     onClick={onMobileMenuToggle}
-                    aria-label={isMobileMenuOpen ? 'Close navigation menu' : 'Open navigation menu'}
+                    aria-label={isMobileMenuOpen ? 'Close county navigation menu' : 'Open county navigation menu'}
                     aria-expanded={isMobileMenuOpen}
                     aria-controls="fc-mobile-nav"
                     onMouseEnter={(e) => {
