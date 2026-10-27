@@ -383,7 +383,12 @@ export function SearchBox({
                     color: theme.colors.text.primary,
                 }}
             >
-                <div className="max-h-[min(70vh,30rem)] overflow-y-auto overscroll-contain">
+                <div 
+                    tabIndex={0} 
+                    role="region" 
+                    aria-label="Search results" 
+                    className="max-h-[min(70vh,30rem)] overflow-y-auto overscroll-contain focus:outline-none focus-visible:ring-2 focus-visible:ring-inset"
+                >
                     {showSuggestions && (
                         <div className="p-4">
                             <p className="text-[10px] font-black uppercase tracking-[0.2em] mb-3" style={{ color: theme.colors.secondary.dark }}>

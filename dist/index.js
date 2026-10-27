@@ -1375,7 +1375,10 @@ function je({ variant: e = "header", dropdown: t = "floating", align: r = "right
 					color: k.colors.text.primary
 				},
 				children: [/* @__PURE__ */ f("div", {
-					className: "max-h-[min(70vh,30rem)] overflow-y-auto overscroll-contain",
+					tabIndex: 0,
+					role: "region",
+					"aria-label": "Search results",
+					className: "max-h-[min(70vh,30rem)] overflow-y-auto overscroll-contain focus:outline-none focus-visible:ring-2 focus-visible:ring-inset",
 					children: [
 						oe && /* @__PURE__ */ f("div", {
 							className: "p-4",
