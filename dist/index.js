@@ -2319,8 +2319,9 @@ var Ge = ({ triggerText: e, tooltipContent: t, isActive: n, onToggle: r }) => {
 						},
 						children: /* @__PURE__ */ f("div", {
 							className: "relative flex items-center justify-between p-3.5",
-							children: [/* @__PURE__ */ f("div", {
-								className: "flex-1 text-left cursor-pointer",
+							children: [/* @__PURE__ */ f("button", {
+								type: "button",
+								className: "flex-1 text-left cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-1 rounded-lg p-1 -m-1",
 								onClick: () => M(e.id),
 								children: [
 									e.badge && /* @__PURE__ */ d("span", {

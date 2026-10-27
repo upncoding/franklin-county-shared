@@ -243,8 +243,9 @@ export const Sidebar = ({
                                     >
                                         <div className="relative flex items-center justify-between p-3.5">
                                             {/* Text Content (Clickable) */}
-                                            <div 
-                                                className="flex-1 text-left cursor-pointer"
+                                            <button 
+                                                type="button"
+                                                className="flex-1 text-left cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-1 rounded-lg p-1 -m-1"
                                                 onClick={() => handleNodeClick(node.id)}
                                             >
                                                 {node.badge && (
@@ -265,7 +266,7 @@ export const Sidebar = ({
                                                         {node.subtitle}
                                                     </div>
                                                 )}
-                                            </div>
+                                            </button>
 
                                             {/* Expand Toggle */}
                                             {hasSubNodes && (
