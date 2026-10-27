@@ -150,69 +150,95 @@ function LayoutInner({
 
     const isInitialMount = useRef(true);
     const wasOpenRef = useRef(false);
+    const initialHeightRef = useRef<number>(114);
+    const scrolledHeightRef = useRef<number>(80);
+    const isScrolledRef = useRef(false);
 
-    const updateHeaderDimensions = () => {
-        if (!headerRef.current) return;
-        const h = headerRef.current.offsetHeight;
-        document.documentElement.style.setProperty('--fc-header-actual-height', `${h}px`);
-        document.documentElement.style.setProperty('--fc-header-height', `${h}px`);
-        layoutRef.current?.style.setProperty('--fc-header-actual-height', `${h}px`);
-        layoutRef.current?.style.setProperty('--fc-header-height', `${h}px`);
-        setHeaderHeight(h);
+    // Compute expected height delta between unscrolled (py-4 + full seal) and scrolled (py-2 + compact seal)
+    const getExpectedDelta = (w: number) => {
+        const sealDelta = w >= 1536 ? 32 : w >= 1280 ? 16 : w >= 1024 ? 12 : 8;
+        return 16 + sealDelta;
     };
 
-    // Scroll shrink effect with animation frame tracking
-    useEffect(() => {
-        let animFrameId: number;
-        let lastScrolled = typeof window !== 'undefined' ? window.scrollY > 50 : false;
+    // Measure and sync header heights
+    const syncHeaderHeights = () => {
+        if (!headerRef.current) return;
+        const w = typeof window !== 'undefined' ? window.innerWidth : 1024;
+        const delta = getExpectedDelta(w);
+        const currentH = headerRef.current.offsetHeight;
 
+        if (!isScrolledRef.current) {
+            initialHeightRef.current = currentH;
+            scrolledHeightRef.current = Math.max(50, currentH - delta);
+            setHeaderHeight(currentH);
+            document.documentElement.style.setProperty('--fc-header-height', `${currentH}px`);
+            document.documentElement.style.setProperty('--fc-header-actual-height', `${currentH}px`);
+            layoutRef.current?.style.setProperty('--fc-header-height', `${currentH}px`);
+            layoutRef.current?.style.setProperty('--fc-header-actual-height', `${currentH}px`);
+        } else {
+            scrolledHeightRef.current = currentH;
+            initialHeightRef.current = currentH + delta;
+            setHeaderHeight(initialHeightRef.current);
+            document.documentElement.style.setProperty('--fc-header-height', `${initialHeightRef.current}px`);
+            document.documentElement.style.setProperty('--fc-header-actual-height', `${currentH}px`);
+            layoutRef.current?.style.setProperty('--fc-header-height', `${initialHeightRef.current}px`);
+            layoutRef.current?.style.setProperty('--fc-header-actual-height', `${currentH}px`);
+        }
+    };
+
+    // Scroll shrink effect with hysteresis: activate > 60px, deactivate < 20px
+    useEffect(() => {
+        let ticking = false;
         const handleScroll = () => {
-            const scrolled = window.scrollY > 50;
-            if (scrolled !== lastScrolled) {
-                lastScrolled = scrolled;
-                setIsScrolled(scrolled);
-                
-                // Track header dimensions frame-by-frame during the transition window
-                const startTime = performance.now();
-                const track = () => {
-                    updateHeaderDimensions();
-                    if (performance.now() - startTime < 350) {
-                        animFrameId = requestAnimationFrame(track);
-                    }
-                };
-                cancelAnimationFrame(animFrameId);
-                animFrameId = requestAnimationFrame(track);
-            }
+            if (ticking) return;
+            ticking = true;
+            requestAnimationFrame(() => {
+                const y = window.scrollY;
+                setIsScrolled(prev => (prev ? y > 20 : y > 60));
+                ticking = false;
+            });
         };
         handleScroll();
         window.addEventListener('scroll', handleScroll, { passive: true });
-        return () => {
-            window.removeEventListener('scroll', handleScroll);
-            cancelAnimationFrame(animFrameId);
-        };
+        return () => window.removeEventListener('scroll', handleScroll);
     }, []);
 
-    // Measure header height and expose as CSS variables
+    // Update --fc-header-actual-height when scroll state toggles so CSS transitions top/height in lockstep
     useEffect(() => {
-        updateHeaderDimensions();
+        isScrolledRef.current = isScrolled;
+        const targetHeight = isScrolled ? scrolledHeightRef.current : initialHeightRef.current;
+        document.documentElement.style.setProperty('--fc-header-actual-height', `${targetHeight}px`);
+        layoutRef.current?.style.setProperty('--fc-header-actual-height', `${targetHeight}px`);
+    }, [isScrolled]);
 
+    // Measure initial header height on mount and debounced resize
+    useEffect(() => {
+        syncHeaderHeights();
+
+        let resizeTimer: any;
         const handleResize = () => {
-            updateHeaderDimensions();
+            clearTimeout(resizeTimer);
+            resizeTimer = setTimeout(syncHeaderHeights, 100);
         };
-
-        const ro = new ResizeObserver(() => {
-            updateHeaderDimensions();
-        });
-        if (headerRef.current) {
-            ro.observe(headerRef.current);
-        }
         window.addEventListener('resize', handleResize);
-
         return () => {
-            ro.disconnect();
+            clearTimeout(resizeTimer);
             window.removeEventListener('resize', handleResize);
         };
     }, []);
+
+    const handleHeaderTransitionEnd = (e: React.TransitionEvent<HTMLElement>) => {
+        if (e.target !== headerRef.current || e.propertyName !== 'padding-top') return;
+        if (!headerRef.current) return;
+        const exactH = headerRef.current.offsetHeight;
+        if (isScrolledRef.current) {
+            scrolledHeightRef.current = exactH;
+        } else {
+            initialHeightRef.current = exactH;
+        }
+        document.documentElement.style.setProperty('--fc-header-actual-height', `${exactH}px`);
+        layoutRef.current?.style.setProperty('--fc-header-actual-height', `${exactH}px`);
+    };
 
     const prevPathnameRef = useRef(location.pathname);
 
@@ -301,7 +327,8 @@ function LayoutInner({
                 <header
                     ref={headerRef}
                     role="banner"
-                    className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ease-in-out ${isScrolled ? 'py-2 shadow-2xl' : 'py-4 text-shadow'}`}
+                    onTransitionEnd={handleHeaderTransitionEnd}
+                    className={`fixed top-0 left-0 w-full z-50 transition-[padding,box-shadow,background-color] duration-300 ease-in-out ${isScrolled ? 'py-2 shadow-2xl' : 'py-4 text-shadow'}`}
                     style={{ 
                         backgroundColor: theme.colors.primary.DEFAULT,
                         background: theme.colors.bg.header 

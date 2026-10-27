@@ -1857,41 +1857,41 @@ function Ue({ children: e, siteTitle: t, showTopbar: n = !0, showNavbar: r = !0,
 		};
 		return e(), window.addEventListener("resize", e), () => window.removeEventListener("resize", e);
 	}, []);
-	let V = c(!0), H = c(!1), U = () => {
+	let V = c(!0), H = c(!1), U = c(114), W = c(80), G = c(!1), ee = (e) => 16 + (e >= 1536 ? 32 : e >= 1280 ? 16 : e >= 1024 ? 12 : 8), K = () => {
 		if (!M.current) return;
-		let e = M.current.offsetHeight;
-		document.documentElement.style.setProperty("--fc-header-actual-height", `${e}px`), document.documentElement.style.setProperty("--fc-header-height", `${e}px`), B.current?.style.setProperty("--fc-header-actual-height", `${e}px`), B.current?.style.setProperty("--fc-header-height", `${e}px`), E(e);
+		let e = typeof window < "u" ? window.innerWidth : 1024, t = ee(e), n = M.current.offsetHeight;
+		G.current ? (W.current = n, U.current = n + t, E(U.current), document.documentElement.style.setProperty("--fc-header-height", `${U.current}px`), document.documentElement.style.setProperty("--fc-header-actual-height", `${n}px`), B.current?.style.setProperty("--fc-header-height", `${U.current}px`), B.current?.style.setProperty("--fc-header-actual-height", `${n}px`)) : (U.current = n, W.current = Math.max(50, n - t), E(n), document.documentElement.style.setProperty("--fc-header-height", `${n}px`), document.documentElement.style.setProperty("--fc-header-actual-height", `${n}px`), B.current?.style.setProperty("--fc-header-height", `${n}px`), B.current?.style.setProperty("--fc-header-actual-height", `${n}px`));
 	};
 	i(() => {
-		let e, t = typeof window < "u" && window.scrollY > 50, n = () => {
-			let n = window.scrollY > 50;
-			if (n !== t) {
-				t = n, b(n);
-				let r = performance.now(), i = () => {
-					U(), performance.now() - r < 350 && (e = requestAnimationFrame(i));
-				};
-				cancelAnimationFrame(e), e = requestAnimationFrame(i);
-			}
+		let e = !1, t = () => {
+			e || (e = !0, requestAnimationFrame(() => {
+				let t = window.scrollY;
+				b((e) => e ? t > 20 : t > 60), e = !1;
+			}));
 		};
-		return n(), window.addEventListener("scroll", n, { passive: !0 }), () => {
-			window.removeEventListener("scroll", n), cancelAnimationFrame(e);
-		};
+		return t(), window.addEventListener("scroll", t, { passive: !0 }), () => window.removeEventListener("scroll", t);
 	}, []), i(() => {
-		U();
-		let e = () => {
-			U();
-		}, t = new ResizeObserver(() => {
-			U();
-		});
-		return M.current && t.observe(M.current), window.addEventListener("resize", e), () => {
-			t.disconnect(), window.removeEventListener("resize", e);
+		G.current = y;
+		let e = y ? W.current : U.current;
+		document.documentElement.style.setProperty("--fc-header-actual-height", `${e}px`), B.current?.style.setProperty("--fc-header-actual-height", `${e}px`);
+	}, [y]), i(() => {
+		K();
+		let e, t = () => {
+			clearTimeout(e), e = setTimeout(K, 100);
+		};
+		return window.addEventListener("resize", t), () => {
+			clearTimeout(e), window.removeEventListener("resize", t);
 		};
 	}, []);
-	let W = c(D.pathname);
+	let te = (e) => {
+		if (e.target !== M.current || e.propertyName !== "padding-top" || !M.current) return;
+		let t = M.current.offsetHeight;
+		G.current ? W.current = t : U.current = t, document.documentElement.style.setProperty("--fc-header-actual-height", `${t}px`), B.current?.style.setProperty("--fc-header-actual-height", `${t}px`);
+	}, q = c(D.pathname);
 	i(() => {
-		W.current !== D.pathname && (W.current = D.pathname, H.current = !1, S(!1));
+		q.current !== D.pathname && (q.current = D.pathname, H.current = !1, S(!1));
 	}, [D.pathname]);
-	let G = () => {
+	let J = () => {
 		H.current = !1, S(!1);
 	};
 	i(() => {
@@ -1910,7 +1910,7 @@ function Ue({ children: e, siteTitle: t, showTopbar: n = !0, showNavbar: r = !0,
 	}, [x]), i(() => {
 		V.current ? (V.current = !1, H.current = x) : x && j.current ? (H.current = !0, j.current.querySelector("a[href], button:not([disabled]), input, [tabindex]:not([tabindex=\"-1\"])")?.focus()) : !x && H.current && (H.current = !1, k.current?.focus());
 	}, [x]);
-	let ee = He(o), K = s || !!p;
+	let Y = He(o), ne = s || !!p;
 	return /* @__PURE__ */ f("div", {
 		ref: B,
 		className: "min-h-screen flex flex-col font-sans text-county-charcoal",
@@ -1924,7 +1924,8 @@ function Ue({ children: e, siteTitle: t, showTopbar: n = !0, showNavbar: r = !0,
 			r && /* @__PURE__ */ d("header", {
 				ref: M,
 				role: "banner",
-				className: `fixed top-0 left-0 w-full z-50 transition-all duration-300 ease-in-out ${y ? "py-2 shadow-2xl" : "py-4 text-shadow"}`,
+				onTransitionEnd: te,
+				className: `fixed top-0 left-0 w-full z-50 transition-[padding,box-shadow,background-color] duration-300 ease-in-out ${y ? "py-2 shadow-2xl" : "py-4 text-shadow"}`,
 				style: {
 					backgroundColor: O.colors.primary.DEFAULT,
 					background: O.colors.bg.header
@@ -1935,7 +1936,7 @@ function Ue({ children: e, siteTitle: t, showTopbar: n = !0, showNavbar: r = !0,
 						siteTitle: t,
 						navItems: o,
 						showTopbar: n,
-						showSearch: K,
+						showSearch: ne,
 						search: p,
 						onSearch: g,
 						isMobileMenuOpen: x,
@@ -1967,17 +1968,17 @@ function Ue({ children: e, siteTitle: t, showTopbar: n = !0, showNavbar: r = !0,
 					children: /* @__PURE__ */ f("div", {
 						className: "container mx-auto px-6",
 						children: [
-							K && p && /* @__PURE__ */ d("div", {
+							ne && p && /* @__PURE__ */ d("div", {
 								className: "px-6 w-full max-w-md mx-auto mb-10",
 								children: /* @__PURE__ */ d(je, {
 									...p,
 									variant: "light",
 									dropdown: "inline",
 									onSearch: g,
-									onNavigate: G
+									onNavigate: J
 								})
 							}),
-							K && !p && /* @__PURE__ */ d("div", {
+							ne && !p && /* @__PURE__ */ d("div", {
 								className: "px-6 w-full max-w-md mx-auto mb-10",
 								children: /* @__PURE__ */ d("form", {
 									role: "search",
@@ -2039,7 +2040,7 @@ function Ue({ children: e, siteTitle: t, showTopbar: n = !0, showNavbar: r = !0,
 												className: "flex flex-col gap-1",
 												children: n.map((e, t) => /* @__PURE__ */ d(m, {
 													to: e.url,
-													onClick: G,
+													onClick: J,
 													className: "block w-full text-center text-[13px] font-bold uppercase tracking-widest transition-all duration-200 py-3 px-6 rounded-xl interactive-effect",
 													style: ({ isActive: e }) => ({
 														color: e ? O.colors.primary.dark : O.colors.text.primary,
@@ -2054,7 +2055,7 @@ function Ue({ children: e, siteTitle: t, showTopbar: n = !0, showNavbar: r = !0,
 									}
 									return /* @__PURE__ */ d(m, {
 										to: e.url || "/",
-										onClick: G,
+										onClick: J,
 										className: "block w-full text-center text-[13px] font-bold uppercase tracking-widest transition-all duration-200 py-3 px-6 rounded-xl interactive-effect",
 										style: ({ isActive: e }) => ({
 											color: e ? O.colors.primary.dark : O.colors.text.primary,
@@ -2066,7 +2067,7 @@ function Ue({ children: e, siteTitle: t, showTopbar: n = !0, showNavbar: r = !0,
 									}, t);
 								})
 							}),
-							ee.length > 0 && o.some((e) => e.items) && /* @__PURE__ */ d("div", {
+							Y.length > 0 && o.some((e) => e.items) && /* @__PURE__ */ d("div", {
 								className: "border-t my-6 max-w-md mx-auto",
 								style: { borderColor: `${O.colors.secondary.DEFAULT}4D` }
 							}),
@@ -2425,7 +2426,7 @@ var Ge = ({ triggerText: e, tooltipContent: t, isActive: n, onToggle: r }) => {
 	})] });
 	return v ? /* @__PURE__ */ d("aside", {
 		ref: O,
-		className: `shrink-0 sticky z-20 border-r transition-[width,opacity] duration-300 ease-in-out ${C ? "w-80 opacity-100 visible" : "w-0 opacity-0 invisible overflow-hidden border-r-0"}`,
+		className: `shrink-0 sticky z-20 border-r transition-[width,opacity,top,height,max-height] duration-300 ease-in-out ${C ? "w-80 opacity-100 visible" : "w-0 opacity-0 invisible overflow-hidden border-r-0"}`,
 		style: {
 			backgroundColor: _.colors.bg.sidebar,
 			borderColor: `${_.colors.border}30`,
@@ -2472,7 +2473,8 @@ var Ge = ({ triggerText: e, tooltipContent: t, isActive: n, onToggle: r }) => {
 			overflowY: "auto",
 			overscrollBehavior: "contain",
 			WebkitOverflowScrolling: "touch",
-			paddingBottom: "3rem"
+			paddingBottom: "3rem",
+			transition: "top 300ms ease-in-out, height 300ms ease-in-out, max-height 300ms ease-in-out"
 		},
 		children: F()
 	})] });

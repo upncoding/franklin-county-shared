@@ -356,7 +356,7 @@ export const Sidebar = ({
         return (
             <aside
                 ref={asideRef}
-                className={`shrink-0 sticky z-20 border-r transition-[width,opacity] duration-300 ease-in-out ${
+                className={`shrink-0 sticky z-20 border-r transition-[width,opacity,top,height,max-height] duration-300 ease-in-out ${
                     resolvedIsOpen ? 'w-80 opacity-100 visible' : 'w-0 opacity-0 invisible overflow-hidden border-r-0'
                 }`}
                 style={{
@@ -414,6 +414,7 @@ export const Sidebar = ({
                     overscrollBehavior: 'contain',
                     WebkitOverflowScrolling: 'touch',
                     paddingBottom: '3rem',
+                    transition: 'top 300ms ease-in-out, height 300ms ease-in-out, max-height 300ms ease-in-out',
                 }}
             >
                 {renderInnerContent()}
