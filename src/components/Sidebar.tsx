@@ -356,7 +356,7 @@ export const Sidebar = ({
         return (
             <aside
                 ref={asideRef}
-                className={`shrink-0 sticky z-20 border-r transition-[width,opacity,top,height,max-height] duration-300 ease-in-out ${
+                className={`shrink-0 sticky z-20 border-r overflow-x-hidden transition-[width,opacity,top,height,max-height] duration-300 ease-in-out ${
                     resolvedIsOpen ? 'w-80 opacity-100 visible' : 'w-0 opacity-0 invisible overflow-hidden border-r-0'
                 }`}
                 style={{
@@ -365,12 +365,13 @@ export const Sidebar = ({
                     top: headerHeightVar,
                     height: `calc(100dvh - ${headerHeightVar})`,
                     maxHeight: `calc(100dvh - ${headerHeightVar})`,
+                    overflowX: 'hidden',
                     overflowY: resolvedIsOpen ? 'auto' : 'hidden',
                     overscrollBehavior: 'contain',
                     paddingBottom: resolvedIsOpen ? '2rem' : 0,
                 }}
             >
-                <div className="w-80">
+                <div className="w-80 max-w-full">
                     {renderInnerContent()}
                 </div>
             </aside>
@@ -403,13 +404,14 @@ export const Sidebar = ({
                     visibility: resolvedIsOpen ? "visible" : "hidden",
                 }}
                 transition={{ type: 'spring', damping: 30, stiffness: 300 }}
-                className="w-80 fixed left-0 z-40 border-r shadow-2xl flex flex-col"
+                className="w-80 fixed left-0 z-40 border-r shadow-2xl flex flex-col overflow-x-hidden"
                 style={{
                     backgroundColor: theme.colors.bg.sidebar,
                     borderColor: `${theme.colors.border}30`,
                     top: headerHeightVar,
                     height: `calc(100dvh - ${headerHeightVar})`,
                     maxHeight: `calc(100dvh - ${headerHeightVar})`,
+                    overflowX: 'hidden',
                     overflowY: 'auto',
                     overscrollBehavior: 'contain',
                     WebkitOverflowScrolling: 'touch',

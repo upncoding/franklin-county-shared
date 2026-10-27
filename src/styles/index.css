@@ -36,6 +36,7 @@ body {
   aside {
     scrollbar-width: thin;
     scrollbar-color: #15803d rgba(0, 0, 0, 0.05);
+    overflow-x: hidden;
   }
 
   aside::-webkit-scrollbar {

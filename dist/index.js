@@ -2428,19 +2428,20 @@ var Ge = ({ triggerText: e, tooltipContent: t, isActive: n, onToggle: r }) => {
 	})] });
 	return v ? /* @__PURE__ */ d("aside", {
 		ref: O,
-		className: `shrink-0 sticky z-20 border-r transition-[width,opacity,top,height,max-height] duration-300 ease-in-out ${C ? "w-80 opacity-100 visible" : "w-0 opacity-0 invisible overflow-hidden border-r-0"}`,
+		className: `shrink-0 sticky z-20 border-r overflow-x-hidden transition-[width,opacity,top,height,max-height] duration-300 ease-in-out ${C ? "w-80 opacity-100 visible" : "w-0 opacity-0 invisible overflow-hidden border-r-0"}`,
 		style: {
 			backgroundColor: _.colors.bg.sidebar,
 			borderColor: `${_.colors.border}30`,
 			top: P,
 			height: `calc(100dvh - ${P})`,
 			maxHeight: `calc(100dvh - ${P})`,
+			overflowX: "hidden",
 			overflowY: C ? "auto" : "hidden",
 			overscrollBehavior: "contain",
 			paddingBottom: C ? "2rem" : 0
 		},
 		children: /* @__PURE__ */ d("div", {
-			className: "w-80",
+			className: "w-80 max-w-full",
 			children: F()
 		})
 	}) : /* @__PURE__ */ f(u, { children: [/* @__PURE__ */ d(w, { children: C && /* @__PURE__ */ d(T.div, {
@@ -2465,13 +2466,14 @@ var Ge = ({ triggerText: e, tooltipContent: t, isActive: n, onToggle: r }) => {
 			damping: 30,
 			stiffness: 300
 		},
-		className: "w-80 fixed left-0 z-40 border-r shadow-2xl flex flex-col",
+		className: "w-80 fixed left-0 z-40 border-r shadow-2xl flex flex-col overflow-x-hidden",
 		style: {
 			backgroundColor: _.colors.bg.sidebar,
 			borderColor: `${_.colors.border}30`,
 			top: P,
 			height: `calc(100dvh - ${P})`,
 			maxHeight: `calc(100dvh - ${P})`,
+			overflowX: "hidden",
 			overflowY: "auto",
 			overscrollBehavior: "contain",
 			WebkitOverflowScrolling: "touch",
