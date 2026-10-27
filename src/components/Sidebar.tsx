@@ -261,7 +261,7 @@ export const Sidebar = ({
                                                     {node.title}
                                                 </span>
                                                 {node.subtitle && (
-                                                    <div className="text-xs text-gray-500 mt-1.5 flex items-center gap-1">
+                                                    <div className="text-xs text-gray-700 font-medium mt-1.5 flex items-center gap-1">
                                                         {node.subtitle}
                                                     </div>
                                                 )}

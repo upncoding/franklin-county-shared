@@ -1468,7 +1468,7 @@ const Dg = ({
             ) }),
             /* @__PURE__ */ i("div", { children: [
               /* @__PURE__ */ e("div", { className: "text-xs uppercase tracking-wider mb-1", style: { color: C.colors.text.onDark }, children: "County Office" }),
-              n ? /* @__PURE__ */ e(
+              n ? /* @__PURE__ */ i(
                 "a",
                 {
                   href: Hg(n),
@@ -1478,8 +1478,10 @@ const Dg = ({
                   style: { color: C.colors.text.onDark },
                   onMouseEnter: (g) => g.currentTarget.style.color = C.colors.secondary.DEFAULT,
                   onMouseLeave: (g) => g.currentTarget.style.color = C.colors.text.onDark,
-                  "aria-label": "Open office address in maps",
-                  children: t
+                  children: [
+                    t,
+                    /* @__PURE__ */ e("span", { className: "sr-only", children: " (opens Google Maps in a new tab)" })
+                  ]
                 }
               ) : /* @__PURE__ */ e("address", { className: "text-sm font-medium leading-snug not-italic", style: { color: C.colors.text.onDark }, children: t })
             ] })
@@ -2023,7 +2025,7 @@ const uI = ({ triggerText: I, tooltipContent: t, isActive: C, onToggle: n }) => 
                           children: f.title
                         }
                       ),
-                      f.subtitle && /* @__PURE__ */ e("div", { className: "text-xs text-gray-500 mt-1.5 flex items-center gap-1", children: f.subtitle })
+                      f.subtitle && /* @__PURE__ */ e("div", { className: "text-xs text-gray-700 font-medium mt-1.5 flex items-center gap-1", children: f.subtitle })
                     ]
                   }
                 ),

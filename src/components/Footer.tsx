@@ -120,9 +120,9 @@ export const Footer = ({
                                     style={{ color: theme.colors.text.onDark }}
                                     onMouseEnter={(e) => e.currentTarget.style.color = theme.colors.secondary.DEFAULT}
                                     onMouseLeave={(e) => e.currentTarget.style.color = theme.colors.text.onDark}
-                                    aria-label="Open office address in maps"
                                 >
                                     {address}
+                                    <span className="sr-only"> (opens Google Maps in a new tab)</span>
                                 </a>
                             ) : (
                                 <address className="text-sm font-medium leading-snug not-italic" style={{ color: theme.colors.text.onDark }}>
