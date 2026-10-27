@@ -68,6 +68,7 @@ export const NavDropdown = ({
     variant = 'standard',
 }: NavDropdownProps) => {
     const [isOpen, setIsOpen] = useState(false);
+    const [isHovered, setIsHovered] = useState(false);
     const [menuTop, setMenuTop] = useState<number | null>(null);
     const dropdownRef = useRef<HTMLDivElement>(null);
     const triggerRef = useRef<HTMLElement>(null);
@@ -193,6 +194,7 @@ export const NavDropdown = ({
     };
 
     const handleMouseEnter = () => {
+        setIsHovered(true);
         if (timeoutRef.current) { window.clearTimeout(timeoutRef.current); timeoutRef.current = null; }
         if (!isOpen && !enterTimeoutRef.current) {
             enterTimeoutRef.current = window.setTimeout(() => {
@@ -203,6 +205,7 @@ export const NavDropdown = ({
     };
 
     const handleMouseLeave = () => {
+        setIsHovered(false);
         if (enterTimeoutRef.current) { window.clearTimeout(enterTimeoutRef.current); enterTimeoutRef.current = null; }
         timeoutRef.current = window.setTimeout(() => {
             setIsOpen(false);
@@ -219,12 +222,12 @@ export const NavDropdown = ({
         }
     };
 
-    const triggerColor = (isOpen || isActive)
+    const triggerColor = (isOpen || isActive || isHovered)
         ? theme.colors.secondary.DEFAULT
         : (textColor || 'rgba(255, 255, 255, 0.9)');
 
     const sharedTriggerClass =
-        'mx-4 my-2 text-xs font-bold uppercase tracking-widest transition-colors inline-block relative z-20 bg-transparent border-0 cursor-pointer p-0';
+        'mx-1.5 lg:mx-2 xl:mx-3 my-2 text-[11px] xl:text-xs font-bold uppercase tracking-wider xl:tracking-widest transition-colors inline-block relative z-20 bg-transparent border-0 cursor-pointer p-0';
 
     return (
         <div ref={dropdownRef} className="relative inline-block" onMouseLeave={handleMouseLeave}>

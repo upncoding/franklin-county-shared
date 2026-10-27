@@ -1,3 +1,5 @@
+import type React from 'react';
+import type { SearchConfig } from '../search/types';
 import type { NavItem } from '../data/countyNavItems';
 export interface NavbarItem {
     label: string;
@@ -15,9 +17,14 @@ export interface NavbarProps {
     navItems?: NavbarItem[];
     /** Whether the topbar is enabled (used to determine if hamburger menu should render) */
     showTopbar?: boolean;
-    /** Show the search input UI. Fires onSearch when submitted. */
+    /** Show the search input UI. */
     showSearch?: boolean;
-    /** Search handler — logic lives on the consuming site. Required when showSearch=true. */
+    /**
+     * Full-featured shared search (suggestions, grouped results, navigate-to-match).
+     * Takes precedence over the plain `onSearch` form.
+     */
+    search?: SearchConfig;
+    /** Plain-form fallback handler, or the "no results → Enter" handler when `search` is set. */
     onSearch?: (query: string) => void;
     /** Controlled: whether the mobile menu is open */
     isMobileMenuOpen: boolean;
@@ -34,4 +41,4 @@ export interface NavbarProps {
  * Rendered internally by Layout. Mobile hamburger state and scroll state are
  * owned by Layout and passed down as props so Layout can coordinate the overlay.
  */
-export declare const Navbar: ({ siteTitle, navItems, showTopbar, showSearch, onSearch, isMobileMenuOpen, onMobileMenuToggle, isMobileOrTablet, isScrolled, }: NavbarProps) => import("react").JSX.Element;
+export declare const Navbar: ({ siteTitle, navItems, showTopbar, showSearch, search, onSearch, isMobileMenuOpen, onMobileMenuToggle, isMobileOrTablet, isScrolled, }: NavbarProps) => React.JSX.Element;

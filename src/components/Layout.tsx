@@ -10,6 +10,9 @@ import { ThemeProvider, useTheme } from '../theme/ThemeContext';
 import { Topbar } from './Topbar';
 import { Navbar, type NavbarItem } from './Navbar';
 import { Footer } from './Footer';
+import { SearchBox } from '../search/SearchBox';
+import { SearchHighlighter } from '../search/SearchHighlighter';
+import type { SearchConfig } from '../search/types';
 import {
     departmentsItems,
     residentsItems,
@@ -47,9 +50,18 @@ export interface LayoutProps {
      * @default []
      */
     navItems?: NavbarItem[];
-    /** Show the search input UI in the navbar. @default false */
+    /** Show the search input UI in the navbar. Implied when `search` is provided. @default false */
     showSearch?: boolean;
-    /** Called when the user submits a search query. Logic lives on the site. */
+    /**
+     * Turn on the shared site search (grouped results, keyboard support, and
+     * automatic scroll-to-match on the destination page). Provide an `indexUrl`
+     * and/or `entries`; see {@link SearchConfig}.
+     */
+    search?: SearchConfig;
+    /**
+     * Without `search`: called when the user submits the plain search form.
+     * With `search`: called when Enter is pressed and nothing matched.
+     */
     onSearch?: (query: string) => void;
 
     // ── Footer overrides ──
@@ -106,7 +118,8 @@ function LayoutInner({
     showNavbar = true,
     showFooter = true,
     navItems = [],
-    showSearch = false,
+    showSearch: showSearchProp = false,
+    search,
     onSearch,
     footerPhone,
     footerAddress,
@@ -122,12 +135,17 @@ function LayoutInner({
     const headerRef = useRef<HTMLElement>(null);
     const layoutRef = useRef<HTMLDivElement>(null);
 
-    // Detect mobile/tablet UA to force hamburger
+    // Detect mobile phone screens under lg (1024px)
     useEffect(() => {
-        const ua = navigator.userAgent || navigator.vendor || (window as any).opera || '';
-        const isMobileUA = /android|webos|iphone|ipad|ipod|blackberry|iemobile|opera mini/i.test(ua);
-        const isIPad = /macintosh/i.test(ua) && navigator.maxTouchPoints > 1;
-        setIsMobileOrTablet(!!(isMobileUA || isIPad));
+        const checkMobile = () => {
+            if (typeof window === 'undefined') return;
+            const ua = navigator.userAgent || (navigator as unknown as { vendor?: string }).vendor || '';
+            const isPhoneUA = /iphone|ipod|android.*mobile|blackberry|iemobile|opera mini/i.test(ua);
+            setIsMobileOrTablet(isPhoneUA && window.innerWidth < 1024);
+        };
+        checkMobile();
+        window.addEventListener('resize', checkMobile);
+        return () => window.removeEventListener('resize', checkMobile);
     }, []);
 
     const isInitialMount = useRef(true);
@@ -245,9 +263,13 @@ function LayoutInner({
     // Focus trap for mobile menu
 
     const flatMobileItems = flattenForMobile(navItems);
+    const searchEnabled = showSearchProp || !!search;
 
     return (
         <div ref={layoutRef} className="min-h-screen flex flex-col font-sans text-county-charcoal">
+
+            {/* Scrolls to + highlights search matches (?hl=…&sec=…) after navigation */}
+            {search && <SearchHighlighter />}
 
             {/* Skip to main content */}
             <a href="#fc-main-content" className="skip-to-content">
@@ -273,7 +295,8 @@ function LayoutInner({
                             siteTitle={siteTitle}
                             navItems={navItems}
                             showTopbar={showTopbar}
-                            showSearch={showSearch}
+                            showSearch={searchEnabled}
+                            search={search}
                             onSearch={onSearch}
                             isMobileMenuOpen={isMobileMenuOpen}
                             onMobileMenuToggle={() => setIsMobileMenuOpen(prev => !prev)}
@@ -300,8 +323,19 @@ function LayoutInner({
                 >
                     <div className="overflow-y-auto flex-1 pt-32 pb-8" tabIndex={0} role="region" aria-label="Mobile Navigation Content">
                         <div className="container mx-auto px-6">
-                                                        {/* Mobile search */}
-                            {showSearch && (
+                            {/* Mobile search */}
+                            {searchEnabled && search && (
+                                <div className="px-6 w-full max-w-md mx-auto mb-10">
+                                    <SearchBox
+                                        {...search}
+                                        variant="light"
+                                        dropdown="inline"
+                                        onSearch={onSearch}
+                                        onNavigate={handleMobileNavClick}
+                                    />
+                                </div>
+                            )}
+                            {searchEnabled && !search && (
                                 <div className="px-6 w-full max-w-md mx-auto mb-10">
                                     <form
                                         role="search"

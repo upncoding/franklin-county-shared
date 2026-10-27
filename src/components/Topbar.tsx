@@ -22,7 +22,7 @@ export const Topbar = () => {
 
     return (
         <div
-            className="hidden xl:flex justify-end gap-2 border-b pb-2"
+            className="hidden lg:flex justify-end gap-1.5 xl:gap-2 border-b pb-1.5 xl:pb-2"
             style={{ 
                 borderColor: 'rgba(255,255,255,0.1)',
                 backgroundColor: theme.colors.bg.header 

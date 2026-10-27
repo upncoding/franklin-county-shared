@@ -1,7 +1,11 @@
+import { useState } from 'react';
+import type React from 'react';
 import { NavLink } from 'react-router-dom';
 import seal from '../assets/seal.png';
 import { useTheme } from '../theme/ThemeContext';
 import { NavDropdown } from './NavDropdown';
+import { SearchBox } from '../search/SearchBox';
+import type { SearchConfig } from '../search/types';
 import type { NavItem } from '../data/countyNavItems';
 
 // ─── Types ───────────────────────────────────────────
@@ -23,9 +27,14 @@ export interface NavbarProps {
     navItems?: NavbarItem[];
     /** Whether the topbar is enabled (used to determine if hamburger menu should render) */
     showTopbar?: boolean;
-    /** Show the search input UI. Fires onSearch when submitted. */
+    /** Show the search input UI. */
     showSearch?: boolean;
-    /** Search handler — logic lives on the consuming site. Required when showSearch=true. */
+    /**
+     * Full-featured shared search (suggestions, grouped results, navigate-to-match).
+     * Takes precedence over the plain `onSearch` form.
+     */
+    search?: SearchConfig;
+    /** Plain-form fallback handler, or the "no results → Enter" handler when `search` is set. */
     onSearch?: (query: string) => void;
     /** Controlled: whether the mobile menu is open */
     isMobileMenuOpen: boolean;
@@ -51,16 +60,18 @@ const MainNavLink = ({
     textColor?: string;
 }) => {
     const { theme } = useTheme();
+    const defaultColor = textColor || 'rgba(255, 255, 255, 0.9)';
+    const [isHovered, setIsHovered] = useState(false);
+
     return (
         <NavLink
             to={to}
             onClick={onClick}
-            className={({ isActive }) =>
-                `block w-full text-center text-2xl md:text-sm font-bold uppercase tracking-widest transition-all duration-200 py-4 px-6 rounded-2xl active:scale-95 ${isActive ? '' : 'interactive-effect'}`
-            }
+            className="mx-1.5 lg:mx-2 xl:mx-3 my-2 text-[11px] xl:text-xs font-bold uppercase tracking-wider xl:tracking-widest transition-colors inline-block relative z-20 bg-transparent border-0 cursor-pointer p-0"
+            onMouseEnter={() => setIsHovered(true)}
+            onMouseLeave={() => setIsHovered(false)}
             style={({ isActive }) => ({
-                color: isActive ? theme.colors.secondary.DEFAULT : (textColor || theme.colors.text.primary),
-                backgroundColor: isActive ? `${theme.colors.secondary.DEFAULT}10` : 'transparent',
+                color: (isActive || isHovered) ? theme.colors.secondary.DEFAULT : defaultColor,
             })}
         >
             {label}
@@ -78,6 +89,10 @@ const SearchInput = ({
     isMobile?: boolean;
 }) => {
     const { theme } = useTheme();
+    const [focused, setFocused] = useState(false);
+    const [value, setValue] = useState('');
+    const isExpanded = focused || value.length > 0;
+
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         const form = e.currentTarget;
@@ -85,23 +100,29 @@ const SearchInput = ({
         if (input.value.trim() && onSearch) {
             onSearch(input.value.trim());
             input.value = '';
+            setValue('');
         }
     };
 
     return (
-        <form onSubmit={handleSubmit} role="search" aria-label="Site search" className={isMobile ? 'w-full' : ''}>
+        <form onSubmit={handleSubmit} role="search" aria-label="Site search" className={isMobile ? 'w-full' : 'shrink-0'}>
             <div className="relative flex items-center">
                 <input
                     type="search"
                     name="q"
+                    value={value}
+                    onChange={(e) => setValue(e.target.value)}
+                    onFocus={() => setFocused(true)}
+                    onBlur={() => setFocused(false)}
                     placeholder="Search..."
                     aria-label="Search"
-                    className={`${isMobile ? 'w-full' : 'w-48'} px-4 py-2 pr-10 text-sm rounded-xl border transition-all duration-200 focus:outline-none focus:ring-2`}
+                    className={`${isMobile ? 'w-full' : isExpanded ? 'w-60 lg:w-72 xl:w-80 2xl:w-84' : 'w-36 lg:w-40 xl:w-44 2xl:w-48'} px-4 py-2 pr-10 text-sm rounded-xl border transition-all duration-300 ease-in-out focus:outline-none focus:ring-2`}
                     style={{
-                        backgroundColor: 'rgba(255,255,255,0.15)',
-                        borderColor: 'rgba(255,255,255,0.3)',
+                        backgroundColor: isExpanded ? 'rgba(255,255,255,0.22)' : 'rgba(255,255,255,0.15)',
+                        borderColor: isExpanded ? theme.colors.secondary.DEFAULT : 'rgba(255,255,255,0.3)',
                         color: theme.colors.text.onDark,
-                    }}
+                        '--tw-ring-color': theme.colors.secondary.DEFAULT,
+                    } as React.CSSProperties}
                 />
                 <button
                     type="submit"
@@ -131,6 +152,7 @@ export const Navbar = ({
     navItems = [],
     showTopbar = false,
     showSearch = false,
+    search,
     onSearch,
     isMobileMenuOpen,
     onMobileMenuToggle,
@@ -152,26 +174,26 @@ export const Navbar = ({
     return (
         <div className="flex justify-between items-center">
             {/* ── Brand Identity ── */}
-            <div className="flex items-center gap-4">
+            <div className="flex items-center gap-2.5 lg:gap-3 xl:gap-4 shrink-0">
                 <div className="relative group shrink-0">
                     {/* Gold glow on hover */}
                     <div className="absolute -inset-1 bg-linear-to-r from-county-gold-light to-county-gold rounded-full opacity-0 group-hover:opacity-30 blur transition duration-300" />
                     <img
                         src={seal}
                         alt="Franklin County Seal"
-                        className={`relative transition-all duration-500 object-contain ${isScrolled || isMobileMenuOpen ? 'h-12 w-12' : 'h-16 w-16 md:h-20 md:w-20'}`}
+                        className={`relative transition-all duration-500 object-contain ${isScrolled || isMobileMenuOpen ? 'h-10 w-10 lg:h-11 lg:w-11 xl:h-12 xl:w-12' : 'h-12 w-12 lg:h-14 lg:w-14 xl:h-16 xl:w-16 2xl:h-20 2xl:w-20'}`}
                     />
                 </div>
                 <div className="flex flex-col transition-opacity duration-300 opacity-100" style={{ color: headerTextColor }}>
-                    <span className="text-xs uppercase tracking-[0.3em] font-light leading-tight">Franklin County</span>
-                    <span className="font-serif font-black text-xl md:text-2xl leading-none tracking-tight">{siteTitle}</span>
+                    <span className="text-[10px] lg:text-[11px] xl:text-xs uppercase tracking-[0.2em] xl:tracking-[0.3em] font-light leading-tight">Franklin County</span>
+                    <span className="font-serif font-black text-lg lg:text-xl xl:text-2xl leading-none tracking-tight">{siteTitle}</span>
                 </div>
             </div>
 
             {/* ── Desktop Navigation ── */}
             {cappedItems.length > 0 && (
                 <nav
-                    className={`${isDesktopNavHidden ? 'hidden' : 'hidden xl:flex'} items-center gap-4`}
+                    className={`${isDesktopNavHidden ? 'hidden' : 'hidden lg:flex'} items-center gap-0.5 lg:gap-1 xl:gap-2 shrink-0`}
                     aria-label="Main navigation"
                 >
                     {cappedItems.map((item, i) =>
@@ -194,15 +216,19 @@ export const Navbar = ({
                             />
                         )
                     )}
-                    {showSearch && <SearchInput onSearch={onSearch} />}
+                    {showSearch && (
+                        search
+                            ? <SearchBox {...search} variant="header" shortcut expandable onSearch={onSearch} />
+                            : <SearchInput onSearch={onSearch} />
+                    )}
                 </nav>
             )}
 
-            {/* ── Hamburger (mobile/tablet + xl if no nav items) ── */}
+            {/* ── Hamburger (mobile/tablet + lg if no nav items) ── */}
             {(navItems.length > 0 || showTopbar) && (
                 <button
                     type="button"
-                    className={`${isMobileOrTablet ? 'block' : 'xl:hidden'} p-2 cursor-pointer transition-opacity rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-county-gold`}
+                    className={`${isMobileOrTablet ? 'block' : 'lg:hidden'} p-2 cursor-pointer transition-opacity rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-county-gold`}
                     style={{ color: headerTextColor }}
                     onClick={onMobileMenuToggle}
                     aria-label={isMobileMenuOpen ? 'Close navigation menu' : 'Open navigation menu'}

@@ -464,3 +464,43 @@ input[type="search"]::-webkit-search-cancel-button {
   cursor: pointer;
   margin-left: 4px;
 }
+
+/* ── Site search: highlight + flash after "navigate to match" ───────────── */
+/* Custom Highlight API: styled without touching the DOM. Gold on dark text
+   keeps contrast >= 4.5:1 with the default theme; override --theme-secondary-*
+   (or these rules) to re-skin per site. */
+::highlight(fc-search-hit) {
+  background-color: color-mix(in srgb, var(--theme-secondary-light, #facc15) 65%, white);
+  color: #111827;
+}
+
+::highlight(fc-search-hit-active) {
+  background-color: var(--theme-secondary, #eab308);
+  color: #111827;
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+}
+
+@keyframes fc-search-flash {
+  0%   { box-shadow: 0 0 0 0 color-mix(in srgb, var(--theme-secondary, #eab308) 70%, transparent); background-color: color-mix(in srgb, var(--theme-secondary-light, #facc15) 35%, transparent); }
+  60%  { box-shadow: 0 0 0 10px color-mix(in srgb, var(--theme-secondary, #eab308) 0%, transparent); background-color: color-mix(in srgb, var(--theme-secondary-light, #facc15) 25%, transparent); }
+  100% { box-shadow: 0 0 0 0 transparent; background-color: transparent; }
+}
+
+.fc-search-flash {
+  border-radius: 0.5rem;
+  animation: fc-search-flash 2.4s ease-out 1;
+  scroll-margin-top: calc(var(--fc-header-height, 96px) + 24px);
+}
+
+.fc-search-flash:focus {
+  outline: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fc-search-flash {
+    animation: none;
+    outline: 3px solid var(--theme-secondary, #eab308);
+    outline-offset: 4px;
+  }
+}

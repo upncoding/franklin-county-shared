@@ -1,5 +1,6 @@
 import { type ReactNode } from 'react';
 import { type NavbarItem } from './Navbar';
+import type { SearchConfig } from '../search/types';
 export interface LayoutProps {
     children: ReactNode;
     /**
@@ -20,9 +21,18 @@ export interface LayoutProps {
      * @default []
      */
     navItems?: NavbarItem[];
-    /** Show the search input UI in the navbar. @default false */
+    /** Show the search input UI in the navbar. Implied when `search` is provided. @default false */
     showSearch?: boolean;
-    /** Called when the user submits a search query. Logic lives on the site. */
+    /**
+     * Turn on the shared site search (grouped results, keyboard support, and
+     * automatic scroll-to-match on the destination page). Provide an `indexUrl`
+     * and/or `entries`; see {@link SearchConfig}.
+     */
+    search?: SearchConfig;
+    /**
+     * Without `search`: called when the user submits the plain search form.
+     * With `search`: called when Enter is pressed and nothing matched.
+     */
     onSearch?: (query: string) => void;
     /** @default "518-891-2280" */
     footerPhone?: string;

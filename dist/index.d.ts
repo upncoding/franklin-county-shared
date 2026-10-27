@@ -30,3 +30,4 @@ export * from './components/ContactCard';
 export * from './components/ResourceCard';
 export { default as ScrollToTop } from './components/ScrollToTop';
 export { ImageCarousel } from './components/ImageCarousel';
+export * from './search';
